@@ -1,0 +1,127 @@
+var Inst0 = 0;
+var Inst1 = 0;
+var Inst2 = 0;
+var Inst3 = 0;
+var Inst4 = 0;
+var Inst5 = 0;
+var Inst6 = 0;
+var Inst7 = 0;
+var Inst8 = 0;
+var Inst9 = 0;
+var Inst10 = 0;
+var Inst11 = 0;
+var Inst12 = 0;
+var Inst13 = 0;
+var Inst14 = 0;
+var Inst15 = 0;
+var Inst16 = 0;
+var Inst17 = 0;
+var Inst18 = 0;
+var Inst19 = 0;
+var Inst20 = 0;
+var Inst21 = 0;
+var Inst22 = 0;
+var Inst23 = 0;
+var Inst24 = 0;
+var Inst25 = 0;
+var Inst26 = 0;
+var Inst27 = 0;
+var Inst28 = 0;
+var Inst29 = 0;
+var Inst30 = 0;
+var Inst31 = 0;
+var Inst32 = 0;
+var Inst33 = 0;
+var Inst34 = 0;
+var Inst35 = 0;
+var Inst36 = 0;
+ 
+function _TypeOfArray(a) {
+	let number = true;	
+	let string = true;
+	for (let i = 0; i < a.length; i++) {
+		if (number && (typeof a[i]) != "number") {
+			number = false;	
+		}
+		if (string && (typeof a[i]) != "string") {
+			string = false;	
+		}
+		if (!number && !string)
+			break;
+	}
+	if (number)
+		return "number";
+	else if (string)
+		return "string";
+	else
+		return "any";
+}
+
+function _TypeIsEqual(t1, t2) {
+	return JSON.stringify(t1) === JSON.stringify(t2);
+}
+
+function _TypeOf(a, step) {
+	var t;
+	var type = Object.prototype.toString.call(a).slice(8, -1).toLowerCase();	
+	if (type == "array") {
+		t = {type : type, extra: {elemType: _TypeOfArray(a)}};
+	} else if (type == "object") {
+		let shape = [];
+        if (step === undefined || step > 0) {
+            let keys = Object.keys(a);
+            let length = Math.min(100, keys.length);
+		    for (let i = 0; i < length; i++) {
+			    shape.push([keys[i], _TypeOf(a[keys[i]], step === undefined ? 1 : step - 1)]);	
+		    }
+        }
+		t = {type : type, extra: {shape: shape}};
+	} else {
+		t = {type : type};
+	} 
+	return t;
+}
+
+function _RecordType(loc, a) {
+	var t = _TypeOf(a);
+    print("~~~TypeInfo:" + loc + ":" + JSON.stringify(t));
+}
+// Copyright 2015 the V8 project authors. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
+try { if (Inst1 <= 1000 && typeof (Object.getOwnPropertyDescriptor(Function.prototype, 'arguments').get) != "undefined") {_RecordType("<201,269,6>",(Object.getOwnPropertyDescriptor(Function.prototype, 'arguments').get)); Inst1++; } } catch(e) {}try { if (Inst2 <= 1000 && typeof (Object.getOwnPropertyDescriptor) != "undefined") {_RecordType("<201,232,6>",(Object.getOwnPropertyDescriptor)); Inst2++; } } catch(e) {}try { if (Inst3 <= 1000 && typeof (Object) != "undefined") {_RecordType("<201,207,6>",(Object)); Inst3++; } } catch(e) {}try { if (Inst4 <= 1000 && typeof (Function.prototype) != "undefined") {_RecordType("<233,251,6>",(Function.prototype)); Inst4++; } } catch(e) {}try { if (Inst5 <= 1000 && typeof (Function) != "undefined") {_RecordType("<233,241,6>",(Function)); Inst5++; } } catch(e) {}
+var throwTypeErrorFunction =
+    Object.getOwnPropertyDescriptor(Function.prototype, 'arguments').get;
+try { if (Inst0 <= 1000 && typeof (throwTypeErrorFunction) != "undefined") {_RecordType("<172,194,5>",(throwTypeErrorFunction)); Inst0++; } } catch(e) {}
+
+try { if (Inst6 <= 1000 && typeof (assertFalse) != "undefined") {_RecordType("<272,283,8>",(assertFalse)); Inst6++; } } catch(e) {}try { if (Inst7 <= 1000 && typeof (Object.prototype.hasOwnProperty.call) != "undefined") {_RecordType("<289,325,9>",(Object.prototype.hasOwnProperty.call)); Inst7++; } } catch(e) {}try { if (Inst8 <= 1000 && typeof (Object.prototype.hasOwnProperty) != "undefined") {_RecordType("<289,320,9>",(Object.prototype.hasOwnProperty)); Inst8++; } } catch(e) {}try { if (Inst9 <= 1000 && typeof (Object.prototype) != "undefined") {_RecordType("<289,305,9>",(Object.prototype)); Inst9++; } } catch(e) {}try { if (Inst10 <= 1000 && typeof (Object) != "undefined") {_RecordType("<289,295,9>",(Object)); Inst10++; } } catch(e) {}try { if (Inst11 <= 1000 && typeof (throwTypeErrorFunction) != "undefined") {_RecordType("<326,348,9>",(throwTypeErrorFunction)); Inst11++; } } catch(e) {}
+assertFalse(
+    Object.prototype.hasOwnProperty.call(throwTypeErrorFunction, 'name'));
+try { if (Inst12 <= 1000 && typeof (assertThrows) != "undefined") {_RecordType("<360,372,10>",(assertThrows)); Inst12++; } } catch(e) {}try { if (Inst15 <= 1000 && typeof (TypeError) != "undefined") {_RecordType("<444,453,13>",(TypeError)); Inst15++; } } catch(e) {}
+assertThrows(function() {
+  'use strict';
+  throwTypeErrorFunction.name = 'foo';
+try { if (Inst13 <= 1000 && typeof (throwTypeErrorFunction.name) != "undefined") {_RecordType("<404,431,12>",(throwTypeErrorFunction.name)); Inst13++; } } catch(e) {}try { if (Inst14 <= 1000 && typeof (throwTypeErrorFunction) != "undefined") {_RecordType("<404,426,12>",(throwTypeErrorFunction)); Inst14++; } } catch(e) {}
+}, TypeError);
+
+try { if (Inst17 <= 1000 && typeof (Object.getOwnPropertyDescriptor) != "undefined") {_RecordType("<478,509,16>",(Object.getOwnPropertyDescriptor)); Inst17++; } } catch(e) {}try { if (Inst18 <= 1000 && typeof (Object) != "undefined") {_RecordType("<478,484,16>",(Object)); Inst18++; } } catch(e) {}try { if (Inst19 <= 1000 && typeof (throwTypeErrorFunction) != "undefined") {_RecordType("<510,532,16>",(throwTypeErrorFunction)); Inst19++; } } catch(e) {}
+var lengthDesc =
+    Object.getOwnPropertyDescriptor(throwTypeErrorFunction, 'length');
+try { if (Inst16 <= 1000 && typeof (lengthDesc) != "undefined") {_RecordType("<461,471,15>",(lengthDesc)); Inst16++; } } catch(e) {}
+try { if (Inst20 <= 1000 && typeof (assertFalse) != "undefined") {_RecordType("<545,556,17>",(assertFalse)); Inst20++; } } catch(e) {}try { if (Inst21 <= 1000 && typeof (lengthDesc.configurable) != "undefined") {_RecordType("<557,580,17>",(lengthDesc.configurable)); Inst21++; } } catch(e) {}try { if (Inst22 <= 1000 && typeof (lengthDesc) != "undefined") {_RecordType("<557,567,17>",(lengthDesc)); Inst22++; } } catch(e) {}
+assertFalse(lengthDesc.configurable, 'configurable');
+try { if (Inst23 <= 1000 && typeof (assertFalse) != "undefined") {_RecordType("<599,610,18>",(assertFalse)); Inst23++; } } catch(e) {}try { if (Inst24 <= 1000 && typeof (lengthDesc.enumerable) != "undefined") {_RecordType("<611,632,18>",(lengthDesc.enumerable)); Inst24++; } } catch(e) {}try { if (Inst25 <= 1000 && typeof (lengthDesc) != "undefined") {_RecordType("<611,621,18>",(lengthDesc)); Inst25++; } } catch(e) {}
+assertFalse(lengthDesc.enumerable, 'enumerable');
+try { if (Inst26 <= 1000 && typeof (assertFalse) != "undefined") {_RecordType("<649,660,19>",(assertFalse)); Inst26++; } } catch(e) {}try { if (Inst27 <= 1000 && typeof (lengthDesc.writable) != "undefined") {_RecordType("<661,680,19>",(lengthDesc.writable)); Inst27++; } } catch(e) {}try { if (Inst28 <= 1000 && typeof (lengthDesc) != "undefined") {_RecordType("<661,671,19>",(lengthDesc)); Inst28++; } } catch(e) {}
+assertFalse(lengthDesc.writable, 'writable');
+try { if (Inst29 <= 1000 && typeof (assertThrows) != "undefined") {_RecordType("<695,707,20>",(assertThrows)); Inst29++; } } catch(e) {}try { if (Inst32 <= 1000 && typeof (TypeError) != "undefined") {_RecordType("<778,787,23>",(TypeError)); Inst32++; } } catch(e) {}
+assertThrows(function() {
+  'use strict';
+  throwTypeErrorFunction.length = 42;
+try { if (Inst30 <= 1000 && typeof (throwTypeErrorFunction.length) != "undefined") {_RecordType("<739,768,22>",(throwTypeErrorFunction.length)); Inst30++; } } catch(e) {}try { if (Inst31 <= 1000 && typeof (throwTypeErrorFunction) != "undefined") {_RecordType("<739,761,22>",(throwTypeErrorFunction)); Inst31++; } } catch(e) {}
+}, TypeError);
+
+try { if (Inst33 <= 1000 && typeof (assertTrue) != "undefined") {_RecordType("<791,801,25>",(assertTrue)); Inst33++; } } catch(e) {}try { if (Inst34 <= 1000 && typeof (Object.isFrozen) != "undefined") {_RecordType("<802,817,25>",(Object.isFrozen)); Inst34++; } } catch(e) {}try { if (Inst35 <= 1000 && typeof (Object) != "undefined") {_RecordType("<802,808,25>",(Object)); Inst35++; } } catch(e) {}try { if (Inst36 <= 1000 && typeof (throwTypeErrorFunction) != "undefined") {_RecordType("<818,840,25>",(throwTypeErrorFunction)); Inst36++; } } catch(e) {}
+assertTrue(Object.isFrozen(throwTypeErrorFunction));
+

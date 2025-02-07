@@ -1,0 +1,272 @@
+var Inst0 = 0;
+var Inst1 = 0;
+var Inst2 = 0;
+var Inst3 = 0;
+var Inst4 = 0;
+var Inst5 = 0;
+var Inst6 = 0;
+var Inst7 = 0;
+var Inst8 = 0;
+var Inst9 = 0;
+var Inst10 = 0;
+var Inst11 = 0;
+var Inst12 = 0;
+var Inst13 = 0;
+var Inst14 = 0;
+var Inst15 = 0;
+var Inst16 = 0;
+var Inst17 = 0;
+var Inst18 = 0;
+var Inst19 = 0;
+var Inst20 = 0;
+var Inst21 = 0;
+var Inst22 = 0;
+var Inst23 = 0;
+var Inst24 = 0;
+var Inst25 = 0;
+var Inst26 = 0;
+var Inst27 = 0;
+var Inst28 = 0;
+var Inst29 = 0;
+var Inst30 = 0;
+var Inst31 = 0;
+var Inst32 = 0;
+var Inst33 = 0;
+var Inst34 = 0;
+var Inst35 = 0;
+var Inst36 = 0;
+var Inst37 = 0;
+var Inst38 = 0;
+var Inst39 = 0;
+var Inst40 = 0;
+ 
+function _TypeOfArray(a) {
+	let number = true;	
+	let string = true;
+	for (let i = 0; i < a.length; i++) {
+		if (number && (typeof a[i]) != "number") {
+			number = false;	
+		}
+		if (string && (typeof a[i]) != "string") {
+			string = false;	
+		}
+		if (!number && !string)
+			break;
+	}
+	if (number)
+		return "number";
+	else if (string)
+		return "string";
+	else
+		return "any";
+}
+
+function _TypeIsEqual(t1, t2) {
+	return JSON.stringify(t1) === JSON.stringify(t2);
+}
+
+function _TypeOf(a, step) {
+	var t;
+	var type = Object.prototype.toString.call(a).slice(8, -1).toLowerCase();	
+	if (type == "array") {
+		t = {type : type, extra: {elemType: _TypeOfArray(a)}};
+	} else if (type == "object") {
+		let shape = [];
+        if (step === undefined || step > 0) {
+            let keys = Object.keys(a);
+            let length = Math.min(100, keys.length);
+		    for (let i = 0; i < length; i++) {
+			    shape.push([keys[i], _TypeOf(a[keys[i]], step === undefined ? 1 : step - 1)]);	
+		    }
+        }
+		t = {type : type, extra: {shape: shape}};
+	} else {
+		t = {type : type};
+	} 
+	return t;
+}
+
+function _RecordType(loc, a) {
+	var t = _TypeOf(a);
+    print("~~~TypeInfo:" + loc + ":" + JSON.stringify(t));
+}
+// Copyright 2016 the V8 project authors. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
+
+try { if (Inst0 <= 1000 && typeof (doTest) != "undefined") {_RecordType("<178,184,6>",(doTest)); Inst0++; } } catch(e) {}
+function doTest(scripts, expectedError) {
+try { if (Inst1 <= 1000 && typeof (scripts) != "undefined") {_RecordType("<185,192,6>",(scripts)); Inst1++; } } catch(e) {}try { if (Inst2 <= 1000 && typeof (expectedError) != "undefined") {_RecordType("<194,207,6>",(expectedError)); Inst2++; } } catch(e) {}
+try { if (Inst4 <= 1000 && typeof (Realm.create) != "undefined") {_RecordType("<225,237,7>",(Realm.create)); Inst4++; } } catch(e) {}try { if (Inst5 <= 1000 && typeof (Realm) != "undefined") {_RecordType("<225,230,7>",(Realm)); Inst5++; } } catch(e) {}
+  var realm = Realm.create();
+try { if (Inst3 <= 1000 && typeof (realm) != "undefined") {_RecordType("<217,222,7>",(realm)); Inst3++; } } catch(e) {}
+
+  for (var i = 0; i < scripts.length - 1; i++) {
+try { if (Inst6 <= 1000 && typeof (i) != "undefined") {_RecordType("<253,254,9>",(i)); Inst6++; } } catch(e) {}try { if (Inst7 <= 1000 && typeof (i) != "undefined") {_RecordType("<260,261,9>",(i)); Inst7++; } } catch(e) {}try { if (Inst8 <= 1000 && typeof (scripts.length) != "undefined") {_RecordType("<264,278,9>",(scripts.length)); Inst8++; } } catch(e) {}try { if (Inst9 <= 1000 && typeof (scripts) != "undefined") {_RecordType("<264,271,9>",(scripts)); Inst9++; } } catch(e) {}try { if (Inst10 <= 1000 && typeof (i) != "undefined") {_RecordType("<284,285,9>",(i)); Inst10++; } } catch(e) {}
+try { if (Inst11 <= 1000 && typeof (Realm.eval) != "undefined") {_RecordType("<295,305,10>",(Realm.eval)); Inst11++; } } catch(e) {}try { if (Inst12 <= 1000 && typeof (Realm) != "undefined") {_RecordType("<295,300,10>",(Realm)); Inst12++; } } catch(e) {}try { if (Inst13 <= 1000 && typeof (realm) != "undefined") {_RecordType("<306,311,10>",(realm)); Inst13++; } } catch(e) {}try { if (Inst14 <= 1000 && typeof (scripts[i]) != "undefined") {_RecordType("<313,323,10>",(scripts[i])); Inst14++; } } catch(e) {}try { if (Inst15 <= 1000 && typeof (scripts) != "undefined") {_RecordType("<313,320,10>",(scripts)); Inst15++; } } catch(e) {}
+    Realm.eval(realm, scripts[i]);
+  }
+try { if (Inst16 <= 1000 && typeof (assertThrows) != "undefined") {_RecordType("<332,344,12>",(assertThrows)); Inst16++; } } catch(e) {}try { if (Inst24 <= 1000 && typeof (Realm.eval) != "undefined") {_RecordType("<415,425,14>",(Realm.eval)); Inst24++; } } catch(e) {}try { if (Inst25 <= 1000 && typeof (Realm) != "undefined") {_RecordType("<415,420,14>",(Realm)); Inst25++; } } catch(e) {}try { if (Inst26 <= 1000 && typeof (realm) != "undefined") {_RecordType("<426,431,14>",(realm)); Inst26++; } } catch(e) {}try { if (Inst27 <= 1000 && typeof (expectedError) != "undefined") {_RecordType("<433,446,14>",(expectedError)); Inst27++; } } catch(e) {}
+  assertThrows(function() {
+try { if (Inst17 <= 1000 && typeof (Realm.eval) != "undefined") {_RecordType("<362,372,13>",(Realm.eval)); Inst17++; } } catch(e) {}try { if (Inst18 <= 1000 && typeof (Realm) != "undefined") {_RecordType("<362,367,13>",(Realm)); Inst18++; } } catch(e) {}try { if (Inst19 <= 1000 && typeof (realm) != "undefined") {_RecordType("<373,378,13>",(realm)); Inst19++; } } catch(e) {}try { if (Inst20 <= 1000 && typeof (scripts[scripts.length - 1]) != "undefined") {_RecordType("<380,407,13>",(scripts[scripts.length - 1])); Inst20++; } } catch(e) {}try { if (Inst21 <= 1000 && typeof (scripts) != "undefined") {_RecordType("<380,387,13>",(scripts)); Inst21++; } } catch(e) {}try { if (Inst22 <= 1000 && typeof (scripts.length) != "undefined") {_RecordType("<388,402,13>",(scripts.length)); Inst22++; } } catch(e) {}try { if (Inst23 <= 1000 && typeof (scripts) != "undefined") {_RecordType("<388,395,13>",(scripts)); Inst23++; } } catch(e) {}
+    Realm.eval(realm, scripts[scripts.length - 1]);
+  }, Realm.eval(realm, expectedError));
+
+try { if (Inst28 <= 1000 && typeof (Realm.dispose) != "undefined") {_RecordType("<453,466,16>",(Realm.dispose)); Inst28++; } } catch(e) {}try { if (Inst29 <= 1000 && typeof (Realm) != "undefined") {_RecordType("<453,458,16>",(Realm)); Inst29++; } } catch(e) {}try { if (Inst30 <= 1000 && typeof (realm) != "undefined") {_RecordType("<467,472,16>",(realm)); Inst30++; } } catch(e) {}
+  Realm.dispose(realm);
+}
+
+try { if (Inst32 <= 1000 && typeof (`
+        eval("
+          function f() {
+            function b() {
+              (0, eval)('function NaN() {}');
+            }
+            b();
+          }
+          f();
+        ");
+      `.replace) != "undefined") {_RecordType("<3225,3425,127>",(`
+        eval("
+          function f() {
+            function b() {
+              (0, eval)('function NaN() {}');
+            }
+            b();
+          }
+          f();
+        ");
+      `.replace)); Inst32++; } } catch(e) {}
+var tests = [
+  {
+    // ES#sec-globaldeclarationinstantiation 5.a:
+    // If envRec.HasVarDeclaration(name) is true, throw a SyntaxError
+    // exception.
+    scripts: [
+      "var a;",
+      "let a;",
+    ],
+    expectedError: "SyntaxError",
+  },
+  {
+    // ES#sec-globaldeclarationinstantiation 6.a:
+    // If envRec.HasLexicalDeclaration(name) is true, throw a SyntaxError
+    // exception.
+    scripts: [
+      "let a;",
+      "var a;",
+    ],
+    expectedError: "SyntaxError",
+  },
+  {
+    // ES#sec-globaldeclarationinstantiation 5.b:
+    // If envRec.HasLexicalDeclaration(name) is true, throw a SyntaxError
+    // exception.
+    scripts: [
+      "let a;",
+      "let a;",
+    ],
+    expectedError: "SyntaxError",
+  },
+  {
+    // ES#sec-evaldeclarationinstantiation 5.a.i.1:
+    // If varEnvRec.HasLexicalDeclaration(name) is true, throw a SyntaxError
+    // exception.
+    scripts: [
+      'let a; eval("var a;");',
+    ],
+    expectedError: "SyntaxError",
+  },
+  {
+    // ES#sec-evaldeclarationinstantiation 5.a.i.1:
+    // If varEnvRec.HasLexicalDeclaration(name) is true, throw a SyntaxError
+    // exception.
+    scripts: [
+      'let a; eval("function a() {}");',
+    ],
+    expectedError: "SyntaxError",
+  },
+  {
+    // ES#sec-evaldeclarationinstantiation 5.d.ii.2.a.i:
+    // Throw a SyntaxError exception.
+    scripts: [
+      '(function() { let a; eval("var a;"); })();',
+    ],
+    expectedError: "SyntaxError",
+  },
+  {
+    // ES#sec-evaldeclarationinstantiation 5.d.ii.2.a.i:
+    // Throw a SyntaxError exception.
+    scripts: [
+      '(function() { let a; eval("function a() {}"); })();',
+    ],
+    expectedError: "SyntaxError",
+  },
+  {
+    // ES#sec-globaldeclarationinstantiation 5.d:
+    // If hasRestrictedGlobal is true, throw a SyntaxError exception.
+    scripts: [
+      'let NaN;',
+    ],
+    expectedError: "SyntaxError",
+  },
+  {
+    // ES#sec-globaldeclarationinstantiation 5.d:
+    // If hasRestrictedGlobal is true, throw a SyntaxError exception.
+    scripts: [
+      'function NaN() {}',
+    ],
+    expectedError: "SyntaxError",
+  },
+
+  {
+    // ES#sec-evaldeclarationinstantiation 8.a.iv.1.b:
+    // If fnDefinable is false, throw a TypeError exception.
+    scripts: [
+      'eval("function NaN() {}");',
+    ],
+    expectedError: "TypeError",
+  },
+  {
+    // ES#sec-evaldeclarationinstantiation 8.a.iv.1.b:
+    // If fnDefinable is false, throw a TypeError exception.
+    scripts: [
+      `
+        let a;
+        try {
+          eval("function a() {}");
+        } catch (e) {}
+        eval("function NaN() {}");
+      `,
+    ],
+    expectedError: "TypeError",
+  },
+  {
+    // ES#sec-evaldeclarationinstantiation 8.a.iv.1.b:
+    // If fnDefinable is false, throw a TypeError exception.
+    scripts: [
+      `
+        eval("
+          function f() {
+            function b() {
+              (0, eval)('function NaN() {}');
+            }
+            b();
+          }
+          f();
+        ");
+      `.replace(/"/g, '`'),
+    ],
+    expectedError: "TypeError",
+  },
+];
+try { if (Inst31 <= 1000 && typeof (tests) != "undefined") {_RecordType("<482,487,19>",(tests)); Inst31++; } } catch(e) {}
+
+try { if (Inst33 <= 1000 && typeof (tests.forEach) != "undefined") {_RecordType("<3486,3499,143>",(tests.forEach)); Inst33++; } } catch(e) {}try { if (Inst34 <= 1000 && typeof (tests) != "undefined") {_RecordType("<3486,3491,143>",(tests)); Inst34++; } } catch(e) {}
+tests.forEach(function(test) {
+try { if (Inst35 <= 1000 && typeof (test) != "undefined") {_RecordType("<3509,3513,143>",(test)); Inst35++; } } catch(e) {}
+try { if (Inst36 <= 1000 && typeof (doTest) != "undefined") {_RecordType("<3519,3525,144>",(doTest)); Inst36++; } } catch(e) {}try { if (Inst37 <= 1000 && typeof (test.scripts) != "undefined") {_RecordType("<3526,3538,144>",(test.scripts)); Inst37++; } } catch(e) {}try { if (Inst38 <= 1000 && typeof (test) != "undefined") {_RecordType("<3526,3530,144>",(test)); Inst38++; } } catch(e) {}try { if (Inst39 <= 1000 && typeof (test.expectedError) != "undefined") {_RecordType("<3540,3558,144>",(test.expectedError)); Inst39++; } } catch(e) {}try { if (Inst40 <= 1000 && typeof (test) != "undefined") {_RecordType("<3540,3544,144>",(test)); Inst40++; } } catch(e) {}
+  doTest(test.scripts, test.expectedError);
+});
+

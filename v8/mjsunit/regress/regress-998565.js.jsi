@@ -1,0 +1,136 @@
+var Inst0 = 0;
+var Inst1 = 0;
+var Inst2 = 0;
+var Inst3 = 0;
+var Inst4 = 0;
+var Inst5 = 0;
+var Inst6 = 0;
+var Inst7 = 0;
+var Inst8 = 0;
+var Inst9 = 0;
+var Inst10 = 0;
+var Inst11 = 0;
+var Inst12 = 0;
+var Inst13 = 0;
+var Inst14 = 0;
+var Inst15 = 0;
+var Inst16 = 0;
+var Inst17 = 0;
+var Inst18 = 0;
+var Inst19 = 0;
+var Inst20 = 0;
+ 
+function _TypeOfArray(a) {
+	let number = true;	
+	let string = true;
+	for (let i = 0; i < a.length; i++) {
+		if (number && (typeof a[i]) != "number") {
+			number = false;	
+		}
+		if (string && (typeof a[i]) != "string") {
+			string = false;	
+		}
+		if (!number && !string)
+			break;
+	}
+	if (number)
+		return "number";
+	else if (string)
+		return "string";
+	else
+		return "any";
+}
+
+function _TypeIsEqual(t1, t2) {
+	return JSON.stringify(t1) === JSON.stringify(t2);
+}
+
+function _TypeOf(a, step) {
+	var t;
+	var type = Object.prototype.toString.call(a).slice(8, -1).toLowerCase();	
+	if (type == "array") {
+		t = {type : type, extra: {elemType: _TypeOfArray(a)}};
+	} else if (type == "object") {
+		let shape = [];
+        if (step === undefined || step > 0) {
+            let keys = Object.keys(a);
+            let length = Math.min(100, keys.length);
+		    for (let i = 0; i < length; i++) {
+			    shape.push([keys[i], _TypeOf(a[keys[i]], step === undefined ? 1 : step - 1)]);	
+		    }
+        }
+		t = {type : type, extra: {shape: shape}};
+	} else {
+		t = {type : type};
+	} 
+	return t;
+}
+
+function _RecordType(loc, a) {
+	var t = _TypeOf(a);
+    print("~~~TypeInfo:" + loc + ":" + JSON.stringify(t));
+}
+// Copyright 2008 the V8 project authors. All rights reserved.
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions are
+// met:
+//
+//     * Redistributions of source code must retain the above copyright
+//       notice, this list of conditions and the following disclaimer.
+//     * Redistributions in binary form must reproduce the above
+//       copyright notice, this list of conditions and the following
+//       disclaimer in the documentation and/or other materials provided
+//       with the distribution.
+//     * Neither the name of Google Inc. nor the names of its
+//       contributors may be used to endorse or promote products derived
+//       from this software without specific prior written permission.
+//
+// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+// "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+// LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+// A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+// OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+// SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+// LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+// DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+// THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+// (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+// OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+// Flags: --expose-debug-as debug
+// Get the Debug object exposed from the debug context global object.
+try { if (Inst1 <= 1000 && typeof (debug.Debug) != "undefined") {_RecordType("<1710,1721,30>",(debug.Debug)); Inst1++; } } catch(e) {}try { if (Inst2 <= 1000 && typeof (debug) != "undefined") {_RecordType("<1710,1715,30>",(debug)); Inst2++; } } catch(e) {}
+Debug = debug.Debug
+try { if (Inst0 <= 1000 && typeof (Debug) != "undefined") {_RecordType("<1702,1707,30>",(Debug)); Inst0++; } } catch(e) {}
+
+listenerCalled = false;
+try { if (Inst3 <= 1000 && typeof (listenerCalled) != "undefined") {_RecordType("<1723,1737,32>",(listenerCalled)); Inst3++; } } catch(e) {}
+
+try { if (Inst4 <= 1000 && typeof (listener) != "undefined") {_RecordType("<1757,1765,34>",(listener)); Inst4++; } } catch(e) {}
+function listener(event, exec_state, event_data, data) {
+try { if (Inst5 <= 1000 && typeof (event) != "undefined") {_RecordType("<1766,1771,34>",(event)); Inst5++; } } catch(e) {}try { if (Inst6 <= 1000 && typeof (exec_state) != "undefined") {_RecordType("<1773,1783,34>",(exec_state)); Inst6++; } } catch(e) {}try { if (Inst7 <= 1000 && typeof (event_data) != "undefined") {_RecordType("<1785,1795,34>",(event_data)); Inst7++; } } catch(e) {}try { if (Inst8 <= 1000 && typeof (data) != "undefined") {_RecordType("<1797,1801,34>",(data)); Inst8++; } } catch(e) {}
+ listenerCalled = true;
+try { if (Inst9 <= 1000 && typeof (listenerCalled) != "undefined") {_RecordType("<1806,1820,35>",(listenerCalled)); Inst9++; } } catch(e) {}
+ throw 1;
+};
+
+// Add the debug event listener.
+try { if (Inst10 <= 1000 && typeof (Debug.setListener) != "undefined") {_RecordType("<1876,1893,40>",(Debug.setListener)); Inst10++; } } catch(e) {}try { if (Inst11 <= 1000 && typeof (Debug) != "undefined") {_RecordType("<1876,1881,40>",(Debug)); Inst11++; } } catch(e) {}try { if (Inst12 <= 1000 && typeof (listener) != "undefined") {_RecordType("<1894,1902,40>",(listener)); Inst12++; } } catch(e) {}
+Debug.setListener(listener);
+
+try { if (Inst13 <= 1000 && typeof (f) != "undefined") {_RecordType("<1915,1916,42>",(f)); Inst13++; } } catch(e) {}
+function f() {
+ a=1
+try { if (Inst14 <= 1000 && typeof (a) != "undefined") {_RecordType("<1922,1923,43>",(a)); Inst14++; } } catch(e) {}
+};
+
+// Set a break point and call to invoke the debug event listener.
+try { if (Inst15 <= 1000 && typeof (Debug.setBreakPoint) != "undefined") {_RecordType("<1996,2015,47>",(Debug.setBreakPoint)); Inst15++; } } catch(e) {}try { if (Inst16 <= 1000 && typeof (Debug) != "undefined") {_RecordType("<1996,2001,47>",(Debug)); Inst16++; } } catch(e) {}try { if (Inst17 <= 1000 && typeof (f) != "undefined") {_RecordType("<2016,2017,47>",(f)); Inst17++; } } catch(e) {}
+Debug.setBreakPoint(f, 0, 0);
+try { if (Inst18 <= 1000 && typeof (f) != "undefined") {_RecordType("<2026,2027,48>",(f)); Inst18++; } } catch(e) {}
+f();
+
+// Make sure that the debug event listener vas invoked.
+try { if (Inst19 <= 1000 && typeof (assertTrue) != "undefined") {_RecordType("<2088,2098,51>",(assertTrue)); Inst19++; } } catch(e) {}try { if (Inst20 <= 1000 && typeof (listenerCalled) != "undefined") {_RecordType("<2099,2113,51>",(listenerCalled)); Inst20++; } } catch(e) {}
+assertTrue(listenerCalled);
+

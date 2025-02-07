@@ -1,0 +1,207 @@
+var Inst0 = 0;
+var Inst1 = 0;
+var Inst2 = 0;
+var Inst3 = 0;
+var Inst4 = 0;
+var Inst5 = 0;
+var Inst6 = 0;
+var Inst7 = 0;
+var Inst8 = 0;
+var Inst9 = 0;
+var Inst10 = 0;
+var Inst11 = 0;
+var Inst12 = 0;
+var Inst13 = 0;
+var Inst14 = 0;
+var Inst15 = 0;
+var Inst16 = 0;
+var Inst17 = 0;
+var Inst18 = 0;
+var Inst19 = 0;
+var Inst20 = 0;
+var Inst21 = 0;
+var Inst22 = 0;
+var Inst23 = 0;
+var Inst24 = 0;
+var Inst25 = 0;
+var Inst26 = 0;
+var Inst27 = 0;
+var Inst28 = 0;
+var Inst29 = 0;
+var Inst30 = 0;
+var Inst31 = 0;
+var Inst32 = 0;
+var Inst33 = 0;
+var Inst34 = 0;
+var Inst35 = 0;
+var Inst36 = 0;
+var Inst37 = 0;
+var Inst38 = 0;
+var Inst39 = 0;
+var Inst40 = 0;
+var Inst41 = 0;
+var Inst42 = 0;
+var Inst43 = 0;
+var Inst44 = 0;
+var Inst45 = 0;
+var Inst46 = 0;
+var Inst47 = 0;
+ 
+function _TypeOfArray(a) {
+	let number = true;	
+	let string = true;
+	for (let i = 0; i < a.length; i++) {
+		if (number && (typeof a[i]) != "number") {
+			number = false;	
+		}
+		if (string && (typeof a[i]) != "string") {
+			string = false;	
+		}
+		if (!number && !string)
+			break;
+	}
+	if (number)
+		return "number";
+	else if (string)
+		return "string";
+	else
+		return "any";
+}
+
+function _TypeIsEqual(t1, t2) {
+	return JSON.stringify(t1) === JSON.stringify(t2);
+}
+
+function _TypeOf(a, step) {
+	var t;
+	var type = Object.prototype.toString.call(a).slice(8, -1).toLowerCase();	
+	if (type == "array") {
+		t = {type : type, extra: {elemType: _TypeOfArray(a)}};
+	} else if (type == "object") {
+		let shape = [];
+        if (step === undefined || step > 0) {
+            let keys = Object.keys(a);
+            let length = Math.min(100, keys.length);
+		    for (let i = 0; i < length; i++) {
+			    shape.push([keys[i], _TypeOf(a[keys[i]], step === undefined ? 1 : step - 1)]);	
+		    }
+        }
+		t = {type : type, extra: {shape: shape}};
+	} else {
+		t = {type : type};
+	} 
+	return t;
+}
+
+function _RecordType(loc, a) {
+	var t = _TypeOf(a);
+    print("~~~TypeInfo:" + loc + ":" + JSON.stringify(t));
+}
+// Copyright 2010 the V8 project authors. All rights reserved.
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions are
+// met:
+//
+//     * Redistributions of source code must retain the above copyright
+//       notice, this list of conditions and the following disclaimer.
+//     * Redistributions in binary form must reproduce the above
+//       copyright notice, this list of conditions and the following
+//       disclaimer in the documentation and/or other materials provided
+//       with the distribution.
+//     * Neither the name of Google Inc. nor the names of its
+//       contributors may be used to endorse or promote products derived
+//       from this software without specific prior written permission.
+//
+// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+// "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+// LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+// A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+// OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+// SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+// LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+// DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+// THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+// (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+// OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+// Flags: --expose-debug-as debug
+// Get the Debug object exposed from the debug context global object.
+
+// Scenario: a function is being changed, which causes enclosing function to
+// have its positions patched; position changing requires new instance of Code
+// object to be introduced; the function happens to be on stack at this moment;
+// later it will resume over new instance of Code.
+// Before the change 2 rinfo are 22 characters away from each other. After the
+// change they are 114 characters away from each other. New instance of Code is
+// required when those numbers cross the border value of 64 (in any direction).
+
+try { if (Inst1 <= 1000 && typeof (debug.Debug) != "undefined") {_RecordType("<2238,2249,39>",(debug.Debug)); Inst1++; } } catch(e) {}try { if (Inst2 <= 1000 && typeof (debug) != "undefined") {_RecordType("<2238,2243,39>",(debug)); Inst2++; } } catch(e) {}
+Debug = debug.Debug
+try { if (Inst0 <= 1000 && typeof (Debug) != "undefined") {_RecordType("<2230,2235,39>",(Debug)); Inst0++; } } catch(e) {}
+
+try { if (Inst3 <= 1000 && typeof (eval) != "undefined") {_RecordType("<2251,2255,41>",(eval)); Inst3++; } } catch(e) {}
+eval(
+    "function BeingReplaced(changer, opt_x, opt_y) {\n" +
+    "  changer();\n" +
+    "  var res = new Object();\n" +
+    "  if (opt_x) { res.y = opt_y; }\n" +
+    "  res.a = (function() {})();\n" +
+    "  return res.a;\n" +
+    "}"
+);
+
+try { if (Inst5 <= 1000 && typeof (Debug.findScript) != "undefined") {_RecordType("<2506,2522,51>",(Debug.findScript)); Inst5++; } } catch(e) {}try { if (Inst6 <= 1000 && typeof (Debug) != "undefined") {_RecordType("<2506,2511,51>",(Debug)); Inst6++; } } catch(e) {}try { if (Inst7 <= 1000 && typeof (BeingReplaced) != "undefined") {_RecordType("<2523,2536,51>",(BeingReplaced)); Inst7++; } } catch(e) {}
+var script = Debug.findScript(BeingReplaced);
+try { if (Inst4 <= 1000 && typeof (script) != "undefined") {_RecordType("<2497,2503,51>",(script)); Inst4++; } } catch(e) {}
+
+var orig_body = "{}";
+try { if (Inst8 <= 1000 && typeof (orig_body) != "undefined") {_RecordType("<2544,2553,53>",(orig_body)); Inst8++; } } catch(e) {}
+try { if (Inst10 <= 1000 && typeof (script.source.indexOf) != "undefined") {_RecordType("<2578,2599,54>",(script.source.indexOf)); Inst10++; } } catch(e) {}try { if (Inst11 <= 1000 && typeof (script.source) != "undefined") {_RecordType("<2578,2591,54>",(script.source)); Inst11++; } } catch(e) {}try { if (Inst12 <= 1000 && typeof (script) != "undefined") {_RecordType("<2578,2584,54>",(script)); Inst12++; } } catch(e) {}try { if (Inst13 <= 1000 && typeof (orig_body) != "undefined") {_RecordType("<2600,2609,54>",(orig_body)); Inst13++; } } catch(e) {}
+var patch_pos = script.source.indexOf(orig_body);
+try { if (Inst9 <= 1000 && typeof (patch_pos) != "undefined") {_RecordType("<2566,2575,54>",(patch_pos)); Inst9++; } } catch(e) {}
+// Line long enough to change rinfo encoding.
+var new_body_patch = "{return 'Capybara';" +
+    "                                                                          " +
+    "}";
+try { if (Inst14 <= 1000 && typeof (new_body_patch) != "undefined") {_RecordType("<2662,2676,56>",(new_body_patch)); Inst14++; } } catch(e) {}
+
+try { if (Inst16 <= 1000 && typeof (Array) != "undefined") {_RecordType("<2817,2822,60>",(Array)); Inst16++; } } catch(e) {}
+var change_log = new Array();
+try { if (Inst15 <= 1000 && typeof (change_log) != "undefined") {_RecordType("<2800,2810,60>",(change_log)); Inst15++; } } catch(e) {}
+try { if (Inst17 <= 1000 && typeof (Changer) != "undefined") {_RecordType("<2835,2842,61>",(Changer)); Inst17++; } } catch(e) {}
+function Changer() {
+try { if (Inst18 <= 1000 && typeof (Debug.LiveEdit.TestApi.ApplySingleChunkPatch) != "undefined") {_RecordType("<2849,2893,62>",(Debug.LiveEdit.TestApi.ApplySingleChunkPatch)); Inst18++; } } catch(e) {}try { if (Inst19 <= 1000 && typeof (Debug.LiveEdit.TestApi) != "undefined") {_RecordType("<2849,2871,62>",(Debug.LiveEdit.TestApi)); Inst19++; } } catch(e) {}try { if (Inst20 <= 1000 && typeof (Debug.LiveEdit) != "undefined") {_RecordType("<2849,2863,62>",(Debug.LiveEdit)); Inst20++; } } catch(e) {}try { if (Inst21 <= 1000 && typeof (Debug) != "undefined") {_RecordType("<2849,2854,62>",(Debug)); Inst21++; } } catch(e) {}try { if (Inst22 <= 1000 && typeof (script) != "undefined") {_RecordType("<2894,2900,62>",(script)); Inst22++; } } catch(e) {}try { if (Inst23 <= 1000 && typeof (patch_pos) != "undefined") {_RecordType("<2902,2911,62>",(patch_pos)); Inst23++; } } catch(e) {}try { if (Inst24 <= 1000 && typeof (orig_body.length) != "undefined") {_RecordType("<2913,2929,62>",(orig_body.length)); Inst24++; } } catch(e) {}try { if (Inst25 <= 1000 && typeof (orig_body) != "undefined") {_RecordType("<2913,2922,62>",(orig_body)); Inst25++; } } catch(e) {}try { if (Inst26 <= 1000 && typeof (new_body_patch) != "undefined") {_RecordType("<2931,2945,62>",(new_body_patch)); Inst26++; } } catch(e) {}try { if (Inst27 <= 1000 && typeof (change_log) != "undefined") {_RecordType("<2947,2957,62>",(change_log)); Inst27++; } } catch(e) {}
+  Debug.LiveEdit.TestApi.ApplySingleChunkPatch(script, patch_pos, orig_body.length, new_body_patch, change_log);
+try { if (Inst28 <= 1000 && typeof (print) != "undefined") {_RecordType("<2962,2967,63>",(print)); Inst28++; } } catch(e) {}try { if (Inst29 <= 1000 && typeof (JSON.stringify) != "undefined") {_RecordType("<2985,2999,63>",(JSON.stringify)); Inst29++; } } catch(e) {}try { if (Inst30 <= 1000 && typeof (JSON) != "undefined") {_RecordType("<2985,2989,63>",(JSON)); Inst30++; } } catch(e) {}try { if (Inst31 <= 1000 && typeof (change_log) != "undefined") {_RecordType("<3000,3010,63>",(change_log)); Inst31++; } } catch(e) {}
+  print("Change log: " + JSON.stringify(change_log) + "\n");
+}
+
+try { if (Inst32 <= 1000 && typeof (NoOp) != "undefined") {_RecordType("<3033,3037,66>",(NoOp)); Inst32++; } } catch(e) {}
+function NoOp() {
+}
+
+try { if (Inst33 <= 1000 && typeof (CallM) != "undefined") {_RecordType("<3054,3059,69>",(CallM)); Inst33++; } } catch(e) {}
+function CallM(changer) {
+try { if (Inst34 <= 1000 && typeof (changer) != "undefined") {_RecordType("<3060,3067,69>",(changer)); Inst34++; } } catch(e) {}
+  // We expect call IC here after several function runs.
+try { if (Inst35 <= 1000 && typeof (BeingReplaced) != "undefined") {_RecordType("<3137,3150,71>",(BeingReplaced)); Inst35++; } } catch(e) {}try { if (Inst36 <= 1000 && typeof (changer) != "undefined") {_RecordType("<3151,3158,71>",(changer)); Inst36++; } } catch(e) {}
+  return BeingReplaced(changer);
+}
+
+// This several iterations should cause call IC for BeingReplaced call. This IC
+// will keep reference to code object of BeingRepalced function. This reference
+// should also be patched. Unfortunately, this is a manually checked fact (from
+// debugger or debug print) and doesn't work as an automatic test.
+try { if (Inst37 <= 1000 && typeof (CallM) != "undefined") {_RecordType("<3471,3476,78>",(CallM)); Inst37++; } } catch(e) {}try { if (Inst38 <= 1000 && typeof (NoOp) != "undefined") {_RecordType("<3477,3481,78>",(NoOp)); Inst38++; } } catch(e) {}
+CallM(NoOp);
+try { if (Inst39 <= 1000 && typeof (CallM) != "undefined") {_RecordType("<3484,3489,79>",(CallM)); Inst39++; } } catch(e) {}try { if (Inst40 <= 1000 && typeof (NoOp) != "undefined") {_RecordType("<3490,3494,79>",(NoOp)); Inst40++; } } catch(e) {}
+CallM(NoOp);
+try { if (Inst41 <= 1000 && typeof (CallM) != "undefined") {_RecordType("<3497,3502,80>",(CallM)); Inst41++; } } catch(e) {}try { if (Inst42 <= 1000 && typeof (NoOp) != "undefined") {_RecordType("<3503,3507,80>",(NoOp)); Inst42++; } } catch(e) {}
+CallM(NoOp);
+
+try { if (Inst44 <= 1000 && typeof (CallM) != "undefined") {_RecordType("<3521,3526,82>",(CallM)); Inst44++; } } catch(e) {}try { if (Inst45 <= 1000 && typeof (Changer) != "undefined") {_RecordType("<3527,3534,82>",(Changer)); Inst45++; } } catch(e) {}
+var res = CallM(Changer);
+try { if (Inst43 <= 1000 && typeof (res) != "undefined") {_RecordType("<3515,3518,82>",(res)); Inst43++; } } catch(e) {}
+try { if (Inst46 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<3537,3549,83>",(assertEquals)); Inst46++; } } catch(e) {}try { if (Inst47 <= 1000 && typeof (res) != "undefined") {_RecordType("<3562,3565,83>",(res)); Inst47++; } } catch(e) {}
+assertEquals("Capybara", res);
+

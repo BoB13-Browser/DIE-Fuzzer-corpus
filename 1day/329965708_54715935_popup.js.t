@@ -1,0 +1,1 @@
+[null,{"type":"Void"},null,{"type":"Function","extra":{"args":{"type":"Args","extra":{"args":[{"type":"Any"}]}},"ret":{"type":"Any"}}},{"type":"Custom","extra":{"subType":"console"}},null,null,{"type":"Void"},null,null,null,null,null,null,null,null,null,null,{"type":"Void"},{"type":"Void"},null,null,null,null,null,{"type":"Void"},null,null,null,null,null,null,null,null,null,null]

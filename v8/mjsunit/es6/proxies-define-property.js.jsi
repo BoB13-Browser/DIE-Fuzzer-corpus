@@ -1,0 +1,327 @@
+var Inst0 = 0;
+var Inst1 = 0;
+var Inst2 = 0;
+var Inst3 = 0;
+var Inst4 = 0;
+var Inst5 = 0;
+var Inst6 = 0;
+var Inst7 = 0;
+var Inst8 = 0;
+var Inst9 = 0;
+var Inst10 = 0;
+var Inst11 = 0;
+var Inst12 = 0;
+var Inst13 = 0;
+var Inst14 = 0;
+var Inst15 = 0;
+var Inst16 = 0;
+var Inst17 = 0;
+var Inst18 = 0;
+var Inst19 = 0;
+var Inst20 = 0;
+var Inst21 = 0;
+var Inst22 = 0;
+var Inst23 = 0;
+var Inst24 = 0;
+var Inst25 = 0;
+var Inst26 = 0;
+var Inst27 = 0;
+var Inst28 = 0;
+var Inst29 = 0;
+var Inst30 = 0;
+var Inst31 = 0;
+var Inst32 = 0;
+var Inst33 = 0;
+var Inst34 = 0;
+var Inst35 = 0;
+var Inst36 = 0;
+var Inst37 = 0;
+var Inst38 = 0;
+var Inst39 = 0;
+var Inst40 = 0;
+var Inst41 = 0;
+var Inst42 = 0;
+var Inst43 = 0;
+var Inst44 = 0;
+var Inst45 = 0;
+var Inst46 = 0;
+var Inst47 = 0;
+var Inst48 = 0;
+var Inst49 = 0;
+var Inst50 = 0;
+var Inst51 = 0;
+var Inst52 = 0;
+var Inst53 = 0;
+var Inst54 = 0;
+var Inst55 = 0;
+var Inst56 = 0;
+var Inst57 = 0;
+var Inst58 = 0;
+var Inst59 = 0;
+var Inst60 = 0;
+var Inst61 = 0;
+var Inst62 = 0;
+var Inst63 = 0;
+var Inst64 = 0;
+var Inst65 = 0;
+var Inst66 = 0;
+var Inst67 = 0;
+var Inst68 = 0;
+var Inst69 = 0;
+var Inst70 = 0;
+var Inst71 = 0;
+var Inst72 = 0;
+var Inst73 = 0;
+var Inst74 = 0;
+var Inst75 = 0;
+var Inst76 = 0;
+var Inst77 = 0;
+var Inst78 = 0;
+var Inst79 = 0;
+var Inst80 = 0;
+var Inst81 = 0;
+var Inst82 = 0;
+var Inst83 = 0;
+var Inst84 = 0;
+var Inst85 = 0;
+var Inst86 = 0;
+var Inst87 = 0;
+var Inst88 = 0;
+var Inst89 = 0;
+var Inst90 = 0;
+var Inst91 = 0;
+var Inst92 = 0;
+var Inst93 = 0;
+var Inst94 = 0;
+var Inst95 = 0;
+var Inst96 = 0;
+var Inst97 = 0;
+var Inst98 = 0;
+var Inst99 = 0;
+var Inst100 = 0;
+var Inst101 = 0;
+var Inst102 = 0;
+var Inst103 = 0;
+var Inst104 = 0;
+var Inst105 = 0;
+var Inst106 = 0;
+var Inst107 = 0;
+var Inst108 = 0;
+var Inst109 = 0;
+var Inst110 = 0;
+var Inst111 = 0;
+var Inst112 = 0;
+var Inst113 = 0;
+var Inst114 = 0;
+var Inst115 = 0;
+var Inst116 = 0;
+var Inst117 = 0;
+var Inst118 = 0;
+var Inst119 = 0;
+var Inst120 = 0;
+var Inst121 = 0;
+var Inst122 = 0;
+var Inst123 = 0;
+var Inst124 = 0;
+var Inst125 = 0;
+var Inst126 = 0;
+var Inst127 = 0;
+var Inst128 = 0;
+var Inst129 = 0;
+var Inst130 = 0;
+var Inst131 = 0;
+var Inst132 = 0;
+var Inst133 = 0;
+var Inst134 = 0;
+var Inst135 = 0;
+ 
+function _TypeOfArray(a) {
+	let number = true;	
+	let string = true;
+	for (let i = 0; i < a.length; i++) {
+		if (number && (typeof a[i]) != "number") {
+			number = false;	
+		}
+		if (string && (typeof a[i]) != "string") {
+			string = false;	
+		}
+		if (!number && !string)
+			break;
+	}
+	if (number)
+		return "number";
+	else if (string)
+		return "string";
+	else
+		return "any";
+}
+
+function _TypeIsEqual(t1, t2) {
+	return JSON.stringify(t1) === JSON.stringify(t2);
+}
+
+function _TypeOf(a, step) {
+	var t;
+	var type = Object.prototype.toString.call(a).slice(8, -1).toLowerCase();	
+	if (type == "array") {
+		t = {type : type, extra: {elemType: _TypeOfArray(a)}};
+	} else if (type == "object") {
+		let shape = [];
+        if (step === undefined || step > 0) {
+            let keys = Object.keys(a);
+            let length = Math.min(100, keys.length);
+		    for (let i = 0; i < length; i++) {
+			    shape.push([keys[i], _TypeOf(a[keys[i]], step === undefined ? 1 : step - 1)]);	
+		    }
+        }
+		t = {type : type, extra: {shape: shape}};
+	} else {
+		t = {type : type};
+	} 
+	return t;
+}
+
+function _RecordType(loc, a) {
+	var t = _TypeOf(a);
+    print("~~~TypeInfo:" + loc + ":" + JSON.stringify(t));
+}
+// Copyright 2015 the V8 project authors. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
+// Check basic call to trap.
+
+var g_target, g_name, g_desc;
+try { if (Inst0 <= 1000 && typeof (g_target) != "undefined") {_RecordType("<202,210,7>",(g_target)); Inst0++; } } catch(e) {}try { if (Inst1 <= 1000 && typeof (g_name) != "undefined") {_RecordType("<212,218,7>",(g_name)); Inst1++; } } catch(e) {}try { if (Inst2 <= 1000 && typeof (g_desc) != "undefined") {_RecordType("<220,226,7>",(g_desc)); Inst2++; } } catch(e) {}
+var handler = {
+  defineProperty: function(target, name, desc) {
+try { if (Inst4 <= 1000 && typeof (target) != "undefined") {_RecordType("<271,277,9>",(target)); Inst4++; } } catch(e) {}try { if (Inst5 <= 1000 && typeof (name) != "undefined") {_RecordType("<279,283,9>",(name)); Inst5++; } } catch(e) {}try { if (Inst6 <= 1000 && typeof (desc) != "undefined") {_RecordType("<285,289,9>",(desc)); Inst6++; } } catch(e) {}
+try { if (Inst8 <= 1000 && typeof (target) != "undefined") {_RecordType("<308,314,10>",(target)); Inst8++; } } catch(e) {}
+    g_target = target;
+try { if (Inst7 <= 1000 && typeof (g_target) != "undefined") {_RecordType("<297,305,10>",(g_target)); Inst7++; } } catch(e) {}
+try { if (Inst10 <= 1000 && typeof (name) != "undefined") {_RecordType("<329,333,11>",(name)); Inst10++; } } catch(e) {}
+    g_name = name;
+try { if (Inst9 <= 1000 && typeof (g_name) != "undefined") {_RecordType("<320,326,11>",(g_name)); Inst9++; } } catch(e) {}
+try { if (Inst12 <= 1000 && typeof (desc) != "undefined") {_RecordType("<348,352,12>",(desc)); Inst12++; } } catch(e) {}
+    g_desc = desc;
+try { if (Inst11 <= 1000 && typeof (g_desc) != "undefined") {_RecordType("<339,345,12>",(g_desc)); Inst11++; } } catch(e) {}
+    return true;
+  }
+}
+try { if (Inst3 <= 1000 && typeof (handler) != "undefined") {_RecordType("<232,239,8>",(handler)); Inst3++; } } catch(e) {}
+var target = {}
+try { if (Inst13 <= 1000 && typeof (target) != "undefined") {_RecordType("<381,387,16>",(target)); Inst13++; } } catch(e) {}
+try { if (Inst15 <= 1000 && typeof (Proxy) != "undefined") {_RecordType("<409,414,17>",(Proxy)); Inst15++; } } catch(e) {}try { if (Inst16 <= 1000 && typeof (target) != "undefined") {_RecordType("<415,421,17>",(target)); Inst16++; } } catch(e) {}try { if (Inst17 <= 1000 && typeof (handler) != "undefined") {_RecordType("<423,430,17>",(handler)); Inst17++; } } catch(e) {}
+var proxy = new Proxy(target, handler);
+try { if (Inst14 <= 1000 && typeof (proxy) != "undefined") {_RecordType("<397,402,17>",(proxy)); Inst14++; } } catch(e) {}
+var desc = { value: 1, writable: true, configurable: true, enumerable: true };
+try { if (Inst18 <= 1000 && typeof (desc) != "undefined") {_RecordType("<437,441,18>",(desc)); Inst18++; } } catch(e) {}
+try { if (Inst19 <= 1000 && typeof (Object.defineProperty) != "undefined") {_RecordType("<512,533,19>",(Object.defineProperty)); Inst19++; } } catch(e) {}try { if (Inst20 <= 1000 && typeof (Object) != "undefined") {_RecordType("<512,518,19>",(Object)); Inst20++; } } catch(e) {}try { if (Inst21 <= 1000 && typeof (proxy) != "undefined") {_RecordType("<534,539,19>",(proxy)); Inst21++; } } catch(e) {}try { if (Inst22 <= 1000 && typeof (desc) != "undefined") {_RecordType("<548,552,19>",(desc)); Inst22++; } } catch(e) {}
+Object.defineProperty(proxy, "foo", desc);
+try { if (Inst23 <= 1000 && typeof (assertSame) != "undefined") {_RecordType("<555,565,20>",(assertSame)); Inst23++; } } catch(e) {}try { if (Inst24 <= 1000 && typeof (target) != "undefined") {_RecordType("<566,572,20>",(target)); Inst24++; } } catch(e) {}try { if (Inst25 <= 1000 && typeof (g_target) != "undefined") {_RecordType("<574,582,20>",(g_target)); Inst25++; } } catch(e) {}
+assertSame(target, g_target);
+try { if (Inst26 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<585,597,21>",(assertEquals)); Inst26++; } } catch(e) {}try { if (Inst27 <= 1000 && typeof (g_name) != "undefined") {_RecordType("<605,611,21>",(g_name)); Inst27++; } } catch(e) {}
+assertEquals("foo", g_name);
+try { if (Inst28 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<614,626,22>",(assertEquals)); Inst28++; } } catch(e) {}try { if (Inst29 <= 1000 && typeof (desc) != "undefined") {_RecordType("<627,631,22>",(desc)); Inst29++; } } catch(e) {}try { if (Inst30 <= 1000 && typeof (g_desc) != "undefined") {_RecordType("<633,639,22>",(g_desc)); Inst30++; } } catch(e) {}
+assertEquals(desc, g_desc);
+
+// Check specific steps in the spec
+
+// Step 4: revoked handler
+try { if (Inst32 <= 1000 && typeof (Proxy.revocable) != "undefined") {_RecordType("<718,733,27>",(Proxy.revocable)); Inst32++; } } catch(e) {}try { if (Inst33 <= 1000 && typeof (Proxy) != "undefined") {_RecordType("<718,723,27>",(Proxy)); Inst33++; } } catch(e) {}try { if (Inst34 <= 1000 && typeof (target) != "undefined") {_RecordType("<734,740,27>",(target)); Inst34++; } } catch(e) {}try { if (Inst35 <= 1000 && typeof (handler) != "undefined") {_RecordType("<742,749,27>",(handler)); Inst35++; } } catch(e) {}
+var pair = Proxy.revocable(target, handler);
+try { if (Inst31 <= 1000 && typeof (pair) != "undefined") {_RecordType("<711,715,27>",(pair)); Inst31++; } } catch(e) {}
+try { if (Inst36 <= 1000 && typeof (Object.defineProperty) != "undefined") {_RecordType("<752,773,28>",(Object.defineProperty)); Inst36++; } } catch(e) {}try { if (Inst37 <= 1000 && typeof (Object) != "undefined") {_RecordType("<752,758,28>",(Object)); Inst37++; } } catch(e) {}try { if (Inst38 <= 1000 && typeof (proxy) != "undefined") {_RecordType("<774,779,28>",(proxy)); Inst38++; } } catch(e) {}try { if (Inst39 <= 1000 && typeof (desc) != "undefined") {_RecordType("<789,793,28>",(desc)); Inst39++; } } catch(e) {}
+Object.defineProperty(proxy, "foo2", desc);
+try { if (Inst40 <= 1000 && typeof (assertSame) != "undefined") {_RecordType("<796,806,29>",(assertSame)); Inst40++; } } catch(e) {}try { if (Inst41 <= 1000 && typeof (target) != "undefined") {_RecordType("<807,813,29>",(target)); Inst41++; } } catch(e) {}try { if (Inst42 <= 1000 && typeof (g_target) != "undefined") {_RecordType("<815,823,29>",(g_target)); Inst42++; } } catch(e) {}
+assertSame(target, g_target);
+try { if (Inst43 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<826,838,30>",(assertEquals)); Inst43++; } } catch(e) {}try { if (Inst44 <= 1000 && typeof (g_name) != "undefined") {_RecordType("<847,853,30>",(g_name)); Inst44++; } } catch(e) {}
+assertEquals("foo2", g_name);
+try { if (Inst45 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<856,868,31>",(assertEquals)); Inst45++; } } catch(e) {}try { if (Inst46 <= 1000 && typeof (desc) != "undefined") {_RecordType("<869,873,31>",(desc)); Inst46++; } } catch(e) {}try { if (Inst47 <= 1000 && typeof (g_desc) != "undefined") {_RecordType("<875,881,31>",(g_desc)); Inst47++; } } catch(e) {}
+assertEquals(desc, g_desc);
+try { if (Inst48 <= 1000 && typeof (pair.revoke) != "undefined") {_RecordType("<884,895,32>",(pair.revoke)); Inst48++; } } catch(e) {}try { if (Inst49 <= 1000 && typeof (pair) != "undefined") {_RecordType("<884,888,32>",(pair)); Inst49++; } } catch(e) {}
+pair.revoke();
+try { if (Inst50 <= 1000 && typeof (assertThrows) != "undefined") {_RecordType("<899,911,33>",(assertThrows)); Inst50++; } } catch(e) {}try { if (Inst51 <= 1000 && typeof (TypeError) != "undefined") {_RecordType("<963,972,33>",(TypeError)); Inst51++; } } catch(e) {}
+assertThrows('Object.defineProperty(pair.proxy, "bar", desc);', TypeError);
+
+// Step 6: Trap isn't callable.
+handler.defineProperty = 1;
+try { if (Inst52 <= 1000 && typeof (handler.defineProperty) != "undefined") {_RecordType("<1008,1030,36>",(handler.defineProperty)); Inst52++; } } catch(e) {}try { if (Inst53 <= 1000 && typeof (handler) != "undefined") {_RecordType("<1008,1015,36>",(handler)); Inst53++; } } catch(e) {}
+try { if (Inst54 <= 1000 && typeof (assertThrows) != "undefined") {_RecordType("<1036,1048,37>",(assertThrows)); Inst54++; } } catch(e) {}try { if (Inst55 <= 1000 && typeof (TypeError) != "undefined") {_RecordType("<1100,1109,37>",(TypeError)); Inst55++; } } catch(e) {}
+assertThrows("Object.defineProperty(proxy, 'foo', {value: 2})", TypeError);
+
+// Step 7: Trap is undefined.
+try { if (Inst58 <= 1000 && typeof (undefined) != "undefined") {_RecordType("<1168,1177,40>",(undefined)); Inst58++; } } catch(e) {}
+handler.defineProperty = undefined;
+try { if (Inst56 <= 1000 && typeof (handler.defineProperty) != "undefined") {_RecordType("<1143,1165,40>",(handler.defineProperty)); Inst56++; } } catch(e) {}try { if (Inst57 <= 1000 && typeof (handler) != "undefined") {_RecordType("<1143,1150,40>",(handler)); Inst57++; } } catch(e) {}
+try { if (Inst59 <= 1000 && typeof (Object.defineProperty) != "undefined") {_RecordType("<1179,1200,41>",(Object.defineProperty)); Inst59++; } } catch(e) {}try { if (Inst60 <= 1000 && typeof (Object) != "undefined") {_RecordType("<1179,1185,41>",(Object)); Inst60++; } } catch(e) {}try { if (Inst61 <= 1000 && typeof (proxy) != "undefined") {_RecordType("<1201,1206,41>",(proxy)); Inst61++; } } catch(e) {}try { if (Inst62 <= 1000 && typeof (desc) != "undefined") {_RecordType("<1217,1221,41>",(desc)); Inst62++; } } catch(e) {}
+Object.defineProperty(proxy, "prop1", desc);
+try { if (Inst63 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<1224,1236,42>",(assertEquals)); Inst63++; } } catch(e) {}try { if (Inst64 <= 1000 && typeof (desc) != "undefined") {_RecordType("<1237,1241,42>",(desc)); Inst64++; } } catch(e) {}try { if (Inst65 <= 1000 && typeof (Object.getOwnPropertyDescriptor) != "undefined") {_RecordType("<1243,1274,42>",(Object.getOwnPropertyDescriptor)); Inst65++; } } catch(e) {}try { if (Inst66 <= 1000 && typeof (Object) != "undefined") {_RecordType("<1243,1249,42>",(Object)); Inst66++; } } catch(e) {}try { if (Inst67 <= 1000 && typeof (target) != "undefined") {_RecordType("<1275,1281,42>",(target)); Inst67++; } } catch(e) {}
+assertEquals(desc, Object.getOwnPropertyDescriptor(target, "prop1"));
+var target2 = {};
+try { if (Inst68 <= 1000 && typeof (target2) != "undefined") {_RecordType("<1298,1305,43>",(target2)); Inst68++; } } catch(e) {}
+try { if (Inst70 <= 1000 && typeof (Proxy) != "undefined") {_RecordType("<1329,1334,44>",(Proxy)); Inst70++; } } catch(e) {}try { if (Inst71 <= 1000 && typeof (target2) != "undefined") {_RecordType("<1335,1342,44>",(target2)); Inst71++; } } catch(e) {}
+var proxy2 = new Proxy(target2, {});
+try { if (Inst69 <= 1000 && typeof (proxy2) != "undefined") {_RecordType("<1316,1322,44>",(proxy2)); Inst69++; } } catch(e) {}
+try { if (Inst72 <= 1000 && typeof (Object.defineProperty) != "undefined") {_RecordType("<1349,1370,45>",(Object.defineProperty)); Inst72++; } } catch(e) {}try { if (Inst73 <= 1000 && typeof (Object) != "undefined") {_RecordType("<1349,1355,45>",(Object)); Inst73++; } } catch(e) {}try { if (Inst74 <= 1000 && typeof (proxy2) != "undefined") {_RecordType("<1371,1377,45>",(proxy2)); Inst74++; } } catch(e) {}try { if (Inst75 <= 1000 && typeof (desc) != "undefined") {_RecordType("<1388,1392,45>",(desc)); Inst75++; } } catch(e) {}
+Object.defineProperty(proxy2, "prop2", desc);
+try { if (Inst76 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<1395,1407,46>",(assertEquals)); Inst76++; } } catch(e) {}try { if (Inst77 <= 1000 && typeof (desc) != "undefined") {_RecordType("<1408,1412,46>",(desc)); Inst77++; } } catch(e) {}try { if (Inst78 <= 1000 && typeof (Object.getOwnPropertyDescriptor) != "undefined") {_RecordType("<1414,1445,46>",(Object.getOwnPropertyDescriptor)); Inst78++; } } catch(e) {}try { if (Inst79 <= 1000 && typeof (Object) != "undefined") {_RecordType("<1414,1420,46>",(Object)); Inst79++; } } catch(e) {}try { if (Inst80 <= 1000 && typeof (target2) != "undefined") {_RecordType("<1446,1453,46>",(target2)); Inst80++; } } catch(e) {}
+assertEquals(desc, Object.getOwnPropertyDescriptor(target2, "prop2"));
+
+// Step 9: Property name is passed to the trap as a string.
+try { if (Inst87 <= 1000 && typeof (name) != "undefined") {_RecordType("<1584,1588,49>",(name)); Inst87++; } } catch(e) {}
+handler.defineProperty = function(t, name, d) { g_name = name; return true; };
+try { if (Inst81 <= 1000 && typeof (handler.defineProperty) != "undefined") {_RecordType("<1527,1549,49>",(handler.defineProperty)); Inst81++; } } catch(e) {}try { if (Inst82 <= 1000 && typeof (handler) != "undefined") {_RecordType("<1527,1534,49>",(handler)); Inst82++; } } catch(e) {}try { if (Inst83 <= 1000 && typeof (t) != "undefined") {_RecordType("<1561,1562,49>",(t)); Inst83++; } } catch(e) {}try { if (Inst84 <= 1000 && typeof (name) != "undefined") {_RecordType("<1564,1568,49>",(name)); Inst84++; } } catch(e) {}try { if (Inst85 <= 1000 && typeof (d) != "undefined") {_RecordType("<1570,1571,49>",(d)); Inst85++; } } catch(e) {}try { if (Inst86 <= 1000 && typeof (g_name) != "undefined") {_RecordType("<1575,1581,49>",(g_name)); Inst86++; } } catch(e) {}
+try { if (Inst88 <= 1000 && typeof (Object.defineProperty) != "undefined") {_RecordType("<1606,1627,50>",(Object.defineProperty)); Inst88++; } } catch(e) {}try { if (Inst89 <= 1000 && typeof (Object) != "undefined") {_RecordType("<1606,1612,50>",(Object)); Inst89++; } } catch(e) {}try { if (Inst90 <= 1000 && typeof (proxy) != "undefined") {_RecordType("<1628,1633,50>",(proxy)); Inst90++; } } catch(e) {}try { if (Inst91 <= 1000 && typeof (desc) != "undefined") {_RecordType("<1638,1642,50>",(desc)); Inst91++; } } catch(e) {}
+Object.defineProperty(proxy, 0, desc);
+try { if (Inst92 <= 1000 && typeof (assertTrue) != "undefined") {_RecordType("<1645,1655,51>",(assertTrue)); Inst92++; } } catch(e) {}try { if (Inst93 <= 1000 && typeof (g_name) != "undefined") {_RecordType("<1663,1669,51>",(g_name)); Inst93++; } } catch(e) {}
+assertTrue(typeof g_name === "string");
+try { if (Inst94 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<1685,1697,52>",(assertEquals)); Inst94++; } } catch(e) {}try { if (Inst95 <= 1000 && typeof (g_name) != "undefined") {_RecordType("<1703,1709,52>",(g_name)); Inst95++; } } catch(e) {}
+assertEquals("0", g_name);
+
+// Step 10: Trap returns false.
+handler.defineProperty = function(t, n, d) { return false; }
+try { if (Inst96 <= 1000 && typeof (handler.defineProperty) != "undefined") {_RecordType("<1745,1767,55>",(handler.defineProperty)); Inst96++; } } catch(e) {}try { if (Inst97 <= 1000 && typeof (handler) != "undefined") {_RecordType("<1745,1752,55>",(handler)); Inst97++; } } catch(e) {}try { if (Inst98 <= 1000 && typeof (t) != "undefined") {_RecordType("<1779,1780,55>",(t)); Inst98++; } } catch(e) {}try { if (Inst99 <= 1000 && typeof (n) != "undefined") {_RecordType("<1782,1783,55>",(n)); Inst99++; } } catch(e) {}try { if (Inst100 <= 1000 && typeof (d) != "undefined") {_RecordType("<1785,1786,55>",(d)); Inst100++; } } catch(e) {}
+try { if (Inst101 <= 1000 && typeof (assertThrows) != "undefined") {_RecordType("<1806,1818,56>",(assertThrows)); Inst101++; } } catch(e) {}try { if (Inst102 <= 1000 && typeof (TypeError) != "undefined") {_RecordType("<1864,1873,56>",(TypeError)); Inst102++; } } catch(e) {}
+assertThrows("Object.defineProperty(proxy, 'foo', desc)", TypeError);
+
+// Step 15a: Trap returns true for adding a property to a non-extensible target.
+handler.defineProperty = function(t, n, d) { return true; }
+try { if (Inst103 <= 1000 && typeof (handler.defineProperty) != "undefined") {_RecordType("<1958,1980,59>",(handler.defineProperty)); Inst103++; } } catch(e) {}try { if (Inst104 <= 1000 && typeof (handler) != "undefined") {_RecordType("<1958,1965,59>",(handler)); Inst104++; } } catch(e) {}try { if (Inst105 <= 1000 && typeof (t) != "undefined") {_RecordType("<1992,1993,59>",(t)); Inst105++; } } catch(e) {}try { if (Inst106 <= 1000 && typeof (n) != "undefined") {_RecordType("<1995,1996,59>",(n)); Inst106++; } } catch(e) {}try { if (Inst107 <= 1000 && typeof (d) != "undefined") {_RecordType("<1998,1999,59>",(d)); Inst107++; } } catch(e) {}
+try { if (Inst108 <= 1000 && typeof (Object.preventExtensions) != "undefined") {_RecordType("<2018,2042,60>",(Object.preventExtensions)); Inst108++; } } catch(e) {}try { if (Inst109 <= 1000 && typeof (Object) != "undefined") {_RecordType("<2018,2024,60>",(Object)); Inst109++; } } catch(e) {}try { if (Inst110 <= 1000 && typeof (target) != "undefined") {_RecordType("<2043,2049,60>",(target)); Inst110++; } } catch(e) {}
+Object.preventExtensions(target);
+try { if (Inst111 <= 1000 && typeof (assertThrows) != "undefined") {_RecordType("<2052,2064,61>",(assertThrows)); Inst111++; } } catch(e) {}try { if (Inst112 <= 1000 && typeof (TypeError) != "undefined") {_RecordType("<2110,2119,61>",(TypeError)); Inst112++; } } catch(e) {}
+assertThrows("Object.defineProperty(proxy, 'foo', desc)", TypeError);
+
+// Step 15b: Trap returns true for adding a non-configurable property.
+target = {};
+try { if (Inst113 <= 1000 && typeof (target) != "undefined") {_RecordType("<2194,2200,64>",(target)); Inst113++; } } catch(e) {}
+try { if (Inst115 <= 1000 && typeof (Proxy) != "undefined") {_RecordType("<2219,2224,65>",(Proxy)); Inst115++; } } catch(e) {}try { if (Inst116 <= 1000 && typeof (target) != "undefined") {_RecordType("<2225,2231,65>",(target)); Inst116++; } } catch(e) {}try { if (Inst117 <= 1000 && typeof (handler) != "undefined") {_RecordType("<2233,2240,65>",(handler)); Inst117++; } } catch(e) {}
+proxy = new Proxy(target, handler);
+try { if (Inst114 <= 1000 && typeof (proxy) != "undefined") {_RecordType("<2207,2212,65>",(proxy)); Inst114++; } } catch(e) {}
+desc = {value: 1, writable: true, configurable: false, enumerable: true};
+try { if (Inst118 <= 1000 && typeof (desc) != "undefined") {_RecordType("<2243,2247,66>",(desc)); Inst118++; } } catch(e) {}
+try { if (Inst119 <= 1000 && typeof (assertThrows) != "undefined") {_RecordType("<2317,2329,67>",(assertThrows)); Inst119++; } } catch(e) {}try { if (Inst120 <= 1000 && typeof (TypeError) != "undefined") {_RecordType("<2375,2384,67>",(TypeError)); Inst120++; } } catch(e) {}
+assertThrows("Object.defineProperty(proxy, 'foo', desc)", TypeError);
+// No exception is thrown if a non-configurable property exists on the target.
+try { if (Inst121 <= 1000 && typeof (Object.defineProperty) != "undefined") {_RecordType("<2466,2487,69>",(Object.defineProperty)); Inst121++; } } catch(e) {}try { if (Inst122 <= 1000 && typeof (Object) != "undefined") {_RecordType("<2466,2472,69>",(Object)); Inst122++; } } catch(e) {}try { if (Inst123 <= 1000 && typeof (target) != "undefined") {_RecordType("<2488,2494,69>",(target)); Inst123++; } } catch(e) {}
+Object.defineProperty(target, "nonconf",
+                      {value: 1, writable: true, configurable: false});
+try { if (Inst124 <= 1000 && typeof (Object.defineProperty) != "undefined") {_RecordType("<2579,2600,71>",(Object.defineProperty)); Inst124++; } } catch(e) {}try { if (Inst125 <= 1000 && typeof (Object) != "undefined") {_RecordType("<2579,2585,71>",(Object)); Inst125++; } } catch(e) {}try { if (Inst126 <= 1000 && typeof (proxy) != "undefined") {_RecordType("<2601,2606,71>",(proxy)); Inst126++; } } catch(e) {}
+Object.defineProperty(proxy, "nonconf", {value: 2, configurable: false});
+
+// Step 16a: Trap returns true for non-compatible property descriptor.
+try { if (Inst127 <= 1000 && typeof (Object.defineProperty) != "undefined") {_RecordType("<2725,2746,74>",(Object.defineProperty)); Inst127++; } } catch(e) {}try { if (Inst128 <= 1000 && typeof (Object) != "undefined") {_RecordType("<2725,2731,74>",(Object)); Inst128++; } } catch(e) {}try { if (Inst129 <= 1000 && typeof (target) != "undefined") {_RecordType("<2747,2753,74>",(target)); Inst129++; } } catch(e) {}
+Object.defineProperty(target, "foo",
+                      {value: 1, writable: false, configurable: false});
+try { if (Inst130 <= 1000 && typeof (assertThrows) != "undefined") {_RecordType("<2835,2847,76>",(assertThrows)); Inst130++; } } catch(e) {}try { if (Inst131 <= 1000 && typeof (TypeError) != "undefined") {_RecordType("<2899,2908,76>",(TypeError)); Inst131++; } } catch(e) {}
+assertThrows("Object.defineProperty(proxy, 'foo', {value: 2})", TypeError);
+
+// Step 16b: Trap returns true for overwriting a configurable property
+// with a non-configurable descriptor.
+target.bar = "baz";
+try { if (Inst132 <= 1000 && typeof (target.bar) != "undefined") {_RecordType("<3022,3032,80>",(target.bar)); Inst132++; } } catch(e) {}try { if (Inst133 <= 1000 && typeof (target) != "undefined") {_RecordType("<3022,3028,80>",(target)); Inst133++; } } catch(e) {}
+try { if (Inst134 <= 1000 && typeof (assertThrows) != "undefined") {_RecordType("<3042,3054,81>",(assertThrows)); Inst134++; } } catch(e) {}try { if (Inst135 <= 1000 && typeof (TypeError) != "undefined") {_RecordType("<3130,3139,82>",(TypeError)); Inst135++; } } catch(e) {}
+assertThrows("Object.defineProperty(proxy, 'bar', {configurable: false})",
+             TypeError);
+

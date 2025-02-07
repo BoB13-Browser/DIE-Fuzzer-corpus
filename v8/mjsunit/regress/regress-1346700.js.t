@@ -1,0 +1,1 @@
+[null,{"type":"Void"},{"type":"Void"},{"type":"Object","extra":{"shape":[{"w":1,"v":["始发站",{"type":"Number"}]}]}},null,null,null,null,{"type":"Void"},null,{"type":"Function","extra":{"args":{"type":"Args","extra":{"args":[{"type":"Any"}]}},"ret":{"type":"Any"}}},null,{"type":"Number"},{"type":"Object","extra":{"shape":[{"w":1,"v":["始发站",{"type":"Number"}]}]}},null]

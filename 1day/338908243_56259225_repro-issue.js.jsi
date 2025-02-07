@@ -1,0 +1,129 @@
+var Inst0 = 0;
+var Inst1 = 0;
+var Inst2 = 0;
+var Inst3 = 0;
+var Inst4 = 0;
+var Inst5 = 0;
+var Inst6 = 0;
+var Inst7 = 0;
+var Inst8 = 0;
+var Inst9 = 0;
+var Inst10 = 0;
+var Inst11 = 0;
+var Inst12 = 0;
+var Inst13 = 0;
+var Inst14 = 0;
+var Inst15 = 0;
+var Inst16 = 0;
+var Inst17 = 0;
+var Inst18 = 0;
+var Inst19 = 0;
+var Inst20 = 0;
+var Inst21 = 0;
+var Inst22 = 0;
+var Inst23 = 0;
+var Inst24 = 0;
+var Inst25 = 0;
+var Inst26 = 0;
+var Inst27 = 0;
+var Inst28 = 0;
+var Inst29 = 0;
+var Inst30 = 0;
+var Inst31 = 0;
+var Inst32 = 0;
+var Inst33 = 0;
+var Inst34 = 0;
+var Inst35 = 0;
+var Inst36 = 0;
+ 
+function _TypeOfArray(a) {
+	let number = true;	
+	let string = true;
+	for (let i = 0; i < a.length; i++) {
+		if (number && (typeof a[i]) != "number") {
+			number = false;	
+		}
+		if (string && (typeof a[i]) != "string") {
+			string = false;	
+		}
+		if (!number && !string)
+			break;
+	}
+	if (number)
+		return "number";
+	else if (string)
+		return "string";
+	else
+		return "any";
+}
+
+function _TypeIsEqual(t1, t2) {
+	return JSON.stringify(t1) === JSON.stringify(t2);
+}
+
+function _TypeOf(a, step) {
+	var t;
+	var type = Object.prototype.toString.call(a).slice(8, -1).toLowerCase();	
+	if (type == "array") {
+		t = {type : type, extra: {elemType: _TypeOfArray(a)}};
+	} else if (type == "object") {
+		let shape = [];
+        if (step === undefined || step > 0) {
+            let keys = Object.keys(a);
+            let length = Math.min(100, keys.length);
+		    for (let i = 0; i < length; i++) {
+			    shape.push([keys[i], _TypeOf(a[keys[i]], step === undefined ? 1 : step - 1)]);	
+		    }
+        }
+		t = {type : type, extra: {shape: shape}};
+	} else {
+		t = {type : type};
+	} 
+	return t;
+}
+
+function _RecordType(loc, a) {
+	var t = _TypeOf(a);
+    print("~~~TypeInfo:" + loc + ":" + JSON.stringify(t));
+}
+// Copyright 2024 the V8 project authors. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
+try { if (Inst0 <= 1000 && typeof (d8.file.execute) != "undefined") {_RecordType("<172,187,5>",(d8.file.execute)); Inst0++; } } catch(e) {}try { if (Inst1 <= 1000 && typeof (d8.file) != "undefined") {_RecordType("<172,179,5>",(d8.file)); Inst1++; } } catch(e) {}try { if (Inst2 <= 1000 && typeof (d8) != "undefined") {_RecordType("<172,174,5>",(d8)); Inst2++; } } catch(e) {}
+d8.file.execute('test/mjsunit/wasm/wasm-module-builder.js');
+
+try { if (Inst3 <= 1000 && typeof (createWasmStruct) != "undefined") {_RecordType("<245,261,7>",(createWasmStruct)); Inst3++; } } catch(e) {}
+function createWasmStruct() {
+try { if (Inst5 <= 1000 && typeof (WasmModuleBuilder) != "undefined") {_RecordType("<287,304,8>",(WasmModuleBuilder)); Inst5++; } } catch(e) {}
+  let builder = new WasmModuleBuilder();
+try { if (Inst4 <= 1000 && typeof (builder) != "undefined") {_RecordType("<273,280,8>",(builder)); Inst4++; } } catch(e) {}
+try { if (Inst7 <= 1000 && typeof (builder.addStruct) != "undefined") {_RecordType("<329,346,9>",(builder.addStruct)); Inst7++; } } catch(e) {}try { if (Inst8 <= 1000 && typeof (builder) != "undefined") {_RecordType("<329,336,9>",(builder)); Inst8++; } } catch(e) {}try { if (Inst9 <= 1000 && typeof (makeField) != "undefined") {_RecordType("<348,357,9>",(makeField)); Inst9++; } } catch(e) {}try { if (Inst10 <= 1000 && typeof (kWasmI32) != "undefined") {_RecordType("<358,366,9>",(kWasmI32)); Inst10++; } } catch(e) {}
+  let struct_type = builder.addStruct([makeField(kWasmI32, true)]);
+try { if (Inst6 <= 1000 && typeof (struct_type) != "undefined") {_RecordType("<315,326,9>",(struct_type)); Inst6++; } } catch(e) {}
+try { if (Inst11 <= 1000 && typeof (builder.addFunction('makeStruct', makeSig([], [kWasmExternRef]))
+  .exportFunc().addBody) != "undefined") {_RecordType("<380,469,10>",(builder.addFunction('makeStruct', makeSig([], [kWasmExternRef]))
+  .exportFunc().addBody)); Inst11++; } } catch(e) {}try { if (Inst12 <= 1000 && typeof (builder.addFunction('makeStruct', makeSig([], [kWasmExternRef]))
+  .exportFunc) != "undefined") {_RecordType("<380,459,10>",(builder.addFunction('makeStruct', makeSig([], [kWasmExternRef]))
+  .exportFunc)); Inst12++; } } catch(e) {}try { if (Inst13 <= 1000 && typeof (builder.addFunction) != "undefined") {_RecordType("<380,399,10>",(builder.addFunction)); Inst13++; } } catch(e) {}try { if (Inst14 <= 1000 && typeof (builder) != "undefined") {_RecordType("<380,387,10>",(builder)); Inst14++; } } catch(e) {}try { if (Inst15 <= 1000 && typeof (makeSig) != "undefined") {_RecordType("<414,421,10>",(makeSig)); Inst15++; } } catch(e) {}try { if (Inst16 <= 1000 && typeof (kWasmExternRef) != "undefined") {_RecordType("<427,441,10>",(kWasmExternRef)); Inst16++; } } catch(e) {}try { if (Inst17 <= 1000 && typeof (kExprI32Const) != "undefined") {_RecordType("<477,490,12>",(kExprI32Const)); Inst17++; } } catch(e) {}try { if (Inst18 <= 1000 && typeof (kGCPrefix) != "undefined") {_RecordType("<501,510,13>",(kGCPrefix)); Inst18++; } } catch(e) {}try { if (Inst19 <= 1000 && typeof (kExprStructNew) != "undefined") {_RecordType("<512,526,13>",(kExprStructNew)); Inst19++; } } catch(e) {}try { if (Inst20 <= 1000 && typeof (struct_type) != "undefined") {_RecordType("<528,539,13>",(struct_type)); Inst20++; } } catch(e) {}try { if (Inst21 <= 1000 && typeof (kGCPrefix) != "undefined") {_RecordType("<546,555,14>",(kGCPrefix)); Inst21++; } } catch(e) {}try { if (Inst22 <= 1000 && typeof (kExprExternConvertAny) != "undefined") {_RecordType("<557,578,14>",(kExprExternConvertAny)); Inst22++; } } catch(e) {}
+  builder.addFunction('makeStruct', makeSig([], [kWasmExternRef]))
+  .exportFunc().addBody([
+    kExprI32Const, 42,
+    kGCPrefix, kExprStructNew, struct_type,
+    kGCPrefix, kExprExternConvertAny
+  ]);
+try { if (Inst24 <= 1000 && typeof (builder.instantiate) != "undefined") {_RecordType("<604,623,16>",(builder.instantiate)); Inst24++; } } catch(e) {}try { if (Inst25 <= 1000 && typeof (builder) != "undefined") {_RecordType("<604,611,16>",(builder)); Inst25++; } } catch(e) {}
+  let instance = builder.instantiate();
+try { if (Inst23 <= 1000 && typeof (instance) != "undefined") {_RecordType("<593,601,16>",(instance)); Inst23++; } } catch(e) {}
+try { if (Inst26 <= 1000 && typeof (instance.exports.makeStruct) != "undefined") {_RecordType("<637,664,17>",(instance.exports.makeStruct)); Inst26++; } } catch(e) {}try { if (Inst27 <= 1000 && typeof (instance.exports) != "undefined") {_RecordType("<637,653,17>",(instance.exports)); Inst27++; } } catch(e) {}try { if (Inst28 <= 1000 && typeof (instance) != "undefined") {_RecordType("<637,645,17>",(instance)); Inst28++; } } catch(e) {}
+  return instance.exports.makeStruct();
+}
+try { if (Inst30 <= 1000 && typeof (createWasmStruct) != "undefined") {_RecordType("<685,701,19>",(createWasmStruct)); Inst30++; } } catch(e) {}
+let struct = createWasmStruct();
+try { if (Inst29 <= 1000 && typeof (struct) != "undefined") {_RecordType("<676,682,19>",(struct)); Inst29++; } } catch(e) {}
+try { if (Inst34 <= 1000 && typeof (struct) != "undefined") {_RecordType("<734,740,20>",(struct)); Inst34++; } } catch(e) {}
+Array.prototype.__proto__ = struct;
+try { if (Inst31 <= 1000 && typeof (Array.prototype.__proto__) != "undefined") {_RecordType("<706,731,20>",(Array.prototype.__proto__)); Inst31++; } } catch(e) {}try { if (Inst32 <= 1000 && typeof (Array.prototype) != "undefined") {_RecordType("<706,721,20>",(Array.prototype)); Inst32++; } } catch(e) {}try { if (Inst33 <= 1000 && typeof (Array) != "undefined") {_RecordType("<706,711,20>",(Array)); Inst33++; } } catch(e) {}
+try { if (Inst35 <= 1000 && typeof (print) != "undefined") {_RecordType("<743,748,21>",(print)); Inst35++; } } catch(e) {}try { if (Inst36 <= 1000 && typeof ([1].concat) != "undefined") {_RecordType("<749,759,21>",([1].concat)); Inst36++; } } catch(e) {}
+print([1].concat());
+

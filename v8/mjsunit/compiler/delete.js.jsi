@@ -1,0 +1,177 @@
+var Inst0 = 0;
+var Inst1 = 0;
+var Inst2 = 0;
+var Inst3 = 0;
+var Inst4 = 0;
+var Inst5 = 0;
+var Inst6 = 0;
+var Inst7 = 0;
+var Inst8 = 0;
+var Inst9 = 0;
+var Inst10 = 0;
+var Inst11 = 0;
+var Inst12 = 0;
+var Inst13 = 0;
+var Inst14 = 0;
+var Inst15 = 0;
+var Inst16 = 0;
+var Inst17 = 0;
+var Inst18 = 0;
+var Inst19 = 0;
+var Inst20 = 0;
+var Inst21 = 0;
+var Inst22 = 0;
+var Inst23 = 0;
+var Inst24 = 0;
+var Inst25 = 0;
+var Inst26 = 0;
+var Inst27 = 0;
+var Inst28 = 0;
+var Inst29 = 0;
+var Inst30 = 0;
+ 
+function _TypeOfArray(a) {
+	let number = true;	
+	let string = true;
+	for (let i = 0; i < a.length; i++) {
+		if (number && (typeof a[i]) != "number") {
+			number = false;	
+		}
+		if (string && (typeof a[i]) != "string") {
+			string = false;	
+		}
+		if (!number && !string)
+			break;
+	}
+	if (number)
+		return "number";
+	else if (string)
+		return "string";
+	else
+		return "any";
+}
+
+function _TypeIsEqual(t1, t2) {
+	return JSON.stringify(t1) === JSON.stringify(t2);
+}
+
+function _TypeOf(a, step) {
+	var t;
+	var type = Object.prototype.toString.call(a).slice(8, -1).toLowerCase();	
+	if (type == "array") {
+		t = {type : type, extra: {elemType: _TypeOfArray(a)}};
+	} else if (type == "object") {
+		let shape = [];
+        if (step === undefined || step > 0) {
+            let keys = Object.keys(a);
+            let length = Math.min(100, keys.length);
+		    for (let i = 0; i < length; i++) {
+			    shape.push([keys[i], _TypeOf(a[keys[i]], step === undefined ? 1 : step - 1)]);	
+		    }
+        }
+		t = {type : type, extra: {shape: shape}};
+	} else {
+		t = {type : type};
+	} 
+	return t;
+}
+
+function _RecordType(loc, a) {
+	var t = _TypeOf(a);
+    print("~~~TypeInfo:" + loc + ":" + JSON.stringify(t));
+}
+// Copyright 2011 the V8 project authors. All rights reserved.
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions are
+// met:
+//
+//     * Redistributions of source code must retain the above copyright
+//       notice, this list of conditions and the following disclaimer.
+//     * Redistributions in binary form must reproduce the above
+//       copyright notice, this list of conditions and the following
+//       disclaimer in the documentation and/or other materials provided
+//       with the distribution.
+//     * Neither the name of Google Inc. nor the names of its
+//       contributors may be used to endorse or promote products derived
+//       from this software without specific prior written permission.
+//
+// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+// "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+// LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+// A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+// OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+// SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+// LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+// DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+// THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+// (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+// OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+// Tests of unary delete in cases where it is always true or always false.
+
+// In an effect context, expression is always true.
+try { if (Inst0 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<1726,1738,31>",(assertEquals)); Inst0++; } } catch(e) {}try { if (Inst1 <= 1000 && typeof (undefined) != "undefined") {_RecordType("<1739,1748,31>",(undefined)); Inst1++; } } catch(e) {}
+assertEquals(undefined, void (delete 0));
+// In an effect context, expression is always false.
+try { if (Inst2 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<1821,1833,33>",(assertEquals)); Inst2++; } } catch(e) {}try { if (Inst3 <= 1000 && typeof (undefined) != "undefined") {_RecordType("<1834,1843,33>",(undefined)); Inst3++; } } catch(e) {}try { if (Inst5 <= 1000 && typeof (x) != "undefined") {_RecordType("<1868,1869,33>",(x)); Inst5++; } } catch(e) {}
+assertEquals(undefined, (function (x) { delete x; })(0));
+try { if (Inst4 <= 1000 && typeof (x) != "undefined") {_RecordType("<1856,1857,33>",(x)); Inst4++; } } catch(e) {}
+
+// In a pure test context, expression is always true.
+try { if (Inst6 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<1934,1946,36>",(assertEquals)); Inst6++; } } catch(e) {}
+assertEquals(1, (delete 0) ? 1 : 2);
+// In a pure test context, expression is always false.
+try { if (Inst7 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<2026,2038,38>",(assertEquals)); Inst7++; } } catch(e) {}try { if (Inst9 <= 1000 && typeof (x) != "undefined") {_RecordType("<2073,2074,38>",(x)); Inst9++; } } catch(e) {}
+assertEquals(2, (function (x) { return (delete x) ? 1 : 2; })(0));
+try { if (Inst8 <= 1000 && typeof (x) != "undefined") {_RecordType("<2053,2054,38>",(x)); Inst8++; } } catch(e) {}
+// In a negated test context, expression is always false.
+try { if (Inst10 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<2151,2163,40>",(assertEquals)); Inst10++; } } catch(e) {}try { if (Inst12 <= 1000 && typeof (x) != "undefined") {_RecordType("<2199,2200,40>",(x)); Inst12++; } } catch(e) {}
+assertEquals(1, (function (x) { return !(delete x) ? 1 : 2; })(0));
+try { if (Inst11 <= 1000 && typeof (x) != "undefined") {_RecordType("<2178,2179,40>",(x)); Inst11++; } } catch(e) {}
+
+// In a hybrid test/value context, expression is always true, value
+// expected in accumulator.
+try { if (Inst13 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<2316,2328,44>",(assertEquals)); Inst13++; } } catch(e) {}
+assertEquals(3, 1 + ((delete 0) && 2));
+// In a hybrid test/value context, expression is always false, value
+// expected in accumulator.
+try { if (Inst14 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<2453,2465,47>",(assertEquals)); Inst14++; } } catch(e) {}try { if (Inst16 <= 1000 && typeof (x) != "undefined") {_RecordType("<2504,2505,47>",(x)); Inst16++; } } catch(e) {}
+assertEquals(false, (function (x) { return (delete x) && 2; })(0));
+try { if (Inst15 <= 1000 && typeof (x) != "undefined") {_RecordType("<2484,2485,47>",(x)); Inst15++; } } catch(e) {}
+// In a hybrid test/value context, expression is always true, value
+// expected on stack.
+try { if (Inst17 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<2611,2623,50>",(assertEquals)); Inst17++; } } catch(e) {}
+assertEquals(3, ((delete 0) && 2) + 1);
+// In a hybrid test/value context, expression is always false, value
+// expected on stack.
+try { if (Inst18 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<2742,2754,53>",(assertEquals)); Inst18++; } } catch(e) {}try { if (Inst20 <= 1000 && typeof (x) != "undefined") {_RecordType("<2790,2791,53>",(x)); Inst20++; } } catch(e) {}
+assertEquals(1, (function (x) { return ((delete x) && 2) + 1; })(0));
+try { if (Inst19 <= 1000 && typeof (x) != "undefined") {_RecordType("<2769,2770,53>",(x)); Inst19++; } } catch(e) {}
+
+// In a hybrid value/test context, expression is always true, value
+// expected in accumulator.
+try { if (Inst21 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<2909,2921,57>",(assertEquals)); Inst21++; } } catch(e) {}
+assertEquals(2, 1 + ((delete 0) || 2));
+// In a hybrid value/test context, expression is always false, value
+// expected in accumulator.
+try { if (Inst22 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<3046,3058,60>",(assertEquals)); Inst22++; } } catch(e) {}try { if (Inst24 <= 1000 && typeof (x) != "undefined") {_RecordType("<3093,3094,60>",(x)); Inst24++; } } catch(e) {}
+assertEquals(2, (function (x) { return (delete x) || 2; })(0));
+try { if (Inst23 <= 1000 && typeof (x) != "undefined") {_RecordType("<3073,3074,60>",(x)); Inst23++; } } catch(e) {}
+// In a hybrid value/test context, expression is always true, value
+// expected on stack.
+try { if (Inst25 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<3200,3212,63>",(assertEquals)); Inst25++; } } catch(e) {}
+assertEquals(2, ((delete 0) || 2) + 1);
+// In a hybrid value/test context, expression is always false, value
+// expected on stack.
+try { if (Inst26 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<3331,3343,66>",(assertEquals)); Inst26++; } } catch(e) {}try { if (Inst28 <= 1000 && typeof (x) != "undefined") {_RecordType("<3379,3380,66>",(x)); Inst28++; } } catch(e) {}
+assertEquals(3, (function (x) { return ((delete x) || 2) + 1; })(0));
+try { if (Inst27 <= 1000 && typeof (x) != "undefined") {_RecordType("<3358,3359,66>",(x)); Inst27++; } } catch(e) {}
+
+
+// 'this' is not a Reference so delete returns true (see section 11.4.1,
+// step 2 of ES 5.1).
+try { if (Inst29 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<3498,3510,71>",(assertEquals)); Inst29++; } } catch(e) {}
+assertEquals(true, delete this);
+try { if (Inst30 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<3531,3543,72>",(assertEquals)); Inst30++; } } catch(e) {}
+assertEquals(true, (function () { return delete this; })());
+

@@ -1,0 +1,325 @@
+var Inst0 = 0;
+var Inst1 = 0;
+var Inst2 = 0;
+var Inst3 = 0;
+var Inst4 = 0;
+var Inst5 = 0;
+var Inst6 = 0;
+var Inst7 = 0;
+var Inst8 = 0;
+var Inst9 = 0;
+var Inst10 = 0;
+var Inst11 = 0;
+var Inst12 = 0;
+var Inst13 = 0;
+var Inst14 = 0;
+var Inst15 = 0;
+var Inst16 = 0;
+var Inst17 = 0;
+var Inst18 = 0;
+var Inst19 = 0;
+var Inst20 = 0;
+var Inst21 = 0;
+var Inst22 = 0;
+var Inst23 = 0;
+var Inst24 = 0;
+var Inst25 = 0;
+var Inst26 = 0;
+var Inst27 = 0;
+var Inst28 = 0;
+var Inst29 = 0;
+var Inst30 = 0;
+var Inst31 = 0;
+var Inst32 = 0;
+var Inst33 = 0;
+var Inst34 = 0;
+var Inst35 = 0;
+var Inst36 = 0;
+var Inst37 = 0;
+var Inst38 = 0;
+var Inst39 = 0;
+var Inst40 = 0;
+var Inst41 = 0;
+var Inst42 = 0;
+var Inst43 = 0;
+var Inst44 = 0;
+var Inst45 = 0;
+var Inst46 = 0;
+var Inst47 = 0;
+var Inst48 = 0;
+var Inst49 = 0;
+var Inst50 = 0;
+var Inst51 = 0;
+var Inst52 = 0;
+var Inst53 = 0;
+var Inst54 = 0;
+var Inst55 = 0;
+var Inst56 = 0;
+var Inst57 = 0;
+var Inst58 = 0;
+var Inst59 = 0;
+var Inst60 = 0;
+var Inst61 = 0;
+var Inst62 = 0;
+var Inst63 = 0;
+var Inst64 = 0;
+var Inst65 = 0;
+var Inst66 = 0;
+var Inst67 = 0;
+var Inst68 = 0;
+var Inst69 = 0;
+var Inst70 = 0;
+var Inst71 = 0;
+var Inst72 = 0;
+var Inst73 = 0;
+var Inst74 = 0;
+var Inst75 = 0;
+var Inst76 = 0;
+var Inst77 = 0;
+var Inst78 = 0;
+var Inst79 = 0;
+var Inst80 = 0;
+var Inst81 = 0;
+var Inst82 = 0;
+var Inst83 = 0;
+var Inst84 = 0;
+var Inst85 = 0;
+var Inst86 = 0;
+var Inst87 = 0;
+var Inst88 = 0;
+var Inst89 = 0;
+var Inst90 = 0;
+var Inst91 = 0;
+var Inst92 = 0;
+var Inst93 = 0;
+var Inst94 = 0;
+var Inst95 = 0;
+var Inst96 = 0;
+var Inst97 = 0;
+var Inst98 = 0;
+var Inst99 = 0;
+var Inst100 = 0;
+var Inst101 = 0;
+var Inst102 = 0;
+var Inst103 = 0;
+var Inst104 = 0;
+var Inst105 = 0;
+var Inst106 = 0;
+var Inst107 = 0;
+var Inst108 = 0;
+var Inst109 = 0;
+var Inst110 = 0;
+var Inst111 = 0;
+var Inst112 = 0;
+var Inst113 = 0;
+var Inst114 = 0;
+var Inst115 = 0;
+var Inst116 = 0;
+ 
+function _TypeOfArray(a) {
+	let number = true;	
+	let string = true;
+	for (let i = 0; i < a.length; i++) {
+		if (number && (typeof a[i]) != "number") {
+			number = false;	
+		}
+		if (string && (typeof a[i]) != "string") {
+			string = false;	
+		}
+		if (!number && !string)
+			break;
+	}
+	if (number)
+		return "number";
+	else if (string)
+		return "string";
+	else
+		return "any";
+}
+
+function _TypeIsEqual(t1, t2) {
+	return JSON.stringify(t1) === JSON.stringify(t2);
+}
+
+function _TypeOf(a, step) {
+	var t;
+	var type = Object.prototype.toString.call(a).slice(8, -1).toLowerCase();	
+	if (type == "array") {
+		t = {type : type, extra: {elemType: _TypeOfArray(a)}};
+	} else if (type == "object") {
+		let shape = [];
+        if (step === undefined || step > 0) {
+            let keys = Object.keys(a);
+            let length = Math.min(100, keys.length);
+		    for (let i = 0; i < length; i++) {
+			    shape.push([keys[i], _TypeOf(a[keys[i]], step === undefined ? 1 : step - 1)]);	
+		    }
+        }
+		t = {type : type, extra: {shape: shape}};
+	} else {
+		t = {type : type};
+	} 
+	return t;
+}
+
+function _RecordType(loc, a) {
+	var t = _TypeOf(a);
+    print("~~~TypeInfo:" + loc + ":" + JSON.stringify(t));
+}
+// Copyright 2015 the V8 project authors. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
+// Flags: --expose-debug-as debug
+
+// This test ensures that IC learning doesn't interfere with stepping into
+// property accessor. f1()'s ICs are allowed to learn to a monomorphic state,
+// and the breakpoints flooding get() are allowed to expire, then we ensure
+// that we can step into get() again later (when k == 1).
+try { if (Inst0 <= 1000 && typeof (f1) != "undefined") {_RecordType("<499,501,11>",(f1)); Inst0++; } } catch(e) {}
+function f1() {
+  for (var k = 0; k < 2; k++) {     // Break 1
+try { if (Inst1 <= 1000 && typeof (k) != "undefined") {_RecordType("<517,518,12>",(k)); Inst1++; } } catch(e) {}try { if (Inst2 <= 1000 && typeof (k) != "undefined") {_RecordType("<524,525,12>",(k)); Inst2++; } } catch(e) {}try { if (Inst3 <= 1000 && typeof (k) != "undefined") {_RecordType("<531,532,12>",(k)); Inst3++; } } catch(e) {}
+    var v10 = 0;                    // Line 2
+try { if (Inst4 <= 1000 && typeof (v10) != "undefined") {_RecordType("<561,564,13>",(v10)); Inst4++; } } catch(e) {}
+    for (var i = 0; i < 10; i++) {  // Line 3
+try { if (Inst5 <= 1000 && typeof (i) != "undefined") {_RecordType("<612,613,14>",(i)); Inst5++; } } catch(e) {}try { if (Inst6 <= 1000 && typeof (i) != "undefined") {_RecordType("<619,620,14>",(i)); Inst6++; } } catch(e) {}try { if (Inst7 <= 1000 && typeof (i) != "undefined") {_RecordType("<627,628,14>",(i)); Inst7++; } } catch(e) {}
+try { if (Inst9 <= 1000 && typeof (o.slappy) != "undefined") {_RecordType("<661,669,15>",(o.slappy)); Inst9++; } } catch(e) {}try { if (Inst10 <= 1000 && typeof (o) != "undefined") {_RecordType("<661,662,15>",(o)); Inst10++; } } catch(e) {}
+      var v12 = o.slappy;           // Line 4
+try { if (Inst8 <= 1000 && typeof (v12) != "undefined") {_RecordType("<655,658,15>",(v12)); Inst8++; } } catch(e) {}
+      var v13 = 3                   // Line 5
+try { if (Inst11 <= 1000 && typeof (v13) != "undefined") {_RecordType("<701,704,16>",(v13)); Inst11++; } } catch(e) {}
+    }                               // Line 6
+try { if (Inst12 <= 1000 && typeof (print) != "undefined") {_RecordType("<787,792,18>",(print)); Inst12++; } } catch(e) {}
+    print("break here");            // Break 3
+  }                                 // Line 8
+try { if (Inst13 <= 1000 && typeof (print) != "undefined") {_RecordType("<878,883,20>",(print)); Inst13++; } } catch(e) {}
+  print("exiting f1");              // Line 9 (dummy break)
+}
+
+try { if (Inst14 <= 1000 && typeof (get) != "undefined") {_RecordType("<948,951,23>",(get)); Inst14++; } } catch(e) {}
+function get() {
+  var g0 = 0;                       // Break 2
+try { if (Inst15 <= 1000 && typeof (g0) != "undefined") {_RecordType("<962,964,24>",(g0)); Inst15++; } } catch(e) {}
+  var g1 = 1;
+try { if (Inst16 <= 1000 && typeof (g1) != "undefined") {_RecordType("<1009,1011,25>",(g1)); Inst16++; } } catch(e) {}
+  return 3;
+}
+
+
+var o = {};
+try { if (Inst17 <= 1000 && typeof (o) != "undefined") {_RecordType("<1037,1038,30>",(o)); Inst17++; } } catch(e) {}
+try { if (Inst18 <= 1000 && typeof (Object.defineProperty) != "undefined") {_RecordType("<1045,1066,31>",(Object.defineProperty)); Inst18++; } } catch(e) {}try { if (Inst19 <= 1000 && typeof (Object) != "undefined") {_RecordType("<1045,1051,31>",(Object)); Inst19++; } } catch(e) {}try { if (Inst20 <= 1000 && typeof (o) != "undefined") {_RecordType("<1067,1068,31>",(o)); Inst20++; } } catch(e) {}try { if (Inst21 <= 1000 && typeof (get) != "undefined") {_RecordType("<1088,1091,31>",(get)); Inst21++; } } catch(e) {}
+Object.defineProperty(o, "slappy", { get : get });
+
+try { if (Inst23 <= 1000 && typeof (debug.Debug) != "undefined") {_RecordType("<1105,1116,33>",(debug.Debug)); Inst23++; } } catch(e) {}try { if (Inst24 <= 1000 && typeof (debug) != "undefined") {_RecordType("<1105,1110,33>",(debug)); Inst24++; } } catch(e) {}
+Debug = debug.Debug;
+try { if (Inst22 <= 1000 && typeof (Debug) != "undefined") {_RecordType("<1097,1102,33>",(Debug)); Inst22++; } } catch(e) {}
+var break_count = 0
+try { if (Inst25 <= 1000 && typeof (break_count) != "undefined") {_RecordType("<1122,1133,34>",(break_count)); Inst25++; } } catch(e) {}
+var exception = null;
+try { if (Inst26 <= 1000 && typeof (exception) != "undefined") {_RecordType("<1142,1151,35>",(exception)); Inst26++; } } catch(e) {}
+var bp_f1_line7;
+try { if (Inst27 <= 1000 && typeof (bp_f1_line7) != "undefined") {_RecordType("<1164,1175,36>",(bp_f1_line7)); Inst27++; } } catch(e) {}
+var bp_f1_line9;
+try { if (Inst28 <= 1000 && typeof (bp_f1_line9) != "undefined") {_RecordType("<1181,1192,37>",(bp_f1_line9)); Inst28++; } } catch(e) {}
+
+try { if (Inst29 <= 1000 && typeof (listener) != "undefined") {_RecordType("<1204,1212,39>",(listener)); Inst29++; } } catch(e) {}
+function listener(event, exec_state, event_data, data) {
+try { if (Inst30 <= 1000 && typeof (event) != "undefined") {_RecordType("<1213,1218,39>",(event)); Inst30++; } } catch(e) {}try { if (Inst31 <= 1000 && typeof (exec_state) != "undefined") {_RecordType("<1220,1230,39>",(exec_state)); Inst31++; } } catch(e) {}try { if (Inst32 <= 1000 && typeof (event_data) != "undefined") {_RecordType("<1232,1242,39>",(event_data)); Inst32++; } } catch(e) {}try { if (Inst33 <= 1000 && typeof (data) != "undefined") {_RecordType("<1244,1248,39>",(data)); Inst33++; } } catch(e) {}
+try { if (Inst34 <= 1000 && typeof (event) != "undefined") {_RecordType("<1258,1263,40>",(event)); Inst34++; } } catch(e) {}try { if (Inst35 <= 1000 && typeof (Debug.DebugEvent.Break) != "undefined") {_RecordType("<1267,1289,40>",(Debug.DebugEvent.Break)); Inst35++; } } catch(e) {}try { if (Inst36 <= 1000 && typeof (Debug.DebugEvent) != "undefined") {_RecordType("<1267,1283,40>",(Debug.DebugEvent)); Inst36++; } } catch(e) {}try { if (Inst37 <= 1000 && typeof (Debug) != "undefined") {_RecordType("<1267,1272,40>",(Debug)); Inst37++; } } catch(e) {}
+  if (event != Debug.DebugEvent.Break) return;
+try { if (Inst88 <= 1000 && typeof (e) != "undefined") {_RecordType("<2536,2537,72>",(e)); Inst88++; } } catch(e) {}
+  try {
+try { if (Inst39 <= 1000 && typeof (exec_state.frame(0).sourceLineText) != "undefined") {_RecordType("<1322,1356,42>",(exec_state.frame(0).sourceLineText)); Inst39++; } } catch(e) {}try { if (Inst40 <= 1000 && typeof (exec_state.frame) != "undefined") {_RecordType("<1322,1338,42>",(exec_state.frame)); Inst40++; } } catch(e) {}try { if (Inst41 <= 1000 && typeof (exec_state) != "undefined") {_RecordType("<1322,1332,42>",(exec_state)); Inst41++; } } catch(e) {}
+    var line = exec_state.frame(0).sourceLineText();
+try { if (Inst38 <= 1000 && typeof (line) != "undefined") {_RecordType("<1315,1319,42>",(line)); Inst38++; } } catch(e) {}
+try { if (Inst42 <= 1000 && typeof (print) != "undefined") {_RecordType("<1364,1369,43>",(print)); Inst42++; } } catch(e) {}try { if (Inst43 <= 1000 && typeof (line) != "undefined") {_RecordType("<1370,1374,43>",(line)); Inst43++; } } catch(e) {}
+    print(line);
+try { if (Inst45 <= 1000 && typeof (line.match) != "undefined") {_RecordType("<1393,1403,44>",(line.match)); Inst45++; } } catch(e) {}try { if (Inst46 <= 1000 && typeof (line) != "undefined") {_RecordType("<1393,1397,44>",(line)); Inst46++; } } catch(e) {}
+    var match = line.match(/\/\/ Break (\d+)$/);
+try { if (Inst44 <= 1000 && typeof (match) != "undefined") {_RecordType("<1385,1390,44>",(match)); Inst44++; } } catch(e) {}
+try { if (Inst47 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<1430,1442,45>",(assertEquals)); Inst47++; } } catch(e) {}try { if (Inst48 <= 1000 && typeof (match.length) != "undefined") {_RecordType("<1446,1458,45>",(match.length)); Inst48++; } } catch(e) {}try { if (Inst49 <= 1000 && typeof (match) != "undefined") {_RecordType("<1446,1451,45>",(match)); Inst49++; } } catch(e) {}
+    assertEquals(2, match.length);
+try { if (Inst51 <= 1000 && typeof (parseInt) != "undefined") {_RecordType("<1483,1491,46>",(parseInt)); Inst51++; } } catch(e) {}try { if (Inst52 <= 1000 && typeof (match[1]) != "undefined") {_RecordType("<1492,1500,46>",(match[1])); Inst52++; } } catch(e) {}try { if (Inst53 <= 1000 && typeof (match) != "undefined") {_RecordType("<1492,1497,46>",(match)); Inst53++; } } catch(e) {}
+    var match_value = parseInt(match[1]);
+try { if (Inst50 <= 1000 && typeof (match_value) != "undefined") {_RecordType("<1469,1480,46>",(match_value)); Inst50++; } } catch(e) {}
+
+try { if (Inst54 <= 1000 && typeof (break_count) != "undefined") {_RecordType("<1512,1523,48>",(break_count)); Inst54++; } } catch(e) {}try { if (Inst55 <= 1000 && typeof (break_count) != "undefined") {_RecordType("<1532,1543,48>",(break_count)); Inst55++; } } catch(e) {}
+    if (break_count >= 0 && break_count < 2) {
+      // 0, 1: Keep stepping through frames.
+try { if (Inst56 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<1602,1614,50>",(assertEquals)); Inst56++; } } catch(e) {}try { if (Inst57 <= 1000 && typeof (break_count) != "undefined") {_RecordType("<1615,1626,50>",(break_count)); Inst57++; } } catch(e) {}try { if (Inst58 <= 1000 && typeof (match_value) != "undefined") {_RecordType("<1628,1639,50>",(match_value)); Inst58++; } } catch(e) {}
+      assertEquals(break_count, match_value);
+try { if (Inst59 <= 1000 && typeof (exec_state.prepareStep) != "undefined") {_RecordType("<1648,1670,51>",(exec_state.prepareStep)); Inst59++; } } catch(e) {}try { if (Inst60 <= 1000 && typeof (exec_state) != "undefined") {_RecordType("<1648,1658,51>",(exec_state)); Inst60++; } } catch(e) {}try { if (Inst61 <= 1000 && typeof (Debug.StepAction.StepFrame) != "undefined") {_RecordType("<1671,1697,51>",(Debug.StepAction.StepFrame)); Inst61++; } } catch(e) {}try { if (Inst62 <= 1000 && typeof (Debug.StepAction) != "undefined") {_RecordType("<1671,1687,51>",(Debug.StepAction)); Inst62++; } } catch(e) {}try { if (Inst63 <= 1000 && typeof (Debug) != "undefined") {_RecordType("<1671,1676,51>",(Debug)); Inst63++; } } catch(e) {}
+      exec_state.prepareStep(Debug.StepAction.StepFrame);
+try { if (Inst64 <= 1000 && typeof (break_count) != "undefined") {_RecordType("<1715,1726,52>",(break_count)); Inst64++; } } catch(e) {}
+    } else if (break_count === 2) {
+      // 2: let the code run to a breakpoint we set. The load should
+      // go monomorphic.
+try { if (Inst65 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<1836,1848,55>",(assertEquals)); Inst65++; } } catch(e) {}try { if (Inst66 <= 1000 && typeof (break_count) != "undefined") {_RecordType("<1849,1860,55>",(break_count)); Inst66++; } } catch(e) {}try { if (Inst67 <= 1000 && typeof (match_value) != "undefined") {_RecordType("<1862,1873,55>",(match_value)); Inst67++; } } catch(e) {}
+      assertEquals(break_count, match_value);
+try { if (Inst68 <= 1000 && typeof (break_count) != "undefined") {_RecordType("<1891,1902,56>",(break_count)); Inst68++; } } catch(e) {}
+    } else if (break_count === 3) {
+      // 3: back to frame stepping. Does the monomorphic slappy accessor
+      // call still have the ability to break like before?
+try { if (Inst69 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<2050,2062,59>",(assertEquals)); Inst69++; } } catch(e) {}try { if (Inst70 <= 1000 && typeof (break_count) != "undefined") {_RecordType("<2063,2074,59>",(break_count)); Inst70++; } } catch(e) {}try { if (Inst71 <= 1000 && typeof (match_value) != "undefined") {_RecordType("<2076,2087,59>",(match_value)); Inst71++; } } catch(e) {}
+      assertEquals(break_count, match_value);
+try { if (Inst72 <= 1000 && typeof (Debug.clearBreakPoint) != "undefined") {_RecordType("<2096,2117,60>",(Debug.clearBreakPoint)); Inst72++; } } catch(e) {}try { if (Inst73 <= 1000 && typeof (Debug) != "undefined") {_RecordType("<2096,2101,60>",(Debug)); Inst73++; } } catch(e) {}try { if (Inst74 <= 1000 && typeof (bp_f1_line7) != "undefined") {_RecordType("<2118,2129,60>",(bp_f1_line7)); Inst74++; } } catch(e) {}
+      Debug.clearBreakPoint(bp_f1_line7);
+try { if (Inst75 <= 1000 && typeof (exec_state.prepareStep) != "undefined") {_RecordType("<2138,2160,61>",(exec_state.prepareStep)); Inst75++; } } catch(e) {}try { if (Inst76 <= 1000 && typeof (exec_state) != "undefined") {_RecordType("<2138,2148,61>",(exec_state)); Inst76++; } } catch(e) {}try { if (Inst77 <= 1000 && typeof (Debug.StepAction.StepFrame) != "undefined") {_RecordType("<2161,2187,61>",(Debug.StepAction.StepFrame)); Inst77++; } } catch(e) {}try { if (Inst78 <= 1000 && typeof (Debug.StepAction) != "undefined") {_RecordType("<2161,2177,61>",(Debug.StepAction)); Inst78++; } } catch(e) {}try { if (Inst79 <= 1000 && typeof (Debug) != "undefined") {_RecordType("<2161,2166,61>",(Debug)); Inst79++; } } catch(e) {}
+      exec_state.prepareStep(Debug.StepAction.StepFrame);
+    } else {
+try { if (Inst80 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<2209,2221,63>",(assertEquals)); Inst80++; } } catch(e) {}try { if (Inst81 <= 1000 && typeof (break_count) != "undefined") {_RecordType("<2225,2236,63>",(break_count)); Inst81++; } } catch(e) {}
+      assertEquals(4, break_count);
+try { if (Inst82 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<2245,2257,64>",(assertEquals)); Inst82++; } } catch(e) {}try { if (Inst83 <= 1000 && typeof (match_value) != "undefined") {_RecordType("<2261,2272,64>",(match_value)); Inst83++; } } catch(e) {}
+      assertEquals(2, match_value);
+      // Apparently we can still stop in the accessor even though we cleared
+      // breakpoints earlier and there was a monomorphic step.
+      // Allow running to completion now.
+try { if (Inst84 <= 1000 && typeof (Debug.clearBreakPoint) != "undefined") {_RecordType("<2463,2484,68>",(Debug.clearBreakPoint)); Inst84++; } } catch(e) {}try { if (Inst85 <= 1000 && typeof (Debug) != "undefined") {_RecordType("<2463,2468,68>",(Debug)); Inst85++; } } catch(e) {}try { if (Inst86 <= 1000 && typeof (bp_f1_line9) != "undefined") {_RecordType("<2485,2496,68>",(bp_f1_line9)); Inst86++; } } catch(e) {}
+      Debug.clearBreakPoint(bp_f1_line9);
+    }
+
+try { if (Inst87 <= 1000 && typeof (break_count) != "undefined") {_RecordType("<2510,2521,71>",(break_count)); Inst87++; } } catch(e) {}
+    break_count++;
+  } catch (e) {
+try { if (Inst89 <= 1000 && typeof (print) != "undefined") {_RecordType("<2545,2550,73>",(print)); Inst89++; } } catch(e) {}try { if (Inst90 <= 1000 && typeof (e) != "undefined") {_RecordType("<2551,2552,73>",(e)); Inst90++; } } catch(e) {}try { if (Inst91 <= 1000 && typeof (e.stack) != "undefined") {_RecordType("<2555,2562,73>",(e.stack)); Inst91++; } } catch(e) {}try { if (Inst92 <= 1000 && typeof (e) != "undefined") {_RecordType("<2555,2556,73>",(e)); Inst92++; } } catch(e) {}
+    print(e + e.stack);
+try { if (Inst94 <= 1000 && typeof (e) != "undefined") {_RecordType("<2581,2582,74>",(e)); Inst94++; } } catch(e) {}
+    exception = e;
+try { if (Inst93 <= 1000 && typeof (exception) != "undefined") {_RecordType("<2569,2578,74>",(exception)); Inst93++; } } catch(e) {}
+  }
+}
+
+for (var j = 1; j < 3; j++) {
+try { if (Inst95 <= 1000 && typeof (j) != "undefined") {_RecordType("<2600,2601,78>",(j)); Inst95++; } } catch(e) {}try { if (Inst96 <= 1000 && typeof (j) != "undefined") {_RecordType("<2607,2608,78>",(j)); Inst96++; } } catch(e) {}try { if (Inst97 <= 1000 && typeof (j) != "undefined") {_RecordType("<2614,2615,78>",(j)); Inst97++; } } catch(e) {}
+  break_count = 0;
+try { if (Inst98 <= 1000 && typeof (break_count) != "undefined") {_RecordType("<2623,2634,79>",(break_count)); Inst98++; } } catch(e) {}
+try { if (Inst99 <= 1000 && typeof (Debug.setListener) != "undefined") {_RecordType("<2642,2659,80>",(Debug.setListener)); Inst99++; } } catch(e) {}try { if (Inst100 <= 1000 && typeof (Debug) != "undefined") {_RecordType("<2642,2647,80>",(Debug)); Inst100++; } } catch(e) {}try { if (Inst101 <= 1000 && typeof (listener) != "undefined") {_RecordType("<2660,2668,80>",(listener)); Inst101++; } } catch(e) {}
+  Debug.setListener(listener);
+
+  // Breakpoints are added here rather than in the listener because their
+  // addition causes a full (clearing) gc that clears type feedback when we
+  // want to let it build up. Also, bp_f1_line9 is set simply because if we
+  // handled then deleted bp_f1_line7, then the debugger clears DebugInfo from
+  // f1 while we are still using it, again, resetting type feedback which is
+  // undesirable.
+try { if (Inst103 <= 1000 && typeof (Debug.setBreakPoint) != "undefined") {_RecordType("<3088,3107,88>",(Debug.setBreakPoint)); Inst103++; } } catch(e) {}try { if (Inst104 <= 1000 && typeof (Debug) != "undefined") {_RecordType("<3088,3093,88>",(Debug)); Inst104++; } } catch(e) {}try { if (Inst105 <= 1000 && typeof (f1) != "undefined") {_RecordType("<3108,3110,88>",(f1)); Inst105++; } } catch(e) {}
+  bp_f1_line7 = Debug.setBreakPoint(f1, 7);
+try { if (Inst102 <= 1000 && typeof (bp_f1_line7) != "undefined") {_RecordType("<3074,3085,88>",(bp_f1_line7)); Inst102++; } } catch(e) {}
+try { if (Inst107 <= 1000 && typeof (Debug.setBreakPoint) != "undefined") {_RecordType("<3132,3151,89>",(Debug.setBreakPoint)); Inst107++; } } catch(e) {}try { if (Inst108 <= 1000 && typeof (Debug) != "undefined") {_RecordType("<3132,3137,89>",(Debug)); Inst108++; } } catch(e) {}try { if (Inst109 <= 1000 && typeof (f1) != "undefined") {_RecordType("<3152,3154,89>",(f1)); Inst109++; } } catch(e) {}
+  bp_f1_line9 = Debug.setBreakPoint(f1, 9);
+try { if (Inst106 <= 1000 && typeof (bp_f1_line9) != "undefined") {_RecordType("<3118,3129,89>",(bp_f1_line9)); Inst106++; } } catch(e) {}
+
+  debugger;                         // Break 0
+try { if (Inst110 <= 1000 && typeof (f1) != "undefined") {_RecordType("<3210,3212,92>",(f1)); Inst110++; } } catch(e) {}
+  f1();
+try { if (Inst111 <= 1000 && typeof (Debug.setListener) != "undefined") {_RecordType("<3218,3235,93>",(Debug.setListener)); Inst111++; } } catch(e) {}try { if (Inst112 <= 1000 && typeof (Debug) != "undefined") {_RecordType("<3218,3223,93>",(Debug)); Inst112++; } } catch(e) {}
+  Debug.setListener(null);
+try { if (Inst113 <= 1000 && typeof (assertTrue) != "undefined") {_RecordType("<3245,3255,94>",(assertTrue)); Inst113++; } } catch(e) {}try { if (Inst114 <= 1000 && typeof (break_count) != "undefined") {_RecordType("<3256,3267,94>",(break_count)); Inst114++; } } catch(e) {}
+  assertTrue(break_count === 5);
+}
+
+try { if (Inst115 <= 1000 && typeof (assertNull) != "undefined") {_RecordType("<3279,3289,97>",(assertNull)); Inst115++; } } catch(e) {}try { if (Inst116 <= 1000 && typeof (exception) != "undefined") {_RecordType("<3290,3299,97>",(exception)); Inst116++; } } catch(e) {}
+assertNull(exception);
+

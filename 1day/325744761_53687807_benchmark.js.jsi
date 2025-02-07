@@ -1,0 +1,328 @@
+var Inst0 = 0;
+var Inst1 = 0;
+var Inst2 = 0;
+var Inst3 = 0;
+var Inst4 = 0;
+var Inst5 = 0;
+var Inst6 = 0;
+var Inst7 = 0;
+var Inst8 = 0;
+var Inst9 = 0;
+var Inst10 = 0;
+var Inst11 = 0;
+var Inst12 = 0;
+var Inst13 = 0;
+var Inst14 = 0;
+var Inst15 = 0;
+var Inst16 = 0;
+var Inst17 = 0;
+var Inst18 = 0;
+var Inst19 = 0;
+var Inst20 = 0;
+var Inst21 = 0;
+var Inst22 = 0;
+var Inst23 = 0;
+var Inst24 = 0;
+var Inst25 = 0;
+var Inst26 = 0;
+var Inst27 = 0;
+var Inst28 = 0;
+var Inst29 = 0;
+var Inst30 = 0;
+var Inst31 = 0;
+var Inst32 = 0;
+var Inst33 = 0;
+var Inst34 = 0;
+var Inst35 = 0;
+var Inst36 = 0;
+var Inst37 = 0;
+var Inst38 = 0;
+var Inst39 = 0;
+var Inst40 = 0;
+var Inst41 = 0;
+var Inst42 = 0;
+var Inst43 = 0;
+var Inst44 = 0;
+var Inst45 = 0;
+var Inst46 = 0;
+var Inst47 = 0;
+var Inst48 = 0;
+var Inst49 = 0;
+var Inst50 = 0;
+var Inst51 = 0;
+var Inst52 = 0;
+var Inst53 = 0;
+var Inst54 = 0;
+var Inst55 = 0;
+var Inst56 = 0;
+var Inst57 = 0;
+var Inst58 = 0;
+var Inst59 = 0;
+var Inst60 = 0;
+var Inst61 = 0;
+var Inst62 = 0;
+var Inst63 = 0;
+var Inst64 = 0;
+var Inst65 = 0;
+var Inst66 = 0;
+var Inst67 = 0;
+var Inst68 = 0;
+var Inst69 = 0;
+var Inst70 = 0;
+var Inst71 = 0;
+var Inst72 = 0;
+var Inst73 = 0;
+var Inst74 = 0;
+var Inst75 = 0;
+var Inst76 = 0;
+var Inst77 = 0;
+var Inst78 = 0;
+var Inst79 = 0;
+var Inst80 = 0;
+var Inst81 = 0;
+var Inst82 = 0;
+var Inst83 = 0;
+var Inst84 = 0;
+var Inst85 = 0;
+var Inst86 = 0;
+var Inst87 = 0;
+var Inst88 = 0;
+var Inst89 = 0;
+var Inst90 = 0;
+var Inst91 = 0;
+var Inst92 = 0;
+var Inst93 = 0;
+var Inst94 = 0;
+var Inst95 = 0;
+var Inst96 = 0;
+var Inst97 = 0;
+var Inst98 = 0;
+var Inst99 = 0;
+var Inst100 = 0;
+var Inst101 = 0;
+var Inst102 = 0;
+var Inst103 = 0;
+var Inst104 = 0;
+var Inst105 = 0;
+var Inst106 = 0;
+var Inst107 = 0;
+var Inst108 = 0;
+var Inst109 = 0;
+var Inst110 = 0;
+var Inst111 = 0;
+var Inst112 = 0;
+var Inst113 = 0;
+var Inst114 = 0;
+var Inst115 = 0;
+var Inst116 = 0;
+var Inst117 = 0;
+var Inst118 = 0;
+var Inst119 = 0;
+var Inst120 = 0;
+var Inst121 = 0;
+var Inst122 = 0;
+var Inst123 = 0;
+var Inst124 = 0;
+var Inst125 = 0;
+ 
+function _TypeOfArray(a) {
+	let number = true;	
+	let string = true;
+	for (let i = 0; i < a.length; i++) {
+		if (number && (typeof a[i]) != "number") {
+			number = false;	
+		}
+		if (string && (typeof a[i]) != "string") {
+			string = false;	
+		}
+		if (!number && !string)
+			break;
+	}
+	if (number)
+		return "number";
+	else if (string)
+		return "string";
+	else
+		return "any";
+}
+
+function _TypeIsEqual(t1, t2) {
+	return JSON.stringify(t1) === JSON.stringify(t2);
+}
+
+function _TypeOf(a, step) {
+	var t;
+	var type = Object.prototype.toString.call(a).slice(8, -1).toLowerCase();	
+	if (type == "array") {
+		t = {type : type, extra: {elemType: _TypeOfArray(a)}};
+	} else if (type == "object") {
+		let shape = [];
+        if (step === undefined || step > 0) {
+            let keys = Object.keys(a);
+            let length = Math.min(100, keys.length);
+		    for (let i = 0; i < length; i++) {
+			    shape.push([keys[i], _TypeOf(a[keys[i]], step === undefined ? 1 : step - 1)]);	
+		    }
+        }
+		t = {type : type, extra: {shape: shape}};
+	} else {
+		t = {type : type};
+	} 
+	return t;
+}
+
+function _RecordType(loc, a) {
+	var t = _TypeOf(a);
+    print("~~~TypeInfo:" + loc + ":" + JSON.stringify(t));
+}
+
+const ImageSrcs = [
+  ['rgba-0-0-0-0', 'iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAADElEQVR4nGNgoBwAAABEAAHX40j9AAAAAElFTkSuQmCC'],
+  ['rgba-0-0-0-1', 'iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAFUlEQVR4nGNkYGBgZEACTAxogLAAAAGUAAnhIoA0AAAAAElFTkSuQmCC'],
+  ['rgba-0-0-0-128', 'iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAFUlEQVR4nGNkYGBoYEACTAxogLAAACFUAIicJUlgAAAAAElFTkSuQmCC'],
+  ['rgba-0-0-0-254', 'iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAFUlEQVR4nGNkYGD4x4AEmBjQAGEBAEDUAQbJ2JgSAAAAAElFTkSuQmCC'],
+  ['rgba-0-0-0-255', 'iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAFUlEQVR4nGNkYGD4z4AEmBjQAGEBAEEUAQeklUeXAAAAAElFTkSuQmCC'],
+  ['rgba-255-255-255-0', 'iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAFElEQVR4nGP8//8/AzJgYkADhAUAxo4DBW3qFtQAAAAASUVORK5CYII='],
+  ['rgba-255-255-255-1', 'iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAFUlEQVR4nGP8//8/IwMSYGJAA4QFAMbOAwZBGYOeAAAAAElFTkSuQmCC'],
+  ['rgba-255-255-255-128', 'iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAFUlEQVR4nGP8//9/AwMSYGJAA4QFAOaOA4Xin3BfAAAAAElFTkSuQmCC'],
+  ['rgba-255-255-255-254', 'iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAFklEQVR4nGP8////PwYkwMSABggLAAAGHQQD+kk7kgAAAABJRU5ErkJggg=='],
+  ['rgba-255-255-255-255', 'iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAFklEQVR4nGP8////fwYkwMSABggLAAAGXQQE3kxYjAAAAABJRU5ErkJggg=='],
+  ['rgba-127-127-127-0', 'iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAFElEQVR4nGOsr69nQAZMDGiAsAAAY44BhWzocIgAAAAASUVORK5CYII='],
+  ['rgba-127-127-127-128', 'iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAFUlEQVR4nGOsr69vYEACTAxogLAAAIOOAgUf8WMdAAAAAElFTkSuQmCC'],
+  ['rgba-127-127-127-255', 'iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAFUlEQVR4nGOsr6//z4AEmBjQAGEBAKNOAoSjwzIRAAAAAElFTkSuQmCC']
+]
+try { if (Inst0 <= 1000 && typeof (ImageSrcs) != "undefined") {_RecordType("<8,17,2>",(ImageSrcs)); Inst0++; } } catch(e) {}
+const Images = []
+try { if (Inst1 <= 1000 && typeof (Images) != "undefined") {_RecordType("<1768,1774,17>",(Images)); Inst1++; } } catch(e) {}
+let ImagesLoaded = 0
+try { if (Inst2 <= 1000 && typeof (ImagesLoaded) != "undefined") {_RecordType("<1785,1797,18>",(ImagesLoaded)); Inst2++; } } catch(e) {}
+const Trials = 30
+try { if (Inst3 <= 1000 && typeof (Trials) != "undefined") {_RecordType("<1809,1815,19>",(Trials)); Inst3++; } } catch(e) {}
+const TrialsDropped = 20
+try { if (Inst4 <= 1000 && typeof (TrialsDropped) != "undefined") {_RecordType("<1828,1841,20>",(TrialsDropped)); Inst4++; } } catch(e) {}
+const Iters = 1000
+try { if (Inst5 <= 1000 && typeof (Iters) != "undefined") {_RecordType("<1854,1859,21>",(Iters)); Inst5++; } } catch(e) {}
+
+try { if (Inst6 <= 1000 && typeof (median) != "undefined") {_RecordType("<1879,1885,23>",(median)); Inst6++; } } catch(e) {}
+function median(lst) {
+try { if (Inst7 <= 1000 && typeof (lst) != "undefined") {_RecordType("<1886,1889,23>",(lst)); Inst7++; } } catch(e) {}
+try { if (Inst9 <= 1000 && typeof (lst.slice(0).sort) != "undefined") {_RecordType("<1909,1926,24>",(lst.slice(0).sort)); Inst9++; } } catch(e) {}try { if (Inst10 <= 1000 && typeof (lst.slice) != "undefined") {_RecordType("<1909,1918,24>",(lst.slice)); Inst10++; } } catch(e) {}try { if (Inst11 <= 1000 && typeof (lst) != "undefined") {_RecordType("<1909,1912,24>",(lst)); Inst11++; } } catch(e) {}
+  let sorted = lst.slice(0).sort()
+try { if (Inst8 <= 1000 && typeof (sorted) != "undefined") {_RecordType("<1900,1906,24>",(sorted)); Inst8++; } } catch(e) {}
+try { if (Inst12 <= 1000 && typeof (sorted[Math.floor(sorted.length / 2)]) != "undefined") {_RecordType("<1939,1976,25>",(sorted[Math.floor(sorted.length / 2)])); Inst12++; } } catch(e) {}try { if (Inst13 <= 1000 && typeof (sorted) != "undefined") {_RecordType("<1939,1945,25>",(sorted)); Inst13++; } } catch(e) {}try { if (Inst14 <= 1000 && typeof (Math.floor) != "undefined") {_RecordType("<1946,1956,25>",(Math.floor)); Inst14++; } } catch(e) {}try { if (Inst15 <= 1000 && typeof (Math) != "undefined") {_RecordType("<1946,1950,25>",(Math)); Inst15++; } } catch(e) {}try { if (Inst16 <= 1000 && typeof (sorted.length) != "undefined") {_RecordType("<1957,1970,25>",(sorted.length)); Inst16++; } } catch(e) {}try { if (Inst17 <= 1000 && typeof (sorted) != "undefined") {_RecordType("<1957,1963,25>",(sorted)); Inst17++; } } catch(e) {}
+  return sorted[Math.floor(sorted.length / 2)]
+}
+
+try { if (Inst18 <= 1000 && typeof (zeroDelay) != "undefined") {_RecordType("<1992,2001,28>",(zeroDelay)); Inst18++; } } catch(e) {}
+function zeroDelay() {
+try { if (Inst19 <= 1000 && typeof (Promise) != "undefined") {_RecordType("<2020,2027,29>",(Promise)); Inst19++; } } catch(e) {}try { if (Inst20 <= 1000 && typeof (resolve) != "undefined") {_RecordType("<2028,2035,29>",(resolve)); Inst20++; } } catch(e) {}try { if (Inst21 <= 1000 && typeof (setTimeout) != "undefined") {_RecordType("<2039,2049,29>",(setTimeout)); Inst21++; } } catch(e) {}try { if (Inst22 <= 1000 && typeof (resolve) != "undefined") {_RecordType("<2050,2057,29>",(resolve)); Inst22++; } } catch(e) {}
+  return new Promise(resolve => setTimeout(resolve, 0))
+}
+
+try { if (Inst23 <= 1000 && typeof (benchmarkImage) != "undefined") {_RecordType("<2084,2098,32>",(benchmarkImage)); Inst23++; } } catch(e) {}
+async function benchmarkImage(name, image) {
+try { if (Inst24 <= 1000 && typeof (name) != "undefined") {_RecordType("<2099,2103,32>",(name)); Inst24++; } } catch(e) {}try { if (Inst25 <= 1000 && typeof (image) != "undefined") {_RecordType("<2105,2110,32>",(image)); Inst25++; } } catch(e) {}
+try { if (Inst26 <= 1000 && typeof (console.log) != "undefined") {_RecordType("<2117,2128,33>",(console.log)); Inst26++; } } catch(e) {}try { if (Inst27 <= 1000 && typeof (console) != "undefined") {_RecordType("<2117,2124,33>",(console)); Inst27++; } } catch(e) {}try { if (Inst28 <= 1000 && typeof (name) != "undefined") {_RecordType("<2145,2149,33>",(name)); Inst28++; } } catch(e) {}
+  console.log('benchmarking', name)
+try { if (Inst30 <= 1000 && typeof (document.getElementById) != "undefined") {_RecordType("<2167,2190,34>",(document.getElementById)); Inst30++; } } catch(e) {}try { if (Inst31 <= 1000 && typeof (document) != "undefined") {_RecordType("<2167,2175,34>",(document)); Inst31++; } } catch(e) {}
+  let canvas = document.getElementById('canvas')
+try { if (Inst29 <= 1000 && typeof (canvas) != "undefined") {_RecordType("<2158,2164,34>",(canvas)); Inst29++; } } catch(e) {}
+try { if (Inst33 <= 1000 && typeof (canvas.getContext) != "undefined") {_RecordType("<2218,2235,35>",(canvas.getContext)); Inst33++; } } catch(e) {}try { if (Inst34 <= 1000 && typeof (canvas) != "undefined") {_RecordType("<2218,2224,35>",(canvas)); Inst34++; } } catch(e) {}
+  let context = canvas.getContext('2d')
+try { if (Inst32 <= 1000 && typeof (context) != "undefined") {_RecordType("<2208,2215,35>",(context)); Inst32++; } } catch(e) {}
+  let times = []
+try { if (Inst35 <= 1000 && typeof (times) != "undefined") {_RecordType("<2249,2254,36>",(times)); Inst35++; } } catch(e) {}
+
+  for (let i = 0; i < Trials; i++) {
+try { if (Inst36 <= 1000 && typeof (i) != "undefined") {_RecordType("<2274,2275,38>",(i)); Inst36++; } } catch(e) {}try { if (Inst37 <= 1000 && typeof (i) != "undefined") {_RecordType("<2281,2282,38>",(i)); Inst37++; } } catch(e) {}try { if (Inst38 <= 1000 && typeof (Trials) != "undefined") {_RecordType("<2285,2291,38>",(Trials)); Inst38++; } } catch(e) {}try { if (Inst39 <= 1000 && typeof (i) != "undefined") {_RecordType("<2293,2294,38>",(i)); Inst39++; } } catch(e) {}
+try { if (Inst41 <= 1000 && typeof (performance.now) != "undefined") {_RecordType("<2321,2336,39>",(performance.now)); Inst41++; } } catch(e) {}try { if (Inst42 <= 1000 && typeof (performance) != "undefined") {_RecordType("<2321,2332,39>",(performance)); Inst42++; } } catch(e) {}
+    let startTime = performance.now()
+try { if (Inst40 <= 1000 && typeof (startTime) != "undefined") {_RecordType("<2309,2318,39>",(startTime)); Inst40++; } } catch(e) {}
+    for (let j = 0; j < Iters; j++) {
+try { if (Inst43 <= 1000 && typeof (j) != "undefined") {_RecordType("<2353,2354,40>",(j)); Inst43++; } } catch(e) {}try { if (Inst44 <= 1000 && typeof (j) != "undefined") {_RecordType("<2360,2361,40>",(j)); Inst44++; } } catch(e) {}try { if (Inst45 <= 1000 && typeof (Iters) != "undefined") {_RecordType("<2364,2369,40>",(Iters)); Inst45++; } } catch(e) {}try { if (Inst46 <= 1000 && typeof (j) != "undefined") {_RecordType("<2371,2372,40>",(j)); Inst46++; } } catch(e) {}
+try { if (Inst47 <= 1000 && typeof (context.drawImage) != "undefined") {_RecordType("<2385,2402,41>",(context.drawImage)); Inst47++; } } catch(e) {}try { if (Inst48 <= 1000 && typeof (context) != "undefined") {_RecordType("<2385,2392,41>",(context)); Inst48++; } } catch(e) {}try { if (Inst49 <= 1000 && typeof (image) != "undefined") {_RecordType("<2403,2408,41>",(image)); Inst49++; } } catch(e) {}
+      context.drawImage(image, 0, 0, 1, 1, 0, 0, 1024, 1024)
+    }
+    // we need a delay here to make the browser actually perform the draws
+try { if (Inst50 <= 1000 && typeof (zeroDelay) != "undefined") {_RecordType("<2534,2543,44>",(zeroDelay)); Inst50++; } } catch(e) {}
+    await zeroDelay()
+try { if (Inst52 <= 1000 && typeof (performance.now) != "undefined") {_RecordType("<2565,2580,45>",(performance.now)); Inst52++; } } catch(e) {}try { if (Inst53 <= 1000 && typeof (performance) != "undefined") {_RecordType("<2565,2576,45>",(performance)); Inst53++; } } catch(e) {}
+    let endTime = performance.now()
+try { if (Inst51 <= 1000 && typeof (endTime) != "undefined") {_RecordType("<2555,2562,45>",(endTime)); Inst51++; } } catch(e) {}
+try { if (Inst54 <= 1000 && typeof (times.push) != "undefined") {_RecordType("<2588,2598,46>",(times.push)); Inst54++; } } catch(e) {}try { if (Inst55 <= 1000 && typeof (times) != "undefined") {_RecordType("<2588,2593,46>",(times)); Inst55++; } } catch(e) {}try { if (Inst56 <= 1000 && typeof (endTime) != "undefined") {_RecordType("<2599,2606,46>",(endTime)); Inst56++; } } catch(e) {}try { if (Inst57 <= 1000 && typeof (startTime) != "undefined") {_RecordType("<2609,2618,46>",(startTime)); Inst57++; } } catch(e) {}
+    times.push(endTime - startTime)
+  }
+
+try { if (Inst59 <= 1000 && typeof (times.slice) != "undefined") {_RecordType("<2638,2649,49>",(times.slice)); Inst59++; } } catch(e) {}try { if (Inst60 <= 1000 && typeof (times) != "undefined") {_RecordType("<2638,2643,49>",(times)); Inst60++; } } catch(e) {}try { if (Inst61 <= 1000 && typeof (TrialsDropped) != "undefined") {_RecordType("<2650,2663,49>",(TrialsDropped)); Inst61++; } } catch(e) {}
+  times = times.slice(TrialsDropped)
+try { if (Inst58 <= 1000 && typeof (times) != "undefined") {_RecordType("<2630,2635,49>",(times)); Inst58++; } } catch(e) {}
+
+try { if (Inst63 <= 1000 && typeof (document.getElementById) != "undefined") {_RecordType("<2685,2708,51>",(document.getElementById)); Inst63++; } } catch(e) {}try { if (Inst64 <= 1000 && typeof (document) != "undefined") {_RecordType("<2685,2693,51>",(document)); Inst64++; } } catch(e) {}
+  let textarea = document.getElementById('output')
+try { if (Inst62 <= 1000 && typeof (textarea) != "undefined") {_RecordType("<2674,2682,51>",(textarea)); Inst62++; } } catch(e) {}
+try { if (Inst67 <= 1000 && typeof (name) != "undefined") {_RecordType("<2743,2747,52>",(name)); Inst67++; } } catch(e) {}try { if (Inst68 <= 1000 && typeof (times.join) != "undefined") {_RecordType("<2752,2762,52>",(times.join)); Inst68++; } } catch(e) {}try { if (Inst69 <= 1000 && typeof (times) != "undefined") {_RecordType("<2752,2757,52>",(times)); Inst69++; } } catch(e) {}
+  textarea.value += `${name}\t${times.join('\t')}\n`
+try { if (Inst65 <= 1000 && typeof (textarea.value) != "undefined") {_RecordType("<2722,2736,52>",(textarea.value)); Inst65++; } } catch(e) {}try { if (Inst66 <= 1000 && typeof (textarea) != "undefined") {_RecordType("<2722,2730,52>",(textarea)); Inst66++; } } catch(e) {}
+}
+
+try { if (Inst70 <= 1000 && typeof (runDemo) != "undefined") {_RecordType("<2794,2801,55>",(runDemo)); Inst70++; } } catch(e) {}
+async function runDemo() {
+  document.getElementById('start').disabled = true
+try { if (Inst71 <= 1000 && typeof (document.getElementById('start').disabled) != "undefined") {_RecordType("<2809,2850,56>",(document.getElementById('start').disabled)); Inst71++; } } catch(e) {}try { if (Inst72 <= 1000 && typeof (document.getElementById) != "undefined") {_RecordType("<2809,2832,56>",(document.getElementById)); Inst72++; } } catch(e) {}try { if (Inst73 <= 1000 && typeof (document) != "undefined") {_RecordType("<2809,2817,56>",(document)); Inst73++; } } catch(e) {}
+  document.getElementById('output').value = ''
+try { if (Inst74 <= 1000 && typeof (document.getElementById('output').value) != "undefined") {_RecordType("<2861,2900,57>",(document.getElementById('output').value)); Inst74++; } } catch(e) {}try { if (Inst75 <= 1000 && typeof (document.getElementById) != "undefined") {_RecordType("<2861,2884,57>",(document.getElementById)); Inst75++; } } catch(e) {}try { if (Inst76 <= 1000 && typeof (document) != "undefined") {_RecordType("<2861,2869,57>",(document)); Inst76++; } } catch(e) {}
+
+  for (let [name, image] of Images) {
+try { if (Inst77 <= 1000 && typeof (name) != "undefined") {_RecordType("<2921,2925,59>",(name)); Inst77++; } } catch(e) {}try { if (Inst78 <= 1000 && typeof (image) != "undefined") {_RecordType("<2927,2932,59>",(image)); Inst78++; } } catch(e) {}try { if (Inst79 <= 1000 && typeof (Images) != "undefined") {_RecordType("<2937,2943,59>",(Images)); Inst79++; } } catch(e) {}
+try { if (Inst80 <= 1000 && typeof (benchmarkImage) != "undefined") {_RecordType("<2958,2972,60>",(benchmarkImage)); Inst80++; } } catch(e) {}try { if (Inst81 <= 1000 && typeof (name) != "undefined") {_RecordType("<2973,2977,60>",(name)); Inst81++; } } catch(e) {}try { if (Inst82 <= 1000 && typeof (image) != "undefined") {_RecordType("<2979,2984,60>",(image)); Inst82++; } } catch(e) {}
+    await benchmarkImage(name, image)
+  }
+
+  document.getElementById('start').disabled = false
+try { if (Inst83 <= 1000 && typeof (document.getElementById('start').disabled) != "undefined") {_RecordType("<2996,3037,63>",(document.getElementById('start').disabled)); Inst83++; } } catch(e) {}try { if (Inst84 <= 1000 && typeof (document.getElementById) != "undefined") {_RecordType("<2996,3019,63>",(document.getElementById)); Inst84++; } } catch(e) {}try { if (Inst85 <= 1000 && typeof (document) != "undefined") {_RecordType("<2996,3004,63>",(document)); Inst85++; } } catch(e) {}
+}
+
+try { if (Inst86 <= 1000 && typeof (imageLoaded) != "undefined") {_RecordType("<3061,3072,66>",(imageLoaded)); Inst86++; } } catch(e) {}
+function imageLoaded(e) {
+try { if (Inst87 <= 1000 && typeof (e) != "undefined") {_RecordType("<3073,3074,66>",(e)); Inst87++; } } catch(e) {}
+try { if (Inst88 <= 1000 && typeof (ImagesLoaded) != "undefined") {_RecordType("<3081,3093,67>",(ImagesLoaded)); Inst88++; } } catch(e) {}
+  ImagesLoaded++
+try { if (Inst89 <= 1000 && typeof (ImagesLoaded) != "undefined") {_RecordType("<3103,3115,68>",(ImagesLoaded)); Inst89++; } } catch(e) {}try { if (Inst90 <= 1000 && typeof (ImageSrcs.length) != "undefined") {_RecordType("<3119,3135,68>",(ImageSrcs.length)); Inst90++; } } catch(e) {}try { if (Inst91 <= 1000 && typeof (ImageSrcs) != "undefined") {_RecordType("<3119,3128,68>",(ImageSrcs)); Inst91++; } } catch(e) {}
+  if (ImagesLoaded == ImageSrcs.length) {
+    document.getElementById('start').disabled = false
+try { if (Inst92 <= 1000 && typeof (document.getElementById('start').disabled) != "undefined") {_RecordType("<3144,3185,69>",(document.getElementById('start').disabled)); Inst92++; } } catch(e) {}try { if (Inst93 <= 1000 && typeof (document.getElementById) != "undefined") {_RecordType("<3144,3167,69>",(document.getElementById)); Inst93++; } } catch(e) {}try { if (Inst94 <= 1000 && typeof (document) != "undefined") {_RecordType("<3144,3152,69>",(document)); Inst94++; } } catch(e) {}
+  }
+}
+
+try { if (Inst95 <= 1000 && typeof (init) != "undefined") {_RecordType("<3214,3218,73>",(init)); Inst95++; } } catch(e) {}
+function init() {
+try { if (Inst97 <= 1000 && typeof (document.getElementById) != "undefined") {_RecordType("<3239,3262,74>",(document.getElementById)); Inst97++; } } catch(e) {}try { if (Inst98 <= 1000 && typeof (document) != "undefined") {_RecordType("<3239,3247,74>",(document)); Inst98++; } } catch(e) {}
+  let canvas = document.getElementById('canvas')
+try { if (Inst96 <= 1000 && typeof (canvas) != "undefined") {_RecordType("<3230,3236,74>",(canvas)); Inst96++; } } catch(e) {}
+try { if (Inst100 <= 1000 && typeof (canvas.getContext) != "undefined") {_RecordType("<3290,3307,75>",(canvas.getContext)); Inst100++; } } catch(e) {}try { if (Inst101 <= 1000 && typeof (canvas) != "undefined") {_RecordType("<3290,3296,75>",(canvas)); Inst101++; } } catch(e) {}
+  let context = canvas.getContext('2d')
+try { if (Inst99 <= 1000 && typeof (context) != "undefined") {_RecordType("<3280,3287,75>",(context)); Inst99++; } } catch(e) {}
+  context.imageSmoothingEnabled = false
+try { if (Inst102 <= 1000 && typeof (context.imageSmoothingEnabled) != "undefined") {_RecordType("<3317,3346,76>",(context.imageSmoothingEnabled)); Inst102++; } } catch(e) {}try { if (Inst103 <= 1000 && typeof (context) != "undefined") {_RecordType("<3317,3324,76>",(context)); Inst103++; } } catch(e) {}
+
+try { if (Inst104 <= 1000 && typeof (document.getElementById('start').addEventListener) != "undefined") {_RecordType("<3360,3409,78>",(document.getElementById('start').addEventListener)); Inst104++; } } catch(e) {}try { if (Inst105 <= 1000 && typeof (document.getElementById) != "undefined") {_RecordType("<3360,3383,78>",(document.getElementById)); Inst105++; } } catch(e) {}try { if (Inst106 <= 1000 && typeof (document) != "undefined") {_RecordType("<3360,3368,78>",(document)); Inst106++; } } catch(e) {}try { if (Inst107 <= 1000 && typeof (runDemo) != "undefined") {_RecordType("<3419,3426,78>",(runDemo)); Inst107++; } } catch(e) {}
+  document.getElementById('start').addEventListener('click', runDemo)
+
+  document.getElementById('output').value = ''
+try { if (Inst108 <= 1000 && typeof (document.getElementById('output').value) != "undefined") {_RecordType("<3433,3472,80>",(document.getElementById('output').value)); Inst108++; } } catch(e) {}try { if (Inst109 <= 1000 && typeof (document.getElementById) != "undefined") {_RecordType("<3433,3456,80>",(document.getElementById)); Inst109++; } } catch(e) {}try { if (Inst110 <= 1000 && typeof (document) != "undefined") {_RecordType("<3433,3441,80>",(document)); Inst110++; } } catch(e) {}
+
+  for (let [name, b64] of ImageSrcs) {
+try { if (Inst111 <= 1000 && typeof (name) != "undefined") {_RecordType("<3493,3497,82>",(name)); Inst111++; } } catch(e) {}try { if (Inst112 <= 1000 && typeof (b64) != "undefined") {_RecordType("<3499,3502,82>",(b64)); Inst112++; } } catch(e) {}try { if (Inst113 <= 1000 && typeof (ImageSrcs) != "undefined") {_RecordType("<3507,3516,82>",(ImageSrcs)); Inst113++; } } catch(e) {}
+try { if (Inst115 <= 1000 && typeof (Image) != "undefined") {_RecordType("<3541,3546,83>",(Image)); Inst115++; } } catch(e) {}
+    let image = new Image()
+try { if (Inst114 <= 1000 && typeof (image) != "undefined") {_RecordType("<3529,3534,83>",(image)); Inst114++; } } catch(e) {}
+try { if (Inst118 <= 1000 && typeof (b64) != "undefined") {_RecordType("<3591,3594,84>",(b64)); Inst118++; } } catch(e) {}
+    image.src = `data:image/png;base64,${b64}`
+try { if (Inst116 <= 1000 && typeof (image.src) != "undefined") {_RecordType("<3554,3563,84>",(image.src)); Inst116++; } } catch(e) {}try { if (Inst117 <= 1000 && typeof (image) != "undefined") {_RecordType("<3554,3559,84>",(image)); Inst117++; } } catch(e) {}
+try { if (Inst119 <= 1000 && typeof (image.addEventListener) != "undefined") {_RecordType("<3602,3624,85>",(image.addEventListener)); Inst119++; } } catch(e) {}try { if (Inst120 <= 1000 && typeof (image) != "undefined") {_RecordType("<3602,3607,85>",(image)); Inst120++; } } catch(e) {}try { if (Inst121 <= 1000 && typeof (imageLoaded) != "undefined") {_RecordType("<3633,3644,85>",(imageLoaded)); Inst121++; } } catch(e) {}
+    image.addEventListener('load', imageLoaded)
+try { if (Inst122 <= 1000 && typeof (Images.push) != "undefined") {_RecordType("<3651,3662,86>",(Images.push)); Inst122++; } } catch(e) {}try { if (Inst123 <= 1000 && typeof (Images) != "undefined") {_RecordType("<3651,3657,86>",(Images)); Inst123++; } } catch(e) {}try { if (Inst124 <= 1000 && typeof (name) != "undefined") {_RecordType("<3664,3668,86>",(name)); Inst124++; } } catch(e) {}try { if (Inst125 <= 1000 && typeof (image) != "undefined") {_RecordType("<3670,3675,86>",(image)); Inst125++; } } catch(e) {}
+    Images.push([name, image])
+  }
+}
+

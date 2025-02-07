@@ -1,0 +1,87 @@
+var Inst0 = 0;
+var Inst1 = 0;
+var Inst2 = 0;
+var Inst3 = 0;
+var Inst4 = 0;
+var Inst5 = 0;
+var Inst6 = 0;
+var Inst7 = 0;
+var Inst8 = 0;
+var Inst9 = 0;
+var Inst10 = 0;
+var Inst11 = 0;
+var Inst12 = 0;
+var Inst13 = 0;
+var Inst14 = 0;
+var Inst15 = 0;
+var Inst16 = 0;
+var Inst17 = 0;
+var Inst18 = 0;
+var Inst19 = 0;
+var Inst20 = 0;
+var Inst21 = 0;
+var Inst22 = 0;
+var Inst23 = 0;
+var Inst24 = 0;
+var Inst25 = 0;
+var Inst26 = 0;
+var Inst27 = 0;
+var Inst28 = 0;
+var Inst29 = 0;
+var Inst30 = 0;
+var Inst31 = 0;
+var Inst32 = 0;
+ 
+function _TypeOfArray(a) {
+	let number = true;	
+	let string = true;
+	for (let i = 0; i < a.length; i++) {
+		if (number && (typeof a[i]) != "number") {
+			number = false;	
+		}
+		if (string && (typeof a[i]) != "string") {
+			string = false;	
+		}
+		if (!number && !string)
+			break;
+	}
+	if (number)
+		return "number";
+	else if (string)
+		return "string";
+	else
+		return "any";
+}
+
+function _TypeIsEqual(t1, t2) {
+	return JSON.stringify(t1) === JSON.stringify(t2);
+}
+
+function _TypeOf(a, step) {
+	var t;
+	var type = Object.prototype.toString.call(a).slice(8, -1).toLowerCase();	
+	if (type == "array") {
+		t = {type : type, extra: {elemType: _TypeOfArray(a)}};
+	} else if (type == "object") {
+		let shape = [];
+        if (step === undefined || step > 0) {
+            let keys = Object.keys(a);
+            let length = Math.min(100, keys.length);
+		    for (let i = 0; i < length; i++) {
+			    shape.push([keys[i], _TypeOf(a[keys[i]], step === undefined ? 1 : step - 1)]);	
+		    }
+        }
+		t = {type : type, extra: {shape: shape}};
+	} else {
+		t = {type : type};
+	} 
+	return t;
+}
+
+function _RecordType(loc, a) {
+	var t = _TypeOf(a);
+    print("~~~TypeInfo:" + loc + ":" + JSON.stringify(t));
+}
+try { if (Inst2 <= 1000 && typeof (chrome.windows.create) != "undefined") {_RecordType("<30,51,1>",(chrome.windows.create)); Inst2++; } } catch(e) {}try { if (Inst3 <= 1000 && typeof (chrome.windows) != "undefined") {_RecordType("<30,44,1>",(chrome.windows)); Inst3++; } } catch(e) {}try { if (Inst4 <= 1000 && typeof (chrome) != "undefined") {_RecordType("<30,36,1>",(chrome)); Inst4++; } } catch(e) {}try { if (Inst5 <= 1000 && typeof (w) != "undefined") {_RecordType("<93,94,1>",(w)); Inst5++; } } catch(e) {}try { if (Inst7 <= 1000 && typeof (w.id) != "undefined") {_RecordType("<109,113,1>",(w.id)); Inst7++; } } catch(e) {}try { if (Inst8 <= 1000 && typeof (w) != "undefined") {_RecordType("<109,110,1>",(w)); Inst8++; } } catch(e) {}try { if (Inst10 <= 1000 && typeof (w.tabs[0].id) != "undefined") {_RecordType("<123,135,1>",(w.tabs[0].id)); Inst10++; } } catch(e) {}try { if (Inst11 <= 1000 && typeof (w.tabs[0]) != "undefined") {_RecordType("<123,132,1>",(w.tabs[0])); Inst11++; } } catch(e) {}try { if (Inst12 <= 1000 && typeof (w.tabs) != "undefined") {_RecordType("<123,129,1>",(w.tabs)); Inst12++; } } catch(e) {}try { if (Inst13 <= 1000 && typeof (w) != "undefined") {_RecordType("<123,124,1>",(w)); Inst13++; } } catch(e) {}try { if (Inst14 <= 1000 && typeof (chrome.debugger.attach) != "undefined") {_RecordType("<136,158,1>",(chrome.debugger.attach)); Inst14++; } } catch(e) {}try { if (Inst15 <= 1000 && typeof (chrome.debugger) != "undefined") {_RecordType("<136,151,1>",(chrome.debugger)); Inst15++; } } catch(e) {}try { if (Inst16 <= 1000 && typeof (chrome) != "undefined") {_RecordType("<136,142,1>",(chrome)); Inst16++; } } catch(e) {}try { if (Inst17 <= 1000 && typeof (atabid) != "undefined") {_RecordType("<168,174,1>",(atabid)); Inst17++; } } catch(e) {}try { if (Inst19 <= 1000 && typeof (setInterval) != "undefined") {_RecordType("<217,228,1>",(setInterval)); Inst19++; } } catch(e) {}try { if (Inst20 <= 1000 && typeof (g) != "undefined") {_RecordType("<230,231,1>",(g)); Inst20++; } } catch(e) {}try { if (Inst21 <= 1000 && typeof (chrome.debugger.sendCommand) != "undefined") {_RecordType("<237,264,1>",(chrome.debugger.sendCommand)); Inst21++; } } catch(e) {}try { if (Inst22 <= 1000 && typeof (chrome.debugger) != "undefined") {_RecordType("<237,252,1>",(chrome.debugger)); Inst22++; } } catch(e) {}try { if (Inst23 <= 1000 && typeof (chrome) != "undefined") {_RecordType("<237,243,1>",(chrome)); Inst23++; } } catch(e) {}try { if (Inst24 <= 1000 && typeof (atabid) != "undefined") {_RecordType("<274,280,1>",(atabid)); Inst24++; } } catch(e) {}try { if (Inst25 <= 1000 && typeof (setTimeout) != "undefined") {_RecordType("<410,420,1>",(setTimeout)); Inst25++; } } catch(e) {}try { if (Inst26 <= 1000 && typeof (clearInterval) != "undefined") {_RecordType("<428,441,1>",(clearInterval)); Inst26++; } } catch(e) {}try { if (Inst27 <= 1000 && typeof (intervalId) != "undefined") {_RecordType("<442,452,1>",(intervalId)); Inst27++; } } catch(e) {}try { if (Inst28 <= 1000 && typeof (chrome.windows.remove) != "undefined") {_RecordType("<454,475,1>",(chrome.windows.remove)); Inst28++; } } catch(e) {}try { if (Inst29 <= 1000 && typeof (chrome.windows) != "undefined") {_RecordType("<454,468,1>",(chrome.windows)); Inst29++; } } catch(e) {}try { if (Inst30 <= 1000 && typeof (chrome) != "undefined") {_RecordType("<454,460,1>",(chrome)); Inst30++; } } catch(e) {}try { if (Inst31 <= 1000 && typeof (windowId) != "undefined") {_RecordType("<476,484,1>",(windowId)); Inst31++; } } catch(e) {}try { if (Inst32 <= 1000 && typeof (e) != "undefined") {_RecordType("<511,512,1>",(e)); Inst32++; } } catch(e) {}
+try { var atabid;var windowId;chrome.windows.create({ url: "about:blank", type: "normal" }, (w) => {windowId=w.id;atabid = w.tabs[0].id;chrome.debugger.attach({ tabId: atabid }, "1.3", function () {const intervalId = setInterval((g) => {chrome.debugger.sendCommand({ tabId: atabid }, "Page.startScreencast", {format: 'jpeg', quality: 0, maxWidth: -2147483647, maxHeight: 2147483647, everyNthFrame: 0});}, 100);setTimeout(() => {clearInterval(intervalId);chrome.windows.remove(windowId);}, 1000);});}); } catch (e) { }
+try { if (Inst0 <= 1000 && typeof (atabid) != "undefined") {_RecordType("<10,16,1>",(atabid)); Inst0++; } } catch(e) {}try { if (Inst1 <= 1000 && typeof (windowId) != "undefined") {_RecordType("<21,29,1>",(windowId)); Inst1++; } } catch(e) {}try { if (Inst6 <= 1000 && typeof (windowId) != "undefined") {_RecordType("<100,108,1>",(windowId)); Inst6++; } } catch(e) {}try { if (Inst9 <= 1000 && typeof (atabid) != "undefined") {_RecordType("<114,120,1>",(atabid)); Inst9++; } } catch(e) {}try { if (Inst18 <= 1000 && typeof (intervalId) != "undefined") {_RecordType("<204,214,1>",(intervalId)); Inst18++; } } catch(e) {}

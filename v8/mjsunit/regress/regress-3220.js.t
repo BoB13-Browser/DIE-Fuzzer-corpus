@@ -1,0 +1,1 @@
+[null,{"type":"Void"},null,{"type":"Constructor","extra":{"name":"String","ret":{"type":"String"}}},null,{"type":"Constructor","extra":{"name":"Date","ret":{"type":"Date"}}}]

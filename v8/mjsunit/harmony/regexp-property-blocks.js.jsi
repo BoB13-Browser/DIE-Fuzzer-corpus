@@ -1,0 +1,146 @@
+var Inst0 = 0;
+var Inst1 = 0;
+var Inst2 = 0;
+var Inst3 = 0;
+var Inst4 = 0;
+var Inst5 = 0;
+var Inst6 = 0;
+var Inst7 = 0;
+var Inst8 = 0;
+var Inst9 = 0;
+var Inst10 = 0;
+var Inst11 = 0;
+var Inst12 = 0;
+var Inst13 = 0;
+var Inst14 = 0;
+var Inst15 = 0;
+var Inst16 = 0;
+var Inst17 = 0;
+var Inst18 = 0;
+var Inst19 = 0;
+var Inst20 = 0;
+var Inst21 = 0;
+var Inst22 = 0;
+var Inst23 = 0;
+var Inst24 = 0;
+var Inst25 = 0;
+var Inst26 = 0;
+var Inst27 = 0;
+var Inst28 = 0;
+var Inst29 = 0;
+var Inst30 = 0;
+var Inst31 = 0;
+var Inst32 = 0;
+var Inst33 = 0;
+ 
+function _TypeOfArray(a) {
+	let number = true;	
+	let string = true;
+	for (let i = 0; i < a.length; i++) {
+		if (number && (typeof a[i]) != "number") {
+			number = false;	
+		}
+		if (string && (typeof a[i]) != "string") {
+			string = false;	
+		}
+		if (!number && !string)
+			break;
+	}
+	if (number)
+		return "number";
+	else if (string)
+		return "string";
+	else
+		return "any";
+}
+
+function _TypeIsEqual(t1, t2) {
+	return JSON.stringify(t1) === JSON.stringify(t2);
+}
+
+function _TypeOf(a, step) {
+	var t;
+	var type = Object.prototype.toString.call(a).slice(8, -1).toLowerCase();	
+	if (type == "array") {
+		t = {type : type, extra: {elemType: _TypeOfArray(a)}};
+	} else if (type == "object") {
+		let shape = [];
+        if (step === undefined || step > 0) {
+            let keys = Object.keys(a);
+            let length = Math.min(100, keys.length);
+		    for (let i = 0; i < length; i++) {
+			    shape.push([keys[i], _TypeOf(a[keys[i]], step === undefined ? 1 : step - 1)]);	
+		    }
+        }
+		t = {type : type, extra: {shape: shape}};
+	} else {
+		t = {type : type};
+	} 
+	return t;
+}
+
+function _RecordType(loc, a) {
+	var t = _TypeOf(a);
+    print("~~~TypeInfo:" + loc + ":" + JSON.stringify(t));
+}
+// Copyright 2016 the V8 project authors. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
+// Flags: --harmony-regexp-property --harmony-unicode-regexps
+
+try { if (Inst0 <= 1000 && typeof (t) != "undefined") {_RecordType("<240,241,7>",(t)); Inst0++; } } catch(e) {}try { if (Inst3 <= 1000 && typeof (assertTrue) != "undefined") {_RecordType("<251,261,7>",(assertTrue)); Inst3++; } } catch(e) {}try { if (Inst4 <= 1000 && typeof (re.test) != "undefined") {_RecordType("<262,269,7>",(re.test)); Inst4++; } } catch(e) {}try { if (Inst5 <= 1000 && typeof (re) != "undefined") {_RecordType("<262,264,7>",(re)); Inst5++; } } catch(e) {}try { if (Inst6 <= 1000 && typeof (s) != "undefined") {_RecordType("<270,271,7>",(s)); Inst6++; } } catch(e) {}
+function t(re, s) { assertTrue(re.test(s)); }
+try { if (Inst1 <= 1000 && typeof (re) != "undefined") {_RecordType("<242,244,7>",(re)); Inst1++; } } catch(e) {}try { if (Inst2 <= 1000 && typeof (s) != "undefined") {_RecordType("<246,247,7>",(s)); Inst2++; } } catch(e) {}
+try { if (Inst7 <= 1000 && typeof (f) != "undefined") {_RecordType("<286,287,8>",(f)); Inst7++; } } catch(e) {}try { if (Inst10 <= 1000 && typeof (assertFalse) != "undefined") {_RecordType("<297,308,8>",(assertFalse)); Inst10++; } } catch(e) {}try { if (Inst11 <= 1000 && typeof (re.test) != "undefined") {_RecordType("<309,316,8>",(re.test)); Inst11++; } } catch(e) {}try { if (Inst12 <= 1000 && typeof (re) != "undefined") {_RecordType("<309,311,8>",(re)); Inst12++; } } catch(e) {}try { if (Inst13 <= 1000 && typeof (s) != "undefined") {_RecordType("<317,318,8>",(s)); Inst13++; } } catch(e) {}
+function f(re, s) { assertFalse(re.test(s)); }
+try { if (Inst8 <= 1000 && typeof (re) != "undefined") {_RecordType("<288,290,8>",(re)); Inst8++; } } catch(e) {}try { if (Inst9 <= 1000 && typeof (s) != "undefined") {_RecordType("<292,293,8>",(s)); Inst9++; } } catch(e) {}
+
+try { if (Inst14 <= 1000 && typeof (t) != "undefined") {_RecordType("<325,326,10>",(t)); Inst14++; } } catch(e) {}
+t(/\p{Block=ASCII}+/u, ".");
+try { if (Inst15 <= 1000 && typeof (t) != "undefined") {_RecordType("<354,355,11>",(t)); Inst15++; } } catch(e) {}
+t(/\p{Block=ASCII}+/u, "supercalifragilisticexpialidocious");
+try { if (Inst16 <= 1000 && typeof (t) != "undefined") {_RecordType("<416,417,12>",(t)); Inst16++; } } catch(e) {}
+t(/\p{Block=Basic_Latin}+/u, ".");
+try { if (Inst17 <= 1000 && typeof (t) != "undefined") {_RecordType("<451,452,13>",(t)); Inst17++; } } catch(e) {}
+t(/\p{Block=Basic_Latin}+/u, "supercalifragilisticexpialidocious");
+
+try { if (Inst18 <= 1000 && typeof (t) != "undefined") {_RecordType("<520,521,15>",(t)); Inst18++; } } catch(e) {}
+t(/\p{blk=CJK}+/u, "话说天下大势，分久必合，合久必分");
+try { if (Inst19 <= 1000 && typeof (t) != "undefined") {_RecordType("<560,561,16>",(t)); Inst19++; } } catch(e) {}
+t(/\p{blk=CJK_Unified_Ideographs}+/u, "吾庄后有一桃园，花开正盛");
+try { if (Inst20 <= 1000 && typeof (f) != "undefined") {_RecordType("<615,616,17>",(f)); Inst20++; } } catch(e) {}
+f(/\p{blk=CJK}+/u, "おはようございます");
+try { if (Inst21 <= 1000 && typeof (f) != "undefined") {_RecordType("<648,649,18>",(f)); Inst21++; } } catch(e) {}
+f(/\p{blk=CJK_Unified_Ideographs}+/u,
+  "Something is rotten in the state of Denmark");
+
+try { if (Inst22 <= 1000 && typeof (t) != "undefined") {_RecordType("<737,738,21>",(t)); Inst22++; } } catch(e) {}
+t(/\p{blk=Latin_1}+/u, "Wie froh bin ich, daß ich weg bin!");
+try { if (Inst23 <= 1000 && typeof (f) != "undefined") {_RecordType("<799,800,22>",(f)); Inst23++; } } catch(e) {}
+f(/\p{blk=Latin_1_Supplement}+/u, "奔腾千里荡尘埃，渡水登山紫雾开");
+try { if (Inst24 <= 1000 && typeof (f) != "undefined") {_RecordType("<853,854,23>",(f)); Inst24++; } } catch(e) {}
+f(/\p{blk=Latin_1_Sup}+/u, "いただきます");
+
+try { if (Inst25 <= 1000 && typeof (t) != "undefined") {_RecordType("<892,893,25>",(t)); Inst25++; } } catch(e) {}
+t(/\p{blk=Hiragana}/u, "いただきます");
+try { if (Inst26 <= 1000 && typeof (t) != "undefined") {_RecordType("<926,927,26>",(t)); Inst26++; } } catch(e) {}
+t(/\p{sc=Hiragana}/u, "\u{1b001}");   // This refers to the script "Hiragana".
+try { if (Inst27 <= 1000 && typeof (f) != "undefined") {_RecordType("<1005,1006,27>",(f)); Inst27++; } } catch(e) {}
+f(/\p{blk=Hiragana}/u, "\u{1b001}");  // This refers to the block "Hiragana".
+
+try { if (Inst28 <= 1000 && typeof (t) != "undefined") {_RecordType("<1084,1085,29>",(t)); Inst28++; } } catch(e) {}
+t(/\p{blk=Greek_And_Coptic}/u,
+  "ἄνδρα μοι ἔννεπε, μοῦσα, πολύτροπον, ὃς μάλα πολλὰ");
+try { if (Inst29 <= 1000 && typeof (t) != "undefined") {_RecordType("<1172,1173,31>",(t)); Inst29++; } } catch(e) {}
+t(/\p{blk=Greek}/u, "μῆνιν ἄειδε θεὰ Πηληϊάδεω Ἀχιλῆος");
+
+try { if (Inst30 <= 1000 && typeof (assertThrows) != "undefined") {_RecordType("<1231,1243,33>",(assertThrows)); Inst30++; } } catch(e) {}
+assertThrows("/\\p{In}/u");
+try { if (Inst31 <= 1000 && typeof (assertThrows) != "undefined") {_RecordType("<1259,1271,34>",(assertThrows)); Inst31++; } } catch(e) {}
+assertThrows("/\\pI/u");
+try { if (Inst32 <= 1000 && typeof (assertThrows) != "undefined") {_RecordType("<1284,1296,35>",(assertThrows)); Inst32++; } } catch(e) {}
+assertThrows("/\\p{I}/u");
+try { if (Inst33 <= 1000 && typeof (assertThrows) != "undefined") {_RecordType("<1311,1323,36>",(assertThrows)); Inst33++; } } catch(e) {}
+assertThrows("/\\p{CJK}/u");
+

@@ -1,0 +1,5 @@
+for (;;) {
+  let p = new Promise(function (resolve) {
+    queueMicrotask(function () {});
+  });
+}

@@ -1,0 +1,207 @@
+var Inst0 = 0;
+var Inst1 = 0;
+var Inst2 = 0;
+var Inst3 = 0;
+var Inst4 = 0;
+var Inst5 = 0;
+var Inst6 = 0;
+var Inst7 = 0;
+var Inst8 = 0;
+var Inst9 = 0;
+var Inst10 = 0;
+var Inst11 = 0;
+var Inst12 = 0;
+var Inst13 = 0;
+var Inst14 = 0;
+var Inst15 = 0;
+var Inst16 = 0;
+var Inst17 = 0;
+var Inst18 = 0;
+var Inst19 = 0;
+var Inst20 = 0;
+var Inst21 = 0;
+var Inst22 = 0;
+var Inst23 = 0;
+var Inst24 = 0;
+var Inst25 = 0;
+var Inst26 = 0;
+var Inst27 = 0;
+var Inst28 = 0;
+var Inst29 = 0;
+var Inst30 = 0;
+var Inst31 = 0;
+var Inst32 = 0;
+var Inst33 = 0;
+var Inst34 = 0;
+var Inst35 = 0;
+var Inst36 = 0;
+var Inst37 = 0;
+var Inst38 = 0;
+var Inst39 = 0;
+var Inst40 = 0;
+var Inst41 = 0;
+var Inst42 = 0;
+var Inst43 = 0;
+var Inst44 = 0;
+var Inst45 = 0;
+var Inst46 = 0;
+var Inst47 = 0;
+var Inst48 = 0;
+var Inst49 = 0;
+var Inst50 = 0;
+var Inst51 = 0;
+var Inst52 = 0;
+var Inst53 = 0;
+ 
+function _TypeOfArray(a) {
+	let number = true;	
+	let string = true;
+	for (let i = 0; i < a.length; i++) {
+		if (number && (typeof a[i]) != "number") {
+			number = false;	
+		}
+		if (string && (typeof a[i]) != "string") {
+			string = false;	
+		}
+		if (!number && !string)
+			break;
+	}
+	if (number)
+		return "number";
+	else if (string)
+		return "string";
+	else
+		return "any";
+}
+
+function _TypeIsEqual(t1, t2) {
+	return JSON.stringify(t1) === JSON.stringify(t2);
+}
+
+function _TypeOf(a, step) {
+	var t;
+	var type = Object.prototype.toString.call(a).slice(8, -1).toLowerCase();	
+	if (type == "array") {
+		t = {type : type, extra: {elemType: _TypeOfArray(a)}};
+	} else if (type == "object") {
+		let shape = [];
+        if (step === undefined || step > 0) {
+            let keys = Object.keys(a);
+            let length = Math.min(100, keys.length);
+		    for (let i = 0; i < length; i++) {
+			    shape.push([keys[i], _TypeOf(a[keys[i]], step === undefined ? 1 : step - 1)]);	
+		    }
+        }
+		t = {type : type, extra: {shape: shape}};
+	} else {
+		t = {type : type};
+	} 
+	return t;
+}
+
+function _RecordType(loc, a) {
+	var t = _TypeOf(a);
+    print("~~~TypeInfo:" + loc + ":" + JSON.stringify(t));
+}
+// Copyright 2016 the V8 project authors. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
+// Flags: --harmony-unicode-regexps --harmony-regexp-lookbehind
+
+// Back reference does not end in the middle of a surrogate pair.
+try { if (Inst0 <= 1000 && typeof (replace) != "undefined") {_RecordType("<308,315,8>",(replace)); Inst0++; } } catch(e) {}
+function replace(string) {
+try { if (Inst1 <= 1000 && typeof (string) != "undefined") {_RecordType("<316,322,8>",(string)); Inst1++; } } catch(e) {}
+try { if (Inst2 <= 1000 && typeof (string.replace(/L/g, "\ud800")
+               .replace(/l/g, "\ud801")
+               .replace(/T/g, "\udc00")
+               .replace) != "undefined") {_RecordType("<335,469,9>",(string.replace(/L/g, "\ud800")
+               .replace(/l/g, "\ud801")
+               .replace(/T/g, "\udc00")
+               .replace)); Inst2++; } } catch(e) {}try { if (Inst3 <= 1000 && typeof (string.replace(/L/g, "\ud800")
+               .replace(/l/g, "\ud801")
+               .replace) != "undefined") {_RecordType("<335,429,9>",(string.replace(/L/g, "\ud800")
+               .replace(/l/g, "\ud801")
+               .replace)); Inst3++; } } catch(e) {}try { if (Inst4 <= 1000 && typeof (string.replace(/L/g, "\ud800")
+               .replace) != "undefined") {_RecordType("<335,389,9>",(string.replace(/L/g, "\ud800")
+               .replace)); Inst4++; } } catch(e) {}try { if (Inst5 <= 1000 && typeof (string.replace) != "undefined") {_RecordType("<335,349,9>",(string.replace)); Inst5++; } } catch(e) {}try { if (Inst6 <= 1000 && typeof (string) != "undefined") {_RecordType("<335,341,9>",(string)); Inst6++; } } catch(e) {}
+  return string.replace(/L/g, "\ud800")
+               .replace(/l/g, "\ud801")
+               .replace(/T/g, "\udc00")
+               .replace(/\./g, "[^]");
+}
+
+try { if (Inst7 <= 1000 && typeof (test) != "undefined") {_RecordType("<497,501,15>",(test)); Inst7++; } } catch(e) {}
+function test(expectation, regexp_source, subject) {
+try { if (Inst8 <= 1000 && typeof (expectation) != "undefined") {_RecordType("<502,513,15>",(expectation)); Inst8++; } } catch(e) {}try { if (Inst9 <= 1000 && typeof (regexp_source) != "undefined") {_RecordType("<515,528,15>",(regexp_source)); Inst9++; } } catch(e) {}try { if (Inst10 <= 1000 && typeof (subject) != "undefined") {_RecordType("<530,537,15>",(subject)); Inst10++; } } catch(e) {}
+try { if (Inst11 <= 1000 && typeof (expectation) != "undefined") {_RecordType("<547,558,16>",(expectation)); Inst11++; } } catch(e) {}try { if (Inst13 <= 1000 && typeof (expectation.map) != "undefined") {_RecordType("<583,598,16>",(expectation.map)); Inst13++; } } catch(e) {}try { if (Inst14 <= 1000 && typeof (expectation) != "undefined") {_RecordType("<583,594,16>",(expectation)); Inst14++; } } catch(e) {}try { if (Inst15 <= 1000 && typeof (replace) != "undefined") {_RecordType("<599,606,16>",(replace)); Inst15++; } } catch(e) {}
+  if (expectation !== null) expectation = expectation.map(replace);
+try { if (Inst12 <= 1000 && typeof (expectation) != "undefined") {_RecordType("<569,580,16>",(expectation)); Inst12++; } } catch(e) {}
+try { if (Inst17 <= 1000 && typeof (replace) != "undefined") {_RecordType("<621,628,17>",(replace)); Inst17++; } } catch(e) {}try { if (Inst18 <= 1000 && typeof (subject) != "undefined") {_RecordType("<629,636,17>",(subject)); Inst18++; } } catch(e) {}
+  subject = replace(subject);
+try { if (Inst16 <= 1000 && typeof (subject) != "undefined") {_RecordType("<611,618,17>",(subject)); Inst16++; } } catch(e) {}
+try { if (Inst20 <= 1000 && typeof (replace) != "undefined") {_RecordType("<657,664,18>",(replace)); Inst20++; } } catch(e) {}try { if (Inst21 <= 1000 && typeof (regexp_source) != "undefined") {_RecordType("<665,678,18>",(regexp_source)); Inst21++; } } catch(e) {}
+  regexp_source = replace(regexp_source);
+try { if (Inst19 <= 1000 && typeof (regexp_source) != "undefined") {_RecordType("<641,654,18>",(regexp_source)); Inst19++; } } catch(e) {}
+try { if (Inst22 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<683,695,19>",(assertEquals)); Inst22++; } } catch(e) {}try { if (Inst23 <= 1000 && typeof (expectation) != "undefined") {_RecordType("<696,707,19>",(expectation)); Inst23++; } } catch(e) {}try { if (Inst24 <= 1000 && typeof (new RegExp(regexp_source, "u").exec) != "undefined") {_RecordType("<709,744,19>",(new RegExp(regexp_source, "u").exec)); Inst24++; } } catch(e) {}try { if (Inst25 <= 1000 && typeof (RegExp) != "undefined") {_RecordType("<713,719,19>",(RegExp)); Inst25++; } } catch(e) {}try { if (Inst26 <= 1000 && typeof (regexp_source) != "undefined") {_RecordType("<720,733,19>",(regexp_source)); Inst26++; } } catch(e) {}try { if (Inst27 <= 1000 && typeof (subject) != "undefined") {_RecordType("<745,752,19>",(subject)); Inst27++; } } catch(e) {}
+  assertEquals(expectation, new RegExp(regexp_source, "u").exec(subject));
+}
+
+// Back reference does not end in the middle of a surrogate pair.
+try { if (Inst28 <= 1000 && typeof (test) != "undefined") {_RecordType("<825,829,23>",(test)); Inst28++; } } catch(e) {}
+test(null, "(L)\\1", "LLT");
+try { if (Inst29 <= 1000 && typeof (test) != "undefined") {_RecordType("<854,858,24>",(test)); Inst29++; } } catch(e) {}
+test(["LLTLl", "L", "l"], "(L).*\\1(.)", "LLTLl");
+try { if (Inst30 <= 1000 && typeof (test) != "undefined") {_RecordType("<905,909,25>",(test)); Inst30++; } } catch(e) {}
+test(null, "(aL).*\\1", "aLaLT");
+try { if (Inst31 <= 1000 && typeof (test) != "undefined") {_RecordType("<939,943,26>",(test)); Inst31++; } } catch(e) {}
+test(["aLaLTaLl", "aL", "l"], "(aL).*\\1(.)", "aLaLTaLl");
+
+var s = "TabcLxLTabcLxTabcLTyTabcLz";
+try { if (Inst32 <= 1000 && typeof (s) != "undefined") {_RecordType("<1003,1004,28>",(s)); Inst32++; } } catch(e) {}
+try { if (Inst33 <= 1000 && typeof (test) != "undefined") {_RecordType("<1037,1041,29>",(test)); Inst33++; } } catch(e) {}try { if (Inst34 <= 1000 && typeof (s) != "undefined") {_RecordType("<1043,1044,29>",(s)); Inst34++; } } catch(e) {}try { if (Inst35 <= 1000 && typeof (s) != "undefined") {_RecordType("<1080,1081,29>",(s)); Inst35++; } } catch(e) {}
+test([s, "TabcL", "z"], "([^x]+).*\\1(.)", s);
+
+// Back reference does not start in the middle of a surrogate pair.
+try { if (Inst36 <= 1000 && typeof (test) != "undefined") {_RecordType("<1153,1157,32>",(test)); Inst36++; } } catch(e) {}
+test(["TLTabTc", "T", "c"], "(T).*\\1(.)", "TLTabTc");
+
+// Lookbehinds.
+try { if (Inst37 <= 1000 && typeof (test) != "undefined") {_RecordType("<1225,1229,35>",(test)); Inst37++; } } catch(e) {}
+test(null, "(?<=\\1(T)x)", "LTTx");
+try { if (Inst38 <= 1000 && typeof (test) != "undefined") {_RecordType("<1261,1265,36>",(test)); Inst38++; } } catch(e) {}
+test(["", "b", "T"], "(?<=(.)\\2.*(T)x)", "bTaLTTx");
+try { if (Inst39 <= 1000 && typeof (test) != "undefined") {_RecordType("<1315,1319,37>",(test)); Inst39++; } } catch(e) {}
+test(null, "(?<=\\1.*(L)x)", "LTLx");
+try { if (Inst40 <= 1000 && typeof (test) != "undefined") {_RecordType("<1353,1357,38>",(test)); Inst40++; } } catch(e) {}
+test(["", "b", "L"], "(?<=(.)\\2.*(L)x)", "bLaLTLx");
+
+
+try { if (Inst41 <= 1000 && typeof (test) != "undefined") {_RecordType("<1409,1413,41>",(test)); Inst41++; } } catch(e) {}
+test(null, "([^x]+)x*\\1", "LxLT");
+try { if (Inst42 <= 1000 && typeof (test) != "undefined") {_RecordType("<1445,1449,42>",(test)); Inst42++; } } catch(e) {}
+test(null, "([^x]+)x*\\1", "TxLT");
+try { if (Inst43 <= 1000 && typeof (test) != "undefined") {_RecordType("<1481,1485,43>",(test)); Inst43++; } } catch(e) {}
+test(null, "([^x]+)x*\\1", "LTxL");
+try { if (Inst44 <= 1000 && typeof (test) != "undefined") {_RecordType("<1517,1521,44>",(test)); Inst44++; } } catch(e) {}
+test(null, "([^x]+)x*\\1", "LTxT");
+try { if (Inst45 <= 1000 && typeof (test) != "undefined") {_RecordType("<1553,1557,45>",(test)); Inst45++; } } catch(e) {}
+test(null, "([^x]+)x*\\1", "xLxLT");
+try { if (Inst46 <= 1000 && typeof (test) != "undefined") {_RecordType("<1590,1594,46>",(test)); Inst46++; } } catch(e) {}
+test(null, "([^x]+)x*\\1", "xTxLT");
+try { if (Inst47 <= 1000 && typeof (test) != "undefined") {_RecordType("<1627,1631,47>",(test)); Inst47++; } } catch(e) {}
+test(null, "([^x]+)x*\\1", "xLTxL");
+try { if (Inst48 <= 1000 && typeof (test) != "undefined") {_RecordType("<1664,1668,48>",(test)); Inst48++; } } catch(e) {}
+test(null, "([^x]+)x*\\1", "xLTxT");
+try { if (Inst49 <= 1000 && typeof (test) != "undefined") {_RecordType("<1701,1705,49>",(test)); Inst49++; } } catch(e) {}
+test(null, "([^x]+)x*\\1", "xxxLxxLTxx");
+try { if (Inst50 <= 1000 && typeof (test) != "undefined") {_RecordType("<1743,1747,50>",(test)); Inst50++; } } catch(e) {}
+test(null, "([^x]+)x*\\1", "xxxTxxLTxx");
+try { if (Inst51 <= 1000 && typeof (test) != "undefined") {_RecordType("<1785,1789,51>",(test)); Inst51++; } } catch(e) {}
+test(null, "([^x]+)x*\\1", "xxxLTxxLxx");
+try { if (Inst52 <= 1000 && typeof (test) != "undefined") {_RecordType("<1827,1831,52>",(test)); Inst52++; } } catch(e) {}
+test(null, "([^x]+)x*\\1", "xxxLTxxTxx");
+try { if (Inst53 <= 1000 && typeof (test) != "undefined") {_RecordType("<1869,1873,53>",(test)); Inst53++; } } catch(e) {}
+test(["LTTxxLTT", "LTT"], "([^x]+)x*\\1", "xxxLTTxxLTTxx");
+

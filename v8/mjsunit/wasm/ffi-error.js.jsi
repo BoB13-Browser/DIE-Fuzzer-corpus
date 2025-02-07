@@ -1,0 +1,221 @@
+var Inst0 = 0;
+var Inst1 = 0;
+var Inst2 = 0;
+var Inst3 = 0;
+var Inst4 = 0;
+var Inst5 = 0;
+var Inst6 = 0;
+var Inst7 = 0;
+var Inst8 = 0;
+var Inst9 = 0;
+var Inst10 = 0;
+var Inst11 = 0;
+var Inst12 = 0;
+var Inst13 = 0;
+var Inst14 = 0;
+var Inst15 = 0;
+var Inst16 = 0;
+var Inst17 = 0;
+var Inst18 = 0;
+var Inst19 = 0;
+var Inst20 = 0;
+var Inst21 = 0;
+var Inst22 = 0;
+var Inst23 = 0;
+var Inst24 = 0;
+var Inst25 = 0;
+var Inst26 = 0;
+var Inst27 = 0;
+var Inst28 = 0;
+var Inst29 = 0;
+var Inst30 = 0;
+var Inst31 = 0;
+var Inst32 = 0;
+var Inst33 = 0;
+var Inst34 = 0;
+var Inst35 = 0;
+var Inst36 = 0;
+var Inst37 = 0;
+var Inst38 = 0;
+var Inst39 = 0;
+var Inst40 = 0;
+var Inst41 = 0;
+var Inst42 = 0;
+var Inst43 = 0;
+var Inst44 = 0;
+var Inst45 = 0;
+var Inst46 = 0;
+var Inst47 = 0;
+var Inst48 = 0;
+var Inst49 = 0;
+var Inst50 = 0;
+var Inst51 = 0;
+var Inst52 = 0;
+var Inst53 = 0;
+var Inst54 = 0;
+var Inst55 = 0;
+var Inst56 = 0;
+var Inst57 = 0;
+var Inst58 = 0;
+ 
+function _TypeOfArray(a) {
+	let number = true;	
+	let string = true;
+	for (let i = 0; i < a.length; i++) {
+		if (number && (typeof a[i]) != "number") {
+			number = false;	
+		}
+		if (string && (typeof a[i]) != "string") {
+			string = false;	
+		}
+		if (!number && !string)
+			break;
+	}
+	if (number)
+		return "number";
+	else if (string)
+		return "string";
+	else
+		return "any";
+}
+
+function _TypeIsEqual(t1, t2) {
+	return JSON.stringify(t1) === JSON.stringify(t2);
+}
+
+function _TypeOf(a, step) {
+	var t;
+	var type = Object.prototype.toString.call(a).slice(8, -1).toLowerCase();	
+	if (type == "array") {
+		t = {type : type, extra: {elemType: _TypeOfArray(a)}};
+	} else if (type == "object") {
+		let shape = [];
+        if (step === undefined || step > 0) {
+            let keys = Object.keys(a);
+            let length = Math.min(100, keys.length);
+		    for (let i = 0; i < length; i++) {
+			    shape.push([keys[i], _TypeOf(a[keys[i]], step === undefined ? 1 : step - 1)]);	
+		    }
+        }
+		t = {type : type, extra: {shape: shape}};
+	} else {
+		t = {type : type};
+	} 
+	return t;
+}
+
+function _RecordType(loc, a) {
+	var t = _TypeOf(a);
+    print("~~~TypeInfo:" + loc + ":" + JSON.stringify(t));
+}
+// Copyright 2015 the V8 project authors. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
+// Flags: --expose-wasm
+
+try { if (Inst0 <= 1000 && typeof (load) != "undefined") {_RecordType("<193,197,7>",(load)); Inst0++; } } catch(e) {}
+load("test/mjsunit/wasm/wasm-constants.js");
+try { if (Inst1 <= 1000 && typeof (load) != "undefined") {_RecordType("<238,242,8>",(load)); Inst1++; } } catch(e) {}
+load("test/mjsunit/wasm/wasm-module-builder.js");
+
+try { if (Inst2 <= 1000 && typeof (testCallFFI) != "undefined") {_RecordType("<298,309,10>",(testCallFFI)); Inst2++; } } catch(e) {}
+function testCallFFI(ffi) {
+try { if (Inst3 <= 1000 && typeof (ffi) != "undefined") {_RecordType("<310,313,10>",(ffi)); Inst3++; } } catch(e) {}
+try { if (Inst5 <= 1000 && typeof (WasmModuleBuilder) != "undefined") {_RecordType("<337,354,11>",(WasmModuleBuilder)); Inst5++; } } catch(e) {}
+  var builder = new WasmModuleBuilder();
+try { if (Inst4 <= 1000 && typeof (builder) != "undefined") {_RecordType("<323,330,11>",(builder)); Inst4++; } } catch(e) {}
+
+try { if (Inst7 <= 1000 && typeof (kSig_i_dd) != "undefined") {_RecordType("<377,386,13>",(kSig_i_dd)); Inst7++; } } catch(e) {}
+  var sig_index = kSig_i_dd;
+try { if (Inst6 <= 1000 && typeof (sig_index) != "undefined") {_RecordType("<365,374,13>",(sig_index)); Inst6++; } } catch(e) {}
+try { if (Inst8 <= 1000 && typeof (builder.addImport) != "undefined") {_RecordType("<390,407,14>",(builder.addImport)); Inst8++; } } catch(e) {}try { if (Inst9 <= 1000 && typeof (builder) != "undefined") {_RecordType("<390,397,14>",(builder)); Inst9++; } } catch(e) {}try { if (Inst10 <= 1000 && typeof (sig_index) != "undefined") {_RecordType("<415,424,14>",(sig_index)); Inst10++; } } catch(e) {}
+  builder.addImport("fun", sig_index);
+try { if (Inst11 <= 1000 && typeof (builder.addFunction("main", sig_index)
+    .addBody([
+      kExprGetLocal, 0,              // --
+      kExprGetLocal, 1,              // --
+      kExprCallFunction, kArity2, 0, // --
+    ])    // --
+    .exportFunc) != "undefined") {_RecordType("<429,643,15>",(builder.addFunction("main", sig_index)
+    .addBody([
+      kExprGetLocal, 0,              // --
+      kExprGetLocal, 1,              // --
+      kExprCallFunction, kArity2, 0, // --
+    ])    // --
+    .exportFunc)); Inst11++; } } catch(e) {}try { if (Inst12 <= 1000 && typeof (builder.addFunction("main", sig_index)
+    .addBody) != "undefined") {_RecordType("<429,480,15>",(builder.addFunction("main", sig_index)
+    .addBody)); Inst12++; } } catch(e) {}try { if (Inst13 <= 1000 && typeof (builder.addFunction) != "undefined") {_RecordType("<429,448,15>",(builder.addFunction)); Inst13++; } } catch(e) {}try { if (Inst14 <= 1000 && typeof (builder) != "undefined") {_RecordType("<429,436,15>",(builder)); Inst14++; } } catch(e) {}try { if (Inst15 <= 1000 && typeof (sig_index) != "undefined") {_RecordType("<457,466,15>",(sig_index)); Inst15++; } } catch(e) {}try { if (Inst16 <= 1000 && typeof (kExprGetLocal) != "undefined") {_RecordType("<489,502,17>",(kExprGetLocal)); Inst16++; } } catch(e) {}try { if (Inst17 <= 1000 && typeof (kExprGetLocal) != "undefined") {_RecordType("<532,545,18>",(kExprGetLocal)); Inst17++; } } catch(e) {}try { if (Inst18 <= 1000 && typeof (kExprCallFunction) != "undefined") {_RecordType("<575,592,19>",(kExprCallFunction)); Inst18++; } } catch(e) {}try { if (Inst19 <= 1000 && typeof (kArity2) != "undefined") {_RecordType("<594,601,19>",(kArity2)); Inst19++; } } catch(e) {}
+  builder.addFunction("main", sig_index)
+    .addBody([
+      kExprGetLocal, 0,              // --
+      kExprGetLocal, 1,              // --
+      kExprCallFunction, kArity2, 0, // --
+    ])    // --
+    .exportFunc();
+
+try { if (Inst21 <= 1000 && typeof (builder.instantiate) != "undefined") {_RecordType("<663,682,23>",(builder.instantiate)); Inst21++; } } catch(e) {}try { if (Inst22 <= 1000 && typeof (builder) != "undefined") {_RecordType("<663,670,23>",(builder)); Inst22++; } } catch(e) {}try { if (Inst23 <= 1000 && typeof (ffi) != "undefined") {_RecordType("<683,686,23>",(ffi)); Inst23++; } } catch(e) {}
+  var module = builder.instantiate(ffi);
+try { if (Inst20 <= 1000 && typeof (module) != "undefined") {_RecordType("<654,660,23>",(module)); Inst20++; } } catch(e) {}
+}
+
+// everything is good.
+(function() {
+try { if (Inst25 <= 1000 && typeof (Object) != "undefined") {_RecordType("<745,751,28>",(Object)); Inst25++; } } catch(e) {}
+  var ffi = new Object();
+try { if (Inst24 <= 1000 && typeof (ffi) != "undefined") {_RecordType("<735,738,28>",(ffi)); Inst24++; } } catch(e) {}
+try { if (Inst30 <= 1000 && typeof (print) != "undefined") {_RecordType("<784,789,29>",(print)); Inst30++; } } catch(e) {}try { if (Inst31 <= 1000 && typeof (a) != "undefined") {_RecordType("<790,791,29>",(a)); Inst31++; } } catch(e) {}try { if (Inst32 <= 1000 && typeof (b) != "undefined") {_RecordType("<793,794,29>",(b)); Inst32++; } } catch(e) {}
+  ffi.fun = function(a, b) { print(a, b); }
+try { if (Inst26 <= 1000 && typeof (ffi.fun) != "undefined") {_RecordType("<757,764,29>",(ffi.fun)); Inst26++; } } catch(e) {}try { if (Inst27 <= 1000 && typeof (ffi) != "undefined") {_RecordType("<757,760,29>",(ffi)); Inst27++; } } catch(e) {}try { if (Inst28 <= 1000 && typeof (a) != "undefined") {_RecordType("<776,777,29>",(a)); Inst28++; } } catch(e) {}try { if (Inst29 <= 1000 && typeof (b) != "undefined") {_RecordType("<779,780,29>",(b)); Inst29++; } } catch(e) {}
+try { if (Inst33 <= 1000 && typeof (testCallFFI) != "undefined") {_RecordType("<801,812,30>",(testCallFFI)); Inst33++; } } catch(e) {}try { if (Inst34 <= 1000 && typeof (ffi) != "undefined") {_RecordType("<813,816,30>",(ffi)); Inst34++; } } catch(e) {}
+  testCallFFI(ffi);
+})();
+
+
+// FFI object should be an object.
+try { if (Inst35 <= 1000 && typeof (assertThrows) != "undefined") {_RecordType("<862,874,35>",(assertThrows)); Inst35++; } } catch(e) {}
+assertThrows(function() {
+  var ffi = 0;
+try { if (Inst36 <= 1000 && typeof (ffi) != "undefined") {_RecordType("<894,897,36>",(ffi)); Inst36++; } } catch(e) {}
+try { if (Inst37 <= 1000 && typeof (testCallFFI) != "undefined") {_RecordType("<905,916,37>",(testCallFFI)); Inst37++; } } catch(e) {}try { if (Inst38 <= 1000 && typeof (ffi) != "undefined") {_RecordType("<917,920,37>",(ffi)); Inst38++; } } catch(e) {}
+  testCallFFI(ffi);
+});
+
+
+// FFI object should have a "fun" property.
+try { if (Inst39 <= 1000 && typeof (assertThrows) != "undefined") {_RecordType("<973,985,42>",(assertThrows)); Inst39++; } } catch(e) {}
+assertThrows(function() {
+try { if (Inst41 <= 1000 && typeof (Object) != "undefined") {_RecordType("<1015,1021,43>",(Object)); Inst41++; } } catch(e) {}
+  var ffi = new Object();
+try { if (Inst40 <= 1000 && typeof (ffi) != "undefined") {_RecordType("<1005,1008,43>",(ffi)); Inst40++; } } catch(e) {}
+try { if (Inst42 <= 1000 && typeof (testCallFFI) != "undefined") {_RecordType("<1027,1038,44>",(testCallFFI)); Inst42++; } } catch(e) {}try { if (Inst43 <= 1000 && typeof (ffi) != "undefined") {_RecordType("<1039,1042,44>",(ffi)); Inst43++; } } catch(e) {}
+  testCallFFI(ffi);
+});
+
+
+// "fun" should be a JS function.
+try { if (Inst44 <= 1000 && typeof (assertThrows) != "undefined") {_RecordType("<1085,1097,49>",(assertThrows)); Inst44++; } } catch(e) {}
+assertThrows(function() {
+try { if (Inst46 <= 1000 && typeof (Object) != "undefined") {_RecordType("<1127,1133,50>",(Object)); Inst46++; } } catch(e) {}
+  var ffi = new Object();
+try { if (Inst45 <= 1000 && typeof (ffi) != "undefined") {_RecordType("<1117,1120,50>",(ffi)); Inst45++; } } catch(e) {}
+try { if (Inst49 <= 1000 && typeof (Object) != "undefined") {_RecordType("<1153,1159,51>",(Object)); Inst49++; } } catch(e) {}
+  ffi.fun = new Object();
+try { if (Inst47 <= 1000 && typeof (ffi.fun) != "undefined") {_RecordType("<1139,1146,51>",(ffi.fun)); Inst47++; } } catch(e) {}try { if (Inst48 <= 1000 && typeof (ffi) != "undefined") {_RecordType("<1139,1142,51>",(ffi)); Inst48++; } } catch(e) {}
+try { if (Inst50 <= 1000 && typeof (testCallFFI) != "undefined") {_RecordType("<1165,1176,52>",(testCallFFI)); Inst50++; } } catch(e) {}try { if (Inst51 <= 1000 && typeof (ffi) != "undefined") {_RecordType("<1177,1180,52>",(ffi)); Inst51++; } } catch(e) {}
+  testCallFFI(ffi);
+});
+
+
+// "fun" should be a JS function.
+try { if (Inst52 <= 1000 && typeof (assertThrows) != "undefined") {_RecordType("<1223,1235,57>",(assertThrows)); Inst52++; } } catch(e) {}
+assertThrows(function() {
+try { if (Inst54 <= 1000 && typeof (Object) != "undefined") {_RecordType("<1265,1271,58>",(Object)); Inst54++; } } catch(e) {}
+  var ffi = new Object();
+try { if (Inst53 <= 1000 && typeof (ffi) != "undefined") {_RecordType("<1255,1258,58>",(ffi)); Inst53++; } } catch(e) {}
+  ffi.fun = 0;
+try { if (Inst55 <= 1000 && typeof (ffi.fun) != "undefined") {_RecordType("<1277,1284,59>",(ffi.fun)); Inst55++; } } catch(e) {}try { if (Inst56 <= 1000 && typeof (ffi) != "undefined") {_RecordType("<1277,1280,59>",(ffi)); Inst56++; } } catch(e) {}
+try { if (Inst57 <= 1000 && typeof (testCallFFI) != "undefined") {_RecordType("<1292,1303,60>",(testCallFFI)); Inst57++; } } catch(e) {}try { if (Inst58 <= 1000 && typeof (ffi) != "undefined") {_RecordType("<1304,1307,60>",(ffi)); Inst58++; } } catch(e) {}
+  testCallFFI(ffi);
+});
+

@@ -1,0 +1,168 @@
+var Inst0 = 0;
+var Inst1 = 0;
+var Inst2 = 0;
+var Inst3 = 0;
+var Inst4 = 0;
+var Inst5 = 0;
+var Inst6 = 0;
+var Inst7 = 0;
+var Inst8 = 0;
+var Inst9 = 0;
+var Inst10 = 0;
+var Inst11 = 0;
+var Inst12 = 0;
+var Inst13 = 0;
+var Inst14 = 0;
+var Inst15 = 0;
+var Inst16 = 0;
+var Inst17 = 0;
+var Inst18 = 0;
+var Inst19 = 0;
+var Inst20 = 0;
+var Inst21 = 0;
+var Inst22 = 0;
+var Inst23 = 0;
+var Inst24 = 0;
+var Inst25 = 0;
+var Inst26 = 0;
+var Inst27 = 0;
+var Inst28 = 0;
+var Inst29 = 0;
+var Inst30 = 0;
+var Inst31 = 0;
+var Inst32 = 0;
+var Inst33 = 0;
+ 
+function _TypeOfArray(a) {
+	let number = true;	
+	let string = true;
+	for (let i = 0; i < a.length; i++) {
+		if (number && (typeof a[i]) != "number") {
+			number = false;	
+		}
+		if (string && (typeof a[i]) != "string") {
+			string = false;	
+		}
+		if (!number && !string)
+			break;
+	}
+	if (number)
+		return "number";
+	else if (string)
+		return "string";
+	else
+		return "any";
+}
+
+function _TypeIsEqual(t1, t2) {
+	return JSON.stringify(t1) === JSON.stringify(t2);
+}
+
+function _TypeOf(a, step) {
+	var t;
+	var type = Object.prototype.toString.call(a).slice(8, -1).toLowerCase();	
+	if (type == "array") {
+		t = {type : type, extra: {elemType: _TypeOfArray(a)}};
+	} else if (type == "object") {
+		let shape = [];
+        if (step === undefined || step > 0) {
+            let keys = Object.keys(a);
+            let length = Math.min(100, keys.length);
+		    for (let i = 0; i < length; i++) {
+			    shape.push([keys[i], _TypeOf(a[keys[i]], step === undefined ? 1 : step - 1)]);	
+		    }
+        }
+		t = {type : type, extra: {shape: shape}};
+	} else {
+		t = {type : type};
+	} 
+	return t;
+}
+
+function _RecordType(loc, a) {
+	var t = _TypeOf(a);
+    print("~~~TypeInfo:" + loc + ":" + JSON.stringify(t));
+}
+
+
+try { if (Inst0 <= 1000 && typeof (triggerCrash) != "undefined") {_RecordType("<21,33,3>",(triggerCrash)); Inst0++; } } catch(e) {}
+        function triggerCrash() {
+
+            const inputValue = "invalid://uri";
+try { if (Inst1 <= 1000 && typeof (inputValue) != "undefined") {_RecordType("<59,69,5>",(inputValue)); Inst1++; } } catch(e) {}
+
+try { if (Inst2 <= 1000 && typeof (inputValue) != "undefined") {_RecordType("<108,118,7>",(inputValue)); Inst2++; } } catch(e) {}
+            if (inputValue === "invalid://uri") {
+
+                // crash by causing excessive resource usage
+
+try { if (Inst28 <= 1000 && typeof (e) != "undefined") {_RecordType("<1029,1030,43>",(e)); Inst28++; } } catch(e) {}
+                try {
+
+try { if (Inst4 <= 1000 && typeof (document.createElement) != "undefined") {_RecordType("<272,294,13>",(document.createElement)); Inst4++; } } catch(e) {}try { if (Inst5 <= 1000 && typeof (document) != "undefined") {_RecordType("<272,280,13>",(document)); Inst5++; } } catch(e) {}
+                    const container = document.createElement('div');
+try { if (Inst3 <= 1000 && typeof (container) != "undefined") {_RecordType("<260,269,13>",(container)); Inst3++; } } catch(e) {}
+
+try { if (Inst6 <= 1000 && typeof (document.body.appendChild) != "undefined") {_RecordType("<326,351,15>",(document.body.appendChild)); Inst6++; } } catch(e) {}try { if (Inst7 <= 1000 && typeof (document.body) != "undefined") {_RecordType("<326,339,15>",(document.body)); Inst7++; } } catch(e) {}try { if (Inst8 <= 1000 && typeof (document) != "undefined") {_RecordType("<326,334,15>",(document)); Inst8++; } } catch(e) {}try { if (Inst9 <= 1000 && typeof (container) != "undefined") {_RecordType("<352,361,15>",(container)); Inst9++; } } catch(e) {}
+                    document.body.appendChild(container);
+
+                    let i = 0;
+try { if (Inst10 <= 1000 && typeof (i) != "undefined") {_RecordType("<391,392,17>",(i)); Inst10++; } } catch(e) {}
+
+
+
+try { if (Inst11 <= 1000 && typeof (createElements) != "undefined") {_RecordType("<434,448,21>",(createElements)); Inst11++; } } catch(e) {}
+                    function createElements() {
+
+                        for (let j = 0; j < 1000000; j++) {
+try { if (Inst12 <= 1000 && typeof (j) != "undefined") {_RecordType("<489,490,23>",(j)); Inst12++; } } catch(e) {}try { if (Inst13 <= 1000 && typeof (j) != "undefined") {_RecordType("<496,497,23>",(j)); Inst13++; } } catch(e) {}try { if (Inst14 <= 1000 && typeof (j) != "undefined") {_RecordType("<509,510,23>",(j)); Inst14++; } } catch(e) {}
+
+try { if (Inst16 <= 1000 && typeof (document.createElement) != "undefined") {_RecordType("<563,585,25>",(document.createElement)); Inst16++; } } catch(e) {}try { if (Inst17 <= 1000 && typeof (document) != "undefined") {_RecordType("<563,571,25>",(document)); Inst17++; } } catch(e) {}
+                            const element = document.createElement('div');
+try { if (Inst15 <= 1000 && typeof (element) != "undefined") {_RecordType("<553,560,25>",(element)); Inst15++; } } catch(e) {}
+
+try { if (Inst20 <= 1000 && typeof (i) != "undefined") {_RecordType("<663,664,27>",(i)); Inst20++; } } catch(e) {}
+                            element.textContent = 'Crash Test ' + i++;
+try { if (Inst18 <= 1000 && typeof (element.textContent) != "undefined") {_RecordType("<625,644,27>",(element.textContent)); Inst18++; } } catch(e) {}try { if (Inst19 <= 1000 && typeof (element) != "undefined") {_RecordType("<625,632,27>",(element)); Inst19++; } } catch(e) {}
+
+try { if (Inst21 <= 1000 && typeof (container.appendChild) != "undefined") {_RecordType("<699,720,29>",(container.appendChild)); Inst21++; } } catch(e) {}try { if (Inst22 <= 1000 && typeof (container) != "undefined") {_RecordType("<699,708,29>",(container)); Inst22++; } } catch(e) {}try { if (Inst23 <= 1000 && typeof (element) != "undefined") {_RecordType("<721,728,29>",(element)); Inst23++; } } catch(e) {}
+                            container.appendChild(element);
+
+                        }
+
+try { if (Inst24 <= 1000 && typeof (i) != "undefined") {_RecordType("<791,792,33>",(i)); Inst24++; } } catch(e) {}
+                        if (i < 10000000) {
+
+try { if (Inst25 <= 1000 && typeof (requestAnimationFrame) != "undefined") {_RecordType("<838,859,35>",(requestAnimationFrame)); Inst25++; } } catch(e) {}try { if (Inst26 <= 1000 && typeof (createElements) != "undefined") {_RecordType("<860,874,35>",(createElements)); Inst26++; } } catch(e) {}
+                            requestAnimationFrame(createElements); // Continue without yielding
+
+                        }
+
+                    }
+
+try { if (Inst27 <= 1000 && typeof (createElements) != "undefined") {_RecordType("<983,997,41>",(createElements)); Inst27++; } } catch(e) {}
+                    createElements();
+
+                } catch (e) {
+
+try { if (Inst29 <= 1000 && typeof (setTimeout) != "undefined") {_RecordType("<1057,1067,45>",(setTimeout)); Inst29++; } } catch(e) {}
+                    setTimeout(() => {
+
+try { if (Inst30 <= 1000 && typeof (Error) != "undefined") {_RecordType("<1113,1118,47>",(Error)); Inst30++; } } catch(e) {}
+                        throw new Error('Simulated crash due to excessive DOM manipulation');
+
+                    }, 100);
+
+                }
+
+            }
+
+        }
+
+
+
+try { if (Inst33 <= 1000 && typeof (triggerCrash) != "undefined") {_RecordType("<1287,1299,59>",(triggerCrash)); Inst33++; } } catch(e) {}
+        window.onload = triggerCrash;
+try { if (Inst31 <= 1000 && typeof (window.onload) != "undefined") {_RecordType("<1271,1284,59>",(window.onload)); Inst31++; } } catch(e) {}try { if (Inst32 <= 1000 && typeof (window) != "undefined") {_RecordType("<1271,1277,59>",(window)); Inst32++; } } catch(e) {}
+
+    

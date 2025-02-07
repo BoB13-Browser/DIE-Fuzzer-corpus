@@ -1,0 +1,269 @@
+var Inst0 = 0;
+var Inst1 = 0;
+var Inst2 = 0;
+var Inst3 = 0;
+var Inst4 = 0;
+var Inst5 = 0;
+var Inst6 = 0;
+var Inst7 = 0;
+var Inst8 = 0;
+var Inst9 = 0;
+var Inst10 = 0;
+var Inst11 = 0;
+var Inst12 = 0;
+var Inst13 = 0;
+var Inst14 = 0;
+var Inst15 = 0;
+var Inst16 = 0;
+var Inst17 = 0;
+var Inst18 = 0;
+var Inst19 = 0;
+var Inst20 = 0;
+var Inst21 = 0;
+var Inst22 = 0;
+var Inst23 = 0;
+var Inst24 = 0;
+var Inst25 = 0;
+var Inst26 = 0;
+var Inst27 = 0;
+var Inst28 = 0;
+var Inst29 = 0;
+var Inst30 = 0;
+var Inst31 = 0;
+var Inst32 = 0;
+var Inst33 = 0;
+var Inst34 = 0;
+var Inst35 = 0;
+var Inst36 = 0;
+var Inst37 = 0;
+var Inst38 = 0;
+var Inst39 = 0;
+var Inst40 = 0;
+var Inst41 = 0;
+var Inst42 = 0;
+var Inst43 = 0;
+var Inst44 = 0;
+var Inst45 = 0;
+var Inst46 = 0;
+var Inst47 = 0;
+var Inst48 = 0;
+var Inst49 = 0;
+var Inst50 = 0;
+var Inst51 = 0;
+var Inst52 = 0;
+var Inst53 = 0;
+var Inst54 = 0;
+var Inst55 = 0;
+var Inst56 = 0;
+var Inst57 = 0;
+var Inst58 = 0;
+var Inst59 = 0;
+var Inst60 = 0;
+var Inst61 = 0;
+var Inst62 = 0;
+var Inst63 = 0;
+var Inst64 = 0;
+var Inst65 = 0;
+var Inst66 = 0;
+var Inst67 = 0;
+var Inst68 = 0;
+var Inst69 = 0;
+var Inst70 = 0;
+var Inst71 = 0;
+var Inst72 = 0;
+var Inst73 = 0;
+var Inst74 = 0;
+var Inst75 = 0;
+var Inst76 = 0;
+var Inst77 = 0;
+var Inst78 = 0;
+var Inst79 = 0;
+var Inst80 = 0;
+var Inst81 = 0;
+var Inst82 = 0;
+var Inst83 = 0;
+var Inst84 = 0;
+var Inst85 = 0;
+var Inst86 = 0;
+var Inst87 = 0;
+var Inst88 = 0;
+var Inst89 = 0;
+var Inst90 = 0;
+var Inst91 = 0;
+var Inst92 = 0;
+var Inst93 = 0;
+ 
+function _TypeOfArray(a) {
+	let number = true;	
+	let string = true;
+	for (let i = 0; i < a.length; i++) {
+		if (number && (typeof a[i]) != "number") {
+			number = false;	
+		}
+		if (string && (typeof a[i]) != "string") {
+			string = false;	
+		}
+		if (!number && !string)
+			break;
+	}
+	if (number)
+		return "number";
+	else if (string)
+		return "string";
+	else
+		return "any";
+}
+
+function _TypeIsEqual(t1, t2) {
+	return JSON.stringify(t1) === JSON.stringify(t2);
+}
+
+function _TypeOf(a, step) {
+	var t;
+	var type = Object.prototype.toString.call(a).slice(8, -1).toLowerCase();	
+	if (type == "array") {
+		t = {type : type, extra: {elemType: _TypeOfArray(a)}};
+	} else if (type == "object") {
+		let shape = [];
+        if (step === undefined || step > 0) {
+            let keys = Object.keys(a);
+            let length = Math.min(100, keys.length);
+		    for (let i = 0; i < length; i++) {
+			    shape.push([keys[i], _TypeOf(a[keys[i]], step === undefined ? 1 : step - 1)]);	
+		    }
+        }
+		t = {type : type, extra: {shape: shape}};
+	} else {
+		t = {type : type};
+	} 
+	return t;
+}
+
+function _RecordType(loc, a) {
+	var t = _TypeOf(a);
+    print("~~~TypeInfo:" + loc + ":" + JSON.stringify(t));
+}
+// Wat for Reference:
+// (module
+//   (memory $memory0 65536 65536)
+//   (memory $memory1 1 65536)
+//   (func $main (;0;) (export "main") (param $var0 i32) (param $var1 i32) (param $var2 i32) (result i32)
+//     i32.const 0
+//     i32.const 15
+//     i32.store align=1  ;; memory_index=1
+//     call $grow
+//     i32.const 0
+//     i32.const 15
+//     i32.store align=1  ;; memory_index=1
+//     i32.const 0
+//   )
+//   (func $grow (;1;)
+//     i32.const 65535
+//     memory.grow 1
+//     drop
+//   )
+// )
+
+let wasm_bytecode = new Uint8Array([0,97,115,109,1,0,0,0,1,11,2,96,3,127,127,127,1,127,96,0,0,3,3,2,0,1,5,13,2,1,128,128,4,128,128,4,1,1,128,128,4,7,8,1,4,109,97,105,110,0,0,10,34,2,22,0,65,0,65,15,54,64,1,0,16,1,65,0,65,15,54,64,1,0,65,0,11,9,0,65,255,255,3,64,1,26,11,0,20,4,110,97,109,101,1,13,2,0,4,109,97,105,110,1,4,103,114,111,119])
+
+function make_instance(wasm_module) {
+  return new WebAssembly.Instance(wasm_module);
+}
+
+function make_module(wasm_bytecode) {
+  let wasm_module = new WebAssembly.Module(wasm_bytecode);
+  let wasm_instance = make_instance(wasm_module);
+  for (let i = 0; i < 300000; i++) {
+    wasm_instance.exports.main();
+  }
+  return wasm_module;
+}
+
+function make_memory(min_pages, max_pages) {
+  return new WebAssembly.Memory({initial: min_pages, maximum: max_pages});
+}
+
+function make_pre_spraied_memories() {
+  let pre_spraied_memories = [];
+try { if (Inst1 <= 1000 && typeof (Uint8Array) != "undefined") {_RecordType("<573,583,43>",(Uint8Array)); Inst1++; } } catch(e) {}
+  for(let i = 0; i < 3; i++) {
+try { if (Inst0 <= 1000 && typeof (wasm_bytecode) != "undefined") {_RecordType("<553,566,43>",(wasm_bytecode)); Inst0++; } } catch(e) {}
+    pre_spraied_memories.push(make_memory(65536, 65536));
+  }
+  // console.log("finish make_pre_spraied_memories, total amount: " + pre_spraied_memories.length);
+try { if (Inst2 <= 1000 && typeof (make_instance) != "undefined") {_RecordType("<903,916,47>",(make_instance)); Inst2++; } } catch(e) {}
+  return pre_spraied_memories;
+try { if (Inst3 <= 1000 && typeof (wasm_module) != "undefined") {_RecordType("<917,928,47>",(wasm_module)); Inst3++; } } catch(e) {}
+}
+try { if (Inst4 <= 1000 && typeof (WebAssembly.Instance) != "undefined") {_RecordType("<947,967,49>",(WebAssembly.Instance)); Inst4++; } } catch(e) {}try { if (Inst5 <= 1000 && typeof (WebAssembly) != "undefined") {_RecordType("<947,958,49>",(WebAssembly)); Inst5++; } } catch(e) {}try { if (Inst6 <= 1000 && typeof (wasm_module) != "undefined") {_RecordType("<968,979,49>",(wasm_module)); Inst6++; } } catch(e) {}
+
+function clear_pre_spraied_memories(pre_spraied_memories) {
+  // console.log("clear_pre_spraied_memories, amount: " + pre_spraied_memories.length);
+  while(pre_spraied_memories.length > 0) {
+    pre_spraied_memories.pop();
+  }
+try { if (Inst7 <= 1000 && typeof (make_module) != "undefined") {_RecordType("<1000,1011,55>",(make_module)); Inst7++; } } catch(e) {}
+}
+try { if (Inst8 <= 1000 && typeof (wasm_bytecode) != "undefined") {_RecordType("<1012,1025,55>",(wasm_bytecode)); Inst8++; } } catch(e) {}
+
+try { if (Inst10 <= 1000 && typeof (WebAssembly.Module) != "undefined") {_RecordType("<1055,1073,57>",(WebAssembly.Module)); Inst10++; } } catch(e) {}try { if (Inst11 <= 1000 && typeof (WebAssembly) != "undefined") {_RecordType("<1055,1066,57>",(WebAssembly)); Inst11++; } } catch(e) {}try { if (Inst12 <= 1000 && typeof (wasm_bytecode) != "undefined") {_RecordType("<1074,1087,57>",(wasm_bytecode)); Inst12++; } } catch(e) {}
+function make_spraied_memories() {
+try { if (Inst9 <= 1000 && typeof (wasm_module) != "undefined") {_RecordType("<1037,1048,57>",(wasm_module)); Inst9++; } } catch(e) {}
+  let spraied_memories = [];
+try { if (Inst14 <= 1000 && typeof (make_instance) != "undefined") {_RecordType("<1114,1127,59>",(make_instance)); Inst14++; } } catch(e) {}try { if (Inst15 <= 1000 && typeof (wasm_module) != "undefined") {_RecordType("<1128,1139,59>",(wasm_module)); Inst15++; } } catch(e) {}
+  while(true) {
+try { if (Inst13 <= 1000 && typeof (wasm_instance) != "undefined") {_RecordType("<1098,1111,59>",(wasm_instance)); Inst13++; } } catch(e) {}
+    try {
+      spraied_memories.push(make_memory(1, 65536));
+try { if (Inst16 <= 1000 && typeof (i) != "undefined") {_RecordType("<1155,1156,61>",(i)); Inst16++; } } catch(e) {}try { if (Inst17 <= 1000 && typeof (i) != "undefined") {_RecordType("<1162,1163,61>",(i)); Inst17++; } } catch(e) {}try { if (Inst18 <= 1000 && typeof (i) != "undefined") {_RecordType("<1174,1175,61>",(i)); Inst18++; } } catch(e) {}
+      // console.log("make_spraied_memories, amount: " + spraied_memories.length);
+try { if (Inst19 <= 1000 && typeof (wasm_instance.exports.main) != "undefined") {_RecordType("<1187,1213,63>",(wasm_instance.exports.main)); Inst19++; } } catch(e) {}try { if (Inst20 <= 1000 && typeof (wasm_instance.exports) != "undefined") {_RecordType("<1187,1208,63>",(wasm_instance.exports)); Inst20++; } } catch(e) {}try { if (Inst21 <= 1000 && typeof (wasm_instance) != "undefined") {_RecordType("<1187,1200,63>",(wasm_instance)); Inst21++; } } catch(e) {}
+    }
+    catch(e) {
+      break; // RangeError: WebAssembly.Memory(): could not allocate memory
+    }
+try { if (Inst22 <= 1000 && typeof (wasm_module) != "undefined") {_RecordType("<1234,1245,67>",(wasm_module)); Inst22++; } } catch(e) {}
+  }
+  // console.log("finish make_spraied_memories, total amount: " + spraied_memories.length);
+  return spraied_memories;
+}
+
+function clear_spraied_memories(spraied_memories) {
+try { if (Inst23 <= 1000 && typeof (make_memory) != "undefined") {_RecordType("<1265,1276,73>",(make_memory)); Inst23++; } } catch(e) {}
+  // console.log("clear_spraied_memories, amount: " + spraied_memories.length);
+try { if (Inst24 <= 1000 && typeof (min_pages) != "undefined") {_RecordType("<1277,1286,73>",(min_pages)); Inst24++; } } catch(e) {}try { if (Inst25 <= 1000 && typeof (max_pages) != "undefined") {_RecordType("<1288,1297,73>",(max_pages)); Inst25++; } } catch(e) {}
+  while(spraied_memories.length > 0) {
+try { if (Inst26 <= 1000 && typeof (WebAssembly.Memory) != "undefined") {_RecordType("<1316,1334,75>",(WebAssembly.Memory)); Inst26++; } } catch(e) {}try { if (Inst27 <= 1000 && typeof (WebAssembly) != "undefined") {_RecordType("<1316,1327,75>",(WebAssembly)); Inst27++; } } catch(e) {}try { if (Inst28 <= 1000 && typeof (min_pages) != "undefined") {_RecordType("<1345,1354,75>",(min_pages)); Inst28++; } } catch(e) {}try { if (Inst29 <= 1000 && typeof (max_pages) != "undefined") {_RecordType("<1365,1374,75>",(max_pages)); Inst29++; } } catch(e) {}
+    spraied_memories.pop();
+  }
+}
+
+function spraied_memory_grow_full(spraied_memories, index) {
+  // console.log("spraied_memory_grow_full, index: " + index);
+try { if (Inst30 <= 1000 && typeof (make_pre_spraied_memories) != "undefined") {_RecordType("<1396,1421,81>",(make_pre_spraied_memories)); Inst30++; } } catch(e) {}
+  spraied_memories[index].grow(65536 - 1);
+}
+
+try { if (Inst31 <= 1000 && typeof (pre_spraied_memories) != "undefined") {_RecordType("<1434,1454,83>",(pre_spraied_memories)); Inst31++; } } catch(e) {}
+let pre_spraied_memories = make_pre_spraied_memories();
+let wasm_module = make_module(wasm_bytecode);
+try { if (Inst32 <= 1000 && typeof (i) != "undefined") {_RecordType("<1473,1474,85>",(i)); Inst32++; } } catch(e) {}try { if (Inst33 <= 1000 && typeof (i) != "undefined") {_RecordType("<1480,1481,85>",(i)); Inst33++; } } catch(e) {}try { if (Inst34 <= 1000 && typeof (i) != "undefined") {_RecordType("<1487,1488,85>",(i)); Inst34++; } } catch(e) {}
+let wasm_instance = make_instance(wasm_module);
+try { if (Inst35 <= 1000 && typeof (pre_spraied_memories.push) != "undefined") {_RecordType("<1500,1525,87>",(pre_spraied_memories.push)); Inst35++; } } catch(e) {}try { if (Inst36 <= 1000 && typeof (pre_spraied_memories) != "undefined") {_RecordType("<1500,1520,87>",(pre_spraied_memories)); Inst36++; } } catch(e) {}try { if (Inst37 <= 1000 && typeof (make_memory) != "undefined") {_RecordType("<1526,1537,87>",(make_memory)); Inst37++; } } catch(e) {}
+let spraied_memories = make_spraied_memories();
+
+for(let i = 0; i < spraied_memories.length; i++) {
+  try{
+    spraied_memory_grow_full(spraied_memories, i);
+    console.log("grow_success, index: " + i);
+try { if (Inst38 <= 1000 && typeof (pre_spraied_memories) != "undefined") {_RecordType("<1673,1693,93>",(pre_spraied_memories)); Inst38++; } } catch(e) {}
+  } catch(e) {
+    console.log("grow_fail, index: " + i);
+    clear_pre_spraied_memories(pre_spraied_memories);
+    break; // RangeError: WebAssembly.Memory.grow(): Unable to grow instance memory
+  }
+}
+try { if (Inst39 <= 1000 && typeof (clear_pre_spraied_memories) != "undefined") {_RecordType("<1713,1739,99>",(clear_pre_spraied_memories)); Inst39++; } } catch(e) {}
+
+try { if (Inst40 <= 1000 && typeof (pre_spraied_memories) != "undefined") {_RecordType("<1740,1760,99>",(pre_spraied_memories)); Inst40++; } } catch(e) {}
+wasm_instance.exports.main();

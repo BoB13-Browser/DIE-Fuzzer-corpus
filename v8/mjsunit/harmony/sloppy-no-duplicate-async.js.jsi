@@ -1,0 +1,110 @@
+var Inst0 = 0;
+var Inst1 = 0;
+var Inst2 = 0;
+var Inst3 = 0;
+var Inst4 = 0;
+var Inst5 = 0;
+var Inst6 = 0;
+var Inst7 = 0;
+var Inst8 = 0;
+var Inst9 = 0;
+var Inst10 = 0;
+var Inst11 = 0;
+var Inst12 = 0;
+var Inst13 = 0;
+var Inst14 = 0;
+var Inst15 = 0;
+ 
+function _TypeOfArray(a) {
+	let number = true;	
+	let string = true;
+	for (let i = 0; i < a.length; i++) {
+		if (number && (typeof a[i]) != "number") {
+			number = false;	
+		}
+		if (string && (typeof a[i]) != "string") {
+			string = false;	
+		}
+		if (!number && !string)
+			break;
+	}
+	if (number)
+		return "number";
+	else if (string)
+		return "string";
+	else
+		return "any";
+}
+
+function _TypeIsEqual(t1, t2) {
+	return JSON.stringify(t1) === JSON.stringify(t2);
+}
+
+function _TypeOf(a, step) {
+	var t;
+	var type = Object.prototype.toString.call(a).slice(8, -1).toLowerCase();	
+	if (type == "array") {
+		t = {type : type, extra: {elemType: _TypeOfArray(a)}};
+	} else if (type == "object") {
+		let shape = [];
+        if (step === undefined || step > 0) {
+            let keys = Object.keys(a);
+            let length = Math.min(100, keys.length);
+		    for (let i = 0; i < length; i++) {
+			    shape.push([keys[i], _TypeOf(a[keys[i]], step === undefined ? 1 : step - 1)]);	
+		    }
+        }
+		t = {type : type, extra: {shape: shape}};
+	} else {
+		t = {type : type};
+	} 
+	return t;
+}
+
+function _RecordType(loc, a) {
+	var t = _TypeOf(a);
+    print("~~~TypeInfo:" + loc + ":" + JSON.stringify(t));
+}
+// Copyright 2016 the V8 project authors. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
+// Flags: --harmony-async-await
+
+// Async functions don't get sloppy-mode block-scoped function hoisting
+
+// No hoisting to the global scope
+
+{
+try { if (Inst0 <= 1000 && typeof (foo) != "undefined") {_RecordType("<329,332,12>",(foo)); Inst0++; } } catch(e) {}
+  async function foo() {}
+try { if (Inst1 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<340,352,13>",(assertEquals)); Inst1++; } } catch(e) {}try { if (Inst2 <= 1000 && typeof (foo) != "undefined") {_RecordType("<372,375,13>",(foo)); Inst2++; } } catch(e) {}
+  assertEquals('function', typeof foo);
+}
+try { if (Inst3 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<380,392,15>",(assertEquals)); Inst3++; } } catch(e) {}try { if (Inst4 <= 1000 && typeof (foo) != "undefined") {_RecordType("<413,416,15>",(foo)); Inst4++; } } catch(e) {}
+assertEquals('undefined', typeof foo);
+
+// No hoisting within a function scope
+(function() {
+try { if (Inst5 <= 1000 && typeof (bar) != "undefined") {_RecordType("<492,495,19>",(bar)); Inst5++; } } catch(e) {}
+  { async function bar() {} }
+try { if (Inst6 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<505,517,20>",(assertEquals)); Inst6++; } } catch(e) {}try { if (Inst7 <= 1000 && typeof (bar) != "undefined") {_RecordType("<538,541,20>",(bar)); Inst7++; } } catch(e) {}
+  assertEquals('undefined', typeof bar);
+})();
+
+// Lexical shadowing allowed, no hoisting
+(function() {
+  var y;
+try { if (Inst8 <= 1000 && typeof (y) != "undefined") {_RecordType("<613,614,25>",(y)); Inst8++; } } catch(e) {}
+try { if (Inst9 <= 1000 && typeof (x) != "undefined") {_RecordType("<633,634,26>",(x)); Inst9++; } } catch(e) {}
+  async function x() { y = 1; }
+try { if (Inst10 <= 1000 && typeof (y) != "undefined") {_RecordType("<639,640,26>",(y)); Inst10++; } } catch(e) {}
+try { if (Inst11 <= 1000 && typeof (x) != "undefined") {_RecordType("<667,668,27>",(x)); Inst11++; } } catch(e) {}
+  { async function x() { y = 2; } }
+try { if (Inst12 <= 1000 && typeof (y) != "undefined") {_RecordType("<673,674,27>",(y)); Inst12++; } } catch(e) {}
+try { if (Inst13 <= 1000 && typeof (x) != "undefined") {_RecordType("<686,687,28>",(x)); Inst13++; } } catch(e) {}
+  x();
+try { if (Inst14 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<693,705,29>",(assertEquals)); Inst14++; } } catch(e) {}try { if (Inst15 <= 1000 && typeof (y) != "undefined") {_RecordType("<709,710,29>",(y)); Inst15++; } } catch(e) {}
+  assertEquals(1, y);
+})();
+

@@ -1,0 +1,135 @@
+var Inst0 = 0;
+var Inst1 = 0;
+var Inst2 = 0;
+var Inst3 = 0;
+var Inst4 = 0;
+var Inst5 = 0;
+var Inst6 = 0;
+var Inst7 = 0;
+var Inst8 = 0;
+var Inst9 = 0;
+var Inst10 = 0;
+var Inst11 = 0;
+var Inst12 = 0;
+var Inst13 = 0;
+var Inst14 = 0;
+var Inst15 = 0;
+var Inst16 = 0;
+var Inst17 = 0;
+var Inst18 = 0;
+var Inst19 = 0;
+var Inst20 = 0;
+var Inst21 = 0;
+var Inst22 = 0;
+var Inst23 = 0;
+var Inst24 = 0;
+var Inst25 = 0;
+var Inst26 = 0;
+var Inst27 = 0;
+var Inst28 = 0;
+var Inst29 = 0;
+var Inst30 = 0;
+ 
+function _TypeOfArray(a) {
+	let number = true;	
+	let string = true;
+	for (let i = 0; i < a.length; i++) {
+		if (number && (typeof a[i]) != "number") {
+			number = false;	
+		}
+		if (string && (typeof a[i]) != "string") {
+			string = false;	
+		}
+		if (!number && !string)
+			break;
+	}
+	if (number)
+		return "number";
+	else if (string)
+		return "string";
+	else
+		return "any";
+}
+
+function _TypeIsEqual(t1, t2) {
+	return JSON.stringify(t1) === JSON.stringify(t2);
+}
+
+function _TypeOf(a, step) {
+	var t;
+	var type = Object.prototype.toString.call(a).slice(8, -1).toLowerCase();	
+	if (type == "array") {
+		t = {type : type, extra: {elemType: _TypeOfArray(a)}};
+	} else if (type == "object") {
+		let shape = [];
+        if (step === undefined || step > 0) {
+            let keys = Object.keys(a);
+            let length = Math.min(100, keys.length);
+		    for (let i = 0; i < length; i++) {
+			    shape.push([keys[i], _TypeOf(a[keys[i]], step === undefined ? 1 : step - 1)]);	
+		    }
+        }
+		t = {type : type, extra: {shape: shape}};
+	} else {
+		t = {type : type};
+	} 
+	return t;
+}
+
+function _RecordType(loc, a) {
+	var t = _TypeOf(a);
+    print("~~~TypeInfo:" + loc + ":" + JSON.stringify(t));
+}
+for (let v0 = 0; v0 < 83; v0++) {
+try { if (Inst0 <= 1000 && typeof (v0) != "undefined") {_RecordType("<9,11,1>",(v0)); Inst0++; } } catch(e) {}try { if (Inst1 <= 1000 && typeof (v0) != "undefined") {_RecordType("<17,19,1>",(v0)); Inst1++; } } catch(e) {}try { if (Inst2 <= 1000 && typeof (v0) != "undefined") {_RecordType("<26,28,1>",(v0)); Inst2++; } } catch(e) {}
+try { if (Inst3 <= 1000 && typeof (F1) != "undefined") {_RecordType("<48,50,2>",(F1)); Inst3++; } } catch(e) {}
+    function F1(a3, a4, a5, a6) {
+try { if (Inst4 <= 1000 && typeof (a3) != "undefined") {_RecordType("<51,53,2>",(a3)); Inst4++; } } catch(e) {}try { if (Inst5 <= 1000 && typeof (a4) != "undefined") {_RecordType("<55,57,2>",(a4)); Inst5++; } } catch(e) {}try { if (Inst6 <= 1000 && typeof (a5) != "undefined") {_RecordType("<59,61,2>",(a5)); Inst6++; } } catch(e) {}try { if (Inst7 <= 1000 && typeof (a6) != "undefined") {_RecordType("<63,65,2>",(a6)); Inst7++; } } catch(e) {}
+try { if (Inst8 <= 1000 && typeof (target) != "undefined") {_RecordType("<87,93,3>",(target)); Inst8++; } } catch(e) {}
+        if (!new.target) { throw 'must be called with new'; }
+try { if (Inst10 <= 1000 && typeof (("number").source) != "undefined") {_RecordType("<152,169,4>",(("number").source)); Inst10++; } } catch(e) {}
+        const v8 = ("number").source;
+try { if (Inst9 <= 1000 && typeof (v8) != "undefined") {_RecordType("<147,149,4>",(v8)); Inst9++; } } catch(e) {}
+try { if (Inst11 <= 1000 && typeof (F9) != "undefined") {_RecordType("<189,191,5>",(F9)); Inst11++; } } catch(e) {}
+        function F9(a11, a12, ...a13) {
+try { if (Inst12 <= 1000 && typeof (a11) != "undefined") {_RecordType("<192,195,5>",(a11)); Inst12++; } } catch(e) {}try { if (Inst13 <= 1000 && typeof (a12) != "undefined") {_RecordType("<197,200,5>",(a12)); Inst13++; } } catch(e) {}try { if (Inst14 <= 1000 && typeof (a13) != "undefined") {_RecordType("<205,208,5>",(a13)); Inst14++; } } catch(e) {}
+try { if (Inst15 <= 1000 && typeof (target) != "undefined") {_RecordType("<234,240,6>",(target)); Inst15++; } } catch(e) {}
+            if (!new.target) { throw 'must be called with new'; }
+try { if (Inst16 <= 1000 && typeof (a13[0]) != "undefined") {_RecordType("<292,298,7>",(a13[0])); Inst16++; } } catch(e) {}try { if (Inst17 <= 1000 && typeof (a13) != "undefined") {_RecordType("<292,295,7>",(a13)); Inst17++; } } catch(e) {}
+            a13[0];
+try { if (Inst23 <= 1000 && typeof (e16) != "undefined") {_RecordType("<394,397,10>",(e16)); Inst23++; } } catch(e) {}
+            try {
+try { if (Inst19 <= 1000 && typeof (F9) != "undefined") {_RecordType("<352,354,9>",(F9)); Inst19++; } } catch(e) {}try { if (Inst20 <= 1000 && typeof (a12) != "undefined") {_RecordType("<355,358,9>",(a12)); Inst20++; } } catch(e) {}try { if (Inst21 <= 1000 && typeof (a13) != "undefined") {_RecordType("<363,366,9>",(a13)); Inst21++; } } catch(e) {}try { if (Inst22 <= 1000 && typeof (F9) != "undefined") {_RecordType("<368,370,9>",(F9)); Inst22++; } } catch(e) {}
+                const v15 = new F9(a12, ...a13, F9);
+try { if (Inst18 <= 1000 && typeof (v15) != "undefined") {_RecordType("<342,345,9>",(v15)); Inst18++; } } catch(e) {}
+            } catch(e16) {
+            }
+        }
+try { if (Inst25 <= 1000 && typeof (F9) != "undefined") {_RecordType("<452,454,13>",(F9)); Inst25++; } } catch(e) {}try { if (Inst26 <= 1000 && typeof (F9) != "undefined") {_RecordType("<455,457,13>",(F9)); Inst26++; } } catch(e) {}try { if (Inst27 <= 1000 && typeof (v8) != "undefined") {_RecordType("<459,461,13>",(v8)); Inst27++; } } catch(e) {}try { if (Inst28 <= 1000 && typeof (v8) != "undefined") {_RecordType("<463,465,13>",(v8)); Inst28++; } } catch(e) {}
+        const v17 = new F9(F9, v8, v8);
+try { if (Inst24 <= 1000 && typeof (v17) != "undefined") {_RecordType("<442,445,13>",(v17)); Inst24++; } } catch(e) {}
+    }
+try { if (Inst30 <= 1000 && typeof (F1) != "undefined") {_RecordType("<496,498,15>",(F1)); Inst30++; } } catch(e) {}
+    const v18 = new F1();
+try { if (Inst29 <= 1000 && typeof (v18) != "undefined") {_RecordType("<486,489,15>",(v18)); Inst29++; } } catch(e) {}
+}
+// CRASH INFO
+// ==========
+// TERMSIG: 11
+// STDERR:
+// [COV] edge counters initialized. Shared memory: shm_id_1188638_23 with 1366912 edges
+// V8 is running with experimental features enabled. Stability and security will suffer.
+// Received signal 11 SEGV_ACCERR 22e4beadbef6
+// 
+// ==== C stack trace ===============================
+// 
+//  [0x55f77b30553d]
+//  [0x7fea9490b520]
+//  [0x55f77eae86a1]
+// [end of stack trace]
+// STDOUT:
+// Warning: unknown flag --interrupt-budget=1000.
+// Try --help for options
+// ARGS: /home/source/ChromeV8/v8/out/fuzzbuild/d8 --expose-gc --omit-quit --future --harmony --assert-types --harmony-struct --allow-natives-syntax --interrupt-budget=1000 --fuzzing
+// EXECUTION TIME: 118ms
+

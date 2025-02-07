@@ -1,0 +1,327 @@
+var Inst0 = 0;
+var Inst1 = 0;
+var Inst2 = 0;
+var Inst3 = 0;
+var Inst4 = 0;
+var Inst5 = 0;
+var Inst6 = 0;
+var Inst7 = 0;
+var Inst8 = 0;
+var Inst9 = 0;
+var Inst10 = 0;
+var Inst11 = 0;
+var Inst12 = 0;
+var Inst13 = 0;
+var Inst14 = 0;
+var Inst15 = 0;
+var Inst16 = 0;
+var Inst17 = 0;
+var Inst18 = 0;
+var Inst19 = 0;
+var Inst20 = 0;
+var Inst21 = 0;
+var Inst22 = 0;
+var Inst23 = 0;
+var Inst24 = 0;
+var Inst25 = 0;
+var Inst26 = 0;
+var Inst27 = 0;
+var Inst28 = 0;
+var Inst29 = 0;
+var Inst30 = 0;
+var Inst31 = 0;
+var Inst32 = 0;
+var Inst33 = 0;
+var Inst34 = 0;
+var Inst35 = 0;
+var Inst36 = 0;
+var Inst37 = 0;
+var Inst38 = 0;
+var Inst39 = 0;
+var Inst40 = 0;
+var Inst41 = 0;
+var Inst42 = 0;
+var Inst43 = 0;
+var Inst44 = 0;
+var Inst45 = 0;
+var Inst46 = 0;
+var Inst47 = 0;
+var Inst48 = 0;
+var Inst49 = 0;
+var Inst50 = 0;
+var Inst51 = 0;
+var Inst52 = 0;
+var Inst53 = 0;
+var Inst54 = 0;
+var Inst55 = 0;
+var Inst56 = 0;
+var Inst57 = 0;
+var Inst58 = 0;
+var Inst59 = 0;
+var Inst60 = 0;
+var Inst61 = 0;
+var Inst62 = 0;
+var Inst63 = 0;
+var Inst64 = 0;
+var Inst65 = 0;
+var Inst66 = 0;
+var Inst67 = 0;
+var Inst68 = 0;
+var Inst69 = 0;
+var Inst70 = 0;
+var Inst71 = 0;
+var Inst72 = 0;
+var Inst73 = 0;
+var Inst74 = 0;
+var Inst75 = 0;
+var Inst76 = 0;
+var Inst77 = 0;
+var Inst78 = 0;
+var Inst79 = 0;
+var Inst80 = 0;
+var Inst81 = 0;
+var Inst82 = 0;
+var Inst83 = 0;
+var Inst84 = 0;
+var Inst85 = 0;
+var Inst86 = 0;
+var Inst87 = 0;
+var Inst88 = 0;
+var Inst89 = 0;
+var Inst90 = 0;
+var Inst91 = 0;
+var Inst92 = 0;
+var Inst93 = 0;
+var Inst94 = 0;
+var Inst95 = 0;
+var Inst96 = 0;
+var Inst97 = 0;
+var Inst98 = 0;
+var Inst99 = 0;
+var Inst100 = 0;
+var Inst101 = 0;
+var Inst102 = 0;
+var Inst103 = 0;
+var Inst104 = 0;
+var Inst105 = 0;
+var Inst106 = 0;
+var Inst107 = 0;
+var Inst108 = 0;
+var Inst109 = 0;
+var Inst110 = 0;
+var Inst111 = 0;
+var Inst112 = 0;
+var Inst113 = 0;
+var Inst114 = 0;
+var Inst115 = 0;
+var Inst116 = 0;
+var Inst117 = 0;
+var Inst118 = 0;
+var Inst119 = 0;
+var Inst120 = 0;
+var Inst121 = 0;
+ 
+function _TypeOfArray(a) {
+	let number = true;	
+	let string = true;
+	for (let i = 0; i < a.length; i++) {
+		if (number && (typeof a[i]) != "number") {
+			number = false;	
+		}
+		if (string && (typeof a[i]) != "string") {
+			string = false;	
+		}
+		if (!number && !string)
+			break;
+	}
+	if (number)
+		return "number";
+	else if (string)
+		return "string";
+	else
+		return "any";
+}
+
+function _TypeIsEqual(t1, t2) {
+	return JSON.stringify(t1) === JSON.stringify(t2);
+}
+
+function _TypeOf(a, step) {
+	var t;
+	var type = Object.prototype.toString.call(a).slice(8, -1).toLowerCase();	
+	if (type == "array") {
+		t = {type : type, extra: {elemType: _TypeOfArray(a)}};
+	} else if (type == "object") {
+		let shape = [];
+        if (step === undefined || step > 0) {
+            let keys = Object.keys(a);
+            let length = Math.min(100, keys.length);
+		    for (let i = 0; i < length; i++) {
+			    shape.push([keys[i], _TypeOf(a[keys[i]], step === undefined ? 1 : step - 1)]);	
+		    }
+        }
+		t = {type : type, extra: {shape: shape}};
+	} else {
+		t = {type : type};
+	} 
+	return t;
+}
+
+function _RecordType(loc, a) {
+	var t = _TypeOf(a);
+    print("~~~TypeInfo:" + loc + ":" + JSON.stringify(t));
+}
+// Copyright 2014 the V8 project authors. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
+// Flags: --ignition-generators
+
+// Test generator states.
+
+try { if (Inst0 <= 1000 && typeof (Foo) != "undefined") {_RecordType("<237,240,9>",(Foo)); Inst0++; } } catch(e) {}
+function Foo() {}
+try { if (Inst1 <= 1000 && typeof (Bar) != "undefined") {_RecordType("<255,258,10>",(Bar)); Inst1++; } } catch(e) {}
+function Bar() {}
+
+try { if (Inst2 <= 1000 && typeof (assertIteratorResult) != "undefined") {_RecordType("<274,294,12>",(assertIteratorResult)); Inst2++; } } catch(e) {}
+function assertIteratorResult(value, done, result) {
+try { if (Inst3 <= 1000 && typeof (value) != "undefined") {_RecordType("<295,300,12>",(value)); Inst3++; } } catch(e) {}try { if (Inst4 <= 1000 && typeof (done) != "undefined") {_RecordType("<302,306,12>",(done)); Inst4++; } } catch(e) {}try { if (Inst5 <= 1000 && typeof (result) != "undefined") {_RecordType("<308,314,12>",(result)); Inst5++; } } catch(e) {}
+try { if (Inst6 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<320,332,13>",(assertEquals)); Inst6++; } } catch(e) {}try { if (Inst7 <= 1000 && typeof (value) != "undefined") {_RecordType("<342,347,13>",(value)); Inst7++; } } catch(e) {}try { if (Inst8 <= 1000 && typeof (done) != "undefined") {_RecordType("<355,359,13>",(done)); Inst8++; } } catch(e) {}try { if (Inst9 <= 1000 && typeof (result) != "undefined") {_RecordType("<362,368,13>",(result)); Inst9++; } } catch(e) {}
+  assertEquals({ value: value, done: done}, result);
+}
+
+try { if (Inst10 <= 1000 && typeof (assertIteratorIsClosed) != "undefined") {_RecordType("<383,405,16>",(assertIteratorIsClosed)); Inst10++; } } catch(e) {}
+function assertIteratorIsClosed(iter) {
+try { if (Inst11 <= 1000 && typeof (iter) != "undefined") {_RecordType("<406,410,16>",(iter)); Inst11++; } } catch(e) {}
+try { if (Inst12 <= 1000 && typeof (assertIteratorResult) != "undefined") {_RecordType("<416,436,17>",(assertIteratorResult)); Inst12++; } } catch(e) {}try { if (Inst13 <= 1000 && typeof (undefined) != "undefined") {_RecordType("<437,446,17>",(undefined)); Inst13++; } } catch(e) {}try { if (Inst14 <= 1000 && typeof (iter.next) != "undefined") {_RecordType("<454,463,17>",(iter.next)); Inst14++; } } catch(e) {}try { if (Inst15 <= 1000 && typeof (iter) != "undefined") {_RecordType("<454,458,17>",(iter)); Inst15++; } } catch(e) {}
+  assertIteratorResult(undefined, true, iter.next());
+  // Next and throw on a closed iterator.
+try { if (Inst16 <= 1000 && typeof (assertDoesNotThrow) != "undefined") {_RecordType("<512,530,19>",(assertDoesNotThrow)); Inst16++; } } catch(e) {}try { if (Inst17 <= 1000 && typeof (iter.next) != "undefined") {_RecordType("<544,553,19>",(iter.next)); Inst17++; } } catch(e) {}try { if (Inst18 <= 1000 && typeof (iter) != "undefined") {_RecordType("<544,548,19>",(iter)); Inst18++; } } catch(e) {}
+  assertDoesNotThrow(function() { iter.next(); });
+try { if (Inst19 <= 1000 && typeof (assertThrows) != "undefined") {_RecordType("<563,575,20>",(assertThrows)); Inst19++; } } catch(e) {}try { if (Inst20 <= 1000 && typeof (iter.throw) != "undefined") {_RecordType("<589,599,20>",(iter.throw)); Inst20++; } } catch(e) {}try { if (Inst21 <= 1000 && typeof (iter) != "undefined") {_RecordType("<589,593,20>",(iter)); Inst21++; } } catch(e) {}try { if (Inst22 <= 1000 && typeof (Bar) != "undefined") {_RecordType("<604,607,20>",(Bar)); Inst22++; } } catch(e) {}try { if (Inst23 <= 1000 && typeof (Bar) != "undefined") {_RecordType("<613,616,20>",(Bar)); Inst23++; } } catch(e) {}
+  assertThrows(function() { iter.throw(new Bar); }, Bar);
+}
+
+var iter;
+try { if (Inst24 <= 1000 && typeof (iter) != "undefined") {_RecordType("<626,630,23>",(iter)); Inst24++; } } catch(e) {}
+try { if (Inst25 <= 1000 && typeof (nextGenerator) != "undefined") {_RecordType("<642,655,24>",(nextGenerator)); Inst25++; } } catch(e) {}try { if (Inst26 <= 1000 && typeof (iter.next) != "undefined") {_RecordType("<666,675,24>",(iter.next)); Inst26++; } } catch(e) {}try { if (Inst27 <= 1000 && typeof (iter) != "undefined") {_RecordType("<666,670,24>",(iter)); Inst27++; } } catch(e) {}
+function* nextGenerator() { yield iter.next(); }
+try { if (Inst28 <= 1000 && typeof (throwGenerator) != "undefined") {_RecordType("<691,705,25>",(throwGenerator)); Inst28++; } } catch(e) {}try { if (Inst29 <= 1000 && typeof (iter.throw) != "undefined") {_RecordType("<716,726,25>",(iter.throw)); Inst29++; } } catch(e) {}try { if (Inst30 <= 1000 && typeof (iter) != "undefined") {_RecordType("<716,720,25>",(iter)); Inst30++; } } catch(e) {}try { if (Inst31 <= 1000 && typeof (Bar) != "undefined") {_RecordType("<731,734,25>",(Bar)); Inst31++; } } catch(e) {}
+function* throwGenerator() { yield iter.throw(new Bar); }
+
+// Throw on a suspendedStart iterator.
+try { if (Inst33 <= 1000 && typeof (nextGenerator) != "undefined") {_RecordType("<786,799,28>",(nextGenerator)); Inst33++; } } catch(e) {}
+iter = nextGenerator();
+try { if (Inst32 <= 1000 && typeof (iter) != "undefined") {_RecordType("<779,783,28>",(iter)); Inst32++; } } catch(e) {}
+try { if (Inst34 <= 1000 && typeof (assertThrows) != "undefined") {_RecordType("<803,815,29>",(assertThrows)); Inst34++; } } catch(e) {}try { if (Inst35 <= 1000 && typeof (iter.throw) != "undefined") {_RecordType("<829,839,29>",(iter.throw)); Inst35++; } } catch(e) {}try { if (Inst36 <= 1000 && typeof (iter) != "undefined") {_RecordType("<829,833,29>",(iter)); Inst36++; } } catch(e) {}try { if (Inst37 <= 1000 && typeof (Foo) != "undefined") {_RecordType("<844,847,29>",(Foo)); Inst37++; } } catch(e) {}try { if (Inst38 <= 1000 && typeof (Foo) != "undefined") {_RecordType("<852,855,29>",(Foo)); Inst38++; } } catch(e) {}
+assertThrows(function() { iter.throw(new Foo) }, Foo)
+try { if (Inst39 <= 1000 && typeof (assertIteratorIsClosed) != "undefined") {_RecordType("<857,879,30>",(assertIteratorIsClosed)); Inst39++; } } catch(e) {}try { if (Inst40 <= 1000 && typeof (iter) != "undefined") {_RecordType("<880,884,30>",(iter)); Inst40++; } } catch(e) {}
+assertIteratorIsClosed(iter);
+try { if (Inst41 <= 1000 && typeof (assertThrows) != "undefined") {_RecordType("<887,899,31>",(assertThrows)); Inst41++; } } catch(e) {}try { if (Inst42 <= 1000 && typeof (iter.throw) != "undefined") {_RecordType("<913,923,31>",(iter.throw)); Inst42++; } } catch(e) {}try { if (Inst43 <= 1000 && typeof (iter) != "undefined") {_RecordType("<913,917,31>",(iter)); Inst43++; } } catch(e) {}try { if (Inst44 <= 1000 && typeof (Foo) != "undefined") {_RecordType("<928,931,31>",(Foo)); Inst44++; } } catch(e) {}try { if (Inst45 <= 1000 && typeof (Foo) != "undefined") {_RecordType("<936,939,31>",(Foo)); Inst45++; } } catch(e) {}
+assertThrows(function() { iter.throw(new Foo) }, Foo)
+try { if (Inst46 <= 1000 && typeof (assertIteratorIsClosed) != "undefined") {_RecordType("<941,963,32>",(assertIteratorIsClosed)); Inst46++; } } catch(e) {}try { if (Inst47 <= 1000 && typeof (iter) != "undefined") {_RecordType("<964,968,32>",(iter)); Inst47++; } } catch(e) {}
+assertIteratorIsClosed(iter);
+
+// The same.
+try { if (Inst49 <= 1000 && typeof (throwGenerator) != "undefined") {_RecordType("<992,1006,35>",(throwGenerator)); Inst49++; } } catch(e) {}
+iter = throwGenerator();
+try { if (Inst48 <= 1000 && typeof (iter) != "undefined") {_RecordType("<985,989,35>",(iter)); Inst48++; } } catch(e) {}
+try { if (Inst50 <= 1000 && typeof (assertThrows) != "undefined") {_RecordType("<1010,1022,36>",(assertThrows)); Inst50++; } } catch(e) {}try { if (Inst51 <= 1000 && typeof (iter.throw) != "undefined") {_RecordType("<1036,1046,36>",(iter.throw)); Inst51++; } } catch(e) {}try { if (Inst52 <= 1000 && typeof (iter) != "undefined") {_RecordType("<1036,1040,36>",(iter)); Inst52++; } } catch(e) {}try { if (Inst53 <= 1000 && typeof (Foo) != "undefined") {_RecordType("<1051,1054,36>",(Foo)); Inst53++; } } catch(e) {}try { if (Inst54 <= 1000 && typeof (Foo) != "undefined") {_RecordType("<1059,1062,36>",(Foo)); Inst54++; } } catch(e) {}
+assertThrows(function() { iter.throw(new Foo) }, Foo)
+try { if (Inst55 <= 1000 && typeof (assertThrows) != "undefined") {_RecordType("<1064,1076,37>",(assertThrows)); Inst55++; } } catch(e) {}try { if (Inst56 <= 1000 && typeof (iter.throw) != "undefined") {_RecordType("<1090,1100,37>",(iter.throw)); Inst56++; } } catch(e) {}try { if (Inst57 <= 1000 && typeof (iter) != "undefined") {_RecordType("<1090,1094,37>",(iter)); Inst57++; } } catch(e) {}try { if (Inst58 <= 1000 && typeof (Foo) != "undefined") {_RecordType("<1105,1108,37>",(Foo)); Inst58++; } } catch(e) {}try { if (Inst59 <= 1000 && typeof (Foo) != "undefined") {_RecordType("<1113,1116,37>",(Foo)); Inst59++; } } catch(e) {}
+assertThrows(function() { iter.throw(new Foo) }, Foo)
+try { if (Inst60 <= 1000 && typeof (assertIteratorIsClosed) != "undefined") {_RecordType("<1118,1140,38>",(assertIteratorIsClosed)); Inst60++; } } catch(e) {}try { if (Inst61 <= 1000 && typeof (iter) != "undefined") {_RecordType("<1141,1145,38>",(iter)); Inst61++; } } catch(e) {}
+assertIteratorIsClosed(iter);
+
+// Next on an executing iterator raises a TypeError.
+try { if (Inst63 <= 1000 && typeof (nextGenerator) != "undefined") {_RecordType("<1209,1222,41>",(nextGenerator)); Inst63++; } } catch(e) {}
+iter = nextGenerator();
+try { if (Inst62 <= 1000 && typeof (iter) != "undefined") {_RecordType("<1202,1206,41>",(iter)); Inst62++; } } catch(e) {}
+try { if (Inst64 <= 1000 && typeof (assertThrows) != "undefined") {_RecordType("<1226,1238,42>",(assertThrows)); Inst64++; } } catch(e) {}try { if (Inst65 <= 1000 && typeof (iter.next) != "undefined") {_RecordType("<1252,1261,42>",(iter.next)); Inst65++; } } catch(e) {}try { if (Inst66 <= 1000 && typeof (iter) != "undefined") {_RecordType("<1252,1256,42>",(iter)); Inst66++; } } catch(e) {}try { if (Inst67 <= 1000 && typeof (TypeError) != "undefined") {_RecordType("<1267,1276,42>",(TypeError)); Inst67++; } } catch(e) {}
+assertThrows(function() { iter.next() }, TypeError)
+try { if (Inst68 <= 1000 && typeof (assertIteratorIsClosed) != "undefined") {_RecordType("<1278,1300,43>",(assertIteratorIsClosed)); Inst68++; } } catch(e) {}try { if (Inst69 <= 1000 && typeof (iter) != "undefined") {_RecordType("<1301,1305,43>",(iter)); Inst69++; } } catch(e) {}
+assertIteratorIsClosed(iter);
+
+// Throw on an executing iterator raises a TypeError.
+try { if (Inst71 <= 1000 && typeof (throwGenerator) != "undefined") {_RecordType("<1370,1384,46>",(throwGenerator)); Inst71++; } } catch(e) {}
+iter = throwGenerator();
+try { if (Inst70 <= 1000 && typeof (iter) != "undefined") {_RecordType("<1363,1367,46>",(iter)); Inst70++; } } catch(e) {}
+try { if (Inst72 <= 1000 && typeof (assertThrows) != "undefined") {_RecordType("<1388,1400,47>",(assertThrows)); Inst72++; } } catch(e) {}try { if (Inst73 <= 1000 && typeof (iter.next) != "undefined") {_RecordType("<1414,1423,47>",(iter.next)); Inst73++; } } catch(e) {}try { if (Inst74 <= 1000 && typeof (iter) != "undefined") {_RecordType("<1414,1418,47>",(iter)); Inst74++; } } catch(e) {}try { if (Inst75 <= 1000 && typeof (TypeError) != "undefined") {_RecordType("<1429,1438,47>",(TypeError)); Inst75++; } } catch(e) {}
+assertThrows(function() { iter.next() }, TypeError)
+try { if (Inst76 <= 1000 && typeof (assertIteratorIsClosed) != "undefined") {_RecordType("<1440,1462,48>",(assertIteratorIsClosed)); Inst76++; } } catch(e) {}try { if (Inst77 <= 1000 && typeof (iter) != "undefined") {_RecordType("<1463,1467,48>",(iter)); Inst77++; } } catch(e) {}
+assertIteratorIsClosed(iter);
+
+// Next on an executing iterator doesn't change the state of the
+// generator.
+iter = (function* () {
+try { if (Inst81 <= 1000 && typeof (e) != "undefined") {_RecordType("<1622,1623,56>",(e)); Inst81++; } } catch(e) {}
+  try {
+try { if (Inst79 <= 1000 && typeof (iter.next) != "undefined") {_RecordType("<1585,1594,54>",(iter.next)); Inst79++; } } catch(e) {}try { if (Inst80 <= 1000 && typeof (iter) != "undefined") {_RecordType("<1585,1589,54>",(iter)); Inst80++; } } catch(e) {}
+    iter.next();
+    yield 1;
+  } catch (e) {
+try { if (Inst84 <= 1000 && typeof (e) != "undefined") {_RecordType("<1810,1811,62>",(e)); Inst84++; } } catch(e) {}
+    try {
+      // This next() should raise the same exception, because the first
+      // next() left the iter in the executing state.
+try { if (Inst82 <= 1000 && typeof (iter.next) != "undefined") {_RecordType("<1769,1778,60>",(iter.next)); Inst82++; } } catch(e) {}try { if (Inst83 <= 1000 && typeof (iter) != "undefined") {_RecordType("<1769,1773,60>",(iter)); Inst83++; } } catch(e) {}
+      iter.next();
+      yield 2;
+    } catch (e) {
+      yield 3;
+    }
+  }
+  yield 4;
+})();
+try { if (Inst78 <= 1000 && typeof (iter) != "undefined") {_RecordType("<1550,1554,52>",(iter)); Inst78++; } } catch(e) {}
+try { if (Inst85 <= 1000 && typeof (assertIteratorResult) != "undefined") {_RecordType("<1857,1877,68>",(assertIteratorResult)); Inst85++; } } catch(e) {}try { if (Inst86 <= 1000 && typeof (iter.next) != "undefined") {_RecordType("<1888,1897,68>",(iter.next)); Inst86++; } } catch(e) {}try { if (Inst87 <= 1000 && typeof (iter) != "undefined") {_RecordType("<1888,1892,68>",(iter)); Inst87++; } } catch(e) {}
+assertIteratorResult(3, false, iter.next());
+try { if (Inst88 <= 1000 && typeof (assertIteratorResult) != "undefined") {_RecordType("<1902,1922,69>",(assertIteratorResult)); Inst88++; } } catch(e) {}try { if (Inst89 <= 1000 && typeof (iter.next) != "undefined") {_RecordType("<1933,1942,69>",(iter.next)); Inst89++; } } catch(e) {}try { if (Inst90 <= 1000 && typeof (iter) != "undefined") {_RecordType("<1933,1937,69>",(iter)); Inst90++; } } catch(e) {}
+assertIteratorResult(4, false, iter.next());
+try { if (Inst91 <= 1000 && typeof (assertIteratorIsClosed) != "undefined") {_RecordType("<1947,1969,70>",(assertIteratorIsClosed)); Inst91++; } } catch(e) {}try { if (Inst92 <= 1000 && typeof (iter) != "undefined") {_RecordType("<1970,1974,70>",(iter)); Inst92++; } } catch(e) {}
+assertIteratorIsClosed(iter);
+
+
+// A return that doesn't close.
+{
+  let g = function*() { try {return 42} finally {yield 43} };
+try { if (Inst93 <= 1000 && typeof (g) != "undefined") {_RecordType("<2019,2020,75>",(g)); Inst93++; } } catch(e) {}
+
+try { if (Inst95 <= 1000 && typeof (g) != "undefined") {_RecordType("<2086,2087,77>",(g)); Inst95++; } } catch(e) {}
+  let x = g();
+try { if (Inst94 <= 1000 && typeof (x) != "undefined") {_RecordType("<2082,2083,77>",(x)); Inst94++; } } catch(e) {}
+try { if (Inst96 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<2093,2105,78>",(assertEquals)); Inst96++; } } catch(e) {}try { if (Inst97 <= 1000 && typeof (x.next) != "undefined") {_RecordType("<2132,2138,78>",(x.next)); Inst97++; } } catch(e) {}try { if (Inst98 <= 1000 && typeof (x) != "undefined") {_RecordType("<2132,2133,78>",(x)); Inst98++; } } catch(e) {}
+  assertEquals({value: 43, done: false}, x.next());
+try { if (Inst99 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<2145,2157,79>",(assertEquals)); Inst99++; } } catch(e) {}try { if (Inst100 <= 1000 && typeof (x.next) != "undefined") {_RecordType("<2183,2189,79>",(x.next)); Inst100++; } } catch(e) {}try { if (Inst101 <= 1000 && typeof (x) != "undefined") {_RecordType("<2183,2184,79>",(x)); Inst101++; } } catch(e) {}
+  assertEquals({value: 42, done: true}, x.next());
+}
+{
+  let x;
+try { if (Inst102 <= 1000 && typeof (x) != "undefined") {_RecordType("<2204,2205,82>",(x)); Inst102++; } } catch(e) {}
+try { if (Inst104 <= 1000 && typeof (x.throw) != "undefined") {_RecordType("<2256,2263,83>",(x.throw)); Inst104++; } } catch(e) {}try { if (Inst105 <= 1000 && typeof (x) != "undefined") {_RecordType("<2256,2257,83>",(x)); Inst105++; } } catch(e) {}
+  let g = function*() { try {return 42} finally {x.throw(666)} };
+try { if (Inst103 <= 1000 && typeof (g) != "undefined") {_RecordType("<2213,2214,83>",(g)); Inst103++; } } catch(e) {}
+
+try { if (Inst107 <= 1000 && typeof (g) != "undefined") {_RecordType("<2280,2281,85>",(g)); Inst107++; } } catch(e) {}
+  x = g();
+try { if (Inst106 <= 1000 && typeof (x) != "undefined") {_RecordType("<2276,2277,85>",(x)); Inst106++; } } catch(e) {}
+try { if (Inst108 <= 1000 && typeof (assertThrows) != "undefined") {_RecordType("<2287,2299,86>",(assertThrows)); Inst108++; } } catch(e) {}try { if (Inst109 <= 1000 && typeof (x.next) != "undefined") {_RecordType("<2306,2312,86>",(x.next)); Inst109++; } } catch(e) {}try { if (Inst110 <= 1000 && typeof (x) != "undefined") {_RecordType("<2306,2307,86>",(x)); Inst110++; } } catch(e) {}try { if (Inst111 <= 1000 && typeof (TypeError) != "undefined") {_RecordType("<2316,2325,86>",(TypeError)); Inst111++; } } catch(e) {}
+  assertThrows(() => x.next(), TypeError);  // Still executing.
+}
+{
+  let x;
+try { if (Inst112 <= 1000 && typeof (x) != "undefined") {_RecordType("<2359,2360,89>",(x)); Inst112++; } } catch(e) {}
+  let g = function*() {
+try { if (Inst114 <= 1000 && typeof (x.throw) != "undefined") {_RecordType("<2420,2427,91>",(x.throw)); Inst114++; } } catch(e) {}try { if (Inst115 <= 1000 && typeof (x) != "undefined") {_RecordType("<2420,2421,91>",(x)); Inst115++; } } catch(e) {}try { if (Inst116 <= 1000 && typeof (e) != "undefined") {_RecordType("<2440,2441,91>",(e)); Inst116++; } } catch(e) {}
+    try {return 42} finally {try {x.throw(666)} catch(e) {}}
+  };
+try { if (Inst113 <= 1000 && typeof (g) != "undefined") {_RecordType("<2368,2369,90>",(g)); Inst113++; } } catch(e) {}
+
+try { if (Inst118 <= 1000 && typeof (g) != "undefined") {_RecordType("<2459,2460,94>",(g)); Inst118++; } } catch(e) {}
+  x = g();
+try { if (Inst117 <= 1000 && typeof (x) != "undefined") {_RecordType("<2455,2456,94>",(x)); Inst117++; } } catch(e) {}
+try { if (Inst119 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<2466,2478,95>",(assertEquals)); Inst119++; } } catch(e) {}try { if (Inst120 <= 1000 && typeof (x.next) != "undefined") {_RecordType("<2504,2510,95>",(x.next)); Inst120++; } } catch(e) {}try { if (Inst121 <= 1000 && typeof (x) != "undefined") {_RecordType("<2504,2505,95>",(x)); Inst121++; } } catch(e) {}
+  assertEquals({value: 42, done: true}, x.next());
+}
+

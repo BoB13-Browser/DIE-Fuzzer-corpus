@@ -1,0 +1,305 @@
+var Inst0 = 0;
+var Inst1 = 0;
+var Inst2 = 0;
+var Inst3 = 0;
+var Inst4 = 0;
+var Inst5 = 0;
+var Inst6 = 0;
+var Inst7 = 0;
+var Inst8 = 0;
+var Inst9 = 0;
+var Inst10 = 0;
+var Inst11 = 0;
+var Inst12 = 0;
+var Inst13 = 0;
+var Inst14 = 0;
+var Inst15 = 0;
+var Inst16 = 0;
+var Inst17 = 0;
+var Inst18 = 0;
+var Inst19 = 0;
+var Inst20 = 0;
+var Inst21 = 0;
+var Inst22 = 0;
+var Inst23 = 0;
+var Inst24 = 0;
+var Inst25 = 0;
+var Inst26 = 0;
+var Inst27 = 0;
+var Inst28 = 0;
+var Inst29 = 0;
+var Inst30 = 0;
+var Inst31 = 0;
+var Inst32 = 0;
+var Inst33 = 0;
+var Inst34 = 0;
+var Inst35 = 0;
+var Inst36 = 0;
+var Inst37 = 0;
+var Inst38 = 0;
+var Inst39 = 0;
+var Inst40 = 0;
+var Inst41 = 0;
+var Inst42 = 0;
+var Inst43 = 0;
+var Inst44 = 0;
+var Inst45 = 0;
+var Inst46 = 0;
+var Inst47 = 0;
+var Inst48 = 0;
+var Inst49 = 0;
+var Inst50 = 0;
+var Inst51 = 0;
+var Inst52 = 0;
+var Inst53 = 0;
+var Inst54 = 0;
+var Inst55 = 0;
+var Inst56 = 0;
+var Inst57 = 0;
+var Inst58 = 0;
+var Inst59 = 0;
+var Inst60 = 0;
+var Inst61 = 0;
+var Inst62 = 0;
+var Inst63 = 0;
+var Inst64 = 0;
+var Inst65 = 0;
+var Inst66 = 0;
+var Inst67 = 0;
+var Inst68 = 0;
+var Inst69 = 0;
+var Inst70 = 0;
+var Inst71 = 0;
+var Inst72 = 0;
+var Inst73 = 0;
+var Inst74 = 0;
+var Inst75 = 0;
+var Inst76 = 0;
+var Inst77 = 0;
+var Inst78 = 0;
+var Inst79 = 0;
+var Inst80 = 0;
+var Inst81 = 0;
+var Inst82 = 0;
+var Inst83 = 0;
+var Inst84 = 0;
+var Inst85 = 0;
+ 
+function _TypeOfArray(a) {
+	let number = true;	
+	let string = true;
+	for (let i = 0; i < a.length; i++) {
+		if (number && (typeof a[i]) != "number") {
+			number = false;	
+		}
+		if (string && (typeof a[i]) != "string") {
+			string = false;	
+		}
+		if (!number && !string)
+			break;
+	}
+	if (number)
+		return "number";
+	else if (string)
+		return "string";
+	else
+		return "any";
+}
+
+function _TypeIsEqual(t1, t2) {
+	return JSON.stringify(t1) === JSON.stringify(t2);
+}
+
+function _TypeOf(a, step) {
+	var t;
+	var type = Object.prototype.toString.call(a).slice(8, -1).toLowerCase();	
+	if (type == "array") {
+		t = {type : type, extra: {elemType: _TypeOfArray(a)}};
+	} else if (type == "object") {
+		let shape = [];
+        if (step === undefined || step > 0) {
+            let keys = Object.keys(a);
+            let length = Math.min(100, keys.length);
+		    for (let i = 0; i < length; i++) {
+			    shape.push([keys[i], _TypeOf(a[keys[i]], step === undefined ? 1 : step - 1)]);	
+		    }
+        }
+		t = {type : type, extra: {shape: shape}};
+	} else {
+		t = {type : type};
+	} 
+	return t;
+}
+
+function _RecordType(loc, a) {
+	var t = _TypeOf(a);
+    print("~~~TypeInfo:" + loc + ":" + JSON.stringify(t));
+}
+// Copyright 2009 the V8 project authors. All rights reserved.
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions are
+// met:
+//
+//     * Redistributions of source code must retain the above copyright
+//       notice, this list of conditions and the following disclaimer.
+//     * Redistributions in binary form must reproduce the above
+//       copyright notice, this list of conditions and the following
+//       disclaimer in the documentation and/or other materials provided
+//       with the distribution.
+//     * Neither the name of Google Inc. nor the names of its
+//       contributors may be used to endorse or promote products derived
+//       from this software without specific prior written permission.
+//
+// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+// "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+// LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+// A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+// OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+// SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+// LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+// DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+// THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+// (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+// OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+// Flags: --expose-debug-as debug
+// Get the Debug object exposed from the debug context global object.
+try { if (Inst1 <= 1000 && typeof (debug.Debug) != "undefined") {_RecordType("<1710,1721,30>",(debug.Debug)); Inst1++; } } catch(e) {}try { if (Inst2 <= 1000 && typeof (debug) != "undefined") {_RecordType("<1710,1715,30>",(debug)); Inst2++; } } catch(e) {}
+Debug = debug.Debug
+try { if (Inst0 <= 1000 && typeof (Debug) != "undefined") {_RecordType("<1702,1707,30>",(Debug)); Inst0++; } } catch(e) {}
+
+var exception = null;
+try { if (Inst3 <= 1000 && typeof (exception) != "undefined") {_RecordType("<1727,1736,32>",(exception)); Inst3++; } } catch(e) {}
+var state = 0;
+try { if (Inst4 <= 1000 && typeof (state) != "undefined") {_RecordType("<1749,1754,33>",(state)); Inst4++; } } catch(e) {}
+var expected_function_name = null;
+try { if (Inst5 <= 1000 && typeof (expected_function_name) != "undefined") {_RecordType("<1764,1786,34>",(expected_function_name)); Inst5++; } } catch(e) {}
+var expected_source_line_text = null;
+try { if (Inst6 <= 1000 && typeof (expected_source_line_text) != "undefined") {_RecordType("<1799,1824,35>",(expected_source_line_text)); Inst6++; } } catch(e) {}
+var expected_caller_source_line = null;
+try { if (Inst7 <= 1000 && typeof (expected_caller_source_line) != "undefined") {_RecordType("<1837,1864,36>",(expected_caller_source_line)); Inst7++; } } catch(e) {}
+var step_in_count = 2;
+try { if (Inst8 <= 1000 && typeof (step_in_count) != "undefined") {_RecordType("<1877,1890,37>",(step_in_count)); Inst8++; } } catch(e) {}
+
+// Simple debug event handler which first time will cause 'step in' action
+// to get into g.call and than check that execution is pauesed inside
+// function 'g'.
+try { if (Inst9 <= 1000 && typeof (listener) != "undefined") {_RecordType("<2068,2076,42>",(listener)); Inst9++; } } catch(e) {}
+function listener(event, exec_state, event_data, data) {
+try { if (Inst10 <= 1000 && typeof (event) != "undefined") {_RecordType("<2077,2082,42>",(event)); Inst10++; } } catch(e) {}try { if (Inst11 <= 1000 && typeof (exec_state) != "undefined") {_RecordType("<2084,2094,42>",(exec_state)); Inst11++; } } catch(e) {}try { if (Inst12 <= 1000 && typeof (event_data) != "undefined") {_RecordType("<2096,2106,42>",(event_data)); Inst12++; } } catch(e) {}try { if (Inst13 <= 1000 && typeof (data) != "undefined") {_RecordType("<2108,2112,42>",(data)); Inst13++; } } catch(e) {}
+try { if (Inst36 <= 1000 && typeof (e) != "undefined") {_RecordType("<2531,2532,56>",(e)); Inst36++; } } catch(e) {}
+  try {
+try { if (Inst14 <= 1000 && typeof (event) != "undefined") {_RecordType("<2132,2137,44>",(event)); Inst14++; } } catch(e) {}try { if (Inst15 <= 1000 && typeof (Debug.DebugEvent.Break) != "undefined") {_RecordType("<2141,2163,44>",(Debug.DebugEvent.Break)); Inst15++; } } catch(e) {}try { if (Inst16 <= 1000 && typeof (Debug.DebugEvent) != "undefined") {_RecordType("<2141,2157,44>",(Debug.DebugEvent)); Inst16++; } } catch(e) {}try { if (Inst17 <= 1000 && typeof (Debug) != "undefined") {_RecordType("<2141,2146,44>",(Debug)); Inst17++; } } catch(e) {}
+    if (event == Debug.DebugEvent.Break) {
+try { if (Inst18 <= 1000 && typeof (state) != "undefined") {_RecordType("<2177,2182,45>",(state)); Inst18++; } } catch(e) {}try { if (Inst19 <= 1000 && typeof (step_in_count) != "undefined") {_RecordType("<2185,2198,45>",(step_in_count)); Inst19++; } } catch(e) {}
+      if (state < step_in_count) {
+        // Step into f().
+try { if (Inst20 <= 1000 && typeof (exec_state.prepareStep) != "undefined") {_RecordType("<2236,2258,47>",(exec_state.prepareStep)); Inst20++; } } catch(e) {}try { if (Inst21 <= 1000 && typeof (exec_state) != "undefined") {_RecordType("<2236,2246,47>",(exec_state)); Inst21++; } } catch(e) {}try { if (Inst22 <= 1000 && typeof (Debug.StepAction.StepIn) != "undefined") {_RecordType("<2259,2282,47>",(Debug.StepAction.StepIn)); Inst22++; } } catch(e) {}try { if (Inst23 <= 1000 && typeof (Debug.StepAction) != "undefined") {_RecordType("<2259,2275,47>",(Debug.StepAction)); Inst23++; } } catch(e) {}try { if (Inst24 <= 1000 && typeof (Debug) != "undefined") {_RecordType("<2259,2264,47>",(Debug)); Inst24++; } } catch(e) {}
+        exec_state.prepareStep(Debug.StepAction.StepIn);
+try { if (Inst25 <= 1000 && typeof (state) != "undefined") {_RecordType("<2293,2298,48>",(state)); Inst25++; } } catch(e) {}
+        state++;
+      } else {
+try { if (Inst26 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<2325,2337,50>",(assertEquals)); Inst26++; } } catch(e) {}try { if (Inst27 <= 1000 && typeof (expected_source_line_text) != "undefined") {_RecordType("<2338,2363,50>",(expected_source_line_text)); Inst27++; } } catch(e) {}try { if (Inst28 <= 1000 && typeof (event_data.sourceLineText) != "undefined") {_RecordType("<2386,2411,51>",(event_data.sourceLineText)); Inst28++; } } catch(e) {}try { if (Inst29 <= 1000 && typeof (event_data) != "undefined") {_RecordType("<2386,2396,51>",(event_data)); Inst29++; } } catch(e) {}
+        assertEquals(expected_source_line_text,
+                     event_data.sourceLineText());
+try { if (Inst30 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<2424,2436,52>",(assertEquals)); Inst30++; } } catch(e) {}try { if (Inst31 <= 1000 && typeof (expected_function_name) != "undefined") {_RecordType("<2437,2459,52>",(expected_function_name)); Inst31++; } } catch(e) {}try { if (Inst32 <= 1000 && typeof (event_data.func().name) != "undefined") {_RecordType("<2461,2483,52>",(event_data.func().name)); Inst32++; } } catch(e) {}try { if (Inst33 <= 1000 && typeof (event_data.func) != "undefined") {_RecordType("<2461,2476,52>",(event_data.func)); Inst33++; } } catch(e) {}try { if (Inst34 <= 1000 && typeof (event_data) != "undefined") {_RecordType("<2461,2471,52>",(event_data)); Inst34++; } } catch(e) {}
+        assertEquals(expected_function_name, event_data.func().name());
+        state = 3;
+try { if (Inst35 <= 1000 && typeof (state) != "undefined") {_RecordType("<2496,2501,53>",(state)); Inst35++; } } catch(e) {}
+      }
+    }
+  } catch(e) {
+try { if (Inst38 <= 1000 && typeof (e) != "undefined") {_RecordType("<2552,2553,57>",(e)); Inst38++; } } catch(e) {}
+    exception = e;
+try { if (Inst37 <= 1000 && typeof (exception) != "undefined") {_RecordType("<2540,2549,57>",(exception)); Inst37++; } } catch(e) {}
+  }
+};
+
+// Add the debug event listener.
+try { if (Inst39 <= 1000 && typeof (Debug.setListener) != "undefined") {_RecordType("<2596,2613,62>",(Debug.setListener)); Inst39++; } } catch(e) {}try { if (Inst40 <= 1000 && typeof (Debug) != "undefined") {_RecordType("<2596,2601,62>",(Debug)); Inst40++; } } catch(e) {}try { if (Inst41 <= 1000 && typeof (listener) != "undefined") {_RecordType("<2614,2622,62>",(listener)); Inst41++; } } catch(e) {}
+Debug.setListener(listener);
+
+
+try { if (Inst42 <= 1000 && typeof (g) != "undefined") {_RecordType("<2636,2637,65>",(g)); Inst42++; } } catch(e) {}
+function g() {
+   return "s";  // expected line
+}
+
+try { if (Inst43 <= 1000 && typeof (testFunction) != "undefined") {_RecordType("<2687,2699,69>",(testFunction)); Inst43++; } } catch(e) {}
+function testFunction() {
+try { if (Inst45 <= 1000 && typeof (g) != "undefined") {_RecordType("<2714,2715,70>",(g)); Inst45++; } } catch(e) {}
+  var f = g;
+try { if (Inst44 <= 1000 && typeof (f) != "undefined") {_RecordType("<2710,2711,70>",(f)); Inst44++; } } catch(e) {}
+try { if (Inst47 <= 1000 && typeof (f) != "undefined") {_RecordType("<2730,2731,71>",(f)); Inst47++; } } catch(e) {}
+  var s = 1 +f(10);
+try { if (Inst46 <= 1000 && typeof (s) != "undefined") {_RecordType("<2723,2724,71>",(s)); Inst46++; } } catch(e) {}
+}
+
+try { if (Inst48 <= 1000 && typeof (g2) != "undefined") {_RecordType("<2749,2751,74>",(g2)); Inst48++; } } catch(e) {}
+function g2() {
+   return "s2";  // expected line
+}
+
+try { if (Inst49 <= 1000 && typeof (testFunction2) != "undefined") {_RecordType("<2802,2815,78>",(testFunction2)); Inst49++; } } catch(e) {}
+function testFunction2() {
+try { if (Inst51 <= 1000 && typeof (g2) != "undefined") {_RecordType("<2830,2832,79>",(g2)); Inst51++; } } catch(e) {}
+  var f = g2;
+try { if (Inst50 <= 1000 && typeof (f) != "undefined") {_RecordType("<2826,2827,79>",(f)); Inst50++; } } catch(e) {}
+try { if (Inst53 <= 1000 && typeof (f) != "undefined") {_RecordType("<2847,2848,80>",(f)); Inst53++; } } catch(e) {}
+  var s = 1 +f(10, 20);
+try { if (Inst52 <= 1000 && typeof (s) != "undefined") {_RecordType("<2840,2841,80>",(s)); Inst52++; } } catch(e) {}
+}
+
+// Run three times. First time the function will be compiled lazily,
+// second time cached version will be used.
+for (var i = 0; i < 3; i++) {
+try { if (Inst54 <= 1000 && typeof (i) != "undefined") {_RecordType("<2983,2984,85>",(i)); Inst54++; } } catch(e) {}try { if (Inst55 <= 1000 && typeof (i) != "undefined") {_RecordType("<2990,2991,85>",(i)); Inst55++; } } catch(e) {}try { if (Inst56 <= 1000 && typeof (i) != "undefined") {_RecordType("<2997,2998,85>",(i)); Inst56++; } } catch(e) {}
+  state = 0;
+try { if (Inst57 <= 1000 && typeof (state) != "undefined") {_RecordType("<3006,3011,86>",(state)); Inst57++; } } catch(e) {}
+  expected_function_name = 'g';
+try { if (Inst58 <= 1000 && typeof (expected_function_name) != "undefined") {_RecordType("<3019,3041,87>",(expected_function_name)); Inst58++; } } catch(e) {}
+  expected_source_line_text = '   return "s";  // expected line';
+try { if (Inst59 <= 1000 && typeof (expected_source_line_text) != "undefined") {_RecordType("<3051,3076,88>",(expected_source_line_text)); Inst59++; } } catch(e) {}
+  step_in_count = 2;
+try { if (Inst60 <= 1000 && typeof (step_in_count) != "undefined") {_RecordType("<3117,3130,89>",(step_in_count)); Inst60++; } } catch(e) {}
+  // Set a break point and call to invoke the debug event listener.
+try { if (Inst61 <= 1000 && typeof (Debug.setBreakPoint) != "undefined") {_RecordType("<3206,3225,91>",(Debug.setBreakPoint)); Inst61++; } } catch(e) {}try { if (Inst62 <= 1000 && typeof (Debug) != "undefined") {_RecordType("<3206,3211,91>",(Debug)); Inst62++; } } catch(e) {}try { if (Inst63 <= 1000 && typeof (testFunction) != "undefined") {_RecordType("<3226,3238,91>",(testFunction)); Inst63++; } } catch(e) {}
+  Debug.setBreakPoint(testFunction, 1, 0);
+try { if (Inst64 <= 1000 && typeof (testFunction) != "undefined") {_RecordType("<3249,3261,92>",(testFunction)); Inst64++; } } catch(e) {}
+  testFunction();
+try { if (Inst65 <= 1000 && typeof (assertNull) != "undefined") {_RecordType("<3267,3277,93>",(assertNull)); Inst65++; } } catch(e) {}try { if (Inst66 <= 1000 && typeof (exception) != "undefined") {_RecordType("<3278,3287,93>",(exception)); Inst66++; } } catch(e) {}
+  assertNull(exception);
+try { if (Inst67 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<3292,3304,94>",(assertEquals)); Inst67++; } } catch(e) {}try { if (Inst68 <= 1000 && typeof (state) != "undefined") {_RecordType("<3308,3313,94>",(state)); Inst68++; } } catch(e) {}
+  assertEquals(3, state);
+}
+
+// Test stepping into function call when a breakpoint is set at the place
+// of call. Use different pair of functions so that g2 is compiled lazily.
+// Run twice: first time function will be compiled lazily, second time
+// cached version will be used.
+for (var i = 0; i < 3; i++) {
+try { if (Inst69 <= 1000 && typeof (i) != "undefined") {_RecordType("<3580,3581,101>",(i)); Inst69++; } } catch(e) {}try { if (Inst70 <= 1000 && typeof (i) != "undefined") {_RecordType("<3587,3588,101>",(i)); Inst70++; } } catch(e) {}try { if (Inst71 <= 1000 && typeof (i) != "undefined") {_RecordType("<3594,3595,101>",(i)); Inst71++; } } catch(e) {}
+  state = 0;
+try { if (Inst72 <= 1000 && typeof (state) != "undefined") {_RecordType("<3603,3608,102>",(state)); Inst72++; } } catch(e) {}
+  expected_function_name = 'g2';
+try { if (Inst73 <= 1000 && typeof (expected_function_name) != "undefined") {_RecordType("<3616,3638,103>",(expected_function_name)); Inst73++; } } catch(e) {}
+  expected_source_line_text = '   return "s2";  // expected line';
+try { if (Inst74 <= 1000 && typeof (expected_source_line_text) != "undefined") {_RecordType("<3649,3674,104>",(expected_source_line_text)); Inst74++; } } catch(e) {}
+  step_in_count = 1;
+try { if (Inst75 <= 1000 && typeof (step_in_count) != "undefined") {_RecordType("<3716,3729,105>",(step_in_count)); Inst75++; } } catch(e) {}
+  // Set a break point and call to invoke the debug event listener.
+try { if (Inst76 <= 1000 && typeof (Debug.setBreakPoint) != "undefined") {_RecordType("<3805,3824,107>",(Debug.setBreakPoint)); Inst76++; } } catch(e) {}try { if (Inst77 <= 1000 && typeof (Debug) != "undefined") {_RecordType("<3805,3810,107>",(Debug)); Inst77++; } } catch(e) {}try { if (Inst78 <= 1000 && typeof (testFunction2) != "undefined") {_RecordType("<3825,3838,107>",(testFunction2)); Inst78++; } } catch(e) {}
+  Debug.setBreakPoint(testFunction2, 2, 0);
+try { if (Inst79 <= 1000 && typeof (testFunction2) != "undefined") {_RecordType("<3849,3862,108>",(testFunction2)); Inst79++; } } catch(e) {}
+  testFunction2();
+try { if (Inst80 <= 1000 && typeof (assertNull) != "undefined") {_RecordType("<3868,3878,109>",(assertNull)); Inst80++; } } catch(e) {}try { if (Inst81 <= 1000 && typeof (exception) != "undefined") {_RecordType("<3879,3888,109>",(exception)); Inst81++; } } catch(e) {}
+  assertNull(exception);
+try { if (Inst82 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<3893,3905,110>",(assertEquals)); Inst82++; } } catch(e) {}try { if (Inst83 <= 1000 && typeof (state) != "undefined") {_RecordType("<3909,3914,110>",(state)); Inst83++; } } catch(e) {}
+  assertEquals(3, state);
+}
+
+
+// Get rid of the debug event listener.
+try { if (Inst84 <= 1000 && typeof (Debug.setListener) != "undefined") {_RecordType("<3961,3978,115>",(Debug.setListener)); Inst84++; } } catch(e) {}try { if (Inst85 <= 1000 && typeof (Debug) != "undefined") {_RecordType("<3961,3966,115>",(Debug)); Inst85++; } } catch(e) {}
+Debug.setListener(null);
+

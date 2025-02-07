@@ -1,0 +1,109 @@
+var Inst0 = 0;
+var Inst1 = 0;
+var Inst2 = 0;
+var Inst3 = 0;
+var Inst4 = 0;
+var Inst5 = 0;
+var Inst6 = 0;
+var Inst7 = 0;
+var Inst8 = 0;
+var Inst9 = 0;
+var Inst10 = 0;
+var Inst11 = 0;
+var Inst12 = 0;
+var Inst13 = 0;
+var Inst14 = 0;
+var Inst15 = 0;
+var Inst16 = 0;
+var Inst17 = 0;
+var Inst18 = 0;
+var Inst19 = 0;
+var Inst20 = 0;
+ 
+function _TypeOfArray(a) {
+	let number = true;	
+	let string = true;
+	for (let i = 0; i < a.length; i++) {
+		if (number && (typeof a[i]) != "number") {
+			number = false;	
+		}
+		if (string && (typeof a[i]) != "string") {
+			string = false;	
+		}
+		if (!number && !string)
+			break;
+	}
+	if (number)
+		return "number";
+	else if (string)
+		return "string";
+	else
+		return "any";
+}
+
+function _TypeIsEqual(t1, t2) {
+	return JSON.stringify(t1) === JSON.stringify(t2);
+}
+
+function _TypeOf(a, step) {
+	var t;
+	var type = Object.prototype.toString.call(a).slice(8, -1).toLowerCase();	
+	if (type == "array") {
+		t = {type : type, extra: {elemType: _TypeOfArray(a)}};
+	} else if (type == "object") {
+		let shape = [];
+        if (step === undefined || step > 0) {
+            let keys = Object.keys(a);
+            let length = Math.min(100, keys.length);
+		    for (let i = 0; i < length; i++) {
+			    shape.push([keys[i], _TypeOf(a[keys[i]], step === undefined ? 1 : step - 1)]);	
+		    }
+        }
+		t = {type : type, extra: {shape: shape}};
+	} else {
+		t = {type : type};
+	} 
+	return t;
+}
+
+function _RecordType(loc, a) {
+	var t = _TypeOf(a);
+    print("~~~TypeInfo:" + loc + ":" + JSON.stringify(t));
+}
+// Copyright 2015 the V8 project authors. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
+// Flags: --expose-wasm
+
+try { if (Inst0 <= 1000 && typeof (load) != "undefined") {_RecordType("<193,197,7>",(load)); Inst0++; } } catch(e) {}
+load("test/mjsunit/wasm/wasm-constants.js");
+try { if (Inst1 <= 1000 && typeof (load) != "undefined") {_RecordType("<238,242,8>",(load)); Inst1++; } } catch(e) {}
+load("test/mjsunit/wasm/wasm-module-builder.js");
+
+try { if (Inst2 <= 1000 && typeof (BasicTest) != "undefined") {_RecordType("<299,308,10>",(BasicTest)); Inst2++; } } catch(e) {}
+(function BasicTest() {
+  var kReturnValue = 107;
+try { if (Inst3 <= 1000 && typeof (kReturnValue) != "undefined") {_RecordType("<319,331,11>",(kReturnValue)); Inst3++; } } catch(e) {}
+try { if (Inst5 <= 1000 && typeof (WasmModuleBuilder) != "undefined") {_RecordType("<359,376,12>",(WasmModuleBuilder)); Inst5++; } } catch(e) {}
+  var builder = new WasmModuleBuilder();
+try { if (Inst4 <= 1000 && typeof (builder) != "undefined") {_RecordType("<345,352,12>",(builder)); Inst4++; } } catch(e) {}
+
+try { if (Inst6 <= 1000 && typeof (builder.addFunction("main", kSig_i_i)
+    .addBody([kExprI8Const, kReturnValue])
+    .exportFunc) != "undefined") {_RecordType("<383,479,14>",(builder.addFunction("main", kSig_i_i)
+    .addBody([kExprI8Const, kReturnValue])
+    .exportFunc)); Inst6++; } } catch(e) {}try { if (Inst7 <= 1000 && typeof (builder.addFunction("main", kSig_i_i)
+    .addBody) != "undefined") {_RecordType("<383,433,14>",(builder.addFunction("main", kSig_i_i)
+    .addBody)); Inst7++; } } catch(e) {}try { if (Inst8 <= 1000 && typeof (builder.addFunction) != "undefined") {_RecordType("<383,402,14>",(builder.addFunction)); Inst8++; } } catch(e) {}try { if (Inst9 <= 1000 && typeof (builder) != "undefined") {_RecordType("<383,390,14>",(builder)); Inst9++; } } catch(e) {}try { if (Inst10 <= 1000 && typeof (kSig_i_i) != "undefined") {_RecordType("<411,419,14>",(kSig_i_i)); Inst10++; } } catch(e) {}try { if (Inst11 <= 1000 && typeof (kExprI8Const) != "undefined") {_RecordType("<435,447,15>",(kExprI8Const)); Inst11++; } } catch(e) {}try { if (Inst12 <= 1000 && typeof (kReturnValue) != "undefined") {_RecordType("<449,461,15>",(kReturnValue)); Inst12++; } } catch(e) {}
+  builder.addFunction("main", kSig_i_i)
+    .addBody([kExprI8Const, kReturnValue])
+    .exportFunc();
+
+try { if (Inst14 <= 1000 && typeof (builder.instantiate().exports.main) != "undefined") {_RecordType("<497,531,18>",(builder.instantiate().exports.main)); Inst14++; } } catch(e) {}try { if (Inst15 <= 1000 && typeof (builder.instantiate().exports) != "undefined") {_RecordType("<497,526,18>",(builder.instantiate().exports)); Inst15++; } } catch(e) {}try { if (Inst16 <= 1000 && typeof (builder.instantiate) != "undefined") {_RecordType("<497,516,18>",(builder.instantiate)); Inst16++; } } catch(e) {}try { if (Inst17 <= 1000 && typeof (builder) != "undefined") {_RecordType("<497,504,18>",(builder)); Inst17++; } } catch(e) {}
+  var main = builder.instantiate().exports.main;
+try { if (Inst13 <= 1000 && typeof (main) != "undefined") {_RecordType("<490,494,18>",(main)); Inst13++; } } catch(e) {}
+try { if (Inst18 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<535,547,19>",(assertEquals)); Inst18++; } } catch(e) {}try { if (Inst19 <= 1000 && typeof (kReturnValue) != "undefined") {_RecordType("<548,560,19>",(kReturnValue)); Inst19++; } } catch(e) {}try { if (Inst20 <= 1000 && typeof (main) != "undefined") {_RecordType("<562,566,19>",(main)); Inst20++; } } catch(e) {}
+  assertEquals(kReturnValue, main());
+})();
+

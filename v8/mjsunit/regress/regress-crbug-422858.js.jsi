@@ -1,0 +1,137 @@
+var Inst0 = 0;
+var Inst1 = 0;
+var Inst2 = 0;
+var Inst3 = 0;
+var Inst4 = 0;
+var Inst5 = 0;
+var Inst6 = 0;
+var Inst7 = 0;
+var Inst8 = 0;
+var Inst9 = 0;
+var Inst10 = 0;
+var Inst11 = 0;
+var Inst12 = 0;
+var Inst13 = 0;
+var Inst14 = 0;
+var Inst15 = 0;
+var Inst16 = 0;
+var Inst17 = 0;
+var Inst18 = 0;
+var Inst19 = 0;
+var Inst20 = 0;
+var Inst21 = 0;
+var Inst22 = 0;
+var Inst23 = 0;
+var Inst24 = 0;
+var Inst25 = 0;
+var Inst26 = 0;
+var Inst27 = 0;
+var Inst28 = 0;
+var Inst29 = 0;
+var Inst30 = 0;
+var Inst31 = 0;
+var Inst32 = 0;
+var Inst33 = 0;
+var Inst34 = 0;
+var Inst35 = 0;
+var Inst36 = 0;
+var Inst37 = 0;
+var Inst38 = 0;
+var Inst39 = 0;
+var Inst40 = 0;
+var Inst41 = 0;
+ 
+function _TypeOfArray(a) {
+	let number = true;	
+	let string = true;
+	for (let i = 0; i < a.length; i++) {
+		if (number && (typeof a[i]) != "number") {
+			number = false;	
+		}
+		if (string && (typeof a[i]) != "string") {
+			string = false;	
+		}
+		if (!number && !string)
+			break;
+	}
+	if (number)
+		return "number";
+	else if (string)
+		return "string";
+	else
+		return "any";
+}
+
+function _TypeIsEqual(t1, t2) {
+	return JSON.stringify(t1) === JSON.stringify(t2);
+}
+
+function _TypeOf(a, step) {
+	var t;
+	var type = Object.prototype.toString.call(a).slice(8, -1).toLowerCase();	
+	if (type == "array") {
+		t = {type : type, extra: {elemType: _TypeOfArray(a)}};
+	} else if (type == "object") {
+		let shape = [];
+        if (step === undefined || step > 0) {
+            let keys = Object.keys(a);
+            let length = Math.min(100, keys.length);
+		    for (let i = 0; i < length; i++) {
+			    shape.push([keys[i], _TypeOf(a[keys[i]], step === undefined ? 1 : step - 1)]);	
+		    }
+        }
+		t = {type : type, extra: {shape: shape}};
+	} else {
+		t = {type : type};
+	} 
+	return t;
+}
+
+function _RecordType(loc, a) {
+	var t = _TypeOf(a);
+    print("~~~TypeInfo:" + loc + ":" + JSON.stringify(t));
+}
+// Copyright 2015 the V8 project authors. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
+try { if (Inst1 <= 1000 && typeof (Date) != "undefined") {_RecordType("<183,187,5>",(Date)); Inst1++; } } catch(e) {}
+var date = new Date("2016/01/02 10:00 GMT-8")
+try { if (Inst0 <= 1000 && typeof (date) != "undefined") {_RecordType("<172,176,5>",(date)); Inst0++; } } catch(e) {}
+try { if (Inst2 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<214,226,6>",(assertEquals)); Inst2++; } } catch(e) {}try { if (Inst3 <= 1000 && typeof (date.getMinutes) != "undefined") {_RecordType("<230,245,6>",(date.getMinutes)); Inst3++; } } catch(e) {}try { if (Inst4 <= 1000 && typeof (date) != "undefined") {_RecordType("<230,234,6>",(date)); Inst4++; } } catch(e) {}
+assertEquals(0, date.getMinutes());
+try { if (Inst5 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<250,262,7>",(assertEquals)); Inst5++; } } catch(e) {}try { if (Inst6 <= 1000 && typeof (date.getUTCHours) != "undefined") {_RecordType("<267,283,7>",(date.getUTCHours)); Inst6++; } } catch(e) {}try { if (Inst7 <= 1000 && typeof (date) != "undefined") {_RecordType("<267,271,7>",(date)); Inst7++; } } catch(e) {}
+assertEquals(18, date.getUTCHours());
+
+try { if (Inst9 <= 1000 && typeof (Date) != "undefined") {_RecordType("<300,304,9>",(Date)); Inst9++; } } catch(e) {}
+date = new Date("2016/01/02 10:00 GMT-12")
+try { if (Inst8 <= 1000 && typeof (date) != "undefined") {_RecordType("<289,293,9>",(date)); Inst8++; } } catch(e) {}
+try { if (Inst10 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<332,344,10>",(assertEquals)); Inst10++; } } catch(e) {}try { if (Inst11 <= 1000 && typeof (date.getMinutes) != "undefined") {_RecordType("<348,363,10>",(date.getMinutes)); Inst11++; } } catch(e) {}try { if (Inst12 <= 1000 && typeof (date) != "undefined") {_RecordType("<348,352,10>",(date)); Inst12++; } } catch(e) {}
+assertEquals(0, date.getMinutes());
+try { if (Inst13 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<368,380,11>",(assertEquals)); Inst13++; } } catch(e) {}try { if (Inst14 <= 1000 && typeof (date.getUTCHours) != "undefined") {_RecordType("<385,401,11>",(date.getUTCHours)); Inst14++; } } catch(e) {}try { if (Inst15 <= 1000 && typeof (date) != "undefined") {_RecordType("<385,389,11>",(date)); Inst15++; } } catch(e) {}
+assertEquals(22, date.getUTCHours());
+
+try { if (Inst17 <= 1000 && typeof (Date) != "undefined") {_RecordType("<418,422,13>",(Date)); Inst17++; } } catch(e) {}
+date = new Date("2016/01/02 10:00 GMT-123")
+try { if (Inst16 <= 1000 && typeof (date) != "undefined") {_RecordType("<407,411,13>",(date)); Inst16++; } } catch(e) {}
+try { if (Inst18 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<451,463,14>",(assertEquals)); Inst18++; } } catch(e) {}try { if (Inst19 <= 1000 && typeof (date.getMinutes) != "undefined") {_RecordType("<468,483,14>",(date.getMinutes)); Inst19++; } } catch(e) {}try { if (Inst20 <= 1000 && typeof (date) != "undefined") {_RecordType("<468,472,14>",(date)); Inst20++; } } catch(e) {}
+assertEquals(23, date.getMinutes());
+try { if (Inst21 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<488,500,15>",(assertEquals)); Inst21++; } } catch(e) {}try { if (Inst22 <= 1000 && typeof (date.getUTCHours) != "undefined") {_RecordType("<505,521,15>",(date.getUTCHours)); Inst22++; } } catch(e) {}try { if (Inst23 <= 1000 && typeof (date) != "undefined") {_RecordType("<505,509,15>",(date)); Inst23++; } } catch(e) {}
+assertEquals(11, date.getUTCHours());
+
+try { if (Inst25 <= 1000 && typeof (Date) != "undefined") {_RecordType("<538,542,17>",(Date)); Inst25++; } } catch(e) {}
+date = new Date("2016/01/02 10:00 GMT-0856")
+try { if (Inst24 <= 1000 && typeof (date) != "undefined") {_RecordType("<527,531,17>",(date)); Inst24++; } } catch(e) {}
+try { if (Inst26 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<572,584,18>",(assertEquals)); Inst26++; } } catch(e) {}try { if (Inst27 <= 1000 && typeof (date.getMinutes) != "undefined") {_RecordType("<589,604,18>",(date.getMinutes)); Inst27++; } } catch(e) {}try { if (Inst28 <= 1000 && typeof (date) != "undefined") {_RecordType("<589,593,18>",(date)); Inst28++; } } catch(e) {}
+assertEquals(56, date.getMinutes());
+try { if (Inst29 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<609,621,19>",(assertEquals)); Inst29++; } } catch(e) {}try { if (Inst30 <= 1000 && typeof (date.getUTCHours) != "undefined") {_RecordType("<626,642,19>",(date.getUTCHours)); Inst30++; } } catch(e) {}try { if (Inst31 <= 1000 && typeof (date) != "undefined") {_RecordType("<626,630,19>",(date)); Inst31++; } } catch(e) {}
+assertEquals(18, date.getUTCHours());
+
+try { if (Inst33 <= 1000 && typeof (Date) != "undefined") {_RecordType("<659,663,21>",(Date)); Inst33++; } } catch(e) {}
+date = new Date("2016/01/02 10:00 GMT-08000")
+try { if (Inst32 <= 1000 && typeof (date) != "undefined") {_RecordType("<648,652,21>",(date)); Inst32++; } } catch(e) {}
+try { if (Inst34 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<694,706,22>",(assertEquals)); Inst34++; } } catch(e) {}try { if (Inst35 <= 1000 && typeof (NaN) != "undefined") {_RecordType("<707,710,22>",(NaN)); Inst35++; } } catch(e) {}try { if (Inst36 <= 1000 && typeof (date.getMinutes) != "undefined") {_RecordType("<712,727,22>",(date.getMinutes)); Inst36++; } } catch(e) {}try { if (Inst37 <= 1000 && typeof (date) != "undefined") {_RecordType("<712,716,22>",(date)); Inst37++; } } catch(e) {}
+assertEquals(NaN, date.getMinutes());
+try { if (Inst38 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<732,744,23>",(assertEquals)); Inst38++; } } catch(e) {}try { if (Inst39 <= 1000 && typeof (NaN) != "undefined") {_RecordType("<745,748,23>",(NaN)); Inst39++; } } catch(e) {}try { if (Inst40 <= 1000 && typeof (date.getUTCHours) != "undefined") {_RecordType("<750,766,23>",(date.getUTCHours)); Inst40++; } } catch(e) {}try { if (Inst41 <= 1000 && typeof (date) != "undefined") {_RecordType("<750,754,23>",(date)); Inst41++; } } catch(e) {}
+assertEquals(NaN, date.getUTCHours());
+

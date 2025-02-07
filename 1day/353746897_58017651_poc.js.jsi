@@ -1,0 +1,179 @@
+var Inst0 = 0;
+var Inst1 = 0;
+var Inst2 = 0;
+var Inst3 = 0;
+var Inst4 = 0;
+var Inst5 = 0;
+var Inst6 = 0;
+var Inst7 = 0;
+var Inst8 = 0;
+var Inst9 = 0;
+var Inst10 = 0;
+var Inst11 = 0;
+var Inst12 = 0;
+var Inst13 = 0;
+var Inst14 = 0;
+var Inst15 = 0;
+var Inst16 = 0;
+var Inst17 = 0;
+var Inst18 = 0;
+var Inst19 = 0;
+var Inst20 = 0;
+var Inst21 = 0;
+var Inst22 = 0;
+var Inst23 = 0;
+var Inst24 = 0;
+var Inst25 = 0;
+var Inst26 = 0;
+var Inst27 = 0;
+var Inst28 = 0;
+var Inst29 = 0;
+var Inst30 = 0;
+var Inst31 = 0;
+ 
+function _TypeOfArray(a) {
+	let number = true;	
+	let string = true;
+	for (let i = 0; i < a.length; i++) {
+		if (number && (typeof a[i]) != "number") {
+			number = false;	
+		}
+		if (string && (typeof a[i]) != "string") {
+			string = false;	
+		}
+		if (!number && !string)
+			break;
+	}
+	if (number)
+		return "number";
+	else if (string)
+		return "string";
+	else
+		return "any";
+}
+
+function _TypeIsEqual(t1, t2) {
+	return JSON.stringify(t1) === JSON.stringify(t2);
+}
+
+function _TypeOf(a, step) {
+	var t;
+	var type = Object.prototype.toString.call(a).slice(8, -1).toLowerCase();	
+	if (type == "array") {
+		t = {type : type, extra: {elemType: _TypeOfArray(a)}};
+	} else if (type == "object") {
+		let shape = [];
+        if (step === undefined || step > 0) {
+            let keys = Object.keys(a);
+            let length = Math.min(100, keys.length);
+		    for (let i = 0; i < length; i++) {
+			    shape.push([keys[i], _TypeOf(a[keys[i]], step === undefined ? 1 : step - 1)]);	
+		    }
+        }
+		t = {type : type, extra: {shape: shape}};
+	} else {
+		t = {type : type};
+	} 
+	return t;
+}
+
+function _RecordType(loc, a) {
+	var t = _TypeOf(a);
+    print("~~~TypeInfo:" + loc + ":" + JSON.stringify(t));
+}
+try { if (Inst0 <= 1000 && typeof (f0) != "undefined") {_RecordType("<9,11,1>",(f0)); Inst0++; } } catch(e) {}
+function f0(a1) {
+try { if (Inst1 <= 1000 && typeof (a1) != "undefined") {_RecordType("<12,14,1>",(a1)); Inst1++; } } catch(e) {}
+    this.x = 20;
+try { if (Inst2 <= 1000 && typeof (this.x) != "undefined") {_RecordType("<23,29,2>",(this.x)); Inst2++; } } catch(e) {}
+    let v4 = 0;
+try { if (Inst3 <= 1000 && typeof (v4) != "undefined") {_RecordType("<45,47,3>",(v4)); Inst3++; } } catch(e) {}
+try { if (Inst4 <= 1000 && typeof (a1) != "undefined") {_RecordType("<62,64,4>",(a1)); Inst4++; } } catch(e) {}
+    if (a1) {
+        const o6 = {
+            "x": 10,
+        };
+try { if (Inst5 <= 1000 && typeof (o6) != "undefined") {_RecordType("<83,85,5>",(o6)); Inst5++; } } catch(e) {}
+try { if (Inst7 <= 1000 && typeof (o6) != "undefined") {_RecordType("<138,140,8>",(o6)); Inst7++; } } catch(e) {}
+        v4 = o6;
+try { if (Inst6 <= 1000 && typeof (v4) != "undefined") {_RecordType("<133,135,8>",(v4)); Inst6++; } } catch(e) {}
+    }
+try { if (Inst8 <= 1000 && typeof (v4) != "undefined") {_RecordType("<161,163,10>",(v4)); Inst8++; } } catch(e) {}
+    return v4;
+}
+for (let i8 = 0;
+    (() => {
+        function f10(a11, a12, a13, a14) {
+try { if (Inst11 <= 1000 && typeof (a11) != "undefined") {_RecordType("<222,225,14>",(a11)); Inst11++; } } catch(e) {}try { if (Inst12 <= 1000 && typeof (a12) != "undefined") {_RecordType("<227,230,14>",(a12)); Inst12++; } } catch(e) {}try { if (Inst13 <= 1000 && typeof (a13) != "undefined") {_RecordType("<232,235,14>",(a13)); Inst13++; } } catch(e) {}try { if (Inst14 <= 1000 && typeof (a14) != "undefined") {_RecordType("<237,240,14>",(a14)); Inst14++; } } catch(e) {}
+            return a11;
+        }
+        return i8 < 100;
+    })();
+    i8++) {
+try { if (Inst9 <= 1000 && typeof (i8) != "undefined") {_RecordType("<178,180,12>",(i8)); Inst9++; } } catch(e) {}try { if (Inst10 <= 1000 && typeof (f10) != "undefined") {_RecordType("<218,221,14>",(f10)); Inst10++; } } catch(e) {}try { if (Inst15 <= 1000 && typeof (a11) != "undefined") {_RecordType("<264,267,15>",(a11)); Inst15++; } } catch(e) {}try { if (Inst16 <= 1000 && typeof (i8) != "undefined") {_RecordType("<296,298,17>",(i8)); Inst16++; } } catch(e) {}try { if (Inst17 <= 1000 && typeof (i8) != "undefined") {_RecordType("<322,324,19>",(i8)); Inst17++; } } catch(e) {}
+try { if (Inst19 <= 1000 && typeof (f0) != "undefined") {_RecordType("<351,353,20>",(f0)); Inst19++; } } catch(e) {}try { if (Inst20 <= 1000 && typeof (i8) != "undefined") {_RecordType("<355,357,20>",(i8)); Inst20++; } } catch(e) {}
+    const v23 = new f0((i8 & 1) == 1);
+try { if (Inst18 <= 1000 && typeof (v23) != "undefined") {_RecordType("<341,344,20>",(v23)); Inst18++; } } catch(e) {}
+try { if (Inst21 <= 1000 && typeof (i8) != "undefined") {_RecordType("<379,381,21>",(i8)); Inst21++; } } catch(e) {}
+    if (i8 & 1) {
+try { if (Inst22 <= 1000 && typeof (Object.defineProperty) != "undefined") {_RecordType("<398,419,22>",(Object.defineProperty)); Inst22++; } } catch(e) {}try { if (Inst23 <= 1000 && typeof (Object) != "undefined") {_RecordType("<398,404,22>",(Object)); Inst23++; } } catch(e) {}try { if (Inst24 <= 1000 && typeof (v23) != "undefined") {_RecordType("<420,423,22>",(v23)); Inst24++; } } catch(e) {}
+        Object.defineProperty(v23, 1, { writable: true, configurable: true, value: 1 });
+    }
+    const v26 = /./g;
+try { if (Inst25 <= 1000 && typeof (v26) != "undefined") {_RecordType("<497,500,24>",(v26)); Inst25++; } } catch(e) {}
+try { if (Inst26 <= 1000 && typeof (f27) != "undefined") {_RecordType("<523,526,25>",(f27)); Inst26++; } } catch(e) {}
+    function f27() {
+try { if (Inst27 <= 1000 && typeof (i8) != "undefined") {_RecordType("<547,549,26>",(i8)); Inst27++; } } catch(e) {}
+        return i8;
+    }
+try { if (Inst30 <= 1000 && typeof (f27) != "undefined") {_RecordType("<574,577,28>",(f27)); Inst30++; } } catch(e) {}
+    v26.exec = f27;
+try { if (Inst28 <= 1000 && typeof (v26.exec) != "undefined") {_RecordType("<563,571,28>",(v26.exec)); Inst28++; } } catch(e) {}try { if (Inst29 <= 1000 && typeof (v26) != "undefined") {_RecordType("<563,566,28>",(v26)); Inst29++; } } catch(e) {}
+try { if (Inst31 <= 1000 && typeof (f28) != "undefined") {_RecordType("<593,596,29>",(f28)); Inst31++; } } catch(e) {}
+    function f28() {
+    }
+}
+// CRASH INFO
+// ==========
+// TERMSIG: 6
+// STDERR:
+// #
+// # Fatal error in ../../src/maglev/maglev-ir.cc, line 4014
+// # Debug check failed: old_property_array != new_property_array (rdi vs. rdi).
+// #
+// #
+// #
+// #FailureMessage Object: 0x7ffc84f4ce90Received signal 6
+// 
+// ==== C stack trace ===============================
+// 
+//  [0x563567a9b64d]
+//  [0x7fee7723b520]
+//  [0x7fee7728f9fc]
+//  [0x7fee7723b476]
+//  [0x7fee772217f3]
+//  [0x563567a96391]
+//  [0x563567a8ccb4]
+//  [0x563567a8c545]
+//  [0x563569a1034f]
+//  [0x5635696ad9d7]
+//  [0x56356967a0ae]
+//  [0x563569677c48]
+//  [0x56356952071c]
+//  [0x563569517449]
+//  [0x563567df064f]
+//  [0x563567e2ef44]
+//  [0x563567e0b81a]
+//  [0x563567e16e9e]
+//  [0x5635693643b3]
+//  [0x56356935eb1a]
+//  [0x56356935e5bb]
+//  [0x56356b7ef576]
+// [end of stack trace]
+// STDOUT:
+// 
+// FUZZER ARGS: .build/x86_64-unknown-linux-gnu/release/FuzzilliCli --jobs=30 --profile=v8 --timeout=500 --storagePath=/root/fuzz_main --importCorpus=/root/dev/corpus/regress_test --corpusImportMode=full --argumentRandomization /root/v8_src.main/v8/out/fuzz/d8
+// TARGET ARGS: /root/v8_src.main/v8/out/fuzz/d8 --expose-gc --omit-quit --allow-natives-syntax --fuzzing --jit-fuzzing --async-stack-traces --wasm-staging --future --harmony --turboshaft-csa --js-staging --maglev-loop-peeling --wasm-sync-tier-up --wasm-tiering-budget=2000 --experimental-wasm-type-reflection --experimental-wasm-memory64 --experimental-wasm-stringref --experimental-wasm-imported-strings --experimental-wasm-inlining --experimental-wasm-exnref --wasm-inlining-budget=200 --wasm-inlining-max-size=100 --maglev-skip-migration-check-for-polymorphic-access --harmony-intl-duration-format --js-atomics-pause --enable-sharedarraybuffer-per-context --optimize-on-next-call-optimizes-to-maglev --maglev-optimistic-peeled-loops --maglev-inline-api-calls --maglev-extend-properties-backing-store --concurrent-maglev-high-priority-threads --enable-enumerated-keyed-access-bytecode --decommit-pooled-pages --no-stress-lazy-source-positions --concurrent-sparkplug-high-priority-threads --sparkplug-needs-short-builtins --shared-string-table --transition-strings-during-gc-with-stack --stress-concurrent-inlining --no-stress-concurrent-inlining-attach-code --no-stress-turbo-late-spilling --no-stress-inline --turbo-instruction-scheduling --turbo-stress-instruction-scheduling --no-stress-gc-during-compilation --turboshaft-wasm --turboshaft-wasm-load-elimination --turboshaft-loop-peeling --turboshaft-wasm-instruction-selection-staged --turboshaft-csa --turboshaft-verify-reductions --optimize-for-size --turboshaft-wasm-wrappers --wasm-sync-tier-up --experimental-wasm-type-reflection --experimental-wasm-stringref --experimental-wasm-imported-strings --experimental-wasm-exnref --experimental-wasm-jspi --wasm-staging --wasm-inlining-ignore-call-counts --wasm-fuzzer-gen-test --wasm-simd-ssse3-codegen --no-stress-wasm-code-gc --flush-liftoff-code --lazy-new-space-shrinking --separate-gc-phases --gc-global --scavenge-separate-stack-scanning --optimize-gc-for-battery --compact-on-every-full-gc --no-stress-compaction --no-stress-compaction-random --flush-baseline-code --flush-code-based-on-time --stress-flush-code --stress-per-context-marking-worklist --stress-incremental-marking --concurrent-marking-high-priority-threads --randomize-all-allocations --manual-evacuation-candidates-selection --intel-jcc-erratum-mitigation --enable-source-at-csa-bind --no-stress-background-compile --embedder-instance-types --expose-externalize-string --builtins-in-stack-traces --experimental-report-exceptions-from-callbacks --allow-unsafe-function-constructor --force-slow-path --always-osr --prepare-always-turbofan --deopt-to-baseline --parallel-compile-tasks-for-lazy --expose-inspector-scripts --fast-map-update --mega-dom-ic --move-prototype-transitions-first --detailed-error-stack-trace --regexp-interpret-all --minor-ms --sticky-mark-bits --use-external-strings --predictable --parallel-pause-for-gc-in-background
+// CONTRIBUTORS: CodeGenMutator, ComputedPropertyConfigurationGenerator, ObjectConstructorGenerator, FloatGenerator, ArrayGenerator, ObjectBuilderFunctionGenerator, ObjectLiteralCopyPropertiesGenerator, SpliceMutator, IteratorGenerator, ComputedPropertyRemovalGenerator, CombineMutator, ObjectLiteralElementGenerator
+// EXECUTION TIME: 165ms
+

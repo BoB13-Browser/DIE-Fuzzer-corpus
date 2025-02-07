@@ -1,0 +1,180 @@
+var Inst0 = 0;
+var Inst1 = 0;
+var Inst2 = 0;
+var Inst3 = 0;
+var Inst4 = 0;
+var Inst5 = 0;
+var Inst6 = 0;
+var Inst7 = 0;
+var Inst8 = 0;
+var Inst9 = 0;
+var Inst10 = 0;
+var Inst11 = 0;
+var Inst12 = 0;
+var Inst13 = 0;
+var Inst14 = 0;
+var Inst15 = 0;
+var Inst16 = 0;
+var Inst17 = 0;
+var Inst18 = 0;
+var Inst19 = 0;
+var Inst20 = 0;
+var Inst21 = 0;
+var Inst22 = 0;
+var Inst23 = 0;
+var Inst24 = 0;
+var Inst25 = 0;
+var Inst26 = 0;
+var Inst27 = 0;
+var Inst28 = 0;
+var Inst29 = 0;
+var Inst30 = 0;
+var Inst31 = 0;
+var Inst32 = 0;
+var Inst33 = 0;
+var Inst34 = 0;
+var Inst35 = 0;
+var Inst36 = 0;
+var Inst37 = 0;
+var Inst38 = 0;
+ 
+function _TypeOfArray(a) {
+	let number = true;	
+	let string = true;
+	for (let i = 0; i < a.length; i++) {
+		if (number && (typeof a[i]) != "number") {
+			number = false;	
+		}
+		if (string && (typeof a[i]) != "string") {
+			string = false;	
+		}
+		if (!number && !string)
+			break;
+	}
+	if (number)
+		return "number";
+	else if (string)
+		return "string";
+	else
+		return "any";
+}
+
+function _TypeIsEqual(t1, t2) {
+	return JSON.stringify(t1) === JSON.stringify(t2);
+}
+
+function _TypeOf(a, step) {
+	var t;
+	var type = Object.prototype.toString.call(a).slice(8, -1).toLowerCase();	
+	if (type == "array") {
+		t = {type : type, extra: {elemType: _TypeOfArray(a)}};
+	} else if (type == "object") {
+		let shape = [];
+        if (step === undefined || step > 0) {
+            let keys = Object.keys(a);
+            let length = Math.min(100, keys.length);
+		    for (let i = 0; i < length; i++) {
+			    shape.push([keys[i], _TypeOf(a[keys[i]], step === undefined ? 1 : step - 1)]);	
+		    }
+        }
+		t = {type : type, extra: {shape: shape}};
+	} else {
+		t = {type : type};
+	} 
+	return t;
+}
+
+function _RecordType(loc, a) {
+	var t = _TypeOf(a);
+    print("~~~TypeInfo:" + loc + ":" + JSON.stringify(t));
+}
+// Copyright 2010 the V8 project authors. All rights reserved.
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions are
+// met:
+//
+//     * Redistributions of source code must retain the above copyright
+//       notice, this list of conditions and the following disclaimer.
+//     * Redistributions in binary form must reproduce the above
+//       copyright notice, this list of conditions and the following
+//       disclaimer in the documentation and/or other materials provided
+//       with the distribution.
+//     * Neither the name of Google Inc. nor the names of its
+//       contributors may be used to endorse or promote products derived
+//       from this software without specific prior written permission.
+//
+// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+// "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+// LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+// A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+// OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+// SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+// LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+// DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+// THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+// (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+// OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+// Tests the Object.defineProperties method - ES 15.2.3.7
+// Note that the internal DefineOwnProperty method is tested through
+// object-define-property.js, this file only contains tests specific for
+// Object.defineProperties. Also note that object-create.js contains
+// a range of indirect tests on this method since Object.create uses
+// Object.defineProperties as a step in setting up the object.
+
+// Try defining with null as descriptor:
+try { if (Inst2 <= 1000 && typeof (e) != "undefined") {_RecordType("<2092,2093,38>",(e)); Inst2++; } } catch(e) {}
+try {
+try { if (Inst0 <= 1000 && typeof (Object.defineProperties) != "undefined") {_RecordType("<2049,2072,37>",(Object.defineProperties)); Inst0++; } } catch(e) {}try { if (Inst1 <= 1000 && typeof (Object) != "undefined") {_RecordType("<2049,2055,37>",(Object)); Inst1++; } } catch(e) {}
+  Object.defineProperties({}, null);
+} catch(e) {
+try { if (Inst3 <= 1000 && typeof (assertTrue) != "undefined") {_RecordType("<2099,2109,39>",(assertTrue)); Inst3++; } } catch(e) {}try { if (Inst4 <= 1000 && typeof (/null to object/.test) != "undefined") {_RecordType("<2110,2131,39>",(/null to object/.test)); Inst4++; } } catch(e) {}try { if (Inst5 <= 1000 && typeof (e) != "undefined") {_RecordType("<2132,2133,39>",(e)); Inst5++; } } catch(e) {}
+  assertTrue(/null to object/.test(e));
+}
+
+// Try defining with null as object
+try { if (Inst8 <= 1000 && typeof (e) != "undefined") {_RecordType("<2227,2228,45>",(e)); Inst8++; } } catch(e) {}
+try {
+try { if (Inst6 <= 1000 && typeof (Object.defineProperties) != "undefined") {_RecordType("<2184,2207,44>",(Object.defineProperties)); Inst6++; } } catch(e) {}try { if (Inst7 <= 1000 && typeof (Object) != "undefined") {_RecordType("<2184,2190,44>",(Object)); Inst7++; } } catch(e) {}
+  Object.defineProperties(null, {});
+} catch(e) {
+try { if (Inst9 <= 1000 && typeof (assertTrue) != "undefined") {_RecordType("<2234,2244,46>",(assertTrue)); Inst9++; } } catch(e) {}try { if (Inst10 <= 1000 && typeof (/called on non-object/.test) != "undefined") {_RecordType("<2245,2272,46>",(/called on non-object/.test)); Inst10++; } } catch(e) {}try { if (Inst11 <= 1000 && typeof (e) != "undefined") {_RecordType("<2273,2274,46>",(e)); Inst11++; } } catch(e) {}
+  assertTrue(/called on non-object/.test(e));
+}
+
+
+var desc = {foo: {value: 10}, bar: {get: function() {return 42; }}};
+try { if (Inst12 <= 1000 && typeof (desc) != "undefined") {_RecordType("<2286,2290,50>",(desc)); Inst12++; } } catch(e) {}
+var obj = {};
+try { if (Inst13 <= 1000 && typeof (obj) != "undefined") {_RecordType("<2355,2358,51>",(obj)); Inst13++; } } catch(e) {}
+// Check that we actually get the object back as returnvalue
+try { if (Inst15 <= 1000 && typeof (Object.defineProperties) != "undefined") {_RecordType("<2434,2457,53>",(Object.defineProperties)); Inst15++; } } catch(e) {}try { if (Inst16 <= 1000 && typeof (Object) != "undefined") {_RecordType("<2434,2440,53>",(Object)); Inst16++; } } catch(e) {}try { if (Inst17 <= 1000 && typeof (obj) != "undefined") {_RecordType("<2458,2461,53>",(obj)); Inst17++; } } catch(e) {}try { if (Inst18 <= 1000 && typeof (desc) != "undefined") {_RecordType("<2463,2467,53>",(desc)); Inst18++; } } catch(e) {}
+var x = Object.defineProperties(obj, desc);
+try { if (Inst14 <= 1000 && typeof (x) != "undefined") {_RecordType("<2430,2431,53>",(x)); Inst14++; } } catch(e) {}
+
+try { if (Inst19 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<2471,2483,55>",(assertEquals)); Inst19++; } } catch(e) {}try { if (Inst20 <= 1000 && typeof (x.foo) != "undefined") {_RecordType("<2484,2489,55>",(x.foo)); Inst20++; } } catch(e) {}try { if (Inst21 <= 1000 && typeof (x) != "undefined") {_RecordType("<2484,2485,55>",(x)); Inst21++; } } catch(e) {}
+assertEquals(x.foo, 10);
+try { if (Inst22 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<2496,2508,56>",(assertEquals)); Inst22++; } } catch(e) {}try { if (Inst23 <= 1000 && typeof (x.bar) != "undefined") {_RecordType("<2509,2514,56>",(x.bar)); Inst23++; } } catch(e) {}try { if (Inst24 <= 1000 && typeof (x) != "undefined") {_RecordType("<2509,2510,56>",(x)); Inst24++; } } catch(e) {}
+assertEquals(x.bar, 42);
+
+
+// Make sure that all property descriptors are calculated before any
+// modifications are done.
+
+var object = {};
+try { if (Inst25 <= 1000 && typeof (object) != "undefined") {_RecordType("<2624,2630,62>",(object)); Inst25++; } } catch(e) {}
+
+try { if (Inst26 <= 1000 && typeof (assertThrows) != "undefined") {_RecordType("<2638,2650,64>",(assertThrows)); Inst26++; } } catch(e) {}try { if (Inst30 <= 1000 && typeof (TypeError) != "undefined") {_RecordType("<2795,2804,69>",(TypeError)); Inst30++; } } catch(e) {}
+assertThrows(function() {
+try { if (Inst27 <= 1000 && typeof (Object.defineProperties) != "undefined") {_RecordType("<2668,2691,65>",(Object.defineProperties)); Inst27++; } } catch(e) {}try { if (Inst28 <= 1000 && typeof (Object) != "undefined") {_RecordType("<2668,2674,65>",(Object)); Inst28++; } } catch(e) {}try { if (Inst29 <= 1000 && typeof (object) != "undefined") {_RecordType("<2692,2698,65>",(object)); Inst29++; } } catch(e) {}
+    Object.defineProperties(object, {
+      foo: { value: 1 },
+      bar: { value: 2, get: function() { return 3; } }
+    });
+  }, TypeError);
+
+try { if (Inst31 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<2808,2820,71>",(assertEquals)); Inst31++; } } catch(e) {}try { if (Inst32 <= 1000 && typeof (undefined) != "undefined") {_RecordType("<2821,2830,71>",(undefined)); Inst32++; } } catch(e) {}try { if (Inst33 <= 1000 && typeof (object.foo) != "undefined") {_RecordType("<2832,2842,71>",(object.foo)); Inst33++; } } catch(e) {}try { if (Inst34 <= 1000 && typeof (object) != "undefined") {_RecordType("<2832,2838,71>",(object)); Inst34++; } } catch(e) {}
+assertEquals(undefined, object.foo);
+try { if (Inst35 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<2845,2857,72>",(assertEquals)); Inst35++; } } catch(e) {}try { if (Inst36 <= 1000 && typeof (undefined) != "undefined") {_RecordType("<2858,2867,72>",(undefined)); Inst36++; } } catch(e) {}try { if (Inst37 <= 1000 && typeof (object.bar) != "undefined") {_RecordType("<2869,2879,72>",(object.bar)); Inst37++; } } catch(e) {}try { if (Inst38 <= 1000 && typeof (object) != "undefined") {_RecordType("<2869,2875,72>",(object)); Inst38++; } } catch(e) {}
+assertEquals(undefined, object.bar);
+

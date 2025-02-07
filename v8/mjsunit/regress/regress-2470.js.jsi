@@ -1,0 +1,127 @@
+var Inst0 = 0;
+var Inst1 = 0;
+var Inst2 = 0;
+var Inst3 = 0;
+var Inst4 = 0;
+var Inst5 = 0;
+var Inst6 = 0;
+var Inst7 = 0;
+var Inst8 = 0;
+var Inst9 = 0;
+var Inst10 = 0;
+var Inst11 = 0;
+var Inst12 = 0;
+var Inst13 = 0;
+var Inst14 = 0;
+var Inst15 = 0;
+var Inst16 = 0;
+ 
+function _TypeOfArray(a) {
+	let number = true;	
+	let string = true;
+	for (let i = 0; i < a.length; i++) {
+		if (number && (typeof a[i]) != "number") {
+			number = false;	
+		}
+		if (string && (typeof a[i]) != "string") {
+			string = false;	
+		}
+		if (!number && !string)
+			break;
+	}
+	if (number)
+		return "number";
+	else if (string)
+		return "string";
+	else
+		return "any";
+}
+
+function _TypeIsEqual(t1, t2) {
+	return JSON.stringify(t1) === JSON.stringify(t2);
+}
+
+function _TypeOf(a, step) {
+	var t;
+	var type = Object.prototype.toString.call(a).slice(8, -1).toLowerCase();	
+	if (type == "array") {
+		t = {type : type, extra: {elemType: _TypeOfArray(a)}};
+	} else if (type == "object") {
+		let shape = [];
+        if (step === undefined || step > 0) {
+            let keys = Object.keys(a);
+            let length = Math.min(100, keys.length);
+		    for (let i = 0; i < length; i++) {
+			    shape.push([keys[i], _TypeOf(a[keys[i]], step === undefined ? 1 : step - 1)]);	
+		    }
+        }
+		t = {type : type, extra: {shape: shape}};
+	} else {
+		t = {type : type};
+	} 
+	return t;
+}
+
+function _RecordType(loc, a) {
+	var t = _TypeOf(a);
+    print("~~~TypeInfo:" + loc + ":" + JSON.stringify(t));
+}
+// Copyright 2013 the V8 project authors. All rights reserved.
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions are
+// met:
+//
+//     * Redistributions of source code must retain the above copyright
+//       notice, this list of conditions and the following disclaimer.
+//     * Redistributions in binary form must reproduce the above
+//       copyright notice, this list of conditions and the following
+//       disclaimer in the documentation and/or other materials provided
+//       with the distribution.
+//     * Neither the name of Google Inc. nor the names of its
+//       contributors may be used to endorse or promote products derived
+//       from this software without specific prior written permission.
+//
+// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+// "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+// LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+// A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+// OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+// SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+// LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+// DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+// THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+// (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+// OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+// Test whether the opening parenthesis can be eaten up by a comment.
+try { if (Inst0 <= 1000 && typeof (assertThrows) != "undefined") {_RecordType("<1668,1680,29>",(assertThrows)); Inst0++; } } catch(e) {}try { if (Inst1 <= 1000 && typeof (SyntaxError) != "undefined") {_RecordType("<1708,1719,29>",(SyntaxError)); Inst1++; } } catch(e) {}
+assertThrows('Function("/*", "*/){");', SyntaxError);
+
+// Test whether the function literal can be closed prematurely.
+try { if (Inst2 <= 1000 && typeof (assertThrows) != "undefined") {_RecordType("<1787,1799,32>",(assertThrows)); Inst2++; } } catch(e) {}try { if (Inst3 <= 1000 && typeof (SyntaxError) != "undefined") {_RecordType("<1832,1843,32>",(SyntaxError)); Inst3++; } } catch(e) {}
+assertThrows('Function("});(function(){");', SyntaxError);
+
+// Test whether block comments are handled correctly.
+try { if (Inst4 <= 1000 && typeof (assertDoesNotThrow) != "undefined") {_RecordType("<1901,1919,35>",(assertDoesNotThrow)); Inst4++; } } catch(e) {}
+assertDoesNotThrow('Function("/*", "*/", "/**/");');
+try { if (Inst5 <= 1000 && typeof (assertDoesNotThrow) != "undefined") {_RecordType("<1954,1972,36>",(assertDoesNotThrow)); Inst5++; } } catch(e) {}
+assertDoesNotThrow('Function("/*", "a", "*/", "/**/");');
+try { if (Inst6 <= 1000 && typeof (assertThrows) != "undefined") {_RecordType("<2012,2024,37>",(assertThrows)); Inst6++; } } catch(e) {}try { if (Inst7 <= 1000 && typeof (SyntaxError) != "undefined") {_RecordType("<2063,2074,37>",(SyntaxError)); Inst7++; } } catch(e) {}
+assertThrows('Function("a", "/*", "*/", "/**/");', SyntaxError);
+
+// Test whether line comments are handled correctly.
+try { if (Inst8 <= 1000 && typeof (assertDoesNotThrow) != "undefined") {_RecordType("<2131,2149,40>",(assertDoesNotThrow)); Inst8++; } } catch(e) {}
+assertDoesNotThrow('Function("//", "//")');
+try { if (Inst9 <= 1000 && typeof (assertDoesNotThrow) != "undefined") {_RecordType("<2175,2193,41>",(assertDoesNotThrow)); Inst9++; } } catch(e) {}
+assertDoesNotThrow('Function("//", "//", "//")');
+try { if (Inst10 <= 1000 && typeof (assertThrows) != "undefined") {_RecordType("<2225,2237,42>",(assertThrows)); Inst10++; } } catch(e) {}try { if (Inst11 <= 1000 && typeof (SyntaxError) != "undefined") {_RecordType("<2267,2278,42>",(SyntaxError)); Inst11++; } } catch(e) {}
+assertThrows('Function("a", "//", "//")', SyntaxError);
+
+// Some embedders rely on the string representation of the resulting
+// function in cases where no formal parameters are specified.
+try { if (Inst13 <= 1000 && typeof (Function("return 23").toString) != "undefined") {_RecordType("<2429,2459,46>",(Function("return 23").toString)); Inst13++; } } catch(e) {}try { if (Inst14 <= 1000 && typeof (Function) != "undefined") {_RecordType("<2429,2437,46>",(Function)); Inst14++; } } catch(e) {}
+var asString = Function("return 23").toString();
+try { if (Inst12 <= 1000 && typeof (asString) != "undefined") {_RecordType("<2418,2426,46>",(asString)); Inst12++; } } catch(e) {}
+try { if (Inst15 <= 1000 && typeof (assertSame) != "undefined") {_RecordType("<2463,2473,47>",(assertSame)); Inst15++; } } catch(e) {}try { if (Inst16 <= 1000 && typeof (asString) != "undefined") {_RecordType("<2514,2522,47>",(asString)); Inst16++; } } catch(e) {}
+assertSame("function anonymous() {\nreturn 23\n}", asString);
+

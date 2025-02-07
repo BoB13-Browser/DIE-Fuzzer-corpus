@@ -1,0 +1,180 @@
+var Inst0 = 0;
+var Inst1 = 0;
+var Inst2 = 0;
+var Inst3 = 0;
+var Inst4 = 0;
+var Inst5 = 0;
+var Inst6 = 0;
+var Inst7 = 0;
+var Inst8 = 0;
+var Inst9 = 0;
+var Inst10 = 0;
+var Inst11 = 0;
+var Inst12 = 0;
+var Inst13 = 0;
+var Inst14 = 0;
+var Inst15 = 0;
+var Inst16 = 0;
+var Inst17 = 0;
+var Inst18 = 0;
+var Inst19 = 0;
+var Inst20 = 0;
+var Inst21 = 0;
+var Inst22 = 0;
+var Inst23 = 0;
+var Inst24 = 0;
+var Inst25 = 0;
+var Inst26 = 0;
+var Inst27 = 0;
+var Inst28 = 0;
+var Inst29 = 0;
+var Inst30 = 0;
+var Inst31 = 0;
+var Inst32 = 0;
+var Inst33 = 0;
+var Inst34 = 0;
+var Inst35 = 0;
+var Inst36 = 0;
+var Inst37 = 0;
+var Inst38 = 0;
+var Inst39 = 0;
+var Inst40 = 0;
+var Inst41 = 0;
+var Inst42 = 0;
+var Inst43 = 0;
+var Inst44 = 0;
+var Inst45 = 0;
+var Inst46 = 0;
+var Inst47 = 0;
+var Inst48 = 0;
+var Inst49 = 0;
+var Inst50 = 0;
+var Inst51 = 0;
+var Inst52 = 0;
+var Inst53 = 0;
+ 
+function _TypeOfArray(a) {
+	let number = true;	
+	let string = true;
+	for (let i = 0; i < a.length; i++) {
+		if (number && (typeof a[i]) != "number") {
+			number = false;	
+		}
+		if (string && (typeof a[i]) != "string") {
+			string = false;	
+		}
+		if (!number && !string)
+			break;
+	}
+	if (number)
+		return "number";
+	else if (string)
+		return "string";
+	else
+		return "any";
+}
+
+function _TypeIsEqual(t1, t2) {
+	return JSON.stringify(t1) === JSON.stringify(t2);
+}
+
+function _TypeOf(a, step) {
+	var t;
+	var type = Object.prototype.toString.call(a).slice(8, -1).toLowerCase();	
+	if (type == "array") {
+		t = {type : type, extra: {elemType: _TypeOfArray(a)}};
+	} else if (type == "object") {
+		let shape = [];
+        if (step === undefined || step > 0) {
+            let keys = Object.keys(a);
+            let length = Math.min(100, keys.length);
+		    for (let i = 0; i < length; i++) {
+			    shape.push([keys[i], _TypeOf(a[keys[i]], step === undefined ? 1 : step - 1)]);	
+		    }
+        }
+		t = {type : type, extra: {shape: shape}};
+	} else {
+		t = {type : type};
+	} 
+	return t;
+}
+
+function _RecordType(loc, a) {
+	var t = _TypeOf(a);
+    print("~~~TypeInfo:" + loc + ":" + JSON.stringify(t));
+}
+const launchCommand = '/Users/zh1x1an1221/xcode-chromium/src/out/asan-0527/Chromium.app/Contents/MacOS/Chromium' // modify this path to your chrome executable
+try { if (Inst0 <= 1000 && typeof (launchCommand) != "undefined") {_RecordType("<6,19,1>",(launchCommand)); Inst0++; } } catch(e) {}
+try { if (Inst1 <= 1000 && typeof (test) != "undefined") {_RecordType("<175,179,2>",(test)); Inst1++; } } catch(e) {}
+async function test(idx) {
+try { if (Inst2 <= 1000 && typeof (idx) != "undefined") {_RecordType("<180,183,2>",(idx)); Inst2++; } } catch(e) {}
+try { if (Inst4 <= 1000 && typeof (require) != "undefined") {_RecordType("<208,215,3>",(require)); Inst4++; } } catch(e) {}
+  const puppeteer = require('puppeteer-core')
+try { if (Inst3 <= 1000 && typeof (puppeteer) != "undefined") {_RecordType("<196,205,3>",(puppeteer)); Inst3++; } } catch(e) {}
+try { if (Inst6 <= 1000 && typeof (launchCommand) != "undefined") {_RecordType("<260,273,4>",(launchCommand)); Inst6++; } } catch(e) {}
+  const executablePath = launchCommand
+try { if (Inst5 <= 1000 && typeof (executablePath) != "undefined") {_RecordType("<243,257,4>",(executablePath)); Inst5++; } } catch(e) {}
+  var browsers = [];
+try { if (Inst7 <= 1000 && typeof (browsers) != "undefined") {_RecordType("<281,289,5>",(browsers)); Inst7++; } } catch(e) {}
+try { if (Inst9 <= 1000 && typeof (executablePath) != "undefined") {_RecordType("<349,363,8>",(executablePath)); Inst9++; } } catch(e) {}try { if (Inst10 <= 1000 && typeof (idx) != "undefined") {_RecordType("<517,520,12>",(idx)); Inst10++; } } catch(e) {}
+  const launchOptions = {
+    headless: true,
+    executablePath,
+    timeout: 30000,
+    defaultOptions: false,
+    dumpio: true,
+    args: ['--no-sandbox','--disable-popup-blocking','--user-data-dir=/tmp/testxx'+idx]
+  }
+try { if (Inst8 <= 1000 && typeof (launchOptions) != "undefined") {_RecordType("<305,318,6>",(launchOptions)); Inst8++; } } catch(e) {}
+  var url='http://localhost:8000/main.html'; // modify this url to your test url
+try { if (Inst11 <= 1000 && typeof (url) != "undefined") {_RecordType("<534,537,14>",(url)); Inst11++; } } catch(e) {}
+try { if (Inst13 <= 1000 && typeof (puppeteer.launch) != "undefined") {_RecordType("<632,648,15>",(puppeteer.launch)); Inst13++; } } catch(e) {}try { if (Inst14 <= 1000 && typeof (puppeteer) != "undefined") {_RecordType("<632,641,15>",(puppeteer)); Inst14++; } } catch(e) {}try { if (Inst15 <= 1000 && typeof (launchOptions) != "undefined") {_RecordType("<649,662,15>",(launchOptions)); Inst15++; } } catch(e) {}
+  let browser = await puppeteer.launch(launchOptions)
+try { if (Inst12 <= 1000 && typeof (browser) != "undefined") {_RecordType("<616,623,15>",(browser)); Inst12++; } } catch(e) {}
+try { if (Inst17 <= 1000 && typeof (browser.pages) != "undefined") {_RecordType("<686,699,16>",(browser.pages)); Inst17++; } } catch(e) {}try { if (Inst18 <= 1000 && typeof (browser) != "undefined") {_RecordType("<686,693,16>",(browser)); Inst18++; } } catch(e) {}
+  var [page] = await browser.pages();
+try { if (Inst16 <= 1000 && typeof (page) != "undefined") {_RecordType("<672,676,16>",(page)); Inst16++; } } catch(e) {}
+try { if (Inst22 <= 1000 && typeof (e) != "undefined") {_RecordType("<828,829,19>",(e)); Inst22++; } } catch(e) {}
+  try {
+try { if (Inst19 <= 1000 && typeof (page.goto) != "undefined") {_RecordType("<723,732,18>",(page.goto)); Inst19++; } } catch(e) {}try { if (Inst20 <= 1000 && typeof (page) != "undefined") {_RecordType("<723,727,18>",(page)); Inst20++; } } catch(e) {}try { if (Inst21 <= 1000 && typeof (url) != "undefined") {_RecordType("<733,736,18>",(url)); Inst21++; } } catch(e) {}
+    await page.goto(url, { waitUntil: ['networkidle2', 'domcontentloaded', 'load'], timeout: 10000 });
+  } catch (e) { }
+try { if (Inst23 <= 1000 && typeof (sleep) != "undefined") {_RecordType("<844,849,20>",(sleep)); Inst23++; } } catch(e) {}
+  await sleep(40*1000)        // modify this number to control the time of each chrome instance
+try { if (Inst26 <= 1000 && typeof (e) != "undefined") {_RecordType("<980,981,23>",(e)); Inst26++; } } catch(e) {}
+  try{
+try { if (Inst24 <= 1000 && typeof (browser.close) != "undefined") {_RecordType("<951,964,22>",(browser.close)); Inst24++; } } catch(e) {}try { if (Inst25 <= 1000 && typeof (browser) != "undefined") {_RecordType("<951,958,22>",(browser)); Inst25++; } } catch(e) {}
+    await browser.close();
+  } catch (e) {
+  }
+try { if (Inst30 <= 1000 && typeof (e) != "undefined") {_RecordType("<1056,1057,27>",(e)); Inst30++; } } catch(e) {}
+  try{
+try { if (Inst27 <= 1000 && typeof (browser.process().kill) != "undefined") {_RecordType("<1009,1031,26>",(browser.process().kill)); Inst27++; } } catch(e) {}try { if (Inst28 <= 1000 && typeof (browser.process) != "undefined") {_RecordType("<1009,1024,26>",(browser.process)); Inst28++; } } catch(e) {}try { if (Inst29 <= 1000 && typeof (browser) != "undefined") {_RecordType("<1009,1016,26>",(browser)); Inst29++; } } catch(e) {}
+    await browser.process().kill('SIGKILL');
+  } catch (e) {
+
+  };
+}
+try { if (Inst31 <= 1000 && typeof (sleep) != "undefined") {_RecordType("<1088,1093,31>",(sleep)); Inst31++; } } catch(e) {}
+async function sleep(ms) {
+try { if (Inst32 <= 1000 && typeof (ms) != "undefined") {_RecordType("<1094,1096,31>",(ms)); Inst32++; } } catch(e) {}
+try { if (Inst33 <= 1000 && typeof (Promise) != "undefined") {_RecordType("<1114,1121,32>",(Promise)); Inst33++; } } catch(e) {}try { if (Inst34 <= 1000 && typeof (resolve) != "undefined") {_RecordType("<1122,1129,32>",(resolve)); Inst34++; } } catch(e) {}try { if (Inst35 <= 1000 && typeof (setTimeout) != "undefined") {_RecordType("<1133,1143,32>",(setTimeout)); Inst35++; } } catch(e) {}try { if (Inst36 <= 1000 && typeof (resolve) != "undefined") {_RecordType("<1144,1151,32>",(resolve)); Inst36++; } } catch(e) {}try { if (Inst37 <= 1000 && typeof (ms) != "undefined") {_RecordType("<1153,1155,32>",(ms)); Inst37++; } } catch(e) {}
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+var arrs = [];
+try { if (Inst38 <= 1000 && typeof (arrs) != "undefined") {_RecordType("<1167,1171,34>",(arrs)); Inst38++; } } catch(e) {}
+(async () => {
+  for (; ;) {
+    arrs = [];
+try { if (Inst39 <= 1000 && typeof (arrs) != "undefined") {_RecordType("<1214,1218,37>",(arrs)); Inst39++; } } catch(e) {}
+    for (var i = 0; i < 20; i++) {  // modify this number to control the number of chrome instances
+try { if (Inst40 <= 1000 && typeof (i) != "undefined") {_RecordType("<1239,1240,38>",(i)); Inst40++; } } catch(e) {}try { if (Inst41 <= 1000 && typeof (i) != "undefined") {_RecordType("<1246,1247,38>",(i)); Inst41++; } } catch(e) {}try { if (Inst42 <= 1000 && typeof (i) != "undefined") {_RecordType("<1254,1255,38>",(i)); Inst42++; } } catch(e) {}
+try { if (Inst43 <= 1000 && typeof (arrs.push) != "undefined") {_RecordType("<1333,1342,39>",(arrs.push)); Inst43++; } } catch(e) {}try { if (Inst44 <= 1000 && typeof (arrs) != "undefined") {_RecordType("<1333,1337,39>",(arrs)); Inst44++; } } catch(e) {}try { if (Inst45 <= 1000 && typeof (test) != "undefined") {_RecordType("<1343,1347,39>",(test)); Inst45++; } } catch(e) {}try { if (Inst46 <= 1000 && typeof (Math.floor) != "undefined") {_RecordType("<1348,1358,39>",(Math.floor)); Inst46++; } } catch(e) {}try { if (Inst47 <= 1000 && typeof (Math) != "undefined") {_RecordType("<1348,1352,39>",(Math)); Inst47++; } } catch(e) {}try { if (Inst48 <= 1000 && typeof (Math.random) != "undefined") {_RecordType("<1359,1370,39>",(Math.random)); Inst48++; } } catch(e) {}try { if (Inst49 <= 1000 && typeof (Math) != "undefined") {_RecordType("<1359,1363,39>",(Math)); Inst49++; } } catch(e) {}
+      arrs.push(test(Math.floor(Math.random() * 100000)));
+    }
+try { if (Inst50 <= 1000 && typeof (Promise.all) != "undefined") {_RecordType("<1404,1415,41>",(Promise.all)); Inst50++; } } catch(e) {}try { if (Inst51 <= 1000 && typeof (Promise) != "undefined") {_RecordType("<1404,1411,41>",(Promise)); Inst51++; } } catch(e) {}try { if (Inst52 <= 1000 && typeof (arrs) != "undefined") {_RecordType("<1416,1420,41>",(arrs)); Inst52++; } } catch(e) {}
+    await Promise.all(arrs);
+  }
+try { if (Inst53 <= 1000 && typeof (sleep) != "undefined") {_RecordType("<1437,1442,43>",(sleep)); Inst53++; } } catch(e) {}
+  await sleep(1000);
+})();

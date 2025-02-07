@@ -1,0 +1,209 @@
+var Inst0 = 0;
+var Inst1 = 0;
+var Inst2 = 0;
+var Inst3 = 0;
+var Inst4 = 0;
+var Inst5 = 0;
+var Inst6 = 0;
+var Inst7 = 0;
+var Inst8 = 0;
+var Inst9 = 0;
+var Inst10 = 0;
+var Inst11 = 0;
+var Inst12 = 0;
+var Inst13 = 0;
+var Inst14 = 0;
+var Inst15 = 0;
+var Inst16 = 0;
+var Inst17 = 0;
+var Inst18 = 0;
+var Inst19 = 0;
+var Inst20 = 0;
+var Inst21 = 0;
+var Inst22 = 0;
+var Inst23 = 0;
+var Inst24 = 0;
+var Inst25 = 0;
+var Inst26 = 0;
+var Inst27 = 0;
+var Inst28 = 0;
+var Inst29 = 0;
+var Inst30 = 0;
+var Inst31 = 0;
+var Inst32 = 0;
+var Inst33 = 0;
+var Inst34 = 0;
+var Inst35 = 0;
+var Inst36 = 0;
+var Inst37 = 0;
+var Inst38 = 0;
+var Inst39 = 0;
+var Inst40 = 0;
+var Inst41 = 0;
+var Inst42 = 0;
+var Inst43 = 0;
+var Inst44 = 0;
+var Inst45 = 0;
+var Inst46 = 0;
+var Inst47 = 0;
+var Inst48 = 0;
+var Inst49 = 0;
+var Inst50 = 0;
+var Inst51 = 0;
+var Inst52 = 0;
+var Inst53 = 0;
+var Inst54 = 0;
+var Inst55 = 0;
+var Inst56 = 0;
+ 
+function _TypeOfArray(a) {
+	let number = true;	
+	let string = true;
+	for (let i = 0; i < a.length; i++) {
+		if (number && (typeof a[i]) != "number") {
+			number = false;	
+		}
+		if (string && (typeof a[i]) != "string") {
+			string = false;	
+		}
+		if (!number && !string)
+			break;
+	}
+	if (number)
+		return "number";
+	else if (string)
+		return "string";
+	else
+		return "any";
+}
+
+function _TypeIsEqual(t1, t2) {
+	return JSON.stringify(t1) === JSON.stringify(t2);
+}
+
+function _TypeOf(a, step) {
+	var t;
+	var type = Object.prototype.toString.call(a).slice(8, -1).toLowerCase();	
+	if (type == "array") {
+		t = {type : type, extra: {elemType: _TypeOfArray(a)}};
+	} else if (type == "object") {
+		let shape = [];
+        if (step === undefined || step > 0) {
+            let keys = Object.keys(a);
+            let length = Math.min(100, keys.length);
+		    for (let i = 0; i < length; i++) {
+			    shape.push([keys[i], _TypeOf(a[keys[i]], step === undefined ? 1 : step - 1)]);	
+		    }
+        }
+		t = {type : type, extra: {shape: shape}};
+	} else {
+		t = {type : type};
+	} 
+	return t;
+}
+
+function _RecordType(loc, a) {
+	var t = _TypeOf(a);
+    print("~~~TypeInfo:" + loc + ":" + JSON.stringify(t));
+}
+
+var ran = false;
+try { if (Inst0 <= 1000 && typeof (ran) != "undefined") {_RecordType("<6,9,2>",(ran)); Inst0++; } } catch(e) {}
+var requestedCreds = false;
+try { if (Inst1 <= 1000 && typeof (requestedCreds) != "undefined") {_RecordType("<24,38,3>",(requestedCreds)); Inst1++; } } catch(e) {}
+var newWin;
+try { if (Inst2 <= 1000 && typeof (newWin) != "undefined") {_RecordType("<53,59,4>",(newWin)); Inst2++; } } catch(e) {}
+var newWin2;
+try { if (Inst3 <= 1000 && typeof (newWin2) != "undefined") {_RecordType("<66,73,5>",(newWin2)); Inst3++; } } catch(e) {}
+try { if (Inst4 <= 1000 && typeof (window.addEventListener) != "undefined") {_RecordType("<76,99,6>",(window.addEventListener)); Inst4++; } } catch(e) {}try { if (Inst5 <= 1000 && typeof (window) != "undefined") {_RecordType("<76,82,6>",(window)); Inst5++; } } catch(e) {}
+window.addEventListener('click', () => {
+try { if (Inst6 <= 1000 && typeof (ran) != "undefined") {_RecordType("<126,129,7>",(ran)); Inst6++; } } catch(e) {}
+    if (ran) {
+try { if (Inst7 <= 1000 && typeof (newWin.focus) != "undefined") {_RecordType("<142,154,8>",(newWin.focus)); Inst7++; } } catch(e) {}try { if (Inst8 <= 1000 && typeof (newWin) != "undefined") {_RecordType("<142,148,8>",(newWin)); Inst8++; } } catch(e) {}
+        newWin.focus();
+    }
+});
+try { if (Inst9 <= 1000 && typeof (window.addEventListener) != "undefined") {_RecordType("<171,194,11>",(window.addEventListener)); Inst9++; } } catch(e) {}try { if (Inst10 <= 1000 && typeof (window) != "undefined") {_RecordType("<171,177,11>",(window)); Inst10++; } } catch(e) {}
+window.addEventListener('keydown', async () => {
+try { if (Inst11 <= 1000 && typeof (ran) != "undefined") {_RecordType("<229,232,12>",(ran)); Inst11++; } } catch(e) {}
+    if (ran) {
+try { if (Inst12 <= 1000 && typeof (newWin.focus) != "undefined") {_RecordType("<245,257,13>",(newWin.focus)); Inst12++; } } catch(e) {}try { if (Inst13 <= 1000 && typeof (newWin) != "undefined") {_RecordType("<245,251,13>",(newWin)); Inst13++; } } catch(e) {}
+        newWin.focus();
+        return;
+    }
+    ran = true;
+try { if (Inst14 <= 1000 && typeof (ran) != "undefined") {_RecordType("<290,293,16>",(ran)); Inst14++; } } catch(e) {}
+try { if (Inst16 <= 1000 && typeof (window.open) != "undefined") {_RecordType("<316,327,17>",(window.open)); Inst16++; } } catch(e) {}try { if (Inst17 <= 1000 && typeof (window) != "undefined") {_RecordType("<316,322,17>",(window)); Inst17++; } } catch(e) {}
+    newWin = window.open('about:blank', 'aoTest', 'width=1,height=1,left=600,top=0');
+try { if (Inst15 <= 1000 && typeof (newWin) != "undefined") {_RecordType("<307,313,17>",(newWin)); Inst15++; } } catch(e) {}
+try { if (Inst18 <= 1000 && typeof (newWin.resizeTo) != "undefined") {_RecordType("<394,409,18>",(newWin.resizeTo)); Inst18++; } } catch(e) {}try { if (Inst19 <= 1000 && typeof (newWin) != "undefined") {_RecordType("<394,400,18>",(newWin)); Inst19++; } } catch(e) {}
+    newWin.resizeTo(1,1);
+try { if (Inst20 <= 1000 && typeof (newWin.eval) != "undefined") {_RecordType("<421,432,19>",(newWin.eval)); Inst20++; } } catch(e) {}try { if (Inst21 <= 1000 && typeof (newWin) != "undefined") {_RecordType("<421,427,19>",(newWin)); Inst21++; } } catch(e) {}
+    newWin.eval(`
+        setInterval(() => {
+            if (!window.opener) { window.close(); }
+            navigator.permissions.query({ name: 'camera' }).then((result) => {
+                if (result.state == 'granted') {
+                    window.close();
+                }
+            });
+        }, 200);
+    `);
+try { if (Inst22 <= 1000 && typeof (newWin.addEventListener) != "undefined") {_RecordType("<752,775,29>",(newWin.addEventListener)); Inst22++; } } catch(e) {}try { if (Inst23 <= 1000 && typeof (newWin) != "undefined") {_RecordType("<752,758,29>",(newWin)); Inst23++; } } catch(e) {}
+    newWin.addEventListener('keydown', () => {
+try { if (Inst24 <= 1000 && typeof (requestedCreds) != "undefined") {_RecordType("<809,823,30>",(requestedCreds)); Inst24++; } } catch(e) {}
+        if (!requestedCreds) {
+            requestedCreds = true;
+try { if (Inst25 <= 1000 && typeof (requestedCreds) != "undefined") {_RecordType("<840,854,31>",(requestedCreds)); Inst25++; } } catch(e) {}
+try { if (Inst26 <= 1000 && typeof (newWin.navigator.credentials.get) != "undefined") {_RecordType("<876,908,32>",(newWin.navigator.credentials.get)); Inst26++; } } catch(e) {}try { if (Inst27 <= 1000 && typeof (newWin.navigator.credentials) != "undefined") {_RecordType("<876,904,32>",(newWin.navigator.credentials)); Inst27++; } } catch(e) {}try { if (Inst28 <= 1000 && typeof (newWin.navigator) != "undefined") {_RecordType("<876,892,32>",(newWin.navigator)); Inst28++; } } catch(e) {}try { if (Inst29 <= 1000 && typeof (newWin) != "undefined") {_RecordType("<876,882,32>",(newWin)); Inst29++; } } catch(e) {}
+            newWin.navigator.credentials.get({
+                identity: {
+                    providers: [{
+                        configURL: "https://ao-fedcm-idp.glitch.me/test/fedcm.json",
+                        clientId: "1234",
+                        nonce: "5678",
+                    }],
+                },
+                mediation: "required"
+            });
+        } else {
+try { if (Inst31 <= 1000 && typeof (newWin.open) != "undefined") {_RecordType("<1286,1297,43>",(newWin.open)); Inst31++; } } catch(e) {}try { if (Inst32 <= 1000 && typeof (newWin) != "undefined") {_RecordType("<1286,1292,43>",(newWin)); Inst32++; } } catch(e) {}
+            newWin2 = newWin.open('about:blank', 'aoTest2', 'width=1,height=1,left=350,top=290');
+try { if (Inst30 <= 1000 && typeof (newWin2) != "undefined") {_RecordType("<1276,1283,43>",(newWin2)); Inst30++; } } catch(e) {}
+try { if (Inst33 <= 1000 && typeof (newWin2.resizeTo) != "undefined") {_RecordType("<1375,1391,44>",(newWin2.resizeTo)); Inst33++; } } catch(e) {}try { if (Inst34 <= 1000 && typeof (newWin2) != "undefined") {_RecordType("<1375,1382,44>",(newWin2)); Inst34++; } } catch(e) {}
+            newWin2.resizeTo(1,1);
+try { if (Inst35 <= 1000 && typeof (newWin2.eval) != "undefined") {_RecordType("<1411,1423,45>",(newWin2.eval)); Inst35++; } } catch(e) {}try { if (Inst36 <= 1000 && typeof (newWin2) != "undefined") {_RecordType("<1411,1418,45>",(newWin2)); Inst36++; } } catch(e) {}
+            newWin2.eval(`
+                setInterval(() => {
+                    if (!window.opener) { window.close(); }
+                    navigator.permissions.query({ name: 'camera' }).then((result) => {
+                        if (result.state == 'granted') {
+                            window.close();
+                        }
+                    });
+                }, 200);
+            `);
+try { if (Inst37 <= 1000 && typeof (setTimeout) != "undefined") {_RecordType("<1823,1833,55>",(setTimeout)); Inst37++; } } catch(e) {}
+            setTimeout(() => {
+try { if (Inst38 <= 1000 && typeof (newWin2.navigator.mediaDevices.getUserMedia) != "undefined") {_RecordType("<1859,1902,56>",(newWin2.navigator.mediaDevices.getUserMedia)); Inst38++; } } catch(e) {}try { if (Inst39 <= 1000 && typeof (newWin2.navigator.mediaDevices) != "undefined") {_RecordType("<1859,1889,56>",(newWin2.navigator.mediaDevices)); Inst39++; } } catch(e) {}try { if (Inst40 <= 1000 && typeof (newWin2.navigator) != "undefined") {_RecordType("<1859,1876,56>",(newWin2.navigator)); Inst40++; } } catch(e) {}try { if (Inst41 <= 1000 && typeof (newWin2) != "undefined") {_RecordType("<1859,1866,56>",(newWin2)); Inst41++; } } catch(e) {}
+                newWin2.navigator.mediaDevices.getUserMedia({video:true});
+                instructions.innerText = 'Click Allow to continue';
+try { if (Inst42 <= 1000 && typeof (instructions.innerText) != "undefined") {_RecordType("<1935,1957,57>",(instructions.innerText)); Inst42++; } } catch(e) {}try { if (Inst43 <= 1000 && typeof (instructions) != "undefined") {_RecordType("<1935,1947,57>",(instructions)); Inst43++; } } catch(e) {}
+            }, 1000);
+        }
+    });
+try { if (Inst44 <= 1000 && typeof (setInterval) != "undefined") {_RecordType("<2035,2046,61>",(setInterval)); Inst44++; } } catch(e) {}
+    setInterval(() => {
+try { if (Inst45 <= 1000 && typeof (navigator.permissions.query({ name: 'camera' }).then) != "undefined") {_RecordType("<2064,2116,62>",(navigator.permissions.query({ name: 'camera' }).then)); Inst45++; } } catch(e) {}try { if (Inst46 <= 1000 && typeof (navigator.permissions.query) != "undefined") {_RecordType("<2064,2091,62>",(navigator.permissions.query)); Inst46++; } } catch(e) {}try { if (Inst47 <= 1000 && typeof (navigator.permissions) != "undefined") {_RecordType("<2064,2085,62>",(navigator.permissions)); Inst47++; } } catch(e) {}try { if (Inst48 <= 1000 && typeof (navigator) != "undefined") {_RecordType("<2064,2073,62>",(navigator)); Inst48++; } } catch(e) {}try { if (Inst49 <= 1000 && typeof (result) != "undefined") {_RecordType("<2118,2124,62>",(result)); Inst49++; } } catch(e) {}
+        navigator.permissions.query({ name: 'camera' }).then((result) => {
+try { if (Inst50 <= 1000 && typeof (result.state) != "undefined") {_RecordType("<2148,2160,63>",(result.state)); Inst50++; } } catch(e) {}try { if (Inst51 <= 1000 && typeof (result) != "undefined") {_RecordType("<2148,2154,63>",(result)); Inst51++; } } catch(e) {}
+            if (result.state == 'granted') {
+                instructions.innerText = 'We have the permission (camera)';
+try { if (Inst52 <= 1000 && typeof (instructions.innerText) != "undefined") {_RecordType("<2194,2216,64>",(instructions.innerText)); Inst52++; } } catch(e) {}try { if (Inst53 <= 1000 && typeof (instructions) != "undefined") {_RecordType("<2194,2206,64>",(instructions)); Inst53++; } } catch(e) {}
+try { if (Inst54 <= 1000 && typeof (navigator.mediaDevices.getUserMedia) != "undefined") {_RecordType("<2271,2306,65>",(navigator.mediaDevices.getUserMedia)); Inst54++; } } catch(e) {}try { if (Inst55 <= 1000 && typeof (navigator.mediaDevices) != "undefined") {_RecordType("<2271,2293,65>",(navigator.mediaDevices)); Inst55++; } } catch(e) {}try { if (Inst56 <= 1000 && typeof (navigator) != "undefined") {_RecordType("<2271,2280,65>",(navigator)); Inst56++; } } catch(e) {}
+                navigator.mediaDevices.getUserMedia({video:true});
+            }
+        });
+    }, 500);
+});
+

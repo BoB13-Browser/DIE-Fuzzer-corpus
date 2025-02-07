@@ -1,0 +1,96 @@
+var Inst0 = 0;
+var Inst1 = 0;
+var Inst2 = 0;
+var Inst3 = 0;
+var Inst4 = 0;
+var Inst5 = 0;
+var Inst6 = 0;
+var Inst7 = 0;
+var Inst8 = 0;
+var Inst9 = 0;
+var Inst10 = 0;
+var Inst11 = 0;
+var Inst12 = 0;
+var Inst13 = 0;
+var Inst14 = 0;
+var Inst15 = 0;
+ 
+function _TypeOfArray(a) {
+	let number = true;	
+	let string = true;
+	for (let i = 0; i < a.length; i++) {
+		if (number && (typeof a[i]) != "number") {
+			number = false;	
+		}
+		if (string && (typeof a[i]) != "string") {
+			string = false;	
+		}
+		if (!number && !string)
+			break;
+	}
+	if (number)
+		return "number";
+	else if (string)
+		return "string";
+	else
+		return "any";
+}
+
+function _TypeIsEqual(t1, t2) {
+	return JSON.stringify(t1) === JSON.stringify(t2);
+}
+
+function _TypeOf(a, step) {
+	var t;
+	var type = Object.prototype.toString.call(a).slice(8, -1).toLowerCase();	
+	if (type == "array") {
+		t = {type : type, extra: {elemType: _TypeOfArray(a)}};
+	} else if (type == "object") {
+		let shape = [];
+        if (step === undefined || step > 0) {
+            let keys = Object.keys(a);
+            let length = Math.min(100, keys.length);
+		    for (let i = 0; i < length; i++) {
+			    shape.push([keys[i], _TypeOf(a[keys[i]], step === undefined ? 1 : step - 1)]);	
+		    }
+        }
+		t = {type : type, extra: {shape: shape}};
+	} else {
+		t = {type : type};
+	} 
+	return t;
+}
+
+function _RecordType(loc, a) {
+	var t = _TypeOf(a);
+    print("~~~TypeInfo:" + loc + ":" + JSON.stringify(t));
+}
+
+
+try { if (Inst0 <= 1000 && typeof (trigger) != "undefined") {_RecordType("<25,32,3>",(trigger)); Inst0++; } } catch(e) {}
+            function trigger() {
+
+try { if (Inst2 <= 1000 && typeof (document.getElementById) != "undefined") {_RecordType("<68,91,5>",(document.getElementById)); Inst2++; } } catch(e) {}try { if (Inst3 <= 1000 && typeof (document) != "undefined") {_RecordType("<68,76,5>",(document)); Inst3++; } } catch(e) {}
+                let var_1 = document.getElementById("id_1");
+try { if (Inst1 <= 1000 && typeof (var_1) != "undefined") {_RecordType("<60,65,5>",(var_1)); Inst1++; } } catch(e) {}
+try { if (Inst5 <= 1000 && typeof (document.createElement) != "undefined") {_RecordType("<130,152,6>",(document.createElement)); Inst5++; } } catch(e) {}try { if (Inst6 <= 1000 && typeof (document) != "undefined") {_RecordType("<130,138,6>",(document)); Inst6++; } } catch(e) {}
+                let var_2 = document.createElement("datalist"); 
+try { if (Inst4 <= 1000 && typeof (var_2) != "undefined") {_RecordType("<122,127,6>",(var_2)); Inst4++; } } catch(e) {}
+try { if (Inst7 <= 1000 && typeof (document.body.appendChild) != "undefined") {_RecordType("<184,209,7>",(document.body.appendChild)); Inst7++; } } catch(e) {}try { if (Inst8 <= 1000 && typeof (document.body) != "undefined") {_RecordType("<184,197,7>",(document.body)); Inst8++; } } catch(e) {}try { if (Inst9 <= 1000 && typeof (document) != "undefined") {_RecordType("<184,192,7>",(document)); Inst9++; } } catch(e) {}try { if (Inst10 <= 1000 && typeof (var_2) != "undefined") {_RecordType("<210,215,7>",(var_2)); Inst10++; } } catch(e) {}
+                document.body.appendChild(var_2);
+try { if (Inst11 <= 1000 && typeof (var_1.replaceWith) != "undefined") {_RecordType("<235,252,8>",(var_1.replaceWith)); Inst11++; } } catch(e) {}try { if (Inst12 <= 1000 && typeof (var_1) != "undefined") {_RecordType("<235,240,8>",(var_1)); Inst12++; } } catch(e) {}try { if (Inst13 <= 1000 && typeof (var_2) != "undefined") {_RecordType("<253,258,8>",(var_2)); Inst13++; } } catch(e) {}
+                var_1.replaceWith(var_2);
+
+                var_2.outerHTML = `
+                    
+                    <ruby></ruby>
+                    <ruby id="id_2"><table></ruby>
+                    <table dir="rtl" contextmenu="id_7" tabindex="0"></table>
+                    <table></table>
+
+                `;
+try { if (Inst14 <= 1000 && typeof (var_2.outerHTML) != "undefined") {_RecordType("<280,295,10>",(var_2.outerHTML)); Inst14++; } } catch(e) {}try { if (Inst15 <= 1000 && typeof (var_2) != "undefined") {_RecordType("<280,285,10>",(var_2)); Inst15++; } } catch(e) {}
+
+            }
+
+        

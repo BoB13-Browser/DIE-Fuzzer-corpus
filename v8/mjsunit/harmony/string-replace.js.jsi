@@ -1,0 +1,108 @@
+var Inst0 = 0;
+var Inst1 = 0;
+var Inst2 = 0;
+var Inst3 = 0;
+var Inst4 = 0;
+var Inst5 = 0;
+var Inst6 = 0;
+var Inst7 = 0;
+var Inst8 = 0;
+var Inst9 = 0;
+var Inst10 = 0;
+var Inst11 = 0;
+var Inst12 = 0;
+var Inst13 = 0;
+var Inst14 = 0;
+var Inst15 = 0;
+var Inst16 = 0;
+var Inst17 = 0;
+var Inst18 = 0;
+var Inst19 = 0;
+var Inst20 = 0;
+var Inst21 = 0;
+var Inst22 = 0;
+var Inst23 = 0;
+var Inst24 = 0;
+var Inst25 = 0;
+var Inst26 = 0;
+var Inst27 = 0;
+var Inst28 = 0;
+var Inst29 = 0;
+ 
+function _TypeOfArray(a) {
+	let number = true;	
+	let string = true;
+	for (let i = 0; i < a.length; i++) {
+		if (number && (typeof a[i]) != "number") {
+			number = false;	
+		}
+		if (string && (typeof a[i]) != "string") {
+			string = false;	
+		}
+		if (!number && !string)
+			break;
+	}
+	if (number)
+		return "number";
+	else if (string)
+		return "string";
+	else
+		return "any";
+}
+
+function _TypeIsEqual(t1, t2) {
+	return JSON.stringify(t1) === JSON.stringify(t2);
+}
+
+function _TypeOf(a, step) {
+	var t;
+	var type = Object.prototype.toString.call(a).slice(8, -1).toLowerCase();	
+	if (type == "array") {
+		t = {type : type, extra: {elemType: _TypeOfArray(a)}};
+	} else if (type == "object") {
+		let shape = [];
+        if (step === undefined || step > 0) {
+            let keys = Object.keys(a);
+            let length = Math.min(100, keys.length);
+		    for (let i = 0; i < length; i++) {
+			    shape.push([keys[i], _TypeOf(a[keys[i]], step === undefined ? 1 : step - 1)]);	
+		    }
+        }
+		t = {type : type, extra: {shape: shape}};
+	} else {
+		t = {type : type};
+	} 
+	return t;
+}
+
+function _RecordType(loc, a) {
+	var t = _TypeOf(a);
+    print("~~~TypeInfo:" + loc + ":" + JSON.stringify(t));
+}
+// Copyright 2015 the V8 project authors. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
+// Flags: --harmony-regexp-subclass
+
+try { if (Inst1 <= 1000 && typeof (string) != "undefined") {_RecordType("<242,248,8>",(string)); Inst1++; } } catch(e) {}try { if (Inst2 <= 1000 && typeof (newValue) != "undefined") {_RecordType("<250,258,8>",(newValue)); Inst2++; } } catch(e) {}try { if (Inst3 <= 1000 && typeof (string) != "undefined") {_RecordType("<263,269,8>",(string)); Inst3++; } } catch(e) {}try { if (Inst4 <= 1000 && typeof (newValue) != "undefined") {_RecordType("<272,280,8>",(newValue)); Inst4++; } } catch(e) {}
+var pattern = {
+  [Symbol.replace]: (string, newValue) => string + newValue
+};
+try { if (Inst0 <= 1000 && typeof (pattern) != "undefined") {_RecordType("<209,216,7>",(pattern)); Inst0++; } } catch(e) {}
+// Check object coercible fails.
+try { if (Inst5 <= 1000 && typeof (assertThrows) != "undefined") {_RecordType("<317,329,11>",(assertThrows)); Inst5++; } } catch(e) {}try { if (Inst6 <= 1000 && typeof (String.prototype.replace.call) != "undefined") {_RecordType("<336,365,11>",(String.prototype.replace.call)); Inst6++; } } catch(e) {}try { if (Inst7 <= 1000 && typeof (String.prototype.replace) != "undefined") {_RecordType("<336,360,11>",(String.prototype.replace)); Inst7++; } } catch(e) {}try { if (Inst8 <= 1000 && typeof (String.prototype) != "undefined") {_RecordType("<336,352,11>",(String.prototype)); Inst8++; } } catch(e) {}try { if (Inst9 <= 1000 && typeof (String) != "undefined") {_RecordType("<336,342,11>",(String)); Inst9++; } } catch(e) {}try { if (Inst10 <= 1000 && typeof (pattern) != "undefined") {_RecordType("<372,379,11>",(pattern)); Inst10++; } } catch(e) {}try { if (Inst11 <= 1000 && typeof (TypeError) != "undefined") {_RecordType("<400,409,12>",(TypeError)); Inst11++; } } catch(e) {}
+assertThrows(() => String.prototype.replace.call(null, pattern, "x"),
+             TypeError);
+// Override is called.
+try { if (Inst12 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<435,447,14>",(assertEquals)); Inst12++; } } catch(e) {}try { if (Inst13 <= 1000 && typeof ("abcde".replace) != "undefined") {_RecordType("<458,473,14>",("abcde".replace)); Inst13++; } } catch(e) {}try { if (Inst14 <= 1000 && typeof (pattern) != "undefined") {_RecordType("<474,481,14>",(pattern)); Inst14++; } } catch(e) {}
+assertEquals("abcdex", "abcde".replace(pattern, "x"));
+// Non-callable override.
+pattern[Symbol.replace] = "dumdidum";
+try { if (Inst15 <= 1000 && typeof (pattern[Symbol.replace]) != "undefined") {_RecordType("<516,539,16>",(pattern[Symbol.replace])); Inst15++; } } catch(e) {}try { if (Inst16 <= 1000 && typeof (pattern) != "undefined") {_RecordType("<516,523,16>",(pattern)); Inst16++; } } catch(e) {}try { if (Inst17 <= 1000 && typeof (Symbol.replace) != "undefined") {_RecordType("<524,538,16>",(Symbol.replace)); Inst17++; } } catch(e) {}try { if (Inst18 <= 1000 && typeof (Symbol) != "undefined") {_RecordType("<524,530,16>",(Symbol)); Inst18++; } } catch(e) {}
+try { if (Inst19 <= 1000 && typeof (assertThrows) != "undefined") {_RecordType("<554,566,17>",(assertThrows)); Inst19++; } } catch(e) {}try { if (Inst20 <= 1000 && typeof ("abcde".replace) != "undefined") {_RecordType("<573,588,17>",("abcde".replace)); Inst20++; } } catch(e) {}try { if (Inst21 <= 1000 && typeof (pattern) != "undefined") {_RecordType("<589,596,17>",(pattern)); Inst21++; } } catch(e) {}try { if (Inst22 <= 1000 && typeof (TypeError) != "undefined") {_RecordType("<604,613,17>",(TypeError)); Inst22++; } } catch(e) {}
+assertThrows(() => "abcde".replace(pattern, "x"), TypeError);
+
+try { if (Inst23 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<617,629,19>",(assertEquals)); Inst23++; } } catch(e) {}try { if (Inst24 <= 1000 && typeof (RegExp.prototype[Symbol.replace].name) != "undefined") {_RecordType("<650,687,19>",(RegExp.prototype[Symbol.replace].name)); Inst24++; } } catch(e) {}try { if (Inst25 <= 1000 && typeof (RegExp.prototype[Symbol.replace]) != "undefined") {_RecordType("<650,682,19>",(RegExp.prototype[Symbol.replace])); Inst25++; } } catch(e) {}try { if (Inst26 <= 1000 && typeof (RegExp.prototype) != "undefined") {_RecordType("<650,666,19>",(RegExp.prototype)); Inst26++; } } catch(e) {}try { if (Inst27 <= 1000 && typeof (RegExp) != "undefined") {_RecordType("<650,656,19>",(RegExp)); Inst27++; } } catch(e) {}try { if (Inst28 <= 1000 && typeof (Symbol.replace) != "undefined") {_RecordType("<667,681,19>",(Symbol.replace)); Inst28++; } } catch(e) {}try { if (Inst29 <= 1000 && typeof (Symbol) != "undefined") {_RecordType("<667,673,19>",(Symbol)); Inst29++; } } catch(e) {}
+assertEquals("[Symbol.replace]", RegExp.prototype[Symbol.replace].name);
+

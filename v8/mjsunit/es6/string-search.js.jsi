@@ -1,0 +1,114 @@
+var Inst0 = 0;
+var Inst1 = 0;
+var Inst2 = 0;
+var Inst3 = 0;
+var Inst4 = 0;
+var Inst5 = 0;
+var Inst6 = 0;
+var Inst7 = 0;
+var Inst8 = 0;
+var Inst9 = 0;
+var Inst10 = 0;
+var Inst11 = 0;
+var Inst12 = 0;
+var Inst13 = 0;
+var Inst14 = 0;
+var Inst15 = 0;
+var Inst16 = 0;
+var Inst17 = 0;
+var Inst18 = 0;
+var Inst19 = 0;
+var Inst20 = 0;
+var Inst21 = 0;
+var Inst22 = 0;
+var Inst23 = 0;
+var Inst24 = 0;
+var Inst25 = 0;
+var Inst26 = 0;
+var Inst27 = 0;
+var Inst28 = 0;
+var Inst29 = 0;
+var Inst30 = 0;
+var Inst31 = 0;
+var Inst32 = 0;
+ 
+function _TypeOfArray(a) {
+	let number = true;	
+	let string = true;
+	for (let i = 0; i < a.length; i++) {
+		if (number && (typeof a[i]) != "number") {
+			number = false;	
+		}
+		if (string && (typeof a[i]) != "string") {
+			string = false;	
+		}
+		if (!number && !string)
+			break;
+	}
+	if (number)
+		return "number";
+	else if (string)
+		return "string";
+	else
+		return "any";
+}
+
+function _TypeIsEqual(t1, t2) {
+	return JSON.stringify(t1) === JSON.stringify(t2);
+}
+
+function _TypeOf(a, step) {
+	var t;
+	var type = Object.prototype.toString.call(a).slice(8, -1).toLowerCase();	
+	if (type == "array") {
+		t = {type : type, extra: {elemType: _TypeOfArray(a)}};
+	} else if (type == "object") {
+		let shape = [];
+        if (step === undefined || step > 0) {
+            let keys = Object.keys(a);
+            let length = Math.min(100, keys.length);
+		    for (let i = 0; i < length; i++) {
+			    shape.push([keys[i], _TypeOf(a[keys[i]], step === undefined ? 1 : step - 1)]);	
+		    }
+        }
+		t = {type : type, extra: {shape: shape}};
+	} else {
+		t = {type : type};
+	} 
+	return t;
+}
+
+function _RecordType(loc, a) {
+	var t = _TypeOf(a);
+    print("~~~TypeInfo:" + loc + ":" + JSON.stringify(t));
+}
+// Copyright 2015 the V8 project authors. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
+// Flags: --harmony-regexp-subclass
+
+var pattern = {};
+try { if (Inst0 <= 1000 && typeof (pattern) != "undefined") {_RecordType("<209,216,7>",(pattern)); Inst0++; } } catch(e) {}
+pattern[Symbol.search] = function(string) {
+try { if (Inst5 <= 1000 && typeof (string) != "undefined") {_RecordType("<257,263,8>",(string)); Inst5++; } } catch(e) {}
+try { if (Inst6 <= 1000 && typeof (string.length) != "undefined") {_RecordType("<276,289,9>",(string.length)); Inst6++; } } catch(e) {}try { if (Inst7 <= 1000 && typeof (string) != "undefined") {_RecordType("<276,282,9>",(string)); Inst7++; } } catch(e) {}
+  return string.length;
+};
+try { if (Inst1 <= 1000 && typeof (pattern[Symbol.search]) != "undefined") {_RecordType("<223,245,8>",(pattern[Symbol.search])); Inst1++; } } catch(e) {}try { if (Inst2 <= 1000 && typeof (pattern) != "undefined") {_RecordType("<223,230,8>",(pattern)); Inst2++; } } catch(e) {}try { if (Inst3 <= 1000 && typeof (Symbol.search) != "undefined") {_RecordType("<231,244,8>",(Symbol.search)); Inst3++; } } catch(e) {}try { if (Inst4 <= 1000 && typeof (Symbol) != "undefined") {_RecordType("<231,237,8>",(Symbol)); Inst4++; } } catch(e) {}
+// Check object coercible fails.
+try { if (Inst8 <= 1000 && typeof (assertThrows) != "undefined") {_RecordType("<327,339,12>",(assertThrows)); Inst8++; } } catch(e) {}try { if (Inst9 <= 1000 && typeof (String.prototype.search.call) != "undefined") {_RecordType("<346,374,12>",(String.prototype.search.call)); Inst9++; } } catch(e) {}try { if (Inst10 <= 1000 && typeof (String.prototype.search) != "undefined") {_RecordType("<346,369,12>",(String.prototype.search)); Inst10++; } } catch(e) {}try { if (Inst11 <= 1000 && typeof (String.prototype) != "undefined") {_RecordType("<346,362,12>",(String.prototype)); Inst11++; } } catch(e) {}try { if (Inst12 <= 1000 && typeof (String) != "undefined") {_RecordType("<346,352,12>",(String)); Inst12++; } } catch(e) {}try { if (Inst13 <= 1000 && typeof (pattern) != "undefined") {_RecordType("<381,388,12>",(pattern)); Inst13++; } } catch(e) {}try { if (Inst14 <= 1000 && typeof (TypeError) != "undefined") {_RecordType("<404,413,13>",(TypeError)); Inst14++; } } catch(e) {}
+assertThrows(() => String.prototype.search.call(null, pattern),
+             TypeError);
+// Override is called.
+try { if (Inst15 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<439,451,15>",(assertEquals)); Inst15++; } } catch(e) {}try { if (Inst16 <= 1000 && typeof ("abcde".search) != "undefined") {_RecordType("<455,469,15>",("abcde".search)); Inst16++; } } catch(e) {}try { if (Inst17 <= 1000 && typeof (pattern) != "undefined") {_RecordType("<470,477,15>",(pattern)); Inst17++; } } catch(e) {}
+assertEquals(5, "abcde".search(pattern));
+// Non-callable override.
+pattern[Symbol.search] = "dumdidum";
+try { if (Inst18 <= 1000 && typeof (pattern[Symbol.search]) != "undefined") {_RecordType("<507,529,17>",(pattern[Symbol.search])); Inst18++; } } catch(e) {}try { if (Inst19 <= 1000 && typeof (pattern) != "undefined") {_RecordType("<507,514,17>",(pattern)); Inst19++; } } catch(e) {}try { if (Inst20 <= 1000 && typeof (Symbol.search) != "undefined") {_RecordType("<515,528,17>",(Symbol.search)); Inst20++; } } catch(e) {}try { if (Inst21 <= 1000 && typeof (Symbol) != "undefined") {_RecordType("<515,521,17>",(Symbol)); Inst21++; } } catch(e) {}
+try { if (Inst22 <= 1000 && typeof (assertThrows) != "undefined") {_RecordType("<544,556,18>",(assertThrows)); Inst22++; } } catch(e) {}try { if (Inst23 <= 1000 && typeof ("abcde".search) != "undefined") {_RecordType("<563,577,18>",("abcde".search)); Inst23++; } } catch(e) {}try { if (Inst24 <= 1000 && typeof (pattern) != "undefined") {_RecordType("<578,585,18>",(pattern)); Inst24++; } } catch(e) {}try { if (Inst25 <= 1000 && typeof (TypeError) != "undefined") {_RecordType("<588,597,18>",(TypeError)); Inst25++; } } catch(e) {}
+assertThrows(() => "abcde".search(pattern), TypeError);
+
+try { if (Inst26 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<601,613,20>",(assertEquals)); Inst26++; } } catch(e) {}try { if (Inst27 <= 1000 && typeof (RegExp.prototype[Symbol.search].name) != "undefined") {_RecordType("<633,669,20>",(RegExp.prototype[Symbol.search].name)); Inst27++; } } catch(e) {}try { if (Inst28 <= 1000 && typeof (RegExp.prototype[Symbol.search]) != "undefined") {_RecordType("<633,664,20>",(RegExp.prototype[Symbol.search])); Inst28++; } } catch(e) {}try { if (Inst29 <= 1000 && typeof (RegExp.prototype) != "undefined") {_RecordType("<633,649,20>",(RegExp.prototype)); Inst29++; } } catch(e) {}try { if (Inst30 <= 1000 && typeof (RegExp) != "undefined") {_RecordType("<633,639,20>",(RegExp)); Inst30++; } } catch(e) {}try { if (Inst31 <= 1000 && typeof (Symbol.search) != "undefined") {_RecordType("<650,663,20>",(Symbol.search)); Inst31++; } } catch(e) {}try { if (Inst32 <= 1000 && typeof (Symbol) != "undefined") {_RecordType("<650,656,20>",(Symbol)); Inst32++; } } catch(e) {}
+assertEquals("[Symbol.search]", RegExp.prototype[Symbol.search].name);
+

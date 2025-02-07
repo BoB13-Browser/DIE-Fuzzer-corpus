@@ -1,0 +1,194 @@
+var Inst0 = 0;
+var Inst1 = 0;
+var Inst2 = 0;
+var Inst3 = 0;
+var Inst4 = 0;
+var Inst5 = 0;
+var Inst6 = 0;
+var Inst7 = 0;
+var Inst8 = 0;
+var Inst9 = 0;
+var Inst10 = 0;
+var Inst11 = 0;
+var Inst12 = 0;
+var Inst13 = 0;
+var Inst14 = 0;
+var Inst15 = 0;
+var Inst16 = 0;
+var Inst17 = 0;
+var Inst18 = 0;
+var Inst19 = 0;
+var Inst20 = 0;
+var Inst21 = 0;
+var Inst22 = 0;
+var Inst23 = 0;
+var Inst24 = 0;
+var Inst25 = 0;
+var Inst26 = 0;
+var Inst27 = 0;
+var Inst28 = 0;
+var Inst29 = 0;
+var Inst30 = 0;
+var Inst31 = 0;
+var Inst32 = 0;
+var Inst33 = 0;
+var Inst34 = 0;
+var Inst35 = 0;
+var Inst36 = 0;
+var Inst37 = 0;
+var Inst38 = 0;
+var Inst39 = 0;
+var Inst40 = 0;
+var Inst41 = 0;
+var Inst42 = 0;
+var Inst43 = 0;
+var Inst44 = 0;
+ 
+function _TypeOfArray(a) {
+	let number = true;	
+	let string = true;
+	for (let i = 0; i < a.length; i++) {
+		if (number && (typeof a[i]) != "number") {
+			number = false;	
+		}
+		if (string && (typeof a[i]) != "string") {
+			string = false;	
+		}
+		if (!number && !string)
+			break;
+	}
+	if (number)
+		return "number";
+	else if (string)
+		return "string";
+	else
+		return "any";
+}
+
+function _TypeIsEqual(t1, t2) {
+	return JSON.stringify(t1) === JSON.stringify(t2);
+}
+
+function _TypeOf(a, step) {
+	var t;
+	var type = Object.prototype.toString.call(a).slice(8, -1).toLowerCase();	
+	if (type == "array") {
+		t = {type : type, extra: {elemType: _TypeOfArray(a)}};
+	} else if (type == "object") {
+		let shape = [];
+        if (step === undefined || step > 0) {
+            let keys = Object.keys(a);
+            let length = Math.min(100, keys.length);
+		    for (let i = 0; i < length; i++) {
+			    shape.push([keys[i], _TypeOf(a[keys[i]], step === undefined ? 1 : step - 1)]);	
+		    }
+        }
+		t = {type : type, extra: {shape: shape}};
+	} else {
+		t = {type : type};
+	} 
+	return t;
+}
+
+function _RecordType(loc, a) {
+	var t = _TypeOf(a);
+    print("~~~TypeInfo:" + loc + ":" + JSON.stringify(t));
+}
+try { if (Inst0 <= 1000 && typeof (f0) != "undefined") {_RecordType("<9,11,1>",(f0)); Inst0++; } } catch(e) {}
+function f0() {
+  // WasmModule Code:
+  // BeginWasmModule
+  //     BeginWasmFunction [] ([] => .nothing)
+  //     v7 <- EndWasmFunction
+  // v8 <- EndWasmModule
+  //
+try { if (Inst2 <= 1000 && typeof (WebAssembly.Instance) != "undefined") {_RecordType("<191,211,8>",(WebAssembly.Instance)); Inst2++; } } catch(e) {}try { if (Inst3 <= 1000 && typeof (WebAssembly) != "undefined") {_RecordType("<191,202,8>",(WebAssembly)); Inst3++; } } catch(e) {}try { if (Inst4 <= 1000 && typeof (WebAssembly.Module) != "undefined") {_RecordType("<216,234,8>",(WebAssembly.Module)); Inst4++; } } catch(e) {}try { if (Inst5 <= 1000 && typeof (WebAssembly) != "undefined") {_RecordType("<216,227,8>",(WebAssembly)); Inst5++; } } catch(e) {}try { if (Inst6 <= 1000 && typeof (Uint8Array) != "undefined") {_RecordType("<239,249,8>",(Uint8Array)); Inst6++; } } catch(e) {}
+  const v8 = new WebAssembly.Instance(new WebAssembly.Module(new Uint8Array([
+      0x00, 0x61, 0x73, 0x6D, 0x01, 0x00, 0x00, 0x00, 0x01, 0x04,
+      0x01, 0x60, 0x00, 0x00, 0x03, 0x02, 0x01, 0x00, 0x04, 0x01,
+      0x00, 0x05, 0x01, 0x00, 0x06, 0x01, 0x00, 0x07, 0x06, 0x01,
+      0x02, 0x77, 0x30, 0x00, 0x00, 0x0A, 0x04, 0x01, 0x02, 0x00,
+      0x0B,
+  ])));
+try { if (Inst1 <= 1000 && typeof (v8) != "undefined") {_RecordType("<182,184,8>",(v8)); Inst1++; } } catch(e) {}
+
+try { if (Inst8 <= 1000 && typeof (WebAssembly.promising) != "undefined") {_RecordType("<557,578,16>",(WebAssembly.promising)); Inst8++; } } catch(e) {}try { if (Inst9 <= 1000 && typeof (WebAssembly) != "undefined") {_RecordType("<557,568,16>",(WebAssembly)); Inst9++; } } catch(e) {}try { if (Inst10 <= 1000 && typeof (v8.exports.w0) != "undefined") {_RecordType("<579,592,16>",(v8.exports.w0)); Inst10++; } } catch(e) {}try { if (Inst11 <= 1000 && typeof (v8.exports) != "undefined") {_RecordType("<579,589,16>",(v8.exports)); Inst11++; } } catch(e) {}try { if (Inst12 <= 1000 && typeof (v8) != "undefined") {_RecordType("<579,581,16>",(v8)); Inst12++; } } catch(e) {}
+  let v11 = WebAssembly.promising(v8.exports.w0);
+try { if (Inst7 <= 1000 && typeof (v11) != "undefined") {_RecordType("<551,554,16>",(v11)); Inst7++; } } catch(e) {}
+try { if (Inst13 <= 1000 && typeof (v11) != "undefined") {_RecordType("<598,601,17>",(v11)); Inst13++; } } catch(e) {}try { if (Inst14 <= 1000 && typeof (f0) != "undefined") {_RecordType("<602,604,17>",(f0)); Inst14++; } } catch(e) {}try { if (Inst15 <= 1000 && typeof (f0) != "undefined") {_RecordType("<606,608,17>",(f0)); Inst15++; } } catch(e) {}
+  v11(f0, f0);
+
+try { if (Inst16 <= 1000 && typeof (console.log) != "undefined") {_RecordType("<616,627,19>",(console.log)); Inst16++; } } catch(e) {}try { if (Inst17 <= 1000 && typeof (console) != "undefined") {_RecordType("<616,623,19>",(console)); Inst17++; } } catch(e) {}
+  console.log("A");
+
+
+  // WasmModule Code:
+  // BeginWasmModule
+  //     BeginWasmFunction [v50, v51, v52, v53, v54] ([.wasmi32, .wasmf64, .wasmi32, .wasmf64, .wasmi32] => .wasmf32)
+  //         v55 <- Constf32 '6.5286493'
+  //         WasmReturn v55
+  //     v56 <- EndWasmFunction
+  // v57 <- EndWasmModule
+  //
+try { if (Inst19 <= 1000 && typeof (WebAssembly.Instance) != "undefined") {_RecordType("<958,978,30>",(WebAssembly.Instance)); Inst19++; } } catch(e) {}try { if (Inst20 <= 1000 && typeof (WebAssembly) != "undefined") {_RecordType("<958,969,30>",(WebAssembly)); Inst20++; } } catch(e) {}try { if (Inst21 <= 1000 && typeof (WebAssembly.Module) != "undefined") {_RecordType("<983,1001,30>",(WebAssembly.Module)); Inst21++; } } catch(e) {}try { if (Inst22 <= 1000 && typeof (WebAssembly) != "undefined") {_RecordType("<983,994,30>",(WebAssembly)); Inst22++; } } catch(e) {}try { if (Inst23 <= 1000 && typeof (Uint8Array) != "undefined") {_RecordType("<1006,1016,30>",(Uint8Array)); Inst23++; } } catch(e) {}
+  const v57 = new WebAssembly.Instance(new WebAssembly.Module(new Uint8Array([
+      0x00, 0x61, 0x73, 0x6D, 0x01, 0x00, 0x00, 0x00, 0x01, 0x0A,
+      0x01, 0x60, 0x05, 0x7F, 0x7C, 0x7F, 0x7C, 0x7F, 0x01, 0x7D,
+      0x03, 0x02, 0x01, 0x00, 0x04, 0x01, 0x00, 0x05, 0x01, 0x00,
+      0x06, 0x01, 0x00, 0x07, 0x06, 0x01, 0x02, 0x77, 0x30, 0x00,
+      0x00, 0x0A, 0x10, 0x01, 0x0E, 0x01, 0x01, 0x7D, 0x43, 0xB2,
+      0xEA, 0xD0, 0x40, 0x21, 0x05, 0x20, 0x05, 0x0F, 0x0B,
+  ])));
+try { if (Inst18 <= 1000 && typeof (v57) != "undefined") {_RecordType("<948,951,30>",(v57)); Inst18++; } } catch(e) {}
+try { if (Inst24 <= 1000 && typeof (console.log) != "undefined") {_RecordType("<1427,1438,38>",(console.log)); Inst24++; } } catch(e) {}try { if (Inst25 <= 1000 && typeof (console) != "undefined") {_RecordType("<1427,1434,38>",(console)); Inst25++; } } catch(e) {}
+  console.log("B");
+
+
+  // This triggers lazy compilation.
+try { if (Inst26 <= 1000 && typeof (v57.exports.w0) != "undefined") {_RecordType("<1490,1504,42>",(v57.exports.w0)); Inst26++; } } catch(e) {}try { if (Inst27 <= 1000 && typeof (v57.exports) != "undefined") {_RecordType("<1490,1501,42>",(v57.exports)); Inst27++; } } catch(e) {}try { if (Inst28 <= 1000 && typeof (v57) != "undefined") {_RecordType("<1490,1493,42>",(v57)); Inst28++; } } catch(e) {}
+  v57.exports.w0();
+try { if (Inst29 <= 1000 && typeof (console.log) != "undefined") {_RecordType("<1511,1522,43>",(console.log)); Inst29++; } } catch(e) {}try { if (Inst30 <= 1000 && typeof (console) != "undefined") {_RecordType("<1511,1518,43>",(console)); Inst30++; } } catch(e) {}
+  console.log("C");
+
+}
+// WasmModule Code:
+// BeginWasmModule
+//     BeginWasmFunction [] ([] => .nothing)
+//         v102 <- WasmJsCall([] => .wasmi32) v0 []
+//         WasmReturn
+//     v103 <- EndWasmFunction
+// v104 <- EndWasmModule
+//
+try { if (Inst32 <= 1000 && typeof (WebAssembly.Instance) != "undefined") {_RecordType("<1777,1797,54>",(WebAssembly.Instance)); Inst32++; } } catch(e) {}try { if (Inst33 <= 1000 && typeof (WebAssembly) != "undefined") {_RecordType("<1777,1788,54>",(WebAssembly)); Inst33++; } } catch(e) {}try { if (Inst34 <= 1000 && typeof (WebAssembly.Module) != "undefined") {_RecordType("<1802,1820,54>",(WebAssembly.Module)); Inst34++; } } catch(e) {}try { if (Inst35 <= 1000 && typeof (WebAssembly) != "undefined") {_RecordType("<1802,1813,54>",(WebAssembly)); Inst35++; } } catch(e) {}try { if (Inst36 <= 1000 && typeof (Uint8Array) != "undefined") {_RecordType("<1825,1835,54>",(Uint8Array)); Inst36++; } } catch(e) {}try { if (Inst37 <= 1000 && typeof (f0) != "undefined") {_RecordType("<2390,2392,65>",(f0)); Inst37++; } } catch(e) {}
+const v104 = new WebAssembly.Instance(new WebAssembly.Module(new Uint8Array([
+    0x00, 0x61, 0x73, 0x6D, 0x01, 0x00, 0x00, 0x00, 0x01, 0x08,
+    0x02, 0x60, 0x00, 0x01, 0x7F, 0x60, 0x00, 0x00, 0x02, 0x17,
+    0x01, 0x07, 0x69, 0x6D, 0x70, 0x6F, 0x72, 0x74, 0x73, 0x0B,
+    0x69, 0x6D, 0x70, 0x6F, 0x72, 0x74, 0x5F, 0x30, 0x5F, 0x76,
+    0x30, 0x00, 0x00, 0x03, 0x02, 0x01, 0x01, 0x04, 0x01, 0x00,
+    0x05, 0x01, 0x00, 0x06, 0x01, 0x00, 0x07, 0x06, 0x01, 0x02,
+    0x77, 0x30, 0x00, 0x01, 0x0A, 0x0D, 0x01, 0x0B, 0x01, 0x01,
+    0x7F, 0x20, 0x00, 0x10, 0x00, 0x21, 0x00, 0x0F, 0x0B,
+])),
+{ imports: {
+    import_0_v0: f0,
+} });
+try { if (Inst31 <= 1000 && typeof (v104) != "undefined") {_RecordType("<1766,1770,54>",(v104)); Inst31++; } } catch(e) {}
+try { if (Inst39 <= 1000 && typeof (WebAssembly.promising) != "undefined") {_RecordType("<2413,2434,67>",(WebAssembly.promising)); Inst39++; } } catch(e) {}try { if (Inst40 <= 1000 && typeof (WebAssembly) != "undefined") {_RecordType("<2413,2424,67>",(WebAssembly)); Inst40++; } } catch(e) {}try { if (Inst41 <= 1000 && typeof (v104.exports.w0) != "undefined") {_RecordType("<2435,2450,67>",(v104.exports.w0)); Inst41++; } } catch(e) {}try { if (Inst42 <= 1000 && typeof (v104.exports) != "undefined") {_RecordType("<2435,2447,67>",(v104.exports)); Inst42++; } } catch(e) {}try { if (Inst43 <= 1000 && typeof (v104) != "undefined") {_RecordType("<2435,2439,67>",(v104)); Inst43++; } } catch(e) {}
+let v107 = WebAssembly.promising(v104.exports.w0);
+try { if (Inst38 <= 1000 && typeof (v107) != "undefined") {_RecordType("<2406,2410,67>",(v107)); Inst38++; } } catch(e) {}
+try { if (Inst44 <= 1000 && typeof (v107) != "undefined") {_RecordType("<2454,2458,68>",(v107)); Inst44++; } } catch(e) {}
+v107();
+
+// CRASH INFO
+// ==========
+// TERMSIG: 11
+// STDERR:
+// Received signal 11 SEGV_MAPERR 000000002011
+// STDOUT:
+//
+// FUZZER ARGS: .build/x86_64-unknown-linux-gnu/debug/FuzzilliCli --profile=v8 --engine=multi --storagePath=../storages/wasm_min_test_2 --jobs=48 --logLevel=verbose --resume /usr/local/google/home/cffsmith/v8/v8/out/fuzzbuild/d8
+// TARGET ARGS: /usr/local/google/home/cffsmith/v8/v8/out/fuzzbuild/d8 --expose-gc --omit-quit --allow-natives-syntax --fuzzing --jit-fuzzing --future --harmony --js-staging --wasm-staging --experimental-wasm-jspi
+// CONTRIBUTORS: TypedArrayGenerator, ArrayGenerator, ObjectConstructorGenerator, CombineMutator, StringGenerator
+// EXECUTION TIME: 227ms
+

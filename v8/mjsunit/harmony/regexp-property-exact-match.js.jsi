@@ -1,0 +1,156 @@
+var Inst0 = 0;
+var Inst1 = 0;
+var Inst2 = 0;
+var Inst3 = 0;
+var Inst4 = 0;
+var Inst5 = 0;
+var Inst6 = 0;
+var Inst7 = 0;
+var Inst8 = 0;
+var Inst9 = 0;
+var Inst10 = 0;
+var Inst11 = 0;
+var Inst12 = 0;
+var Inst13 = 0;
+var Inst14 = 0;
+var Inst15 = 0;
+var Inst16 = 0;
+var Inst17 = 0;
+var Inst18 = 0;
+var Inst19 = 0;
+var Inst20 = 0;
+var Inst21 = 0;
+var Inst22 = 0;
+var Inst23 = 0;
+var Inst24 = 0;
+var Inst25 = 0;
+var Inst26 = 0;
+var Inst27 = 0;
+var Inst28 = 0;
+var Inst29 = 0;
+var Inst30 = 0;
+ 
+function _TypeOfArray(a) {
+	let number = true;	
+	let string = true;
+	for (let i = 0; i < a.length; i++) {
+		if (number && (typeof a[i]) != "number") {
+			number = false;	
+		}
+		if (string && (typeof a[i]) != "string") {
+			string = false;	
+		}
+		if (!number && !string)
+			break;
+	}
+	if (number)
+		return "number";
+	else if (string)
+		return "string";
+	else
+		return "any";
+}
+
+function _TypeIsEqual(t1, t2) {
+	return JSON.stringify(t1) === JSON.stringify(t2);
+}
+
+function _TypeOf(a, step) {
+	var t;
+	var type = Object.prototype.toString.call(a).slice(8, -1).toLowerCase();	
+	if (type == "array") {
+		t = {type : type, extra: {elemType: _TypeOfArray(a)}};
+	} else if (type == "object") {
+		let shape = [];
+        if (step === undefined || step > 0) {
+            let keys = Object.keys(a);
+            let length = Math.min(100, keys.length);
+		    for (let i = 0; i < length; i++) {
+			    shape.push([keys[i], _TypeOf(a[keys[i]], step === undefined ? 1 : step - 1)]);	
+		    }
+        }
+		t = {type : type, extra: {shape: shape}};
+	} else {
+		t = {type : type};
+	} 
+	return t;
+}
+
+function _RecordType(loc, a) {
+	var t = _TypeOf(a);
+    print("~~~TypeInfo:" + loc + ":" + JSON.stringify(t));
+}
+// Copyright 2016 the V8 project authors. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
+// Flags: --harmony-regexp-property --harmony-unicode-regexps
+
+try { if (Inst0 <= 1000 && typeof (assertThrows) != "undefined") {_RecordType("<231,243,7>",(assertThrows)); Inst0++; } } catch(e) {}
+assertThrows("/\\p{In CJK}/u");
+try { if (Inst1 <= 1000 && typeof (assertThrows) != "undefined") {_RecordType("<263,275,8>",(assertThrows)); Inst1++; } } catch(e) {}
+assertThrows("/\\p{InCJKUnifiedIdeographs}/u");
+try { if (Inst2 <= 1000 && typeof (assertThrows) != "undefined") {_RecordType("<311,323,9>",(assertThrows)); Inst2++; } } catch(e) {}
+assertThrows("/\\p{InCJK}/u");
+try { if (Inst3 <= 1000 && typeof (assertThrows) != "undefined") {_RecordType("<342,354,10>",(assertThrows)); Inst3++; } } catch(e) {}
+assertThrows("/\\p{InCJK_Unified_Ideographs}/u");
+
+try { if (Inst4 <= 1000 && typeof (assertThrows) != "undefined") {_RecordType("<393,405,12>",(assertThrows)); Inst4++; } } catch(e) {}
+assertThrows("/\\p{InCyrillic_Sup}/u");
+try { if (Inst5 <= 1000 && typeof (assertThrows) != "undefined") {_RecordType("<433,445,13>",(assertThrows)); Inst5++; } } catch(e) {}
+assertThrows("/\\p{InCyrillic_Supplement}/u");
+try { if (Inst6 <= 1000 && typeof (assertThrows) != "undefined") {_RecordType("<480,492,14>",(assertThrows)); Inst6++; } } catch(e) {}
+assertThrows("/\\p{InCyrillic_Supplementary}/u");
+try { if (Inst7 <= 1000 && typeof (assertThrows) != "undefined") {_RecordType("<530,542,15>",(assertThrows)); Inst7++; } } catch(e) {}
+assertThrows("/\\p{InCyrillicSupplementary}/u");
+try { if (Inst8 <= 1000 && typeof (assertThrows) != "undefined") {_RecordType("<579,591,16>",(assertThrows)); Inst8++; } } catch(e) {}
+assertThrows("/\\p{InCyrillic_supplementary}/u");
+
+try { if (Inst9 <= 1000 && typeof (assertDoesNotThrow) != "undefined") {_RecordType("<630,648,18>",(assertDoesNotThrow)); Inst9++; } } catch(e) {}
+assertDoesNotThrow("/\\p{C}/u");
+try { if (Inst10 <= 1000 && typeof (assertDoesNotThrow) != "undefined") {_RecordType("<663,681,19>",(assertDoesNotThrow)); Inst10++; } } catch(e) {}
+assertDoesNotThrow("/\\p{Other}/u");
+try { if (Inst11 <= 1000 && typeof (assertDoesNotThrow) != "undefined") {_RecordType("<700,718,20>",(assertDoesNotThrow)); Inst11++; } } catch(e) {}
+assertDoesNotThrow("/\\p{Cc}/u");
+try { if (Inst12 <= 1000 && typeof (assertDoesNotThrow) != "undefined") {_RecordType("<734,752,21>",(assertDoesNotThrow)); Inst12++; } } catch(e) {}
+assertDoesNotThrow("/\\p{Control}/u");
+try { if (Inst13 <= 1000 && typeof (assertDoesNotThrow) != "undefined") {_RecordType("<773,791,22>",(assertDoesNotThrow)); Inst13++; } } catch(e) {}
+assertDoesNotThrow("/\\p{cntrl}/u");
+try { if (Inst14 <= 1000 && typeof (assertDoesNotThrow) != "undefined") {_RecordType("<810,828,23>",(assertDoesNotThrow)); Inst14++; } } catch(e) {}
+assertDoesNotThrow("/\\p{M}/u");
+try { if (Inst15 <= 1000 && typeof (assertDoesNotThrow) != "undefined") {_RecordType("<843,861,24>",(assertDoesNotThrow)); Inst15++; } } catch(e) {}
+assertDoesNotThrow("/\\p{Mark}/u");
+try { if (Inst16 <= 1000 && typeof (assertDoesNotThrow) != "undefined") {_RecordType("<879,897,25>",(assertDoesNotThrow)); Inst16++; } } catch(e) {}
+assertDoesNotThrow("/\\p{Combining_Mark}/u");
+try { if (Inst17 <= 1000 && typeof (assertThrows) != "undefined") {_RecordType("<925,937,26>",(assertThrows)); Inst17++; } } catch(e) {}
+assertThrows("/\\p{Combining Mark}/u");
+
+try { if (Inst18 <= 1000 && typeof (assertDoesNotThrow) != "undefined") {_RecordType("<966,984,28>",(assertDoesNotThrow)); Inst18++; } } catch(e) {}
+assertDoesNotThrow("/\\p{Script=Copt}/u");
+try { if (Inst19 <= 1000 && typeof (assertThrows) != "undefined") {_RecordType("<1009,1021,29>",(assertThrows)); Inst19++; } } catch(e) {}
+assertThrows("/\\p{Coptic}/u");
+try { if (Inst20 <= 1000 && typeof (assertThrows) != "undefined") {_RecordType("<1041,1053,30>",(assertThrows)); Inst20++; } } catch(e) {}
+assertThrows("/\\p{Qaac}/u");
+try { if (Inst21 <= 1000 && typeof (assertThrows) != "undefined") {_RecordType("<1071,1083,31>",(assertThrows)); Inst21++; } } catch(e) {}
+assertThrows("/\\p{Egyp}/u");
+try { if (Inst22 <= 1000 && typeof (assertDoesNotThrow) != "undefined") {_RecordType("<1101,1119,32>",(assertDoesNotThrow)); Inst22++; } } catch(e) {}
+assertDoesNotThrow("/\\p{Script=Egyptian_Hieroglyphs}/u");
+try { if (Inst23 <= 1000 && typeof (assertThrows) != "undefined") {_RecordType("<1160,1172,33>",(assertThrows)); Inst23++; } } catch(e) {}
+assertThrows("/\\p{EgyptianHieroglyphs}/u");
+
+try { if (Inst24 <= 1000 && typeof (assertThrows) != "undefined") {_RecordType("<1206,1218,35>",(assertThrows)); Inst24++; } } catch(e) {}
+assertThrows("/\\p{BidiClass=LeftToRight}/u");
+try { if (Inst25 <= 1000 && typeof (assertThrows) != "undefined") {_RecordType("<1253,1265,36>",(assertThrows)); Inst25++; } } catch(e) {}
+assertThrows("/\\p{BidiC=LeftToRight}/u");
+try { if (Inst26 <= 1000 && typeof (assertThrows) != "undefined") {_RecordType("<1296,1308,37>",(assertThrows)); Inst26++; } } catch(e) {}
+assertThrows("/\\p{bidi_c=Left_To_Right}/u");
+
+try { if (Inst27 <= 1000 && typeof (assertDoesNotThrow) != "undefined") {_RecordType("<1343,1361,39>",(assertDoesNotThrow)); Inst27++; } } catch(e) {}
+assertDoesNotThrow("/\\p{Block=CJK}/u");
+try { if (Inst28 <= 1000 && typeof (assertThrows) != "undefined") {_RecordType("<1384,1396,40>",(assertThrows)); Inst28++; } } catch(e) {}
+assertThrows("/\\p{Block = CJK}/u");
+try { if (Inst29 <= 1000 && typeof (assertThrows) != "undefined") {_RecordType("<1421,1433,41>",(assertThrows)); Inst29++; } } catch(e) {}
+assertThrows("/\\p{Block=cjk}/u");
+try { if (Inst30 <= 1000 && typeof (assertThrows) != "undefined") {_RecordType("<1456,1468,42>",(assertThrows)); Inst30++; } } catch(e) {}
+assertThrows("/\\p{BLK=CJK}/u");
+

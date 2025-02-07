@@ -1,0 +1,252 @@
+var Inst0 = 0;
+var Inst1 = 0;
+var Inst2 = 0;
+var Inst3 = 0;
+var Inst4 = 0;
+var Inst5 = 0;
+var Inst6 = 0;
+var Inst7 = 0;
+var Inst8 = 0;
+var Inst9 = 0;
+var Inst10 = 0;
+var Inst11 = 0;
+var Inst12 = 0;
+var Inst13 = 0;
+var Inst14 = 0;
+var Inst15 = 0;
+var Inst16 = 0;
+var Inst17 = 0;
+var Inst18 = 0;
+var Inst19 = 0;
+var Inst20 = 0;
+var Inst21 = 0;
+var Inst22 = 0;
+var Inst23 = 0;
+var Inst24 = 0;
+var Inst25 = 0;
+var Inst26 = 0;
+var Inst27 = 0;
+var Inst28 = 0;
+var Inst29 = 0;
+var Inst30 = 0;
+var Inst31 = 0;
+var Inst32 = 0;
+var Inst33 = 0;
+var Inst34 = 0;
+var Inst35 = 0;
+var Inst36 = 0;
+var Inst37 = 0;
+var Inst38 = 0;
+var Inst39 = 0;
+var Inst40 = 0;
+var Inst41 = 0;
+var Inst42 = 0;
+var Inst43 = 0;
+var Inst44 = 0;
+var Inst45 = 0;
+var Inst46 = 0;
+var Inst47 = 0;
+var Inst48 = 0;
+var Inst49 = 0;
+var Inst50 = 0;
+var Inst51 = 0;
+var Inst52 = 0;
+var Inst53 = 0;
+var Inst54 = 0;
+var Inst55 = 0;
+var Inst56 = 0;
+var Inst57 = 0;
+var Inst58 = 0;
+var Inst59 = 0;
+var Inst60 = 0;
+var Inst61 = 0;
+var Inst62 = 0;
+var Inst63 = 0;
+var Inst64 = 0;
+var Inst65 = 0;
+var Inst66 = 0;
+var Inst67 = 0;
+var Inst68 = 0;
+var Inst69 = 0;
+var Inst70 = 0;
+var Inst71 = 0;
+var Inst72 = 0;
+var Inst73 = 0;
+var Inst74 = 0;
+var Inst75 = 0;
+var Inst76 = 0;
+var Inst77 = 0;
+var Inst78 = 0;
+var Inst79 = 0;
+var Inst80 = 0;
+var Inst81 = 0;
+var Inst82 = 0;
+var Inst83 = 0;
+var Inst84 = 0;
+var Inst85 = 0;
+var Inst86 = 0;
+var Inst87 = 0;
+var Inst88 = 0;
+var Inst89 = 0;
+var Inst90 = 0;
+var Inst91 = 0;
+var Inst92 = 0;
+var Inst93 = 0;
+var Inst94 = 0;
+var Inst95 = 0;
+var Inst96 = 0;
+var Inst97 = 0;
+var Inst98 = 0;
+var Inst99 = 0;
+var Inst100 = 0;
+var Inst101 = 0;
+var Inst102 = 0;
+var Inst103 = 0;
+var Inst104 = 0;
+ 
+function _TypeOfArray(a) {
+	let number = true;	
+	let string = true;
+	for (let i = 0; i < a.length; i++) {
+		if (number && (typeof a[i]) != "number") {
+			number = false;	
+		}
+		if (string && (typeof a[i]) != "string") {
+			string = false;	
+		}
+		if (!number && !string)
+			break;
+	}
+	if (number)
+		return "number";
+	else if (string)
+		return "string";
+	else
+		return "any";
+}
+
+function _TypeIsEqual(t1, t2) {
+	return JSON.stringify(t1) === JSON.stringify(t2);
+}
+
+function _TypeOf(a, step) {
+	var t;
+	var type = Object.prototype.toString.call(a).slice(8, -1).toLowerCase();	
+	if (type == "array") {
+		t = {type : type, extra: {elemType: _TypeOfArray(a)}};
+	} else if (type == "object") {
+		let shape = [];
+        if (step === undefined || step > 0) {
+            let keys = Object.keys(a);
+            let length = Math.min(100, keys.length);
+		    for (let i = 0; i < length; i++) {
+			    shape.push([keys[i], _TypeOf(a[keys[i]], step === undefined ? 1 : step - 1)]);	
+		    }
+        }
+		t = {type : type, extra: {shape: shape}};
+	} else {
+		t = {type : type};
+	} 
+	return t;
+}
+
+function _RecordType(loc, a) {
+	var t = _TypeOf(a);
+    print("~~~TypeInfo:" + loc + ":" + JSON.stringify(t));
+}
+// Copyright 2015 the V8 project authors. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
+try { if (Inst0 <= 1000 && typeof (this.Intl) != "undefined") {_RecordType("<172,181,5>",(this.Intl)); Inst0++; } } catch(e) {}
+if (this.Intl) {
+  // chromium:364374
+
+  // Locations with 2 underscores are accepted and normalized.
+  // 'of' and 'es' are always lowercased.
+try { if (Inst2 <= 1000 && typeof (Intl.DateTimeFormat) != "undefined") {_RecordType("<323,342,10>",(Intl.DateTimeFormat)); Inst2++; } } catch(e) {}try { if (Inst3 <= 1000 && typeof (Intl) != "undefined") {_RecordType("<323,327,10>",(Intl)); Inst3++; } } catch(e) {}
+  df = new Intl.DateTimeFormat('en-US', {'timeZone': 'eUrope/isLe_OF_man'})
+try { if (Inst1 <= 1000 && typeof (df) != "undefined") {_RecordType("<314,316,10>",(df)); Inst1++; } } catch(e) {}
+try { if (Inst4 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<390,402,11>",(assertEquals)); Inst4++; } } catch(e) {}try { if (Inst5 <= 1000 && typeof (df.resolvedOptions().timeZone) != "undefined") {_RecordType("<425,454,11>",(df.resolvedOptions().timeZone)); Inst5++; } } catch(e) {}try { if (Inst6 <= 1000 && typeof (df.resolvedOptions) != "undefined") {_RecordType("<425,443,11>",(df.resolvedOptions)); Inst6++; } } catch(e) {}try { if (Inst7 <= 1000 && typeof (df) != "undefined") {_RecordType("<425,427,11>",(df)); Inst7++; } } catch(e) {}
+  assertEquals('Europe/Isle_of_Man', df.resolvedOptions().timeZone);
+
+try { if (Inst9 <= 1000 && typeof (Intl.DateTimeFormat) != "undefined") {_RecordType("<469,488,13>",(Intl.DateTimeFormat)); Inst9++; } } catch(e) {}try { if (Inst10 <= 1000 && typeof (Intl) != "undefined") {_RecordType("<469,473,13>",(Intl)); Inst10++; } } catch(e) {}
+  df = new Intl.DateTimeFormat('en-US', {'timeZone': 'africa/Dar_eS_salaam'})
+try { if (Inst8 <= 1000 && typeof (df) != "undefined") {_RecordType("<460,462,13>",(df)); Inst8++; } } catch(e) {}
+try { if (Inst11 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<538,550,14>",(assertEquals)); Inst11++; } } catch(e) {}try { if (Inst12 <= 1000 && typeof (df.resolvedOptions().timeZone) != "undefined") {_RecordType("<575,604,14>",(df.resolvedOptions().timeZone)); Inst12++; } } catch(e) {}try { if (Inst13 <= 1000 && typeof (df.resolvedOptions) != "undefined") {_RecordType("<575,593,14>",(df.resolvedOptions)); Inst13++; } } catch(e) {}try { if (Inst14 <= 1000 && typeof (df) != "undefined") {_RecordType("<575,577,14>",(df)); Inst14++; } } catch(e) {}
+  assertEquals('Africa/Dar_es_Salaam', df.resolvedOptions().timeZone);
+
+try { if (Inst16 <= 1000 && typeof (Intl.DateTimeFormat) != "undefined") {_RecordType("<619,638,16>",(Intl.DateTimeFormat)); Inst16++; } } catch(e) {}try { if (Inst17 <= 1000 && typeof (Intl) != "undefined") {_RecordType("<619,623,16>",(Intl)); Inst17++; } } catch(e) {}
+  df = new Intl.DateTimeFormat('en-US', {'timeZone': 'America/port_of_spain'})
+try { if (Inst15 <= 1000 && typeof (df) != "undefined") {_RecordType("<610,612,16>",(df)); Inst15++; } } catch(e) {}
+try { if (Inst18 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<689,701,17>",(assertEquals)); Inst18++; } } catch(e) {}try { if (Inst19 <= 1000 && typeof (df.resolvedOptions().timeZone) != "undefined") {_RecordType("<727,756,17>",(df.resolvedOptions().timeZone)); Inst19++; } } catch(e) {}try { if (Inst20 <= 1000 && typeof (df.resolvedOptions) != "undefined") {_RecordType("<727,745,17>",(df.resolvedOptions)); Inst20++; } } catch(e) {}try { if (Inst21 <= 1000 && typeof (df) != "undefined") {_RecordType("<727,729,17>",(df)); Inst21++; } } catch(e) {}
+  assertEquals('America/Port_of_Spain', df.resolvedOptions().timeZone);
+
+  // Zone ids with more than 2 parts are accepted and normalized.
+try { if (Inst23 <= 1000 && typeof (Intl.DateTimeFormat) != "undefined") {_RecordType("<837,856,20>",(Intl.DateTimeFormat)); Inst23++; } } catch(e) {}try { if (Inst24 <= 1000 && typeof (Intl) != "undefined") {_RecordType("<837,841,20>",(Intl)); Inst24++; } } catch(e) {}
+  df = new Intl.DateTimeFormat('en-US', {'timeZone': 'America/north_Dakota/new_salem'})
+try { if (Inst22 <= 1000 && typeof (df) != "undefined") {_RecordType("<828,830,20>",(df)); Inst22++; } } catch(e) {}
+try { if (Inst25 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<916,928,21>",(assertEquals)); Inst25++; } } catch(e) {}try { if (Inst26 <= 1000 && typeof (df.resolvedOptions().timeZone) != "undefined") {_RecordType("<963,992,21>",(df.resolvedOptions().timeZone)); Inst26++; } } catch(e) {}try { if (Inst27 <= 1000 && typeof (df.resolvedOptions) != "undefined") {_RecordType("<963,981,21>",(df.resolvedOptions)); Inst27++; } } catch(e) {}try { if (Inst28 <= 1000 && typeof (df) != "undefined") {_RecordType("<963,965,21>",(df)); Inst28++; } } catch(e) {}
+  assertEquals('America/North_Dakota/New_Salem', df.resolvedOptions().timeZone);
+
+  // 3-part zone IDs are accepted and normalized.
+  // Two Buenose Aires aliases are identical.
+try { if (Inst30 <= 1000 && typeof (Intl.DateTimeFormat) != "undefined") {_RecordType("<1104,1123,25>",(Intl.DateTimeFormat)); Inst30++; } } catch(e) {}try { if (Inst31 <= 1000 && typeof (Intl) != "undefined") {_RecordType("<1104,1108,25>",(Intl)); Inst31++; } } catch(e) {}
+  df1 = new Intl.DateTimeFormat('en-US', {'timeZone': 'America/aRgentina/buenos_aIres'})
+try { if (Inst29 <= 1000 && typeof (df1) != "undefined") {_RecordType("<1094,1097,25>",(df1)); Inst29++; } } catch(e) {}
+try { if (Inst33 <= 1000 && typeof (Intl.DateTimeFormat) != "undefined") {_RecordType("<1193,1212,26>",(Intl.DateTimeFormat)); Inst33++; } } catch(e) {}try { if (Inst34 <= 1000 && typeof (Intl) != "undefined") {_RecordType("<1193,1197,26>",(Intl)); Inst34++; } } catch(e) {}
+  df2 = new Intl.DateTimeFormat('en-US', {'timeZone': 'America/Argentina/Buenos_Aires'})
+try { if (Inst32 <= 1000 && typeof (df2) != "undefined") {_RecordType("<1183,1186,26>",(df2)); Inst32++; } } catch(e) {}
+try { if (Inst35 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<1272,1284,27>",(assertEquals)); Inst35++; } } catch(e) {}try { if (Inst36 <= 1000 && typeof (df1.resolvedOptions().timeZone) != "undefined") {_RecordType("<1285,1315,27>",(df1.resolvedOptions().timeZone)); Inst36++; } } catch(e) {}try { if (Inst37 <= 1000 && typeof (df1.resolvedOptions) != "undefined") {_RecordType("<1285,1304,27>",(df1.resolvedOptions)); Inst37++; } } catch(e) {}try { if (Inst38 <= 1000 && typeof (df1) != "undefined") {_RecordType("<1285,1288,27>",(df1)); Inst38++; } } catch(e) {}try { if (Inst39 <= 1000 && typeof (df2.resolvedOptions().timeZone) != "undefined") {_RecordType("<1317,1347,27>",(df2.resolvedOptions().timeZone)); Inst39++; } } catch(e) {}try { if (Inst40 <= 1000 && typeof (df2.resolvedOptions) != "undefined") {_RecordType("<1317,1336,27>",(df2.resolvedOptions)); Inst40++; } } catch(e) {}try { if (Inst41 <= 1000 && typeof (df2) != "undefined") {_RecordType("<1317,1320,27>",(df2)); Inst41++; } } catch(e) {}
+  assertEquals(df1.resolvedOptions().timeZone, df2.resolvedOptions().timeZone);
+
+try { if (Inst43 <= 1000 && typeof (Intl.DateTimeFormat) != "undefined") {_RecordType("<1363,1382,29>",(Intl.DateTimeFormat)); Inst43++; } } catch(e) {}try { if (Inst44 <= 1000 && typeof (Intl) != "undefined") {_RecordType("<1363,1367,29>",(Intl)); Inst44++; } } catch(e) {}
+  df2 = new Intl.DateTimeFormat('en-US', {'timeZone': 'America/Buenos_Aires'})
+try { if (Inst42 <= 1000 && typeof (df2) != "undefined") {_RecordType("<1353,1356,29>",(df2)); Inst42++; } } catch(e) {}
+try { if (Inst45 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<1432,1444,30>",(assertEquals)); Inst45++; } } catch(e) {}try { if (Inst46 <= 1000 && typeof (df1.resolvedOptions().timeZone) != "undefined") {_RecordType("<1445,1475,30>",(df1.resolvedOptions().timeZone)); Inst46++; } } catch(e) {}try { if (Inst47 <= 1000 && typeof (df1.resolvedOptions) != "undefined") {_RecordType("<1445,1464,30>",(df1.resolvedOptions)); Inst47++; } } catch(e) {}try { if (Inst48 <= 1000 && typeof (df1) != "undefined") {_RecordType("<1445,1448,30>",(df1)); Inst48++; } } catch(e) {}try { if (Inst49 <= 1000 && typeof (df2.resolvedOptions().timeZone) != "undefined") {_RecordType("<1477,1507,30>",(df2.resolvedOptions().timeZone)); Inst49++; } } catch(e) {}try { if (Inst50 <= 1000 && typeof (df2.resolvedOptions) != "undefined") {_RecordType("<1477,1496,30>",(df2.resolvedOptions)); Inst50++; } } catch(e) {}try { if (Inst51 <= 1000 && typeof (df2) != "undefined") {_RecordType("<1477,1480,30>",(df2)); Inst51++; } } catch(e) {}
+  assertEquals(df1.resolvedOptions().timeZone, df2.resolvedOptions().timeZone);
+
+try { if (Inst53 <= 1000 && typeof (Intl.DateTimeFormat) != "undefined") {_RecordType("<1523,1542,32>",(Intl.DateTimeFormat)); Inst53++; } } catch(e) {}try { if (Inst54 <= 1000 && typeof (Intl) != "undefined") {_RecordType("<1523,1527,32>",(Intl)); Inst54++; } } catch(e) {}
+  df1 = new Intl.DateTimeFormat('en-US', {'timeZone': 'America/Indiana/Indianapolis'})
+try { if (Inst52 <= 1000 && typeof (df1) != "undefined") {_RecordType("<1513,1516,32>",(df1)); Inst52++; } } catch(e) {}
+try { if (Inst56 <= 1000 && typeof (Intl.DateTimeFormat) != "undefined") {_RecordType("<1610,1629,33>",(Intl.DateTimeFormat)); Inst56++; } } catch(e) {}try { if (Inst57 <= 1000 && typeof (Intl) != "undefined") {_RecordType("<1610,1614,33>",(Intl)); Inst57++; } } catch(e) {}
+  df2 = new Intl.DateTimeFormat('en-US', {'timeZone': 'America/Indianapolis'})
+try { if (Inst55 <= 1000 && typeof (df2) != "undefined") {_RecordType("<1600,1603,33>",(df2)); Inst55++; } } catch(e) {}
+try { if (Inst58 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<1679,1691,34>",(assertEquals)); Inst58++; } } catch(e) {}try { if (Inst59 <= 1000 && typeof (df1.resolvedOptions().timeZone) != "undefined") {_RecordType("<1692,1722,34>",(df1.resolvedOptions().timeZone)); Inst59++; } } catch(e) {}try { if (Inst60 <= 1000 && typeof (df1.resolvedOptions) != "undefined") {_RecordType("<1692,1711,34>",(df1.resolvedOptions)); Inst60++; } } catch(e) {}try { if (Inst61 <= 1000 && typeof (df1) != "undefined") {_RecordType("<1692,1695,34>",(df1)); Inst61++; } } catch(e) {}try { if (Inst62 <= 1000 && typeof (df2.resolvedOptions().timeZone) != "undefined") {_RecordType("<1724,1754,34>",(df2.resolvedOptions().timeZone)); Inst62++; } } catch(e) {}try { if (Inst63 <= 1000 && typeof (df2.resolvedOptions) != "undefined") {_RecordType("<1724,1743,34>",(df2.resolvedOptions)); Inst63++; } } catch(e) {}try { if (Inst64 <= 1000 && typeof (df2) != "undefined") {_RecordType("<1724,1727,34>",(df2)); Inst64++; } } catch(e) {}
+  assertEquals(df1.resolvedOptions().timeZone, df2.resolvedOptions().timeZone);
+
+  // ICU does not recognize East-Indiana. Add later when it does.
+  // df2 = new Intl.DateTimeFormat('en-US', {'timeZone': 'America/East-Indiana'})
+  // assertEquals(df1.resolvedOptions().timeZone, df2.resolvedOptions().timeZone);
+
+
+  // Zone IDs with hyphens. 'au' has to be in lowercase.
+try { if (Inst66 <= 1000 && typeof (Intl.DateTimeFormat) != "undefined") {_RecordType("<2059,2078,42>",(Intl.DateTimeFormat)); Inst66++; } } catch(e) {}try { if (Inst67 <= 1000 && typeof (Intl) != "undefined") {_RecordType("<2059,2063,42>",(Intl)); Inst67++; } } catch(e) {}
+  df = new Intl.DateTimeFormat('en-US', {'timeZone': 'America/port-aU-pRince'})
+try { if (Inst65 <= 1000 && typeof (df) != "undefined") {_RecordType("<2050,2052,42>",(df)); Inst65++; } } catch(e) {}
+try { if (Inst68 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<2130,2142,43>",(assertEquals)); Inst68++; } } catch(e) {}try { if (Inst69 <= 1000 && typeof (df.resolvedOptions().timeZone) != "undefined") {_RecordType("<2169,2198,43>",(df.resolvedOptions().timeZone)); Inst69++; } } catch(e) {}try { if (Inst70 <= 1000 && typeof (df.resolvedOptions) != "undefined") {_RecordType("<2169,2187,43>",(df.resolvedOptions)); Inst70++; } } catch(e) {}try { if (Inst71 <= 1000 && typeof (df) != "undefined") {_RecordType("<2169,2171,43>",(df)); Inst71++; } } catch(e) {}
+  assertEquals('America/Port-au-Prince', df.resolvedOptions().timeZone);
+
+  // Accepts Ho_Chi_Minh and treats it as identical to Saigon
+try { if (Inst73 <= 1000 && typeof (Intl.DateTimeFormat) != "undefined") {_RecordType("<2276,2295,46>",(Intl.DateTimeFormat)); Inst73++; } } catch(e) {}try { if (Inst74 <= 1000 && typeof (Intl) != "undefined") {_RecordType("<2276,2280,46>",(Intl)); Inst74++; } } catch(e) {}
+  df1 = new Intl.DateTimeFormat('en-US', {'timeZone': 'Asia/Ho_Chi_Minh'})
+try { if (Inst72 <= 1000 && typeof (df1) != "undefined") {_RecordType("<2266,2269,46>",(df1)); Inst72++; } } catch(e) {}
+try { if (Inst76 <= 1000 && typeof (Intl.DateTimeFormat) != "undefined") {_RecordType("<2351,2370,47>",(Intl.DateTimeFormat)); Inst76++; } } catch(e) {}try { if (Inst77 <= 1000 && typeof (Intl) != "undefined") {_RecordType("<2351,2355,47>",(Intl)); Inst77++; } } catch(e) {}
+  df2 = new Intl.DateTimeFormat('en-US', {'timeZone': 'Asia/Saigon'})
+try { if (Inst75 <= 1000 && typeof (df2) != "undefined") {_RecordType("<2341,2344,47>",(df2)); Inst75++; } } catch(e) {}
+try { if (Inst78 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<2411,2423,48>",(assertEquals)); Inst78++; } } catch(e) {}try { if (Inst79 <= 1000 && typeof (df1.resolvedOptions().timeZone) != "undefined") {_RecordType("<2424,2454,48>",(df1.resolvedOptions().timeZone)); Inst79++; } } catch(e) {}try { if (Inst80 <= 1000 && typeof (df1.resolvedOptions) != "undefined") {_RecordType("<2424,2443,48>",(df1.resolvedOptions)); Inst80++; } } catch(e) {}try { if (Inst81 <= 1000 && typeof (df1) != "undefined") {_RecordType("<2424,2427,48>",(df1)); Inst81++; } } catch(e) {}try { if (Inst82 <= 1000 && typeof (df2.resolvedOptions().timeZone) != "undefined") {_RecordType("<2456,2486,48>",(df2.resolvedOptions().timeZone)); Inst82++; } } catch(e) {}try { if (Inst83 <= 1000 && typeof (df2.resolvedOptions) != "undefined") {_RecordType("<2456,2475,48>",(df2.resolvedOptions)); Inst83++; } } catch(e) {}try { if (Inst84 <= 1000 && typeof (df2) != "undefined") {_RecordType("<2456,2459,48>",(df2)); Inst84++; } } catch(e) {}
+  assertEquals(df1.resolvedOptions().timeZone, df2.resolvedOptions().timeZone);
+
+  // Throws for invalid timezone ids.
+try { if (Inst85 <= 1000 && typeof (assertThrows) != "undefined") {_RecordType("<2530,2542,51>",(assertThrows)); Inst85++; } } catch(e) {}try { if (Inst86 <= 1000 && typeof (Intl.DateTimeFormat) != "undefined") {_RecordType("<2549,2568,51>",(Intl.DateTimeFormat)); Inst86++; } } catch(e) {}try { if (Inst87 <= 1000 && typeof (Intl) != "undefined") {_RecordType("<2549,2553,51>",(Intl)); Inst87++; } } catch(e) {}try { if (Inst88 <= 1000 && typeof (undefined) != "undefined") {_RecordType("<2569,2578,51>",(undefined)); Inst88++; } } catch(e) {}
+  assertThrows(() => Intl.DateTimeFormat(undefined, {timeZone: 'Europe/_Paris'}));
+try { if (Inst89 <= 1000 && typeof (assertThrows) != "undefined") {_RecordType("<2613,2625,52>",(assertThrows)); Inst89++; } } catch(e) {}try { if (Inst90 <= 1000 && typeof (Intl.DateTimeFormat) != "undefined") {_RecordType("<2632,2651,52>",(Intl.DateTimeFormat)); Inst90++; } } catch(e) {}try { if (Inst91 <= 1000 && typeof (Intl) != "undefined") {_RecordType("<2632,2636,52>",(Intl)); Inst91++; } } catch(e) {}try { if (Inst92 <= 1000 && typeof (undefined) != "undefined") {_RecordType("<2652,2661,52>",(undefined)); Inst92++; } } catch(e) {}
+  assertThrows(() => Intl.DateTimeFormat(undefined, {timeZone: 'America/New__York'}));
+try { if (Inst93 <= 1000 && typeof (assertThrows) != "undefined") {_RecordType("<2700,2712,53>",(assertThrows)); Inst93++; } } catch(e) {}try { if (Inst94 <= 1000 && typeof (Intl.DateTimeFormat) != "undefined") {_RecordType("<2719,2738,53>",(Intl.DateTimeFormat)); Inst94++; } } catch(e) {}try { if (Inst95 <= 1000 && typeof (Intl) != "undefined") {_RecordType("<2719,2723,53>",(Intl)); Inst95++; } } catch(e) {}try { if (Inst96 <= 1000 && typeof (undefined) != "undefined") {_RecordType("<2739,2748,53>",(undefined)); Inst96++; } } catch(e) {}
+  assertThrows(() => Intl.DateTimeFormat(undefined, {timeZone: 'America//New_York'}));
+try { if (Inst97 <= 1000 && typeof (assertThrows) != "undefined") {_RecordType("<2787,2799,54>",(assertThrows)); Inst97++; } } catch(e) {}try { if (Inst98 <= 1000 && typeof (Intl.DateTimeFormat) != "undefined") {_RecordType("<2806,2825,54>",(Intl.DateTimeFormat)); Inst98++; } } catch(e) {}try { if (Inst99 <= 1000 && typeof (Intl) != "undefined") {_RecordType("<2806,2810,54>",(Intl)); Inst99++; } } catch(e) {}try { if (Inst100 <= 1000 && typeof (undefined) != "undefined") {_RecordType("<2826,2835,54>",(undefined)); Inst100++; } } catch(e) {}
+  assertThrows(() => Intl.DateTimeFormat(undefined, {timeZone: 'America/New_York_'}));
+try { if (Inst101 <= 1000 && typeof (assertThrows) != "undefined") {_RecordType("<2874,2886,55>",(assertThrows)); Inst101++; } } catch(e) {}try { if (Inst102 <= 1000 && typeof (Intl.DateTimeFormat) != "undefined") {_RecordType("<2893,2912,55>",(Intl.DateTimeFormat)); Inst102++; } } catch(e) {}try { if (Inst103 <= 1000 && typeof (Intl) != "undefined") {_RecordType("<2893,2897,55>",(Intl)); Inst103++; } } catch(e) {}try { if (Inst104 <= 1000 && typeof (undefined) != "undefined") {_RecordType("<2913,2922,55>",(undefined)); Inst104++; } } catch(e) {}
+  assertThrows(() => Intl.DateTimeFormat(undefined, {timeZone: 'America/New_Y0rk'}));
+}
+

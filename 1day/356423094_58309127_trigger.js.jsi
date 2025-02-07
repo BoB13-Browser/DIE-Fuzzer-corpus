@@ -1,0 +1,183 @@
+var Inst0 = 0;
+var Inst1 = 0;
+var Inst2 = 0;
+var Inst3 = 0;
+var Inst4 = 0;
+var Inst5 = 0;
+var Inst6 = 0;
+var Inst7 = 0;
+var Inst8 = 0;
+var Inst9 = 0;
+var Inst10 = 0;
+var Inst11 = 0;
+var Inst12 = 0;
+var Inst13 = 0;
+var Inst14 = 0;
+var Inst15 = 0;
+var Inst16 = 0;
+var Inst17 = 0;
+var Inst18 = 0;
+var Inst19 = 0;
+var Inst20 = 0;
+var Inst21 = 0;
+var Inst22 = 0;
+var Inst23 = 0;
+var Inst24 = 0;
+var Inst25 = 0;
+var Inst26 = 0;
+var Inst27 = 0;
+var Inst28 = 0;
+var Inst29 = 0;
+var Inst30 = 0;
+var Inst31 = 0;
+var Inst32 = 0;
+var Inst33 = 0;
+var Inst34 = 0;
+var Inst35 = 0;
+var Inst36 = 0;
+var Inst37 = 0;
+var Inst38 = 0;
+var Inst39 = 0;
+var Inst40 = 0;
+var Inst41 = 0;
+var Inst42 = 0;
+var Inst43 = 0;
+var Inst44 = 0;
+var Inst45 = 0;
+var Inst46 = 0;
+var Inst47 = 0;
+var Inst48 = 0;
+var Inst49 = 0;
+var Inst50 = 0;
+var Inst51 = 0;
+var Inst52 = 0;
+var Inst53 = 0;
+ 
+function _TypeOfArray(a) {
+	let number = true;	
+	let string = true;
+	for (let i = 0; i < a.length; i++) {
+		if (number && (typeof a[i]) != "number") {
+			number = false;	
+		}
+		if (string && (typeof a[i]) != "string") {
+			string = false;	
+		}
+		if (!number && !string)
+			break;
+	}
+	if (number)
+		return "number";
+	else if (string)
+		return "string";
+	else
+		return "any";
+}
+
+function _TypeIsEqual(t1, t2) {
+	return JSON.stringify(t1) === JSON.stringify(t2);
+}
+
+function _TypeOf(a, step) {
+	var t;
+	var type = Object.prototype.toString.call(a).slice(8, -1).toLowerCase();	
+	if (type == "array") {
+		t = {type : type, extra: {elemType: _TypeOfArray(a)}};
+	} else if (type == "object") {
+		let shape = [];
+        if (step === undefined || step > 0) {
+            let keys = Object.keys(a);
+            let length = Math.min(100, keys.length);
+		    for (let i = 0; i < length; i++) {
+			    shape.push([keys[i], _TypeOf(a[keys[i]], step === undefined ? 1 : step - 1)]);	
+		    }
+        }
+		t = {type : type, extra: {shape: shape}};
+	} else {
+		t = {type : type};
+	} 
+	return t;
+}
+
+function _RecordType(loc, a) {
+	var t = _TypeOf(a);
+    print("~~~TypeInfo:" + loc + ":" + JSON.stringify(t));
+}
+const launchCommand = '/Users/zh1x1an1221/xcode-chromium/src/out/asan-0730/Chromium.app/Contents/MacOS/Chromium' // modify this path to your chrome executable
+try { if (Inst0 <= 1000 && typeof (launchCommand) != "undefined") {_RecordType("<6,19,1>",(launchCommand)); Inst0++; } } catch(e) {}
+try { if (Inst1 <= 1000 && typeof (test) != "undefined") {_RecordType("<175,179,2>",(test)); Inst1++; } } catch(e) {}
+async function test(idx) {
+try { if (Inst2 <= 1000 && typeof (idx) != "undefined") {_RecordType("<180,183,2>",(idx)); Inst2++; } } catch(e) {}
+try { if (Inst4 <= 1000 && typeof (require) != "undefined") {_RecordType("<208,215,3>",(require)); Inst4++; } } catch(e) {}
+  const puppeteer = require('puppeteer-core')
+try { if (Inst3 <= 1000 && typeof (puppeteer) != "undefined") {_RecordType("<196,205,3>",(puppeteer)); Inst3++; } } catch(e) {}
+try { if (Inst6 <= 1000 && typeof (launchCommand) != "undefined") {_RecordType("<260,273,4>",(launchCommand)); Inst6++; } } catch(e) {}
+  const executablePath = launchCommand
+try { if (Inst5 <= 1000 && typeof (executablePath) != "undefined") {_RecordType("<243,257,4>",(executablePath)); Inst5++; } } catch(e) {}
+  var browsers = [];
+try { if (Inst7 <= 1000 && typeof (browsers) != "undefined") {_RecordType("<281,289,5>",(browsers)); Inst7++; } } catch(e) {}
+try { if (Inst9 <= 1000 && typeof (executablePath) != "undefined") {_RecordType("<349,363,8>",(executablePath)); Inst9++; } } catch(e) {}try { if (Inst10 <= 1000 && typeof (idx) != "undefined") {_RecordType("<1593,1596,12>",(idx)); Inst10++; } } catch(e) {}
+  const launchOptions = {
+    headless: true,
+    executablePath,
+    timeout: 30000,
+    defaultOptions: false,
+    dumpio: true,
+    args: ['--no-subproc-heap-profiling','--enable-experimental-web-platform-features','--enable-blink-test-features','--use-fake-ui-for-media-stream','--js-flags=--expose-gc','--enable-blink-features=CSSTextAutoSpace','--touch-selection-strategy=direction','--enable-gpu-memory-buffer-compositor-resources','--enable-main-frame-before-activation','--renderer-client-id=34','--enable-features=BlockInsecurePrivateNetworkRequests,BlockInsecurePrivateNetworkRequestsFromPrivate,BlockInsecurePrivateNetworkRequestsFromUnknown,CSSDisplayModePictureInPicture,ClientHintsFormFactors,CookieSameSiteConsidersRedirectChain,CreateImageBitmapOrientationNone,CriticalClientHint,DocumentPictureInPictureAPI,DocumentPolicyIncludeJSCallStacksInCrashReports,DocumentPolicyNegotiation,DocumentReporting,EnableCanvas2DLayers,ExperimentalContentSecurityPolicyFeatures,OriginIsolationHeader,PrivateNetworkAccessRespectPreflightResults,SchemefulSameSite,ThirdPartyStoragePartitioning,WebMachineLearningNeuralNetwork','--disable-features=PrivateNetworkAccessPreflightShortTimeout','--variations-seed-version','--no-sandbox','--disable-popup-blocking','--user-data-dir=/tmp/testxx'+idx]
+  }
+try { if (Inst8 <= 1000 && typeof (launchOptions) != "undefined") {_RecordType("<305,318,6>",(launchOptions)); Inst8++; } } catch(e) {}
+  // var url='http://localhost:8000/main.html'; // modify this url to your test url
+  var url = "http://127.0.0.1/wrapper.html";
+try { if (Inst11 <= 1000 && typeof (url) != "undefined") {_RecordType("<1695,1698,15>",(url)); Inst11++; } } catch(e) {}
+  // var url = "https://wpt.live/webrtc-extensions/RTCRtpParameters-codec.html";
+try { if (Inst13 <= 1000 && typeof (puppeteer.launch) != "undefined") {_RecordType("<1839,1855,17>",(puppeteer.launch)); Inst13++; } } catch(e) {}try { if (Inst14 <= 1000 && typeof (puppeteer) != "undefined") {_RecordType("<1839,1848,17>",(puppeteer)); Inst14++; } } catch(e) {}try { if (Inst15 <= 1000 && typeof (launchOptions) != "undefined") {_RecordType("<1856,1869,17>",(launchOptions)); Inst15++; } } catch(e) {}
+  let browser = await puppeteer.launch(launchOptions)
+try { if (Inst12 <= 1000 && typeof (browser) != "undefined") {_RecordType("<1823,1830,17>",(browser)); Inst12++; } } catch(e) {}
+try { if (Inst17 <= 1000 && typeof (browser.pages) != "undefined") {_RecordType("<1893,1906,18>",(browser.pages)); Inst17++; } } catch(e) {}try { if (Inst18 <= 1000 && typeof (browser) != "undefined") {_RecordType("<1893,1900,18>",(browser)); Inst18++; } } catch(e) {}
+  var [page] = await browser.pages();
+try { if (Inst16 <= 1000 && typeof (page) != "undefined") {_RecordType("<1879,1883,18>",(page)); Inst16++; } } catch(e) {}
+try { if (Inst22 <= 1000 && typeof (e) != "undefined") {_RecordType("<2035,2036,21>",(e)); Inst22++; } } catch(e) {}
+  try {
+try { if (Inst19 <= 1000 && typeof (page.goto) != "undefined") {_RecordType("<1930,1939,20>",(page.goto)); Inst19++; } } catch(e) {}try { if (Inst20 <= 1000 && typeof (page) != "undefined") {_RecordType("<1930,1934,20>",(page)); Inst20++; } } catch(e) {}try { if (Inst21 <= 1000 && typeof (url) != "undefined") {_RecordType("<1940,1943,20>",(url)); Inst21++; } } catch(e) {}
+    await page.goto(url, { waitUntil: ['networkidle2', 'domcontentloaded', 'load'], timeout: 10000 });
+  } catch (e) { }
+try { if (Inst23 <= 1000 && typeof (sleep) != "undefined") {_RecordType("<2051,2056,22>",(sleep)); Inst23++; } } catch(e) {}
+  await sleep(40*1000)        // modify this number to control the time of each chrome instance
+try { if (Inst26 <= 1000 && typeof (e) != "undefined") {_RecordType("<2187,2188,25>",(e)); Inst26++; } } catch(e) {}
+  try{
+try { if (Inst24 <= 1000 && typeof (browser.close) != "undefined") {_RecordType("<2158,2171,24>",(browser.close)); Inst24++; } } catch(e) {}try { if (Inst25 <= 1000 && typeof (browser) != "undefined") {_RecordType("<2158,2165,24>",(browser)); Inst25++; } } catch(e) {}
+    await browser.close();
+  } catch (e) {
+  }
+try { if (Inst30 <= 1000 && typeof (e) != "undefined") {_RecordType("<2263,2264,29>",(e)); Inst30++; } } catch(e) {}
+  try{
+try { if (Inst27 <= 1000 && typeof (browser.process().kill) != "undefined") {_RecordType("<2216,2238,28>",(browser.process().kill)); Inst27++; } } catch(e) {}try { if (Inst28 <= 1000 && typeof (browser.process) != "undefined") {_RecordType("<2216,2231,28>",(browser.process)); Inst28++; } } catch(e) {}try { if (Inst29 <= 1000 && typeof (browser) != "undefined") {_RecordType("<2216,2223,28>",(browser)); Inst29++; } } catch(e) {}
+    await browser.process().kill('SIGKILL');
+  } catch (e) {
+
+  };
+}
+try { if (Inst31 <= 1000 && typeof (sleep) != "undefined") {_RecordType("<2295,2300,33>",(sleep)); Inst31++; } } catch(e) {}
+async function sleep(ms) {
+try { if (Inst32 <= 1000 && typeof (ms) != "undefined") {_RecordType("<2301,2303,33>",(ms)); Inst32++; } } catch(e) {}
+try { if (Inst33 <= 1000 && typeof (Promise) != "undefined") {_RecordType("<2321,2328,34>",(Promise)); Inst33++; } } catch(e) {}try { if (Inst34 <= 1000 && typeof (resolve) != "undefined") {_RecordType("<2329,2336,34>",(resolve)); Inst34++; } } catch(e) {}try { if (Inst35 <= 1000 && typeof (setTimeout) != "undefined") {_RecordType("<2340,2350,34>",(setTimeout)); Inst35++; } } catch(e) {}try { if (Inst36 <= 1000 && typeof (resolve) != "undefined") {_RecordType("<2351,2358,34>",(resolve)); Inst36++; } } catch(e) {}try { if (Inst37 <= 1000 && typeof (ms) != "undefined") {_RecordType("<2360,2362,34>",(ms)); Inst37++; } } catch(e) {}
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+var arrs = [];
+try { if (Inst38 <= 1000 && typeof (arrs) != "undefined") {_RecordType("<2374,2378,36>",(arrs)); Inst38++; } } catch(e) {}
+(async () => {
+  for (; ;) {
+    arrs = [];
+try { if (Inst39 <= 1000 && typeof (arrs) != "undefined") {_RecordType("<2421,2425,39>",(arrs)); Inst39++; } } catch(e) {}
+    for (var i = 0; i < 20; i++) {  // modify this number to control the number of chrome instances
+try { if (Inst40 <= 1000 && typeof (i) != "undefined") {_RecordType("<2446,2447,40>",(i)); Inst40++; } } catch(e) {}try { if (Inst41 <= 1000 && typeof (i) != "undefined") {_RecordType("<2453,2454,40>",(i)); Inst41++; } } catch(e) {}try { if (Inst42 <= 1000 && typeof (i) != "undefined") {_RecordType("<2461,2462,40>",(i)); Inst42++; } } catch(e) {}
+try { if (Inst43 <= 1000 && typeof (arrs.push) != "undefined") {_RecordType("<2540,2549,41>",(arrs.push)); Inst43++; } } catch(e) {}try { if (Inst44 <= 1000 && typeof (arrs) != "undefined") {_RecordType("<2540,2544,41>",(arrs)); Inst44++; } } catch(e) {}try { if (Inst45 <= 1000 && typeof (test) != "undefined") {_RecordType("<2550,2554,41>",(test)); Inst45++; } } catch(e) {}try { if (Inst46 <= 1000 && typeof (Math.floor) != "undefined") {_RecordType("<2555,2565,41>",(Math.floor)); Inst46++; } } catch(e) {}try { if (Inst47 <= 1000 && typeof (Math) != "undefined") {_RecordType("<2555,2559,41>",(Math)); Inst47++; } } catch(e) {}try { if (Inst48 <= 1000 && typeof (Math.random) != "undefined") {_RecordType("<2566,2577,41>",(Math.random)); Inst48++; } } catch(e) {}try { if (Inst49 <= 1000 && typeof (Math) != "undefined") {_RecordType("<2566,2570,41>",(Math)); Inst49++; } } catch(e) {}
+      arrs.push(test(Math.floor(Math.random() * 100000)));
+    }
+try { if (Inst50 <= 1000 && typeof (Promise.all) != "undefined") {_RecordType("<2611,2622,43>",(Promise.all)); Inst50++; } } catch(e) {}try { if (Inst51 <= 1000 && typeof (Promise) != "undefined") {_RecordType("<2611,2618,43>",(Promise)); Inst51++; } } catch(e) {}try { if (Inst52 <= 1000 && typeof (arrs) != "undefined") {_RecordType("<2623,2627,43>",(arrs)); Inst52++; } } catch(e) {}
+    await Promise.all(arrs);
+  }
+try { if (Inst53 <= 1000 && typeof (sleep) != "undefined") {_RecordType("<2644,2649,45>",(sleep)); Inst53++; } } catch(e) {}
+  await sleep(1000);
+})();
+

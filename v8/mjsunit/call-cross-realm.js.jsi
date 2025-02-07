@@ -1,0 +1,108 @@
+var Inst0 = 0;
+var Inst1 = 0;
+var Inst2 = 0;
+var Inst3 = 0;
+var Inst4 = 0;
+var Inst5 = 0;
+var Inst6 = 0;
+var Inst7 = 0;
+var Inst8 = 0;
+var Inst9 = 0;
+var Inst10 = 0;
+var Inst11 = 0;
+var Inst12 = 0;
+var Inst13 = 0;
+var Inst14 = 0;
+var Inst15 = 0;
+var Inst16 = 0;
+var Inst17 = 0;
+var Inst18 = 0;
+var Inst19 = 0;
+var Inst20 = 0;
+var Inst21 = 0;
+var Inst22 = 0;
+var Inst23 = 0;
+var Inst24 = 0;
+var Inst25 = 0;
+var Inst26 = 0;
+var Inst27 = 0;
+var Inst28 = 0;
+var Inst29 = 0;
+var Inst30 = 0;
+var Inst31 = 0;
+ 
+function _TypeOfArray(a) {
+	let number = true;	
+	let string = true;
+	for (let i = 0; i < a.length; i++) {
+		if (number && (typeof a[i]) != "number") {
+			number = false;	
+		}
+		if (string && (typeof a[i]) != "string") {
+			string = false;	
+		}
+		if (!number && !string)
+			break;
+	}
+	if (number)
+		return "number";
+	else if (string)
+		return "string";
+	else
+		return "any";
+}
+
+function _TypeIsEqual(t1, t2) {
+	return JSON.stringify(t1) === JSON.stringify(t2);
+}
+
+function _TypeOf(a, step) {
+	var t;
+	var type = Object.prototype.toString.call(a).slice(8, -1).toLowerCase();	
+	if (type == "array") {
+		t = {type : type, extra: {elemType: _TypeOfArray(a)}};
+	} else if (type == "object") {
+		let shape = [];
+        if (step === undefined || step > 0) {
+            let keys = Object.keys(a);
+            let length = Math.min(100, keys.length);
+		    for (let i = 0; i < length; i++) {
+			    shape.push([keys[i], _TypeOf(a[keys[i]], step === undefined ? 1 : step - 1)]);	
+		    }
+        }
+		t = {type : type, extra: {shape: shape}};
+	} else {
+		t = {type : type};
+	} 
+	return t;
+}
+
+function _RecordType(loc, a) {
+	var t = _TypeOf(a);
+    print("~~~TypeInfo:" + loc + ":" + JSON.stringify(t));
+}
+// Copyright 2015 the V8 project authors. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
+try { if (Inst0 <= 1000 && typeof (Realm.create) != "undefined") {_RecordType("<168,180,5>",(Realm.create)); Inst0++; } } catch(e) {}try { if (Inst1 <= 1000 && typeof (Realm) != "undefined") {_RecordType("<168,173,5>",(Realm)); Inst1++; } } catch(e) {}
+Realm.create();
+try { if (Inst3 <= 1000 && typeof (Realm.eval) != "undefined") {_RecordType("<197,207,6>",(Realm.eval)); Inst3++; } } catch(e) {}try { if (Inst4 <= 1000 && typeof (Realm) != "undefined") {_RecordType("<197,202,6>",(Realm)); Inst4++; } } catch(e) {}
+var object = Realm.eval(1, "Object");
+try { if (Inst2 <= 1000 && typeof (object) != "undefined") {_RecordType("<188,194,6>",(object)); Inst2++; } } catch(e) {}
+try { if (Inst6 <= 1000 && typeof (Realm.eval) != "undefined") {_RecordType("<230,240,7>",(Realm.eval)); Inst6++; } } catch(e) {}try { if (Inst7 <= 1000 && typeof (Realm) != "undefined") {_RecordType("<230,235,7>",(Realm)); Inst7++; } } catch(e) {}
+var f = Realm.eval(1, "function f() { return this }; f");
+try { if (Inst5 <= 1000 && typeof (f) != "undefined") {_RecordType("<226,227,7>",(f)); Inst5++; } } catch(e) {}
+
+try { if (Inst11 <= 1000 && typeof (f) != "undefined") {_RecordType("<302,303,9>",(f)); Inst11++; } } catch(e) {}
+Number.prototype.f = f;
+try { if (Inst8 <= 1000 && typeof (Number.prototype.f) != "undefined") {_RecordType("<281,299,9>",(Number.prototype.f)); Inst8++; } } catch(e) {}try { if (Inst9 <= 1000 && typeof (Number.prototype) != "undefined") {_RecordType("<281,297,9>",(Number.prototype)); Inst9++; } } catch(e) {}try { if (Inst10 <= 1000 && typeof (Number) != "undefined") {_RecordType("<281,287,9>",(Number)); Inst10++; } } catch(e) {}
+var number = 1;
+try { if (Inst12 <= 1000 && typeof (number) != "undefined") {_RecordType("<309,315,10>",(number)); Inst12++; } } catch(e) {}
+try { if (Inst13 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<321,333,11>",(assertEquals)); Inst13++; } } catch(e) {}try { if (Inst14 <= 1000 && typeof (object.prototype) != "undefined") {_RecordType("<334,350,11>",(object.prototype)); Inst14++; } } catch(e) {}try { if (Inst15 <= 1000 && typeof (object) != "undefined") {_RecordType("<334,340,11>",(object)); Inst15++; } } catch(e) {}try { if (Inst16 <= 1000 && typeof (f.call(number).__proto__.__proto__) != "undefined") {_RecordType("<352,386,11>",(f.call(number).__proto__.__proto__)); Inst16++; } } catch(e) {}try { if (Inst17 <= 1000 && typeof (f.call(number).__proto__) != "undefined") {_RecordType("<352,376,11>",(f.call(number).__proto__)); Inst17++; } } catch(e) {}try { if (Inst18 <= 1000 && typeof (f.call) != "undefined") {_RecordType("<352,358,11>",(f.call)); Inst18++; } } catch(e) {}try { if (Inst19 <= 1000 && typeof (f) != "undefined") {_RecordType("<352,353,11>",(f)); Inst19++; } } catch(e) {}try { if (Inst20 <= 1000 && typeof (number) != "undefined") {_RecordType("<359,365,11>",(number)); Inst20++; } } catch(e) {}
+assertEquals(object.prototype, f.call(number).__proto__.__proto__);
+try { if (Inst21 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<389,401,12>",(assertEquals)); Inst21++; } } catch(e) {}try { if (Inst22 <= 1000 && typeof (object.prototype) != "undefined") {_RecordType("<402,418,12>",(object.prototype)); Inst22++; } } catch(e) {}try { if (Inst23 <= 1000 && typeof (object) != "undefined") {_RecordType("<402,408,12>",(object)); Inst23++; } } catch(e) {}try { if (Inst24 <= 1000 && typeof (number.f().__proto__.__proto__) != "undefined") {_RecordType("<420,450,12>",(number.f().__proto__.__proto__)); Inst24++; } } catch(e) {}try { if (Inst25 <= 1000 && typeof (number.f().__proto__) != "undefined") {_RecordType("<420,440,12>",(number.f().__proto__)); Inst25++; } } catch(e) {}try { if (Inst26 <= 1000 && typeof (number.f) != "undefined") {_RecordType("<420,428,12>",(number.f)); Inst26++; } } catch(e) {}try { if (Inst27 <= 1000 && typeof (number) != "undefined") {_RecordType("<420,426,12>",(number)); Inst27++; } } catch(e) {}
+assertEquals(object.prototype, number.f().__proto__.__proto__);
+try { if (Inst28 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<453,465,13>",(assertEquals)); Inst28++; } } catch(e) {}try { if (Inst29 <= 1000 && typeof (Realm.global) != "undefined") {_RecordType("<466,478,13>",(Realm.global)); Inst29++; } } catch(e) {}try { if (Inst30 <= 1000 && typeof (Realm) != "undefined") {_RecordType("<466,471,13>",(Realm)); Inst30++; } } catch(e) {}try { if (Inst31 <= 1000 && typeof (f) != "undefined") {_RecordType("<483,484,13>",(f)); Inst31++; } } catch(e) {}
+assertEquals(Realm.global(1), f());
+

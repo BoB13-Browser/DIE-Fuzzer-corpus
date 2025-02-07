@@ -1,0 +1,165 @@
+var Inst0 = 0;
+var Inst1 = 0;
+var Inst2 = 0;
+var Inst3 = 0;
+var Inst4 = 0;
+var Inst5 = 0;
+var Inst6 = 0;
+var Inst7 = 0;
+var Inst8 = 0;
+var Inst9 = 0;
+var Inst10 = 0;
+var Inst11 = 0;
+var Inst12 = 0;
+var Inst13 = 0;
+var Inst14 = 0;
+var Inst15 = 0;
+var Inst16 = 0;
+var Inst17 = 0;
+var Inst18 = 0;
+var Inst19 = 0;
+var Inst20 = 0;
+var Inst21 = 0;
+var Inst22 = 0;
+var Inst23 = 0;
+var Inst24 = 0;
+var Inst25 = 0;
+var Inst26 = 0;
+var Inst27 = 0;
+var Inst28 = 0;
+var Inst29 = 0;
+var Inst30 = 0;
+var Inst31 = 0;
+var Inst32 = 0;
+var Inst33 = 0;
+var Inst34 = 0;
+var Inst35 = 0;
+ 
+function _TypeOfArray(a) {
+	let number = true;	
+	let string = true;
+	for (let i = 0; i < a.length; i++) {
+		if (number && (typeof a[i]) != "number") {
+			number = false;	
+		}
+		if (string && (typeof a[i]) != "string") {
+			string = false;	
+		}
+		if (!number && !string)
+			break;
+	}
+	if (number)
+		return "number";
+	else if (string)
+		return "string";
+	else
+		return "any";
+}
+
+function _TypeIsEqual(t1, t2) {
+	return JSON.stringify(t1) === JSON.stringify(t2);
+}
+
+function _TypeOf(a, step) {
+	var t;
+	var type = Object.prototype.toString.call(a).slice(8, -1).toLowerCase();	
+	if (type == "array") {
+		t = {type : type, extra: {elemType: _TypeOfArray(a)}};
+	} else if (type == "object") {
+		let shape = [];
+        if (step === undefined || step > 0) {
+            let keys = Object.keys(a);
+            let length = Math.min(100, keys.length);
+		    for (let i = 0; i < length; i++) {
+			    shape.push([keys[i], _TypeOf(a[keys[i]], step === undefined ? 1 : step - 1)]);	
+		    }
+        }
+		t = {type : type, extra: {shape: shape}};
+	} else {
+		t = {type : type};
+	} 
+	return t;
+}
+
+function _RecordType(loc, a) {
+	var t = _TypeOf(a);
+    print("~~~TypeInfo:" + loc + ":" + JSON.stringify(t));
+}
+// Copyright 2010 the V8 project authors. All rights reserved.
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions are
+// met:
+//
+//     * Redistributions of source code must retain the above copyright
+//       notice, this list of conditions and the following disclaimer.
+//     * Redistributions in binary form must reproduce the above
+//       copyright notice, this list of conditions and the following
+//       disclaimer in the documentation and/or other materials provided
+//       with the distribution.
+//     * Neither the name of Google Inc. nor the names of its
+//       contributors may be used to endorse or promote products derived
+//       from this software without specific prior written permission.
+//
+// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+// "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+// LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+// A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+// OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+// SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+// LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+// DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+// THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+// (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+// OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+var global = this;
+try { if (Inst0 <= 1000 && typeof (global) != "undefined") {_RecordType("<1602,1608,28>",(global)); Inst0++; } } catch(e) {}
+
+try { if (Inst1 <= 1000 && typeof (f0) != "undefined") {_RecordType("<1627,1629,30>",(f0)); Inst1++; } } catch(e) {}
+function f0(x) {
+try { if (Inst2 <= 1000 && typeof (x) != "undefined") {_RecordType("<1630,1631,30>",(x)); Inst2++; } } catch(e) {}
+try { if (Inst3 <= 1000 && typeof (assertTrue) != "undefined") {_RecordType("<1637,1647,31>",(assertTrue)); Inst3++; } } catch(e) {}try { if (Inst4 <= 1000 && typeof (global) != "undefined") {_RecordType("<1657,1663,31>",(global)); Inst4++; } } catch(e) {}
+  assertTrue(this === global);
+try { if (Inst5 <= 1000 && typeof (x) != "undefined") {_RecordType("<1675,1676,32>",(x)); Inst5++; } } catch(e) {}
+  return x;
+}
+
+try { if (Inst6 <= 1000 && typeof (g0) != "undefined") {_RecordType("<1690,1692,35>",(g0)); Inst6++; } } catch(e) {}
+function g0(x, y) {
+try { if (Inst7 <= 1000 && typeof (x) != "undefined") {_RecordType("<1693,1694,35>",(x)); Inst7++; } } catch(e) {}try { if (Inst8 <= 1000 && typeof (y) != "undefined") {_RecordType("<1696,1697,35>",(y)); Inst8++; } } catch(e) {}
+try { if (Inst9 <= 1000 && typeof (f0) != "undefined") {_RecordType("<1710,1712,36>",(f0)); Inst9++; } } catch(e) {}try { if (Inst10 <= 1000 && typeof (x) != "undefined") {_RecordType("<1713,1714,36>",(x)); Inst10++; } } catch(e) {}try { if (Inst11 <= 1000 && typeof (y) != "undefined") {_RecordType("<1718,1719,36>",(y)); Inst11++; } } catch(e) {}
+  return f0(x == y);
+}
+
+try { if (Inst12 <= 1000 && typeof (assertTrue) != "undefined") {_RecordType("<1725,1735,39>",(assertTrue)); Inst12++; } } catch(e) {}try { if (Inst13 <= 1000 && typeof (g0) != "undefined") {_RecordType("<1736,1738,39>",(g0)); Inst13++; } } catch(e) {}
+assertTrue(g0(0, 0));
+try { if (Inst14 <= 1000 && typeof (assertFalse) != "undefined") {_RecordType("<1747,1758,40>",(assertFalse)); Inst14++; } } catch(e) {}try { if (Inst15 <= 1000 && typeof (g0) != "undefined") {_RecordType("<1759,1761,40>",(g0)); Inst15++; } } catch(e) {}
+assertFalse(g0(0, 1));
+
+
+var o = {};
+try { if (Inst16 <= 1000 && typeof (o) != "undefined") {_RecordType("<1776,1777,43>",(o)); Inst16++; } } catch(e) {}
+try { if (Inst19 <= 1000 && typeof (f1) != "undefined") {_RecordType("<1791,1793,44>",(f1)); Inst19++; } } catch(e) {}
+o.f1 = f1;
+try { if (Inst17 <= 1000 && typeof (o.f1) != "undefined") {_RecordType("<1784,1788,44>",(o.f1)); Inst17++; } } catch(e) {}try { if (Inst18 <= 1000 && typeof (o) != "undefined") {_RecordType("<1784,1785,44>",(o)); Inst18++; } } catch(e) {}
+try { if (Inst20 <= 1000 && typeof (f1) != "undefined") {_RecordType("<1804,1806,45>",(f1)); Inst20++; } } catch(e) {}
+function f1(x) {
+try { if (Inst21 <= 1000 && typeof (x) != "undefined") {_RecordType("<1807,1808,45>",(x)); Inst21++; } } catch(e) {}
+try { if (Inst22 <= 1000 && typeof (assertTrue) != "undefined") {_RecordType("<1814,1824,46>",(assertTrue)); Inst22++; } } catch(e) {}try { if (Inst23 <= 1000 && typeof (o) != "undefined") {_RecordType("<1834,1835,46>",(o)); Inst23++; } } catch(e) {}
+  assertTrue(this === o);
+try { if (Inst24 <= 1000 && typeof (x) != "undefined") {_RecordType("<1847,1848,47>",(x)); Inst24++; } } catch(e) {}
+  return x;
+}
+
+try { if (Inst25 <= 1000 && typeof (g1) != "undefined") {_RecordType("<1862,1864,50>",(g1)); Inst25++; } } catch(e) {}
+function g1(x, y) {
+try { if (Inst26 <= 1000 && typeof (x) != "undefined") {_RecordType("<1865,1866,50>",(x)); Inst26++; } } catch(e) {}try { if (Inst27 <= 1000 && typeof (y) != "undefined") {_RecordType("<1868,1869,50>",(y)); Inst27++; } } catch(e) {}
+try { if (Inst28 <= 1000 && typeof (o.f1) != "undefined") {_RecordType("<1882,1886,51>",(o.f1)); Inst28++; } } catch(e) {}try { if (Inst29 <= 1000 && typeof (o) != "undefined") {_RecordType("<1882,1883,51>",(o)); Inst29++; } } catch(e) {}try { if (Inst30 <= 1000 && typeof (x) != "undefined") {_RecordType("<1887,1888,51>",(x)); Inst30++; } } catch(e) {}try { if (Inst31 <= 1000 && typeof (y) != "undefined") {_RecordType("<1892,1893,51>",(y)); Inst31++; } } catch(e) {}
+  return o.f1(x == y);
+}
+
+try { if (Inst32 <= 1000 && typeof (assertTrue) != "undefined") {_RecordType("<1899,1909,54>",(assertTrue)); Inst32++; } } catch(e) {}try { if (Inst33 <= 1000 && typeof (g1) != "undefined") {_RecordType("<1910,1912,54>",(g1)); Inst33++; } } catch(e) {}
+assertTrue(g1(0, 0));
+try { if (Inst34 <= 1000 && typeof (assertFalse) != "undefined") {_RecordType("<1921,1932,55>",(assertFalse)); Inst34++; } } catch(e) {}try { if (Inst35 <= 1000 && typeof (g1) != "undefined") {_RecordType("<1933,1935,55>",(g1)); Inst35++; } } catch(e) {}
+assertFalse(g1(0, 1));
+

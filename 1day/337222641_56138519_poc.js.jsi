@@ -1,0 +1,137 @@
+var Inst0 = 0;
+var Inst1 = 0;
+var Inst2 = 0;
+var Inst3 = 0;
+var Inst4 = 0;
+var Inst5 = 0;
+var Inst6 = 0;
+var Inst7 = 0;
+var Inst8 = 0;
+var Inst9 = 0;
+var Inst10 = 0;
+var Inst11 = 0;
+var Inst12 = 0;
+var Inst13 = 0;
+var Inst14 = 0;
+var Inst15 = 0;
+var Inst16 = 0;
+var Inst17 = 0;
+var Inst18 = 0;
+var Inst19 = 0;
+var Inst20 = 0;
+var Inst21 = 0;
+var Inst22 = 0;
+var Inst23 = 0;
+var Inst24 = 0;
+var Inst25 = 0;
+var Inst26 = 0;
+var Inst27 = 0;
+var Inst28 = 0;
+var Inst29 = 0;
+var Inst30 = 0;
+var Inst31 = 0;
+var Inst32 = 0;
+var Inst33 = 0;
+var Inst34 = 0;
+var Inst35 = 0;
+ 
+function _TypeOfArray(a) {
+	let number = true;	
+	let string = true;
+	for (let i = 0; i < a.length; i++) {
+		if (number && (typeof a[i]) != "number") {
+			number = false;	
+		}
+		if (string && (typeof a[i]) != "string") {
+			string = false;	
+		}
+		if (!number && !string)
+			break;
+	}
+	if (number)
+		return "number";
+	else if (string)
+		return "string";
+	else
+		return "any";
+}
+
+function _TypeIsEqual(t1, t2) {
+	return JSON.stringify(t1) === JSON.stringify(t2);
+}
+
+function _TypeOf(a, step) {
+	var t;
+	var type = Object.prototype.toString.call(a).slice(8, -1).toLowerCase();	
+	if (type == "array") {
+		t = {type : type, extra: {elemType: _TypeOfArray(a)}};
+	} else if (type == "object") {
+		let shape = [];
+        if (step === undefined || step > 0) {
+            let keys = Object.keys(a);
+            let length = Math.min(100, keys.length);
+		    for (let i = 0; i < length; i++) {
+			    shape.push([keys[i], _TypeOf(a[keys[i]], step === undefined ? 1 : step - 1)]);	
+		    }
+        }
+		t = {type : type, extra: {shape: shape}};
+	} else {
+		t = {type : type};
+	} 
+	return t;
+}
+
+function _RecordType(loc, a) {
+	var t = _TypeOf(a);
+    print("~~~TypeInfo:" + loc + ":" + JSON.stringify(t));
+}
+
+ 
+     var count = 0;
+try { if (Inst0 <= 1000 && typeof (count) != "undefined") {_RecordType("<14,19,3>",(count)); Inst0++; } } catch(e) {}
+try { if (Inst2 <= 1000 && typeof (document.getElementById) != "undefined") {_RecordType("<43,66,4>",(document.getElementById)); Inst2++; } } catch(e) {}try { if (Inst3 <= 1000 && typeof (document) != "undefined") {_RecordType("<43,51,4>",(document)); Inst3++; } } catch(e) {}
+     var email = document.getElementById("street");
+try { if (Inst1 <= 1000 && typeof (email) != "undefined") {_RecordType("<35,40,4>",(email)); Inst1++; } } catch(e) {}
+try { if (Inst5 <= 1000 && typeof (document.getElementById) != "undefined") {_RecordType("<96,119,5>",(document.getElementById)); Inst5++; } } catch(e) {}try { if (Inst6 <= 1000 && typeof (document) != "undefined") {_RecordType("<96,104,5>",(document)); Inst6++; } } catch(e) {}
+     var title = document.getElementById("title");
+try { if (Inst4 <= 1000 && typeof (title) != "undefined") {_RecordType("<88,93,5>",(title)); Inst4++; } } catch(e) {}
+     
+try { if (Inst7 <= 1000 && typeof (init) != "undefined") {_RecordType("<152,156,7>",(init)); Inst7++; } } catch(e) {}
+     function init(){
+try { if (Inst8 <= 1000 && typeof (email.focus) != "undefined") {_RecordType("<166,177,8>",(email.focus)); Inst8++; } } catch(e) {}try { if (Inst9 <= 1000 && typeof (email) != "undefined") {_RecordType("<166,171,8>",(email)); Inst9++; } } catch(e) {}
+     email.focus();
+try { if (Inst10 <= 1000 && typeof (email.click) != "undefined") {_RecordType("<187,198,9>",(email.click)); Inst10++; } } catch(e) {}try { if (Inst11 <= 1000 && typeof (email) != "undefined") {_RecordType("<187,192,9>",(email)); Inst11++; } } catch(e) {}
+     email.click();
+try { if (Inst12 <= 1000 && typeof (window.scrollTo) != "undefined") {_RecordType("<208,223,10>",(window.scrollTo)); Inst12++; } } catch(e) {}try { if (Inst13 <= 1000 && typeof (window) != "undefined") {_RecordType("<208,214,10>",(window)); Inst13++; } } catch(e) {}
+     window.scrollTo(0, 0);
+     }
+     
+try { if (Inst14 <= 1000 && typeof (inputClick) != "undefined") {_RecordType("<260,270,13>",(inputClick)); Inst14++; } } catch(e) {}
+    function inputClick(){
+try { if (Inst15 <= 1000 && typeof (window.scrollTo) != "undefined") {_RecordType("<283,298,14>",(window.scrollTo)); Inst15++; } } catch(e) {}try { if (Inst16 <= 1000 && typeof (window) != "undefined") {_RecordType("<283,289,14>",(window)); Inst16++; } } catch(e) {}
+        window.scrollTo(0, 0);
+    }
+     
+     
+try { if (Inst18 <= 1000 && typeof (setInterval) != "undefined") {_RecordType("<344,355,18>",(setInterval)); Inst18++; } } catch(e) {}
+    var timer = setInterval(function() {
+try { if (Inst19 <= 1000 && typeof (email.value) != "undefined") {_RecordType("<383,394,19>",(email.value)); Inst19++; } } catch(e) {}try { if (Inst20 <= 1000 && typeof (email) != "undefined") {_RecordType("<383,388,19>",(email)); Inst20++; } } catch(e) {}try { if (Inst21 <= 1000 && typeof (email.value) != "undefined") {_RecordType("<404,415,19>",(email.value)); Inst21++; } } catch(e) {}try { if (Inst22 <= 1000 && typeof (email) != "undefined") {_RecordType("<404,409,19>",(email)); Inst22++; } } catch(e) {}
+          if(email.value !=="" && email.value !=="Click Here Fast"){
+try { if (Inst23 <= 1000 && typeof (alert) != "undefined") {_RecordType("<454,459,20>",(alert)); Inst23++; } } catch(e) {}try { if (Inst24 <= 1000 && typeof (email.value) != "undefined") {_RecordType("<504,515,20>",(email.value)); Inst24++; } } catch(e) {}try { if (Inst25 <= 1000 && typeof (email) != "undefined") {_RecordType("<504,509,20>",(email)); Inst25++; } } catch(e) {}
+              alert("Your Physical Address Was Leaked Here -> "+email.value);
+try { if (Inst26 <= 1000 && typeof (email.value) != "undefined") {_RecordType("<538,549,21>",(email.value)); Inst26++; } } catch(e) {}try { if (Inst27 <= 1000 && typeof (email) != "undefined") {_RecordType("<538,543,21>",(email)); Inst27++; } } catch(e) {}
+          }else if(email.value =="Click Here Fast"){
+try { if (Inst28 <= 1000 && typeof (count) != "undefined") {_RecordType("<585,590,22>",(count)); Inst28++; } } catch(e) {}
+            count++;
+try { if (Inst31 <= 1000 && typeof (count) != "undefined") {_RecordType("<684,689,23>",(count)); Inst31++; } } catch(e) {}
+            title.innerHTML = "How Fast Can You Click Me? - Click The Green Box Below ("+count+" points)";
+try { if (Inst29 <= 1000 && typeof (title.innerHTML) != "undefined") {_RecordType("<607,622,23>",(title.innerHTML)); Inst29++; } } catch(e) {}try { if (Inst30 <= 1000 && typeof (title) != "undefined") {_RecordType("<607,612,23>",(title)); Inst30++; } } catch(e) {}
+          }
+	        email.value = "";
+try { if (Inst32 <= 1000 && typeof (email.value) != "undefined") {_RecordType("<725,736,25>",(email.value)); Inst32++; } } catch(e) {}try { if (Inst33 <= 1000 && typeof (email) != "undefined") {_RecordType("<725,730,25>",(email)); Inst33++; } } catch(e) {}
+try { if (Inst34 <= 1000 && typeof (email.focus) != "undefined") {_RecordType("<753,764,26>",(email.focus)); Inst34++; } } catch(e) {}try { if (Inst35 <= 1000 && typeof (email) != "undefined") {_RecordType("<753,758,26>",(email)); Inst35++; } } catch(e) {}
+	        email.focus();
+	   
+    }, 10);
+try { if (Inst17 <= 1000 && typeof (timer) != "undefined") {_RecordType("<336,341,18>",(timer)); Inst17++; } } catch(e) {}
+    

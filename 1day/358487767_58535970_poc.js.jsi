@@ -1,0 +1,133 @@
+var Inst0 = 0;
+var Inst1 = 0;
+var Inst2 = 0;
+var Inst3 = 0;
+var Inst4 = 0;
+var Inst5 = 0;
+var Inst6 = 0;
+var Inst7 = 0;
+var Inst8 = 0;
+var Inst9 = 0;
+var Inst10 = 0;
+var Inst11 = 0;
+var Inst12 = 0;
+var Inst13 = 0;
+var Inst14 = 0;
+var Inst15 = 0;
+var Inst16 = 0;
+var Inst17 = 0;
+var Inst18 = 0;
+var Inst19 = 0;
+var Inst20 = 0;
+var Inst21 = 0;
+var Inst22 = 0;
+var Inst23 = 0;
+var Inst24 = 0;
+var Inst25 = 0;
+var Inst26 = 0;
+var Inst27 = 0;
+var Inst28 = 0;
+var Inst29 = 0;
+var Inst30 = 0;
+var Inst31 = 0;
+var Inst32 = 0;
+var Inst33 = 0;
+var Inst34 = 0;
+var Inst35 = 0;
+var Inst36 = 0;
+var Inst37 = 0;
+var Inst38 = 0;
+ 
+function _TypeOfArray(a) {
+	let number = true;	
+	let string = true;
+	for (let i = 0; i < a.length; i++) {
+		if (number && (typeof a[i]) != "number") {
+			number = false;	
+		}
+		if (string && (typeof a[i]) != "string") {
+			string = false;	
+		}
+		if (!number && !string)
+			break;
+	}
+	if (number)
+		return "number";
+	else if (string)
+		return "string";
+	else
+		return "any";
+}
+
+function _TypeIsEqual(t1, t2) {
+	return JSON.stringify(t1) === JSON.stringify(t2);
+}
+
+function _TypeOf(a, step) {
+	var t;
+	var type = Object.prototype.toString.call(a).slice(8, -1).toLowerCase();	
+	if (type == "array") {
+		t = {type : type, extra: {elemType: _TypeOfArray(a)}};
+	} else if (type == "object") {
+		let shape = [];
+        if (step === undefined || step > 0) {
+            let keys = Object.keys(a);
+            let length = Math.min(100, keys.length);
+		    for (let i = 0; i < length; i++) {
+			    shape.push([keys[i], _TypeOf(a[keys[i]], step === undefined ? 1 : step - 1)]);	
+		    }
+        }
+		t = {type : type, extra: {shape: shape}};
+	} else {
+		t = {type : type};
+	} 
+	return t;
+}
+
+function _RecordType(loc, a) {
+	var t = _TypeOf(a);
+    print("~~~TypeInfo:" + loc + ":" + JSON.stringify(t));
+}
+try { if (Inst0 <= 1000 && typeof (dummy_main) != "undefined") {_RecordType("<9,19,1>",(dummy_main)); Inst0++; } } catch(e) {}
+function dummy_main() {
+try { if (Inst2 <= 1000 && typeof (ArrayBuffer) != "undefined") {_RecordType("<49,60,2>",(ArrayBuffer)); Inst2++; } } catch(e) {}
+  var arrayBuffer = new ArrayBuffer(8);
+try { if (Inst1 <= 1000 && typeof (arrayBuffer) != "undefined") {_RecordType("<31,42,2>",(arrayBuffer)); Inst1++; } } catch(e) {}
+try { if (Inst4 <= 1000 && typeof (Float32Array) != "undefined") {_RecordType("<89,101,3>",(Float32Array)); Inst4++; } } catch(e) {}try { if (Inst5 <= 1000 && typeof (arrayBuffer) != "undefined") {_RecordType("<102,113,3>",(arrayBuffer)); Inst5++; } } catch(e) {}
+  var floatArray = new Float32Array(arrayBuffer);
+try { if (Inst3 <= 1000 && typeof (floatArray) != "undefined") {_RecordType("<72,82,3>",(floatArray)); Inst3++; } } catch(e) {}
+try { if (Inst7 <= 1000 && typeof (Float32Array) != "undefined") {_RecordType("<141,153,4>",(Float32Array)); Inst7++; } } catch(e) {}
+  var floatArray2 = new Float32Array(1);
+try { if (Inst6 <= 1000 && typeof (floatArray2) != "undefined") {_RecordType("<123,134,4>",(floatArray2)); Inst6++; } } catch(e) {}
+try { if (Inst8 <= 1000 && typeof (setBit) != "undefined") {_RecordType("<170,176,5>",(setBit)); Inst8++; } } catch(e) {}
+  function setBit(obj, bitCount, value, isDouble) {
+try { if (Inst9 <= 1000 && typeof (obj) != "undefined") {_RecordType("<177,180,5>",(obj)); Inst9++; } } catch(e) {}try { if (Inst10 <= 1000 && typeof (bitCount) != "undefined") {_RecordType("<182,190,5>",(bitCount)); Inst10++; } } catch(e) {}try { if (Inst11 <= 1000 && typeof (value) != "undefined") {_RecordType("<192,197,5>",(value)); Inst11++; } } catch(e) {}try { if (Inst12 <= 1000 && typeof (isDouble) != "undefined") {_RecordType("<199,207,5>",(isDouble)); Inst12++; } } catch(e) {}
+    var currentBit = 1 << 31;
+try { if (Inst13 <= 1000 && typeof (currentBit) != "undefined") {_RecordType("<220,230,6>",(currentBit)); Inst13++; } } catch(e) {}
+    var current = 0;
+try { if (Inst14 <= 1000 && typeof (current) != "undefined") {_RecordType("<251,258,7>",(current)); Inst14++; } } catch(e) {}
+    for (var i = 0; i < bitCount; i++) {
+try { if (Inst15 <= 1000 && typeof (i) != "undefined") {_RecordType("<278,279,8>",(i)); Inst15++; } } catch(e) {}try { if (Inst16 <= 1000 && typeof (i) != "undefined") {_RecordType("<285,286,8>",(i)); Inst16++; } } catch(e) {}try { if (Inst17 <= 1000 && typeof (bitCount) != "undefined") {_RecordType("<289,297,8>",(bitCount)); Inst17++; } } catch(e) {}try { if (Inst18 <= 1000 && typeof (i) != "undefined") {_RecordType("<299,300,8>",(i)); Inst18++; } } catch(e) {}
+try { if (Inst20 <= 1000 && typeof (i) != "undefined") {_RecordType("<336,337,9>",(i)); Inst20++; } } catch(e) {}
+      currentBit = 1 << 31 - i;
+try { if (Inst19 <= 1000 && typeof (currentBit) != "undefined") {_RecordType("<313,323,9>",(currentBit)); Inst19++; } } catch(e) {}
+try { if (Inst22 <= 1000 && typeof (current) != "undefined") {_RecordType("<356,363,10>",(current)); Inst22++; } } catch(e) {}try { if (Inst23 <= 1000 && typeof (currentBit) != "undefined") {_RecordType("<366,376,10>",(currentBit)); Inst23++; } } catch(e) {}
+      current = current | currentBit;
+try { if (Inst21 <= 1000 && typeof (current) != "undefined") {_RecordType("<346,353,10>",(current)); Inst21++; } } catch(e) {}
+    }
+  }
+try { if (Inst24 <= 1000 && typeof (testOneNan) != "undefined") {_RecordType("<402,412,13>",(testOneNan)); Inst24++; } } catch(e) {}
+  function testOneNan(typedArray, backup, isDouble) {
+try { if (Inst25 <= 1000 && typeof (typedArray) != "undefined") {_RecordType("<413,423,13>",(typedArray)); Inst25++; } } catch(e) {}try { if (Inst26 <= 1000 && typeof (backup) != "undefined") {_RecordType("<425,431,13>",(backup)); Inst26++; } } catch(e) {}try { if (Inst27 <= 1000 && typeof (isDouble) != "undefined") {_RecordType("<433,441,13>",(isDouble)); Inst27++; } } catch(e) {}
+    for (var j = 12; j < 20; j++) {
+try { if (Inst28 <= 1000 && typeof (j) != "undefined") {_RecordType("<459,460,14>",(j)); Inst28++; } } catch(e) {}try { if (Inst29 <= 1000 && typeof (j) != "undefined") {_RecordType("<467,468,14>",(j)); Inst29++; } } catch(e) {}try { if (Inst30 <= 1000 && typeof (j) != "undefined") {_RecordType("<475,476,14>",(j)); Inst30++; } } catch(e) {}
+try { if (Inst31 <= 1000 && typeof (setBit) != "undefined") {_RecordType("<489,495,15>",(setBit)); Inst31++; } } catch(e) {}try { if (Inst32 <= 1000 && typeof (typedArray) != "undefined") {_RecordType("<496,506,15>",(typedArray)); Inst32++; } } catch(e) {}try { if (Inst33 <= 1000 && typeof (j) != "undefined") {_RecordType("<508,509,15>",(j)); Inst33++; } } catch(e) {}try { if (Inst34 <= 1000 && typeof (isDouble) != "undefined") {_RecordType("<514,522,15>",(isDouble)); Inst34++; } } catch(e) {}
+      setBit(typedArray, j, 1, isDouble);
+    }
+  }
+try { if (Inst35 <= 1000 && typeof (testOneNan) != "undefined") {_RecordType("<540,550,18>",(testOneNan)); Inst35++; } } catch(e) {}try { if (Inst36 <= 1000 && typeof (floatArray) != "undefined") {_RecordType("<551,561,18>",(floatArray)); Inst36++; } } catch(e) {}try { if (Inst37 <= 1000 && typeof (floatArray2) != "undefined") {_RecordType("<563,574,18>",(floatArray2)); Inst37++; } } catch(e) {}
+  testOneNan(floatArray, floatArray2, false);
+}
+try { if (Inst38 <= 1000 && typeof (dummy_main) != "undefined") {_RecordType("<588,598,20>",(dummy_main)); Inst38++; } } catch(e) {}
+dummy_main();
+//flags: --jit-fuzzing

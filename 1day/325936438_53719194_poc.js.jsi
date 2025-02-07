@@ -1,0 +1,206 @@
+var Inst0 = 0;
+var Inst1 = 0;
+var Inst2 = 0;
+var Inst3 = 0;
+var Inst4 = 0;
+var Inst5 = 0;
+var Inst6 = 0;
+var Inst7 = 0;
+var Inst8 = 0;
+var Inst9 = 0;
+var Inst10 = 0;
+var Inst11 = 0;
+var Inst12 = 0;
+var Inst13 = 0;
+var Inst14 = 0;
+var Inst15 = 0;
+var Inst16 = 0;
+var Inst17 = 0;
+var Inst18 = 0;
+var Inst19 = 0;
+var Inst20 = 0;
+var Inst21 = 0;
+var Inst22 = 0;
+var Inst23 = 0;
+var Inst24 = 0;
+var Inst25 = 0;
+var Inst26 = 0;
+var Inst27 = 0;
+var Inst28 = 0;
+var Inst29 = 0;
+var Inst30 = 0;
+var Inst31 = 0;
+ 
+function _TypeOfArray(a) {
+	let number = true;	
+	let string = true;
+	for (let i = 0; i < a.length; i++) {
+		if (number && (typeof a[i]) != "number") {
+			number = false;	
+		}
+		if (string && (typeof a[i]) != "string") {
+			string = false;	
+		}
+		if (!number && !string)
+			break;
+	}
+	if (number)
+		return "number";
+	else if (string)
+		return "string";
+	else
+		return "any";
+}
+
+function _TypeIsEqual(t1, t2) {
+	return JSON.stringify(t1) === JSON.stringify(t2);
+}
+
+function _TypeOf(a, step) {
+	var t;
+	var type = Object.prototype.toString.call(a).slice(8, -1).toLowerCase();	
+	if (type == "array") {
+		t = {type : type, extra: {elemType: _TypeOfArray(a)}};
+	} else if (type == "object") {
+		let shape = [];
+        if (step === undefined || step > 0) {
+            let keys = Object.keys(a);
+            let length = Math.min(100, keys.length);
+		    for (let i = 0; i < length; i++) {
+			    shape.push([keys[i], _TypeOf(a[keys[i]], step === undefined ? 1 : step - 1)]);	
+		    }
+        }
+		t = {type : type, extra: {shape: shape}};
+	} else {
+		t = {type : type};
+	} 
+	return t;
+}
+
+function _RecordType(loc, a) {
+	var t = _TypeOf(a);
+    print("~~~TypeInfo:" + loc + ":" + JSON.stringify(t));
+}
+
+
+try { if (Inst0 <= 1000 && typeof (sleep) != "undefined") {_RecordType("<13,18,3>",(sleep)); Inst0++; } } catch(e) {}
+function sleep(ms) {
+try { if (Inst1 <= 1000 && typeof (ms) != "undefined") {_RecordType("<19,21,3>",(ms)); Inst1++; } } catch(e) {}
+
+try { if (Inst2 <= 1000 && typeof (Promise) != "undefined") {_RecordType("<41,48,5>",(Promise)); Inst2++; } } catch(e) {}try { if (Inst3 <= 1000 && typeof (resolve) != "undefined") {_RecordType("<49,56,5>",(resolve)); Inst3++; } } catch(e) {}try { if (Inst4 <= 1000 && typeof (setTimeout) != "undefined") {_RecordType("<60,70,5>",(setTimeout)); Inst4++; } } catch(e) {}try { if (Inst5 <= 1000 && typeof (resolve) != "undefined") {_RecordType("<71,78,5>",(resolve)); Inst5++; } } catch(e) {}try { if (Inst6 <= 1000 && typeof (ms) != "undefined") {_RecordType("<80,82,5>",(ms)); Inst6++; } } catch(e) {}
+  return new Promise(resolve => setTimeout(resolve, ms));
+
+}
+
+try { if (Inst7 <= 1000 && typeof (test) != "undefined") {_RecordType("<109,113,9>",(test)); Inst7++; } } catch(e) {}
+async function test() {
+
+try { if (Inst8 <= 1000 && typeof (navigator.login.setStatus) != "undefined") {_RecordType("<129,154,11>",(navigator.login.setStatus)); Inst8++; } } catch(e) {}try { if (Inst9 <= 1000 && typeof (navigator.login) != "undefined") {_RecordType("<129,144,11>",(navigator.login)); Inst9++; } } catch(e) {}try { if (Inst10 <= 1000 && typeof (navigator) != "undefined") {_RecordType("<129,138,11>",(navigator)); Inst10++; } } catch(e) {}
+  await navigator.login.setStatus("logged-in");
+
+try { if (Inst11 <= 1000 && typeof (navigator.credentials.get({
+
+    identity: {
+
+      mediation: "optional",
+
+      providers: [
+
+      {
+
+        configURL: 'http://localhost:8000/config.json',
+
+        clientId: '123',
+
+        nonce: '******',
+
+      },
+
+      ]
+
+    }
+
+  }).catch) != "undefined") {_RecordType("<174,446,13>",(navigator.credentials.get({
+
+    identity: {
+
+      mediation: "optional",
+
+      providers: [
+
+      {
+
+        configURL: 'http://localhost:8000/config.json',
+
+        clientId: '123',
+
+        nonce: '******',
+
+      },
+
+      ]
+
+    }
+
+  }).catch)); Inst11++; } } catch(e) {}try { if (Inst12 <= 1000 && typeof (navigator.credentials.get) != "undefined") {_RecordType("<174,199,13>",(navigator.credentials.get)); Inst12++; } } catch(e) {}try { if (Inst13 <= 1000 && typeof (navigator.credentials) != "undefined") {_RecordType("<174,195,13>",(navigator.credentials)); Inst13++; } } catch(e) {}try { if (Inst14 <= 1000 && typeof (navigator) != "undefined") {_RecordType("<174,183,13>",(navigator)); Inst14++; } } catch(e) {}try { if (Inst15 <= 1000 && typeof (e) != "undefined") {_RecordType("<448,449,35>",(e)); Inst15++; } } catch(e) {}
+  navigator.credentials.get({
+
+    identity: {
+
+      mediation: "optional",
+
+      providers: [
+
+      {
+
+        configURL: 'http://localhost:8000/config.json',
+
+        clientId: '123',
+
+        nonce: '******',
+
+      },
+
+      ]
+
+    }
+
+  }).catch((e) => {
+
+    document.getElementById("log").innerText = "Sign in was disabled, please delete the chrome user data folder and try again";
+try { if (Inst16 <= 1000 && typeof (document.getElementById("log").innerText) != "undefined") {_RecordType("<463,503,37>",(document.getElementById("log").innerText)); Inst16++; } } catch(e) {}try { if (Inst17 <= 1000 && typeof (document.getElementById) != "undefined") {_RecordType("<463,486,37>",(document.getElementById)); Inst17++; } } catch(e) {}try { if (Inst18 <= 1000 && typeof (document) != "undefined") {_RecordType("<463,471,37>",(document)); Inst18++; } } catch(e) {}
+
+  });
+
+  while (true) {
+
+try { if (Inst19 <= 1000 && typeof (sleep) != "undefined") {_RecordType("<629,634,43>",(sleep)); Inst19++; } } catch(e) {}
+    await sleep(200);
+
+try { if (Inst21 <= 1000 && typeof (fetch) != "undefined") {_RecordType("<664,669,45>",(fetch)); Inst21++; } } catch(e) {}
+    var res = await fetch("login_opened");
+try { if (Inst20 <= 1000 && typeof (res) != "undefined") {_RecordType("<652,655,45>",(res)); Inst20++; } } catch(e) {}
+
+try { if (Inst23 <= 1000 && typeof (res.text) != "undefined") {_RecordType("<711,719,47>",(res.text)); Inst23++; } } catch(e) {}try { if (Inst24 <= 1000 && typeof (res) != "undefined") {_RecordType("<711,714,47>",(res)); Inst24++; } } catch(e) {}
+    var flag = await res.text();
+try { if (Inst22 <= 1000 && typeof (flag) != "undefined") {_RecordType("<698,702,47>",(flag)); Inst22++; } } catch(e) {}
+
+try { if (Inst25 <= 1000 && typeof (flag) != "undefined") {_RecordType("<734,738,49>",(flag)); Inst25++; } } catch(e) {}
+    if (flag == "1") {
+
+try { if (Inst26 <= 1000 && typeof (navigator.login.setStatus) != "undefined") {_RecordType("<758,783,51>",(navigator.login.setStatus)); Inst26++; } } catch(e) {}try { if (Inst27 <= 1000 && typeof (navigator.login) != "undefined") {_RecordType("<758,773,51>",(navigator.login)); Inst27++; } } catch(e) {}try { if (Inst28 <= 1000 && typeof (navigator) != "undefined") {_RecordType("<758,767,51>",(navigator)); Inst28++; } } catch(e) {}
+      navigator.login.setStatus("logged-in");
+
+      break;
+
+    }
+
+  }
+
+}
+
+try { if (Inst31 <= 1000 && typeof (test) != "undefined") {_RecordType("<854,858,61>",(test)); Inst31++; } } catch(e) {}
+window.onload = test;
+try { if (Inst29 <= 1000 && typeof (window.onload) != "undefined") {_RecordType("<838,851,61>",(window.onload)); Inst29++; } } catch(e) {}try { if (Inst30 <= 1000 && typeof (window) != "undefined") {_RecordType("<838,844,61>",(window)); Inst30++; } } catch(e) {}
+
+

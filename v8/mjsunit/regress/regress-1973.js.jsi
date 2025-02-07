@@ -1,0 +1,164 @@
+var Inst0 = 0;
+var Inst1 = 0;
+var Inst2 = 0;
+var Inst3 = 0;
+var Inst4 = 0;
+var Inst5 = 0;
+var Inst6 = 0;
+var Inst7 = 0;
+var Inst8 = 0;
+var Inst9 = 0;
+var Inst10 = 0;
+var Inst11 = 0;
+var Inst12 = 0;
+var Inst13 = 0;
+var Inst14 = 0;
+var Inst15 = 0;
+var Inst16 = 0;
+var Inst17 = 0;
+var Inst18 = 0;
+var Inst19 = 0;
+var Inst20 = 0;
+var Inst21 = 0;
+var Inst22 = 0;
+var Inst23 = 0;
+var Inst24 = 0;
+var Inst25 = 0;
+var Inst26 = 0;
+var Inst27 = 0;
+var Inst28 = 0;
+var Inst29 = 0;
+var Inst30 = 0;
+var Inst31 = 0;
+var Inst32 = 0;
+var Inst33 = 0;
+var Inst34 = 0;
+var Inst35 = 0;
+var Inst36 = 0;
+var Inst37 = 0;
+ 
+function _TypeOfArray(a) {
+	let number = true;	
+	let string = true;
+	for (let i = 0; i < a.length; i++) {
+		if (number && (typeof a[i]) != "number") {
+			number = false;	
+		}
+		if (string && (typeof a[i]) != "string") {
+			string = false;	
+		}
+		if (!number && !string)
+			break;
+	}
+	if (number)
+		return "number";
+	else if (string)
+		return "string";
+	else
+		return "any";
+}
+
+function _TypeIsEqual(t1, t2) {
+	return JSON.stringify(t1) === JSON.stringify(t2);
+}
+
+function _TypeOf(a, step) {
+	var t;
+	var type = Object.prototype.toString.call(a).slice(8, -1).toLowerCase();	
+	if (type == "array") {
+		t = {type : type, extra: {elemType: _TypeOfArray(a)}};
+	} else if (type == "object") {
+		let shape = [];
+        if (step === undefined || step > 0) {
+            let keys = Object.keys(a);
+            let length = Math.min(100, keys.length);
+		    for (let i = 0; i < length; i++) {
+			    shape.push([keys[i], _TypeOf(a[keys[i]], step === undefined ? 1 : step - 1)]);	
+		    }
+        }
+		t = {type : type, extra: {shape: shape}};
+	} else {
+		t = {type : type};
+	} 
+	return t;
+}
+
+function _RecordType(loc, a) {
+	var t = _TypeOf(a);
+    print("~~~TypeInfo:" + loc + ":" + JSON.stringify(t));
+}
+// Copyright 2012 the V8 project authors. All rights reserved.
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions are
+// met:
+//
+//     * Redistributions of source code must retain the above copyright
+//       notice, this list of conditions and the following disclaimer.
+//     * Redistributions in binary form must reproduce the above
+//       copyright notice, this list of conditions and the following
+//       disclaimer in the documentation and/or other materials provided
+//       with the distribution.
+//     * Neither the name of Google Inc. nor the names of its
+//       contributors may be used to endorse or promote products derived
+//       from this software without specific prior written permission.
+//
+// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+// "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+// LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+// A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+// OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+// SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+// LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+// DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+// THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+// (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+// OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+// Test that getters and setters pass unwrapped this values in strict mode
+// and wrapped this values is non-strict mode.
+
+try { if (Inst0 <= 1000 && typeof (TestAccessorWrapping) != "undefined") {_RecordType("<1730,1750,31>",(TestAccessorWrapping)); Inst0++; } } catch(e) {}
+function TestAccessorWrapping(primitive) {
+try { if (Inst1 <= 1000 && typeof (primitive) != "undefined") {_RecordType("<1751,1760,31>",(primitive)); Inst1++; } } catch(e) {}
+try { if (Inst3 <= 1000 && typeof (Object.getPrototypeOf) != "undefined") {_RecordType("<1782,1803,32>",(Object.getPrototypeOf)); Inst3++; } } catch(e) {}try { if (Inst4 <= 1000 && typeof (Object) != "undefined") {_RecordType("<1782,1788,32>",(Object)); Inst4++; } } catch(e) {}try { if (Inst5 <= 1000 && typeof (Object) != "undefined") {_RecordType("<1804,1810,32>",(Object)); Inst5++; } } catch(e) {}try { if (Inst6 <= 1000 && typeof (primitive) != "undefined") {_RecordType("<1811,1820,32>",(primitive)); Inst6++; } } catch(e) {}
+  var prototype = Object.getPrototypeOf(Object(primitive))
+try { if (Inst2 <= 1000 && typeof (prototype) != "undefined") {_RecordType("<1770,1779,32>",(prototype)); Inst2++; } } catch(e) {}
+  // Check that strict mode passes unwrapped this value.
+try { if (Inst8 <= 1000 && typeof (primitive) != "undefined") {_RecordType("<1907,1916,34>",(primitive)); Inst8++; } } catch(e) {}
+  var strict_type = typeof primitive;
+try { if (Inst7 <= 1000 && typeof (strict_type) != "undefined") {_RecordType("<1886,1897,34>",(strict_type)); Inst7++; } } catch(e) {}
+try { if (Inst9 <= 1000 && typeof (Object.defineProperty) != "undefined") {_RecordType("<1920,1941,35>",(Object.defineProperty)); Inst9++; } } catch(e) {}try { if (Inst10 <= 1000 && typeof (Object) != "undefined") {_RecordType("<1920,1926,35>",(Object)); Inst10++; } } catch(e) {}try { if (Inst11 <= 1000 && typeof (prototype) != "undefined") {_RecordType("<1942,1951,35>",(prototype)); Inst11++; } } catch(e) {}
+  Object.defineProperty(prototype, "strict", {
+try { if (Inst12 <= 1000 && typeof (assertSame) != "undefined") {_RecordType("<2001,2011,36>",(assertSame)); Inst12++; } } catch(e) {}try { if (Inst13 <= 1000 && typeof (strict_type) != "undefined") {_RecordType("<2012,2023,36>",(strict_type)); Inst13++; } } catch(e) {}
+    get: function() { "use strict"; assertSame(strict_type, typeof this); },
+try { if (Inst14 <= 1000 && typeof (assertSame) != "undefined") {_RecordType("<2078,2088,37>",(assertSame)); Inst14++; } } catch(e) {}try { if (Inst15 <= 1000 && typeof (strict_type) != "undefined") {_RecordType("<2089,2100,37>",(strict_type)); Inst15++; } } catch(e) {}
+    set: function() { "use strict"; assertSame(strict_type, typeof this); }
+  });
+try { if (Inst18 <= 1000 && typeof (primitive.strict) != "undefined") {_RecordType("<2145,2161,39>",(primitive.strict)); Inst18++; } } catch(e) {}try { if (Inst19 <= 1000 && typeof (primitive) != "undefined") {_RecordType("<2145,2154,39>",(primitive)); Inst19++; } } catch(e) {}
+  primitive.strict = primitive.strict;
+try { if (Inst16 <= 1000 && typeof (primitive.strict) != "undefined") {_RecordType("<2126,2142,39>",(primitive.strict)); Inst16++; } } catch(e) {}try { if (Inst17 <= 1000 && typeof (primitive) != "undefined") {_RecordType("<2126,2135,39>",(primitive)); Inst17++; } } catch(e) {}
+  // Check that non-strict mode passes wrapped this value.
+try { if (Inst21 <= 1000 && typeof (Object) != "undefined") {_RecordType("<2249,2255,41>",(Object)); Inst21++; } } catch(e) {}try { if (Inst22 <= 1000 && typeof (primitive) != "undefined") {_RecordType("<2256,2265,41>",(primitive)); Inst22++; } } catch(e) {}
+  var sloppy_type = typeof Object(primitive);
+try { if (Inst20 <= 1000 && typeof (sloppy_type) != "undefined") {_RecordType("<2228,2239,41>",(sloppy_type)); Inst20++; } } catch(e) {}
+try { if (Inst23 <= 1000 && typeof (Object.defineProperty) != "undefined") {_RecordType("<2270,2291,42>",(Object.defineProperty)); Inst23++; } } catch(e) {}try { if (Inst24 <= 1000 && typeof (Object) != "undefined") {_RecordType("<2270,2276,42>",(Object)); Inst24++; } } catch(e) {}try { if (Inst25 <= 1000 && typeof (prototype) != "undefined") {_RecordType("<2292,2301,42>",(prototype)); Inst25++; } } catch(e) {}
+  Object.defineProperty(prototype, "sloppy", {
+try { if (Inst26 <= 1000 && typeof (assertSame) != "undefined") {_RecordType("<2337,2347,43>",(assertSame)); Inst26++; } } catch(e) {}try { if (Inst27 <= 1000 && typeof (sloppy_type) != "undefined") {_RecordType("<2348,2359,43>",(sloppy_type)); Inst27++; } } catch(e) {}
+    get: function() { assertSame(sloppy_type, typeof this); },
+try { if (Inst28 <= 1000 && typeof (assertSame) != "undefined") {_RecordType("<2400,2410,44>",(assertSame)); Inst28++; } } catch(e) {}try { if (Inst29 <= 1000 && typeof (sloppy_type) != "undefined") {_RecordType("<2411,2422,44>",(sloppy_type)); Inst29++; } } catch(e) {}
+    set: function() { assertSame(sloppy_type, typeof this); }
+  });
+try { if (Inst32 <= 1000 && typeof (primitive.sloppy) != "undefined") {_RecordType("<2467,2483,46>",(primitive.sloppy)); Inst32++; } } catch(e) {}try { if (Inst33 <= 1000 && typeof (primitive) != "undefined") {_RecordType("<2467,2476,46>",(primitive)); Inst33++; } } catch(e) {}
+  primitive.sloppy = primitive.sloppy;
+try { if (Inst30 <= 1000 && typeof (primitive.sloppy) != "undefined") {_RecordType("<2448,2464,46>",(primitive.sloppy)); Inst30++; } } catch(e) {}try { if (Inst31 <= 1000 && typeof (primitive) != "undefined") {_RecordType("<2448,2457,46>",(primitive)); Inst31++; } } catch(e) {}
+}
+
+try { if (Inst34 <= 1000 && typeof (TestAccessorWrapping) != "undefined") {_RecordType("<2488,2508,49>",(TestAccessorWrapping)); Inst34++; } } catch(e) {}
+TestAccessorWrapping(true);
+try { if (Inst35 <= 1000 && typeof (TestAccessorWrapping) != "undefined") {_RecordType("<2516,2536,50>",(TestAccessorWrapping)); Inst35++; } } catch(e) {}
+TestAccessorWrapping(0);
+try { if (Inst36 <= 1000 && typeof (TestAccessorWrapping) != "undefined") {_RecordType("<2541,2561,51>",(TestAccessorWrapping)); Inst36++; } } catch(e) {}
+TestAccessorWrapping({});
+try { if (Inst37 <= 1000 && typeof (TestAccessorWrapping) != "undefined") {_RecordType("<2567,2587,52>",(TestAccessorWrapping)); Inst37++; } } catch(e) {}
+TestAccessorWrapping("");
+

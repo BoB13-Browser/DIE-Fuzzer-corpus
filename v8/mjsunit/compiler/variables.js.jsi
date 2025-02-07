@@ -1,0 +1,190 @@
+var Inst0 = 0;
+var Inst1 = 0;
+var Inst2 = 0;
+var Inst3 = 0;
+var Inst4 = 0;
+var Inst5 = 0;
+var Inst6 = 0;
+var Inst7 = 0;
+var Inst8 = 0;
+var Inst9 = 0;
+var Inst10 = 0;
+var Inst11 = 0;
+var Inst12 = 0;
+var Inst13 = 0;
+var Inst14 = 0;
+var Inst15 = 0;
+var Inst16 = 0;
+var Inst17 = 0;
+var Inst18 = 0;
+var Inst19 = 0;
+var Inst20 = 0;
+var Inst21 = 0;
+var Inst22 = 0;
+var Inst23 = 0;
+var Inst24 = 0;
+var Inst25 = 0;
+var Inst26 = 0;
+var Inst27 = 0;
+var Inst28 = 0;
+var Inst29 = 0;
+var Inst30 = 0;
+var Inst31 = 0;
+var Inst32 = 0;
+var Inst33 = 0;
+var Inst34 = 0;
+var Inst35 = 0;
+var Inst36 = 0;
+var Inst37 = 0;
+var Inst38 = 0;
+ 
+function _TypeOfArray(a) {
+	let number = true;	
+	let string = true;
+	for (let i = 0; i < a.length; i++) {
+		if (number && (typeof a[i]) != "number") {
+			number = false;	
+		}
+		if (string && (typeof a[i]) != "string") {
+			string = false;	
+		}
+		if (!number && !string)
+			break;
+	}
+	if (number)
+		return "number";
+	else if (string)
+		return "string";
+	else
+		return "any";
+}
+
+function _TypeIsEqual(t1, t2) {
+	return JSON.stringify(t1) === JSON.stringify(t2);
+}
+
+function _TypeOf(a, step) {
+	var t;
+	var type = Object.prototype.toString.call(a).slice(8, -1).toLowerCase();	
+	if (type == "array") {
+		t = {type : type, extra: {elemType: _TypeOfArray(a)}};
+	} else if (type == "object") {
+		let shape = [];
+        if (step === undefined || step > 0) {
+            let keys = Object.keys(a);
+            let length = Math.min(100, keys.length);
+		    for (let i = 0; i < length; i++) {
+			    shape.push([keys[i], _TypeOf(a[keys[i]], step === undefined ? 1 : step - 1)]);	
+		    }
+        }
+		t = {type : type, extra: {shape: shape}};
+	} else {
+		t = {type : type};
+	} 
+	return t;
+}
+
+function _RecordType(loc, a) {
+	var t = _TypeOf(a);
+    print("~~~TypeInfo:" + loc + ":" + JSON.stringify(t));
+}
+// Copyright 2010 the V8 project authors. All rights reserved.
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions are
+// met:
+//
+//     * Redistributions of source code must retain the above copyright
+//       notice, this list of conditions and the following disclaimer.
+//     * Redistributions in binary form must reproduce the above
+//       copyright notice, this list of conditions and the following
+//       disclaimer in the documentation and/or other materials provided
+//       with the distribution.
+//     * Neither the name of Google Inc. nor the names of its
+//       contributors may be used to endorse or promote products derived
+//       from this software without specific prior written permission.
+//
+// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+// "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+// LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+// A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+// OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+// SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+// LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+// DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+// THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+// (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+// OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+// Simple tests of the various kinds of variable references in the
+// implementstion.
+
+// Global variables.
+var x = 0;
+try { if (Inst0 <= 1000 && typeof (x) != "undefined") {_RecordType("<1710,1711,32>",(x)); Inst0++; } } catch(e) {}
+try { if (Inst1 <= 1000 && typeof (f0) != "undefined") {_RecordType("<1726,1728,33>",(f0)); Inst1++; } } catch(e) {}try { if (Inst2 <= 1000 && typeof (x) != "undefined") {_RecordType("<1740,1741,33>",(x)); Inst2++; } } catch(e) {}
+function f0() { return x; }
+try { if (Inst3 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<1745,1757,34>",(assertEquals)); Inst3++; } } catch(e) {}try { if (Inst4 <= 1000 && typeof (f0) != "undefined") {_RecordType("<1761,1763,34>",(f0)); Inst4++; } } catch(e) {}
+assertEquals(0, f0());
+
+
+// Parameters.
+try { if (Inst5 <= 1000 && typeof (f1) != "undefined") {_RecordType("<1794,1796,38>",(f1)); Inst5++; } } catch(e) {}try { if (Inst7 <= 1000 && typeof (x) != "undefined") {_RecordType("<1809,1810,38>",(x)); Inst7++; } } catch(e) {}
+function f1(x) { return x; }
+try { if (Inst6 <= 1000 && typeof (x) != "undefined") {_RecordType("<1797,1798,38>",(x)); Inst6++; } } catch(e) {}
+try { if (Inst8 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<1814,1826,39>",(assertEquals)); Inst8++; } } catch(e) {}try { if (Inst9 <= 1000 && typeof (f1) != "undefined") {_RecordType("<1830,1832,39>",(f1)); Inst9++; } } catch(e) {}
+assertEquals(1, f1(1));
+
+
+// Stack-allocated locals.
+try { if (Inst10 <= 1000 && typeof (f2) != "undefined") {_RecordType("<1876,1878,43>",(f2)); Inst10++; } } catch(e) {}try { if (Inst12 <= 1000 && typeof (x) != "undefined") {_RecordType("<1901,1902,43>",(x)); Inst12++; } } catch(e) {}
+function f2() { var x = 2; return x; }
+try { if (Inst11 <= 1000 && typeof (x) != "undefined") {_RecordType("<1887,1888,43>",(x)); Inst11++; } } catch(e) {}
+try { if (Inst13 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<1906,1918,44>",(assertEquals)); Inst13++; } } catch(e) {}try { if (Inst14 <= 1000 && typeof (f2) != "undefined") {_RecordType("<1922,1924,44>",(f2)); Inst14++; } } catch(e) {}
+assertEquals(2, f2());
+
+
+// Context-allocated locals.  Local function forces x into f3's context.
+try { if (Inst15 <= 1000 && typeof (f3) != "undefined") {_RecordType("<2013,2015,48>",(f3)); Inst15++; } } catch(e) {}
+function f3(x) {
+try { if (Inst16 <= 1000 && typeof (x) != "undefined") {_RecordType("<2016,2017,48>",(x)); Inst16++; } } catch(e) {}
+try { if (Inst17 <= 1000 && typeof (g) != "undefined") {_RecordType("<2032,2033,49>",(g)); Inst17++; } } catch(e) {}try { if (Inst18 <= 1000 && typeof (x) != "undefined") {_RecordType("<2045,2046,49>",(x)); Inst18++; } } catch(e) {}
+  function g() { return x; }
+try { if (Inst19 <= 1000 && typeof (x) != "undefined") {_RecordType("<2059,2060,50>",(x)); Inst19++; } } catch(e) {}
+  return x;
+}
+try { if (Inst20 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<2064,2076,52>",(assertEquals)); Inst20++; } } catch(e) {}try { if (Inst21 <= 1000 && typeof (f3) != "undefined") {_RecordType("<2080,2082,52>",(f3)); Inst21++; } } catch(e) {}
+assertEquals(3, f3(3));
+
+// Local function reads x from an outer context.
+try { if (Inst22 <= 1000 && typeof (f4) != "undefined") {_RecordType("<2147,2149,55>",(f4)); Inst22++; } } catch(e) {}
+function f4(x) {
+try { if (Inst23 <= 1000 && typeof (x) != "undefined") {_RecordType("<2150,2151,55>",(x)); Inst23++; } } catch(e) {}
+try { if (Inst24 <= 1000 && typeof (g) != "undefined") {_RecordType("<2166,2167,56>",(g)); Inst24++; } } catch(e) {}try { if (Inst25 <= 1000 && typeof (x) != "undefined") {_RecordType("<2179,2180,56>",(x)); Inst25++; } } catch(e) {}
+  function g() { return x; }
+try { if (Inst26 <= 1000 && typeof (g) != "undefined") {_RecordType("<2193,2194,57>",(g)); Inst26++; } } catch(e) {}
+  return g();
+}
+try { if (Inst27 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<2200,2212,59>",(assertEquals)); Inst27++; } } catch(e) {}try { if (Inst28 <= 1000 && typeof (f4) != "undefined") {_RecordType("<2216,2218,59>",(f4)); Inst28++; } } catch(e) {}
+assertEquals(4, f4(4));
+
+
+// Lookup slots.  'With' forces x to be looked up at runtime.
+try { if (Inst29 <= 1000 && typeof (f5) != "undefined") {_RecordType("<2297,2299,63>",(f5)); Inst29++; } } catch(e) {}
+function f5(x) {
+try { if (Inst30 <= 1000 && typeof (x) != "undefined") {_RecordType("<2300,2301,63>",(x)); Inst30++; } } catch(e) {}
+try { if (Inst31 <= 1000 && typeof (x) != "undefined") {_RecordType("<2324,2325,64>",(x)); Inst31++; } } catch(e) {}
+  with ({}) return x;
+}
+try { if (Inst32 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<2329,2341,66>",(assertEquals)); Inst32++; } } catch(e) {}try { if (Inst33 <= 1000 && typeof (f5) != "undefined") {_RecordType("<2345,2347,66>",(f5)); Inst33++; } } catch(e) {}
+assertEquals(5, f5(5));
+
+
+// Parameters rewritten to property accesses.  Using the name 'arguments'
+// (even if it shadows the arguments object) forces all parameters to be
+// rewritten to explicit property accesses.
+try { if (Inst34 <= 1000 && typeof (f6) != "undefined") {_RecordType("<2555,2557,72>",(f6)); Inst34++; } } catch(e) {}try { if (Inst36 <= 1000 && typeof (arguments) != "undefined") {_RecordType("<2578,2587,72>",(arguments)); Inst36++; } } catch(e) {}
+function f6(arguments) { return arguments; }
+try { if (Inst35 <= 1000 && typeof (arguments) != "undefined") {_RecordType("<2558,2567,72>",(arguments)); Inst35++; } } catch(e) {}
+try { if (Inst37 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<2591,2603,73>",(assertEquals)); Inst37++; } } catch(e) {}try { if (Inst38 <= 1000 && typeof (f6) != "undefined") {_RecordType("<2607,2609,73>",(f6)); Inst38++; } } catch(e) {}
+assertEquals(6, f6(6));
+

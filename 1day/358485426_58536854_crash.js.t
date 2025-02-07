@@ -1,0 +1,1 @@
+[null,{"type":"Void"},{"type":"Void"},{"type":"Void"},{"type":"Void"},{"type":"Promise"},null,{"type":"Constructor","extra":{"name":"Promise","ret":{"type":"Promise"}}},null,{"type":"Function","extra":{"args":{"type":"Args","extra":{"args":[{"type":"Any"}]}},"ret":{"type":"Any"}}},{"type":"Void"},{"type":"Void"},null,null,null,{"type":"Void"}]

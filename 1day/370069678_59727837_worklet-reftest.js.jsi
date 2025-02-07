@@ -1,0 +1,158 @@
+var Inst0 = 0;
+var Inst1 = 0;
+var Inst2 = 0;
+var Inst3 = 0;
+var Inst4 = 0;
+var Inst5 = 0;
+var Inst6 = 0;
+var Inst7 = 0;
+var Inst8 = 0;
+var Inst9 = 0;
+var Inst10 = 0;
+var Inst11 = 0;
+var Inst12 = 0;
+var Inst13 = 0;
+var Inst14 = 0;
+var Inst15 = 0;
+var Inst16 = 0;
+var Inst17 = 0;
+var Inst18 = 0;
+var Inst19 = 0;
+var Inst20 = 0;
+var Inst21 = 0;
+var Inst22 = 0;
+var Inst23 = 0;
+var Inst24 = 0;
+var Inst25 = 0;
+var Inst26 = 0;
+var Inst27 = 0;
+var Inst28 = 0;
+var Inst29 = 0;
+var Inst30 = 0;
+var Inst31 = 0;
+var Inst32 = 0;
+var Inst33 = 0;
+var Inst34 = 0;
+var Inst35 = 0;
+ 
+function _TypeOfArray(a) {
+	let number = true;	
+	let string = true;
+	for (let i = 0; i < a.length; i++) {
+		if (number && (typeof a[i]) != "number") {
+			number = false;	
+		}
+		if (string && (typeof a[i]) != "string") {
+			string = false;	
+		}
+		if (!number && !string)
+			break;
+	}
+	if (number)
+		return "number";
+	else if (string)
+		return "string";
+	else
+		return "any";
+}
+
+function _TypeIsEqual(t1, t2) {
+	return JSON.stringify(t1) === JSON.stringify(t2);
+}
+
+function _TypeOf(a, step) {
+	var t;
+	var type = Object.prototype.toString.call(a).slice(8, -1).toLowerCase();	
+	if (type == "array") {
+		t = {type : type, extra: {elemType: _TypeOfArray(a)}};
+	} else if (type == "object") {
+		let shape = [];
+        if (step === undefined || step > 0) {
+            let keys = Object.keys(a);
+            let length = Math.min(100, keys.length);
+		    for (let i = 0; i < length; i++) {
+			    shape.push([keys[i], _TypeOf(a[keys[i]], step === undefined ? 1 : step - 1)]);	
+		    }
+        }
+		t = {type : type, extra: {shape: shape}};
+	} else {
+		t = {type : type};
+	} 
+	return t;
+}
+
+function _RecordType(loc, a) {
+	var t = _TypeOf(a);
+    print("~~~TypeInfo:" + loc + ":" + JSON.stringify(t));
+}
+/**
+ * Imports code into a worklet. E.g.
+ *
+ * importWorklet(CSS.paintWorklet, {url: 'script.js'});
+ * importWorklet(CSS.paintWorklet, '(javascript string)');
+ *
+ * @param {Worklet} worklet
+ * @param {(Object|string)} code
+ */
+try { if (Inst0 <= 1000 && typeof (importWorklet) != "undefined") {_RecordType("<245,258,10>",(importWorklet)); Inst0++; } } catch(e) {}
+function importWorklet(worklet, code) {
+try { if (Inst1 <= 1000 && typeof (worklet) != "undefined") {_RecordType("<259,266,10>",(worklet)); Inst1++; } } catch(e) {}try { if (Inst2 <= 1000 && typeof (code) != "undefined") {_RecordType("<268,272,10>",(code)); Inst2++; } } catch(e) {}
+    let url;
+try { if (Inst3 <= 1000 && typeof (url) != "undefined") {_RecordType("<285,288,11>",(url)); Inst3++; } } catch(e) {}
+try { if (Inst4 <= 1000 && typeof (code) != "undefined") {_RecordType("<306,310,12>",(code)); Inst4++; } } catch(e) {}
+    if (typeof code === 'object') {
+try { if (Inst6 <= 1000 && typeof (code.url) != "undefined") {_RecordType("<340,348,13>",(code.url)); Inst6++; } } catch(e) {}try { if (Inst7 <= 1000 && typeof (code) != "undefined") {_RecordType("<340,344,13>",(code)); Inst7++; } } catch(e) {}
+      url = code.url;
+try { if (Inst5 <= 1000 && typeof (url) != "undefined") {_RecordType("<334,337,13>",(url)); Inst5++; } } catch(e) {}
+    } else {
+try { if (Inst9 <= 1000 && typeof (Blob) != "undefined") {_RecordType("<388,392,15>",(Blob)); Inst9++; } } catch(e) {}try { if (Inst10 <= 1000 && typeof (code) != "undefined") {_RecordType("<394,398,15>",(code)); Inst10++; } } catch(e) {}
+      const blob = new Blob([code], {type: 'text/javascript'});
+try { if (Inst8 <= 1000 && typeof (blob) != "undefined") {_RecordType("<377,381,15>",(blob)); Inst8++; } } catch(e) {}
+try { if (Inst12 <= 1000 && typeof (URL.createObjectURL) != "undefined") {_RecordType("<442,461,16>",(URL.createObjectURL)); Inst12++; } } catch(e) {}try { if (Inst13 <= 1000 && typeof (URL) != "undefined") {_RecordType("<442,445,16>",(URL)); Inst13++; } } catch(e) {}try { if (Inst14 <= 1000 && typeof (blob) != "undefined") {_RecordType("<462,466,16>",(blob)); Inst14++; } } catch(e) {}
+      url = URL.createObjectURL(blob);
+try { if (Inst11 <= 1000 && typeof (url) != "undefined") {_RecordType("<436,439,16>",(url)); Inst11++; } } catch(e) {}
+    }
+
+try { if (Inst15 <= 1000 && typeof (worklet.addModule) != "undefined") {_RecordType("<490,507,19>",(worklet.addModule)); Inst15++; } } catch(e) {}try { if (Inst16 <= 1000 && typeof (worklet) != "undefined") {_RecordType("<490,497,19>",(worklet)); Inst16++; } } catch(e) {}try { if (Inst17 <= 1000 && typeof (url) != "undefined") {_RecordType("<508,511,19>",(url)); Inst17++; } } catch(e) {}
+    return worklet.addModule(url);
+}
+
+/** @private */
+try { if (Inst18 <= 1000 && typeof (animationFrames) != "undefined") {_RecordType("<552,567,23>",(animationFrames)); Inst18++; } } catch(e) {}
+async function animationFrames(frames) {
+try { if (Inst19 <= 1000 && typeof (frames) != "undefined") {_RecordType("<568,574,23>",(frames)); Inst19++; } } catch(e) {}
+  for (let i = 0; i < frames; i++)
+try { if (Inst24 <= 1000 && typeof (Promise) != "undefined") {_RecordType("<629,636,25>",(Promise)); Inst24++; } } catch(e) {}try { if (Inst25 <= 1000 && typeof (requestAnimationFrame) != "undefined") {_RecordType("<637,658,25>",(requestAnimationFrame)); Inst25++; } } catch(e) {}
+    await new Promise(requestAnimationFrame);
+try { if (Inst20 <= 1000 && typeof (i) != "undefined") {_RecordType("<590,591,24>",(i)); Inst20++; } } catch(e) {}try { if (Inst21 <= 1000 && typeof (i) != "undefined") {_RecordType("<597,598,24>",(i)); Inst21++; } } catch(e) {}try { if (Inst22 <= 1000 && typeof (frames) != "undefined") {_RecordType("<601,607,24>",(frames)); Inst22++; } } catch(e) {}try { if (Inst23 <= 1000 && typeof (i) != "undefined") {_RecordType("<609,610,24>",(i)); Inst23++; } } catch(e) {}
+}
+
+/** @private */
+try { if (Inst26 <= 1000 && typeof (workletPainted) != "undefined") {_RecordType("<699,713,29>",(workletPainted)); Inst26++; } } catch(e) {}
+async function workletPainted() {
+try { if (Inst27 <= 1000 && typeof (animationFrames) != "undefined") {_RecordType("<729,744,30>",(animationFrames)); Inst27++; } } catch(e) {}
+    await animationFrames(2);
+}
+
+/**
+ * To make sure that we take the snapshot at the right time, we do double
+ * requestAnimationFrame. In the second frame, we take a screenshot, that makes
+ * sure that we already have a full frame.
+ *
+ * @param {Worklet} worklet
+ * @param {(Object|string)} code
+ */
+try { if (Inst28 <= 1000 && typeof (importWorkletAndTerminateTestAfterAsyncPaint) != "undefined") {_RecordType("<1047,1091,41>",(importWorkletAndTerminateTestAfterAsyncPaint)); Inst28++; } } catch(e) {}
+async function importWorkletAndTerminateTestAfterAsyncPaint(worklet, code) {
+try { if (Inst29 <= 1000 && typeof (worklet) != "undefined") {_RecordType("<1092,1099,41>",(worklet)); Inst29++; } } catch(e) {}try { if (Inst30 <= 1000 && typeof (code) != "undefined") {_RecordType("<1101,1105,41>",(code)); Inst30++; } } catch(e) {}
+try { if (Inst31 <= 1000 && typeof (worklet) != "undefined") {_RecordType("<1125,1132,42>",(worklet)); Inst31++; } } catch(e) {}
+    if (typeof worklet === 'undefined') {
+        return;
+    }
+
+try { if (Inst32 <= 1000 && typeof (importWorklet) != "undefined") {_RecordType("<1189,1202,46>",(importWorklet)); Inst32++; } } catch(e) {}try { if (Inst33 <= 1000 && typeof (worklet) != "undefined") {_RecordType("<1203,1210,46>",(worklet)); Inst33++; } } catch(e) {}try { if (Inst34 <= 1000 && typeof (code) != "undefined") {_RecordType("<1212,1216,46>",(code)); Inst34++; } } catch(e) {}
+    await importWorklet(worklet, code);
+try { if (Inst35 <= 1000 && typeof (workletPainted) != "undefined") {_RecordType("<1230,1244,47>",(workletPainted)); Inst35++; } } catch(e) {}
+    await workletPainted();
+}
+

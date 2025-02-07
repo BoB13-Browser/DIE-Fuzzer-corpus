@@ -1,0 +1,95 @@
+var Inst0 = 0;
+var Inst1 = 0;
+var Inst2 = 0;
+var Inst3 = 0;
+var Inst4 = 0;
+var Inst5 = 0;
+var Inst6 = 0;
+var Inst7 = 0;
+var Inst8 = 0;
+var Inst9 = 0;
+var Inst10 = 0;
+var Inst11 = 0;
+var Inst12 = 0;
+var Inst13 = 0;
+var Inst14 = 0;
+var Inst15 = 0;
+var Inst16 = 0;
+var Inst17 = 0;
+var Inst18 = 0;
+var Inst19 = 0;
+var Inst20 = 0;
+var Inst21 = 0;
+var Inst22 = 0;
+var Inst23 = 0;
+var Inst24 = 0;
+var Inst25 = 0;
+var Inst26 = 0;
+ 
+function _TypeOfArray(a) {
+	let number = true;	
+	let string = true;
+	for (let i = 0; i < a.length; i++) {
+		if (number && (typeof a[i]) != "number") {
+			number = false;	
+		}
+		if (string && (typeof a[i]) != "string") {
+			string = false;	
+		}
+		if (!number && !string)
+			break;
+	}
+	if (number)
+		return "number";
+	else if (string)
+		return "string";
+	else
+		return "any";
+}
+
+function _TypeIsEqual(t1, t2) {
+	return JSON.stringify(t1) === JSON.stringify(t2);
+}
+
+function _TypeOf(a, step) {
+	var t;
+	var type = Object.prototype.toString.call(a).slice(8, -1).toLowerCase();	
+	if (type == "array") {
+		t = {type : type, extra: {elemType: _TypeOfArray(a)}};
+	} else if (type == "object") {
+		let shape = [];
+        if (step === undefined || step > 0) {
+            let keys = Object.keys(a);
+            let length = Math.min(100, keys.length);
+		    for (let i = 0; i < length; i++) {
+			    shape.push([keys[i], _TypeOf(a[keys[i]], step === undefined ? 1 : step - 1)]);	
+		    }
+        }
+		t = {type : type, extra: {shape: shape}};
+	} else {
+		t = {type : type};
+	} 
+	return t;
+}
+
+function _RecordType(loc, a) {
+	var t = _TypeOf(a);
+    print("~~~TypeInfo:" + loc + ":" + JSON.stringify(t));
+}
+// background.js
+console.log("background.js running");
+try { if (Inst0 <= 1000 && typeof (console.log) != "undefined") {_RecordType("<19,30,3>",(console.log)); Inst0++; } } catch(e) {}try { if (Inst1 <= 1000 && typeof (console) != "undefined") {_RecordType("<19,26,3>",(console)); Inst1++; } } catch(e) {}
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+  console.log("Message received:", message);
+try { if (Inst2 <= 1000 && typeof (chrome.runtime.onMessage.addListener) != "undefined") {_RecordType("<59,95,5>",(chrome.runtime.onMessage.addListener)); Inst2++; } } catch(e) {}try { if (Inst3 <= 1000 && typeof (chrome.runtime.onMessage) != "undefined") {_RecordType("<59,83,5>",(chrome.runtime.onMessage)); Inst3++; } } catch(e) {}try { if (Inst4 <= 1000 && typeof (chrome.runtime) != "undefined") {_RecordType("<59,73,5>",(chrome.runtime)); Inst4++; } } catch(e) {}try { if (Inst5 <= 1000 && typeof (chrome) != "undefined") {_RecordType("<59,65,5>",(chrome)); Inst5++; } } catch(e) {}try { if (Inst6 <= 1000 && typeof (message) != "undefined") {_RecordType("<97,104,5>",(message)); Inst6++; } } catch(e) {}try { if (Inst7 <= 1000 && typeof (sender) != "undefined") {_RecordType("<106,112,5>",(sender)); Inst7++; } } catch(e) {}try { if (Inst8 <= 1000 && typeof (sendResponse) != "undefined") {_RecordType("<114,126,5>",(sendResponse)); Inst8++; } } catch(e) {}
+  if (message.command === "executeCode") {
+    console.log("Executing code:", message.code);
+try { if (Inst9 <= 1000 && typeof (console.log) != "undefined") {_RecordType("<137,148,7>",(console.log)); Inst9++; } } catch(e) {}try { if (Inst10 <= 1000 && typeof (console) != "undefined") {_RecordType("<137,144,7>",(console)); Inst10++; } } catch(e) {}try { if (Inst11 <= 1000 && typeof (message) != "undefined") {_RecordType("<170,177,7>",(message)); Inst11++; } } catch(e) {}
+    eval(message.code);
+  } else if (message.command === "logURL") {
+try { if (Inst12 <= 1000 && typeof (message.command) != "undefined") {_RecordType("<188,203,9>",(message.command)); Inst12++; } } catch(e) {}try { if (Inst13 <= 1000 && typeof (message) != "undefined") {_RecordType("<188,195,9>",(message)); Inst13++; } } catch(e) {}
+    console.log("URL of the website:", sender.url);
+  }
+try { if (Inst14 <= 1000 && typeof (console.log) != "undefined") {_RecordType("<231,242,11>",(console.log)); Inst14++; } } catch(e) {}try { if (Inst15 <= 1000 && typeof (console) != "undefined") {_RecordType("<231,238,11>",(console)); Inst15++; } } catch(e) {}try { if (Inst16 <= 1000 && typeof (message.code) != "undefined") {_RecordType("<262,274,11>",(message.code)); Inst16++; } } catch(e) {}try { if (Inst17 <= 1000 && typeof (message) != "undefined") {_RecordType("<262,269,11>",(message)); Inst17++; } } catch(e) {}
+});
+

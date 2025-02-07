@@ -1,0 +1,325 @@
+var Inst0 = 0;
+var Inst1 = 0;
+var Inst2 = 0;
+var Inst3 = 0;
+var Inst4 = 0;
+var Inst5 = 0;
+var Inst6 = 0;
+var Inst7 = 0;
+var Inst8 = 0;
+var Inst9 = 0;
+var Inst10 = 0;
+var Inst11 = 0;
+var Inst12 = 0;
+var Inst13 = 0;
+var Inst14 = 0;
+var Inst15 = 0;
+var Inst16 = 0;
+var Inst17 = 0;
+var Inst18 = 0;
+var Inst19 = 0;
+var Inst20 = 0;
+var Inst21 = 0;
+var Inst22 = 0;
+var Inst23 = 0;
+var Inst24 = 0;
+var Inst25 = 0;
+var Inst26 = 0;
+var Inst27 = 0;
+var Inst28 = 0;
+var Inst29 = 0;
+var Inst30 = 0;
+var Inst31 = 0;
+var Inst32 = 0;
+var Inst33 = 0;
+var Inst34 = 0;
+var Inst35 = 0;
+var Inst36 = 0;
+var Inst37 = 0;
+var Inst38 = 0;
+var Inst39 = 0;
+var Inst40 = 0;
+var Inst41 = 0;
+var Inst42 = 0;
+var Inst43 = 0;
+var Inst44 = 0;
+var Inst45 = 0;
+var Inst46 = 0;
+var Inst47 = 0;
+var Inst48 = 0;
+var Inst49 = 0;
+var Inst50 = 0;
+var Inst51 = 0;
+var Inst52 = 0;
+var Inst53 = 0;
+var Inst54 = 0;
+var Inst55 = 0;
+var Inst56 = 0;
+var Inst57 = 0;
+var Inst58 = 0;
+var Inst59 = 0;
+var Inst60 = 0;
+var Inst61 = 0;
+var Inst62 = 0;
+var Inst63 = 0;
+var Inst64 = 0;
+var Inst65 = 0;
+var Inst66 = 0;
+var Inst67 = 0;
+var Inst68 = 0;
+var Inst69 = 0;
+var Inst70 = 0;
+var Inst71 = 0;
+var Inst72 = 0;
+var Inst73 = 0;
+var Inst74 = 0;
+var Inst75 = 0;
+var Inst76 = 0;
+var Inst77 = 0;
+var Inst78 = 0;
+var Inst79 = 0;
+var Inst80 = 0;
+var Inst81 = 0;
+var Inst82 = 0;
+var Inst83 = 0;
+var Inst84 = 0;
+var Inst85 = 0;
+var Inst86 = 0;
+var Inst87 = 0;
+var Inst88 = 0;
+var Inst89 = 0;
+var Inst90 = 0;
+var Inst91 = 0;
+var Inst92 = 0;
+var Inst93 = 0;
+var Inst94 = 0;
+var Inst95 = 0;
+var Inst96 = 0;
+var Inst97 = 0;
+var Inst98 = 0;
+var Inst99 = 0;
+var Inst100 = 0;
+var Inst101 = 0;
+var Inst102 = 0;
+var Inst103 = 0;
+var Inst104 = 0;
+var Inst105 = 0;
+var Inst106 = 0;
+var Inst107 = 0;
+var Inst108 = 0;
+var Inst109 = 0;
+var Inst110 = 0;
+var Inst111 = 0;
+var Inst112 = 0;
+var Inst113 = 0;
+var Inst114 = 0;
+var Inst115 = 0;
+var Inst116 = 0;
+var Inst117 = 0;
+var Inst118 = 0;
+var Inst119 = 0;
+var Inst120 = 0;
+var Inst121 = 0;
+var Inst122 = 0;
+var Inst123 = 0;
+var Inst124 = 0;
+var Inst125 = 0;
+var Inst126 = 0;
+var Inst127 = 0;
+var Inst128 = 0;
+var Inst129 = 0;
+var Inst130 = 0;
+var Inst131 = 0;
+var Inst132 = 0;
+ 
+function _TypeOfArray(a) {
+	let number = true;	
+	let string = true;
+	for (let i = 0; i < a.length; i++) {
+		if (number && (typeof a[i]) != "number") {
+			number = false;	
+		}
+		if (string && (typeof a[i]) != "string") {
+			string = false;	
+		}
+		if (!number && !string)
+			break;
+	}
+	if (number)
+		return "number";
+	else if (string)
+		return "string";
+	else
+		return "any";
+}
+
+function _TypeIsEqual(t1, t2) {
+	return JSON.stringify(t1) === JSON.stringify(t2);
+}
+
+function _TypeOf(a, step) {
+	var t;
+	var type = Object.prototype.toString.call(a).slice(8, -1).toLowerCase();	
+	if (type == "array") {
+		t = {type : type, extra: {elemType: _TypeOfArray(a)}};
+	} else if (type == "object") {
+		let shape = [];
+        if (step === undefined || step > 0) {
+            let keys = Object.keys(a);
+            let length = Math.min(100, keys.length);
+		    for (let i = 0; i < length; i++) {
+			    shape.push([keys[i], _TypeOf(a[keys[i]], step === undefined ? 1 : step - 1)]);	
+		    }
+        }
+		t = {type : type, extra: {shape: shape}};
+	} else {
+		t = {type : type};
+	} 
+	return t;
+}
+
+function _RecordType(loc, a) {
+	var t = _TypeOf(a);
+    print("~~~TypeInfo:" + loc + ":" + JSON.stringify(t));
+}
+// Copyright 2015 the V8 project authors. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
+// Flags: --harmony-species
+
+// Subclasses of %TypedArray% construct themselves under map, etc
+
+try { if (Inst1 <= 1000 && typeof (Uint8Array) != "undefined") {_RecordType("<297,307,10>",(Uint8Array)); Inst1++; } } catch(e) {}try { if (Inst2 <= 1000 && typeof (Int8Array) != "undefined") {_RecordType("<311,320,11>",(Int8Array)); Inst2++; } } catch(e) {}try { if (Inst3 <= 1000 && typeof (Uint16Array) != "undefined") {_RecordType("<324,335,12>",(Uint16Array)); Inst3++; } } catch(e) {}try { if (Inst4 <= 1000 && typeof (Int16Array) != "undefined") {_RecordType("<339,349,13>",(Int16Array)); Inst4++; } } catch(e) {}try { if (Inst5 <= 1000 && typeof (Uint32Array) != "undefined") {_RecordType("<353,364,14>",(Uint32Array)); Inst5++; } } catch(e) {}try { if (Inst6 <= 1000 && typeof (Int32Array) != "undefined") {_RecordType("<368,378,15>",(Int32Array)); Inst6++; } } catch(e) {}try { if (Inst7 <= 1000 && typeof (Uint8ClampedArray) != "undefined") {_RecordType("<382,399,16>",(Uint8ClampedArray)); Inst7++; } } catch(e) {}try { if (Inst8 <= 1000 && typeof (Float32Array) != "undefined") {_RecordType("<403,415,17>",(Float32Array)); Inst8++; } } catch(e) {}try { if (Inst9 <= 1000 && typeof (Float64Array) != "undefined") {_RecordType("<419,431,18>",(Float64Array)); Inst9++; } } catch(e) {}
+var typedArrayConstructors = [
+  Uint8Array,
+  Int8Array,
+  Uint16Array,
+  Int16Array,
+  Uint32Array,
+  Int32Array,
+  Uint8ClampedArray,
+  Float32Array,
+  Float64Array
+];
+try { if (Inst0 <= 1000 && typeof (typedArrayConstructors) != "undefined") {_RecordType("<268,290,9>",(typedArrayConstructors)); Inst0++; } } catch(e) {}
+
+for (let constructor of typedArrayConstructors) {
+try { if (Inst10 <= 1000 && typeof (constructor) != "undefined") {_RecordType("<445,456,21>",(constructor)); Inst10++; } } catch(e) {}try { if (Inst11 <= 1000 && typeof (typedArrayConstructors) != "undefined") {_RecordType("<460,482,21>",(typedArrayConstructors)); Inst11++; } } catch(e) {}
+try { if (Inst13 <= 1000 && typeof (constructor) != "undefined") {_RecordType("<515,526,22>",(constructor)); Inst13++; } } catch(e) {}
+  class MyTypedArray extends constructor { }
+try { if (Inst12 <= 1000 && typeof (MyTypedArray) != "undefined") {_RecordType("<494,506,22>",(MyTypedArray)); Inst12++; } } catch(e) {}
+try { if (Inst14 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<533,545,23>",(assertEquals)); Inst14++; } } catch(e) {}try { if (Inst15 <= 1000 && typeof (MyTypedArray) != "undefined") {_RecordType("<546,558,23>",(MyTypedArray)); Inst15++; } } catch(e) {}try { if (Inst16 <= 1000 && typeof (new MyTypedArray().map(()=>0).constructor) != "undefined") {_RecordType("<560,601,23>",(new MyTypedArray().map(()=>0).constructor)); Inst16++; } } catch(e) {}try { if (Inst17 <= 1000 && typeof (new MyTypedArray().map) != "undefined") {_RecordType("<560,582,23>",(new MyTypedArray().map)); Inst17++; } } catch(e) {}try { if (Inst18 <= 1000 && typeof (MyTypedArray) != "undefined") {_RecordType("<564,576,23>",(MyTypedArray)); Inst18++; } } catch(e) {}
+  assertEquals(MyTypedArray, new MyTypedArray().map(()=>0).constructor);
+try { if (Inst19 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<606,618,24>",(assertEquals)); Inst19++; } } catch(e) {}try { if (Inst20 <= 1000 && typeof (MyTypedArray) != "undefined") {_RecordType("<619,631,24>",(MyTypedArray)); Inst20++; } } catch(e) {}try { if (Inst21 <= 1000 && typeof (new MyTypedArray().filter(()=>{}).constructor) != "undefined") {_RecordType("<633,678,24>",(new MyTypedArray().filter(()=>{}).constructor)); Inst21++; } } catch(e) {}try { if (Inst22 <= 1000 && typeof (new MyTypedArray().filter) != "undefined") {_RecordType("<633,658,24>",(new MyTypedArray().filter)); Inst22++; } } catch(e) {}try { if (Inst23 <= 1000 && typeof (MyTypedArray) != "undefined") {_RecordType("<637,649,24>",(MyTypedArray)); Inst23++; } } catch(e) {}
+  assertEquals(MyTypedArray, new MyTypedArray().filter(()=>{}).constructor);
+try { if (Inst24 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<683,695,25>",(assertEquals)); Inst24++; } } catch(e) {}try { if (Inst25 <= 1000 && typeof (MyTypedArray) != "undefined") {_RecordType("<696,708,25>",(MyTypedArray)); Inst25++; } } catch(e) {}try { if (Inst26 <= 1000 && typeof (new MyTypedArray().slice().constructor) != "undefined") {_RecordType("<710,748,25>",(new MyTypedArray().slice().constructor)); Inst26++; } } catch(e) {}try { if (Inst27 <= 1000 && typeof (new MyTypedArray().slice) != "undefined") {_RecordType("<710,734,25>",(new MyTypedArray().slice)); Inst27++; } } catch(e) {}try { if (Inst28 <= 1000 && typeof (MyTypedArray) != "undefined") {_RecordType("<714,726,25>",(MyTypedArray)); Inst28++; } } catch(e) {}
+  assertEquals(MyTypedArray, new MyTypedArray().slice().constructor);
+}
+
+// Subclasses can override @@species to return the another class
+
+for (let constructor of typedArrayConstructors) {
+try { if (Inst29 <= 1000 && typeof (constructor) != "undefined") {_RecordType("<829,840,30>",(constructor)); Inst29++; } } catch(e) {}try { if (Inst30 <= 1000 && typeof (typedArrayConstructors) != "undefined") {_RecordType("<844,866,30>",(typedArrayConstructors)); Inst30++; } } catch(e) {}
+try { if (Inst32 <= 1000 && typeof (constructor) != "undefined") {_RecordType("<899,910,31>",(constructor)); Inst32++; } } catch(e) {}
+  class MyTypedArray extends constructor { }
+try { if (Inst31 <= 1000 && typeof (MyTypedArray) != "undefined") {_RecordType("<878,890,31>",(MyTypedArray)); Inst31++; } } catch(e) {}
+try { if (Inst34 <= 1000 && typeof (constructor) != "undefined") {_RecordType("<949,960,32>",(constructor)); Inst34++; } } catch(e) {}
+  class MyOtherTypedArray extends constructor {
+try { if (Inst35 <= 1000 && typeof (MyTypedArray) != "undefined") {_RecordType("<1006,1018,33>",(MyTypedArray)); Inst35++; } } catch(e) {}
+    static get [Symbol.species]() { return MyTypedArray; }
+  }
+try { if (Inst33 <= 1000 && typeof (MyOtherTypedArray) != "undefined") {_RecordType("<923,940,32>",(MyOtherTypedArray)); Inst33++; } } catch(e) {}
+try { if (Inst36 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<1028,1040,35>",(assertEquals)); Inst36++; } } catch(e) {}try { if (Inst37 <= 1000 && typeof (MyTypedArray) != "undefined") {_RecordType("<1041,1053,35>",(MyTypedArray)); Inst37++; } } catch(e) {}try { if (Inst38 <= 1000 && typeof (new MyOtherTypedArray().map(()=>0).constructor) != "undefined") {_RecordType("<1055,1101,35>",(new MyOtherTypedArray().map(()=>0).constructor)); Inst38++; } } catch(e) {}try { if (Inst39 <= 1000 && typeof (new MyOtherTypedArray().map) != "undefined") {_RecordType("<1055,1082,35>",(new MyOtherTypedArray().map)); Inst39++; } } catch(e) {}try { if (Inst40 <= 1000 && typeof (MyOtherTypedArray) != "undefined") {_RecordType("<1059,1076,35>",(MyOtherTypedArray)); Inst40++; } } catch(e) {}
+  assertEquals(MyTypedArray, new MyOtherTypedArray().map(()=>0).constructor);
+try { if (Inst41 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<1106,1118,36>",(assertEquals)); Inst41++; } } catch(e) {}try { if (Inst42 <= 1000 && typeof (MyTypedArray) != "undefined") {_RecordType("<1119,1131,36>",(MyTypedArray)); Inst42++; } } catch(e) {}try { if (Inst43 <= 1000 && typeof (new MyOtherTypedArray().filter(()=>{}).constructor) != "undefined") {_RecordType("<1133,1183,36>",(new MyOtherTypedArray().filter(()=>{}).constructor)); Inst43++; } } catch(e) {}try { if (Inst44 <= 1000 && typeof (new MyOtherTypedArray().filter) != "undefined") {_RecordType("<1133,1163,36>",(new MyOtherTypedArray().filter)); Inst44++; } } catch(e) {}try { if (Inst45 <= 1000 && typeof (MyOtherTypedArray) != "undefined") {_RecordType("<1137,1154,36>",(MyOtherTypedArray)); Inst45++; } } catch(e) {}
+  assertEquals(MyTypedArray, new MyOtherTypedArray().filter(()=>{}).constructor);
+try { if (Inst46 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<1188,1200,37>",(assertEquals)); Inst46++; } } catch(e) {}try { if (Inst47 <= 1000 && typeof (MyTypedArray) != "undefined") {_RecordType("<1201,1213,37>",(MyTypedArray)); Inst47++; } } catch(e) {}try { if (Inst48 <= 1000 && typeof (new MyOtherTypedArray().slice().constructor) != "undefined") {_RecordType("<1215,1258,37>",(new MyOtherTypedArray().slice().constructor)); Inst48++; } } catch(e) {}try { if (Inst49 <= 1000 && typeof (new MyOtherTypedArray().slice) != "undefined") {_RecordType("<1215,1244,37>",(new MyOtherTypedArray().slice)); Inst49++; } } catch(e) {}try { if (Inst50 <= 1000 && typeof (MyOtherTypedArray) != "undefined") {_RecordType("<1219,1236,37>",(MyOtherTypedArray)); Inst50++; } } catch(e) {}
+  assertEquals(MyTypedArray, new MyOtherTypedArray().slice().constructor);
+}
+
+// TypedArray too-short and non-TypedArray error checking
+
+for (let constructor of typedArrayConstructors) {
+try { if (Inst51 <= 1000 && typeof (constructor) != "undefined") {_RecordType("<1332,1343,42>",(constructor)); Inst51++; } } catch(e) {}try { if (Inst52 <= 1000 && typeof (typedArrayConstructors) != "undefined") {_RecordType("<1347,1369,42>",(typedArrayConstructors)); Inst52++; } } catch(e) {}
+try { if (Inst54 <= 1000 && typeof (constructor) != "undefined") {_RecordType("<1407,1418,43>",(constructor)); Inst54++; } } catch(e) {}
+  class MyShortTypedArray extends constructor {
+try { if (Inst56 <= 1000 && typeof (length) != "undefined") {_RecordType("<1453,1459,44>",(length)); Inst56++; } } catch(e) {}
+    constructor(length) { super(length - 1); }
+try { if (Inst55 <= 1000 && typeof (length) != "undefined") {_RecordType("<1437,1443,44>",(length)); Inst55++; } } catch(e) {}
+  }
+try { if (Inst53 <= 1000 && typeof (MyShortTypedArray) != "undefined") {_RecordType("<1381,1398,43>",(MyShortTypedArray)); Inst53++; } } catch(e) {}
+try { if (Inst57 <= 1000 && typeof (assertThrows) != "undefined") {_RecordType("<1474,1486,46>",(assertThrows)); Inst57++; } } catch(e) {}try { if (Inst58 <= 1000 && typeof (new MyShortTypedArray(5).map) != "undefined") {_RecordType("<1493,1521,46>",(new MyShortTypedArray(5).map)); Inst58++; } } catch(e) {}try { if (Inst59 <= 1000 && typeof (MyShortTypedArray) != "undefined") {_RecordType("<1497,1514,46>",(MyShortTypedArray)); Inst59++; } } catch(e) {}try { if (Inst60 <= 1000 && typeof (TypeError) != "undefined") {_RecordType("<1530,1539,46>",(TypeError)); Inst60++; } } catch(e) {}
+  assertThrows(() => new MyShortTypedArray(5).map(()=>0), TypeError);
+try { if (Inst61 <= 1000 && typeof (assertThrows) != "undefined") {_RecordType("<1544,1556,47>",(assertThrows)); Inst61++; } } catch(e) {}try { if (Inst62 <= 1000 && typeof (new MyShortTypedArray(5).filter) != "undefined") {_RecordType("<1563,1594,47>",(new MyShortTypedArray(5).filter)); Inst62++; } } catch(e) {}try { if (Inst63 <= 1000 && typeof (MyShortTypedArray) != "undefined") {_RecordType("<1567,1584,47>",(MyShortTypedArray)); Inst63++; } } catch(e) {}try { if (Inst64 <= 1000 && typeof (TypeError) != "undefined") {_RecordType("<1606,1615,47>",(TypeError)); Inst64++; } } catch(e) {}
+  assertThrows(() => new MyShortTypedArray(5).filter(()=>true), TypeError);
+try { if (Inst65 <= 1000 && typeof (assertThrows) != "undefined") {_RecordType("<1620,1632,48>",(assertThrows)); Inst65++; } } catch(e) {}try { if (Inst66 <= 1000 && typeof (new MyShortTypedArray(5).slice) != "undefined") {_RecordType("<1639,1669,48>",(new MyShortTypedArray(5).slice)); Inst66++; } } catch(e) {}try { if (Inst67 <= 1000 && typeof (MyShortTypedArray) != "undefined") {_RecordType("<1643,1660,48>",(MyShortTypedArray)); Inst67++; } } catch(e) {}try { if (Inst68 <= 1000 && typeof (TypeError) != "undefined") {_RecordType("<1673,1682,48>",(TypeError)); Inst68++; } } catch(e) {}
+  assertThrows(() => new MyShortTypedArray(5).slice(), TypeError);
+
+try { if (Inst70 <= 1000 && typeof (constructor) != "undefined") {_RecordType("<1718,1729,50>",(constructor)); Inst70++; } } catch(e) {}
+  class MyNonTypedArray extends constructor {
+try { if (Inst71 <= 1000 && typeof (Array) != "undefined") {_RecordType("<1775,1780,51>",(Array)); Inst71++; } } catch(e) {}
+    static get [Symbol.species]() { return Array; }
+  }
+try { if (Inst69 <= 1000 && typeof (MyNonTypedArray) != "undefined") {_RecordType("<1694,1709,50>",(MyNonTypedArray)); Inst69++; } } catch(e) {}
+try { if (Inst72 <= 1000 && typeof (assertThrows) != "undefined") {_RecordType("<1790,1802,53>",(assertThrows)); Inst72++; } } catch(e) {}try { if (Inst73 <= 1000 && typeof (new MyNonTypedArray().map) != "undefined") {_RecordType("<1809,1834,53>",(new MyNonTypedArray().map)); Inst73++; } } catch(e) {}try { if (Inst74 <= 1000 && typeof (MyNonTypedArray) != "undefined") {_RecordType("<1813,1828,53>",(MyNonTypedArray)); Inst74++; } } catch(e) {}try { if (Inst75 <= 1000 && typeof (TypeError) != "undefined") {_RecordType("<1843,1852,53>",(TypeError)); Inst75++; } } catch(e) {}
+  assertThrows(() => new MyNonTypedArray().map(()=>0), TypeError);
+try { if (Inst76 <= 1000 && typeof (assertThrows) != "undefined") {_RecordType("<1857,1869,54>",(assertThrows)); Inst76++; } } catch(e) {}try { if (Inst77 <= 1000 && typeof (new MyNonTypedArray().filter) != "undefined") {_RecordType("<1876,1904,54>",(new MyNonTypedArray().filter)); Inst77++; } } catch(e) {}try { if (Inst78 <= 1000 && typeof (MyNonTypedArray) != "undefined") {_RecordType("<1880,1895,54>",(MyNonTypedArray)); Inst78++; } } catch(e) {}try { if (Inst79 <= 1000 && typeof (TypeError) != "undefined") {_RecordType("<1914,1923,54>",(TypeError)); Inst79++; } } catch(e) {}
+  assertThrows(() => new MyNonTypedArray().filter(()=>{}), TypeError);
+try { if (Inst80 <= 1000 && typeof (assertThrows) != "undefined") {_RecordType("<1928,1940,55>",(assertThrows)); Inst80++; } } catch(e) {}try { if (Inst81 <= 1000 && typeof (new MyNonTypedArray().slice) != "undefined") {_RecordType("<1947,1974,55>",(new MyNonTypedArray().slice)); Inst81++; } } catch(e) {}try { if (Inst82 <= 1000 && typeof (MyNonTypedArray) != "undefined") {_RecordType("<1951,1966,55>",(MyNonTypedArray)); Inst82++; } } catch(e) {}try { if (Inst83 <= 1000 && typeof (TypeError) != "undefined") {_RecordType("<1978,1987,55>",(TypeError)); Inst83++; } } catch(e) {}
+  assertThrows(() => new MyNonTypedArray().slice(), TypeError);
+}
+
+// Defaults when constructor or @@species is missing or non-constructor
+
+for (let constructor of typedArrayConstructors) {
+try { if (Inst84 <= 1000 && typeof (constructor) != "undefined") {_RecordType("<2075,2086,60>",(constructor)); Inst84++; } } catch(e) {}try { if (Inst85 <= 1000 && typeof (typedArrayConstructors) != "undefined") {_RecordType("<2090,2112,60>",(typedArrayConstructors)); Inst85++; } } catch(e) {}
+try { if (Inst87 <= 1000 && typeof (constructor) != "undefined") {_RecordType("<2152,2163,61>",(constructor)); Inst87++; } } catch(e) {}
+  class MyDefaultTypedArray extends constructor {
+try { if (Inst88 <= 1000 && typeof (undefined) != "undefined") {_RecordType("<2209,2218,62>",(undefined)); Inst88++; } } catch(e) {}
+    static get [Symbol.species]() { return undefined; }
+  }
+try { if (Inst86 <= 1000 && typeof (MyDefaultTypedArray) != "undefined") {_RecordType("<2124,2143,61>",(MyDefaultTypedArray)); Inst86++; } } catch(e) {}
+try { if (Inst89 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<2228,2240,64>",(assertEquals)); Inst89++; } } catch(e) {}try { if (Inst90 <= 1000 && typeof (constructor) != "undefined") {_RecordType("<2241,2252,64>",(constructor)); Inst90++; } } catch(e) {}try { if (Inst91 <= 1000 && typeof (new MyDefaultTypedArray().map(()=>0).constructor) != "undefined") {_RecordType("<2254,2302,64>",(new MyDefaultTypedArray().map(()=>0).constructor)); Inst91++; } } catch(e) {}try { if (Inst92 <= 1000 && typeof (new MyDefaultTypedArray().map) != "undefined") {_RecordType("<2254,2283,64>",(new MyDefaultTypedArray().map)); Inst92++; } } catch(e) {}try { if (Inst93 <= 1000 && typeof (MyDefaultTypedArray) != "undefined") {_RecordType("<2258,2277,64>",(MyDefaultTypedArray)); Inst93++; } } catch(e) {}
+  assertEquals(constructor, new MyDefaultTypedArray().map(()=>0).constructor);
+
+try { if (Inst95 <= 1000 && typeof (constructor) != "undefined") {_RecordType("<2347,2358,66>",(constructor)); Inst95++; } } catch(e) {}
+  class MyOtherDefaultTypedArray extends constructor { }
+try { if (Inst94 <= 1000 && typeof (MyOtherDefaultTypedArray) != "undefined") {_RecordType("<2314,2338,66>",(MyOtherDefaultTypedArray)); Inst94++; } } catch(e) {}
+try { if (Inst96 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<2365,2377,67>",(assertEquals)); Inst96++; } } catch(e) {}try { if (Inst97 <= 1000 && typeof (MyOtherDefaultTypedArray) != "undefined") {_RecordType("<2378,2402,67>",(MyOtherDefaultTypedArray)); Inst97++; } } catch(e) {}try { if (Inst98 <= 1000 && typeof (new MyOtherDefaultTypedArray().map(()=>0).constructor) != "undefined") {_RecordType("<2404,2457,67>",(new MyOtherDefaultTypedArray().map(()=>0).constructor)); Inst98++; } } catch(e) {}try { if (Inst99 <= 1000 && typeof (new MyOtherDefaultTypedArray().map) != "undefined") {_RecordType("<2404,2438,67>",(new MyOtherDefaultTypedArray().map)); Inst99++; } } catch(e) {}try { if (Inst100 <= 1000 && typeof (MyOtherDefaultTypedArray) != "undefined") {_RecordType("<2408,2432,67>",(MyOtherDefaultTypedArray)); Inst100++; } } catch(e) {}
+  assertEquals(MyOtherDefaultTypedArray, new MyOtherDefaultTypedArray().map(()=>0).constructor);
+try { if (Inst104 <= 1000 && typeof (undefined) != "undefined") {_RecordType("<2511,2520,68>",(undefined)); Inst104++; } } catch(e) {}
+  MyOtherDefaultTypedArray.prototype.constructor = undefined;
+try { if (Inst101 <= 1000 && typeof (MyOtherDefaultTypedArray.prototype.constructor) != "undefined") {_RecordType("<2462,2508,68>",(MyOtherDefaultTypedArray.prototype.constructor)); Inst101++; } } catch(e) {}try { if (Inst102 <= 1000 && typeof (MyOtherDefaultTypedArray.prototype) != "undefined") {_RecordType("<2462,2496,68>",(MyOtherDefaultTypedArray.prototype)); Inst102++; } } catch(e) {}try { if (Inst103 <= 1000 && typeof (MyOtherDefaultTypedArray) != "undefined") {_RecordType("<2462,2486,68>",(MyOtherDefaultTypedArray)); Inst103++; } } catch(e) {}
+try { if (Inst105 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<2524,2536,69>",(assertEquals)); Inst105++; } } catch(e) {}try { if (Inst106 <= 1000 && typeof (constructor) != "undefined") {_RecordType("<2537,2548,69>",(constructor)); Inst106++; } } catch(e) {}try { if (Inst107 <= 1000 && typeof (new MyOtherDefaultTypedArray().map(()=>0).constructor) != "undefined") {_RecordType("<2550,2603,69>",(new MyOtherDefaultTypedArray().map(()=>0).constructor)); Inst107++; } } catch(e) {}try { if (Inst108 <= 1000 && typeof (new MyOtherDefaultTypedArray().map) != "undefined") {_RecordType("<2550,2584,69>",(new MyOtherDefaultTypedArray().map)); Inst108++; } } catch(e) {}try { if (Inst109 <= 1000 && typeof (MyOtherDefaultTypedArray) != "undefined") {_RecordType("<2554,2578,69>",(MyOtherDefaultTypedArray)); Inst109++; } } catch(e) {}
+  assertEquals(constructor, new MyOtherDefaultTypedArray().map(()=>0).constructor);
+}
+
+// Exceptions propagated when getting constructor @@species throws
+
+try { if (Inst111 <= 1000 && typeof (Error) != "undefined") {_RecordType("<2704,2709,74>",(Error)); Inst111++; } } catch(e) {}
+class SpeciesError extends Error { }
+try { if (Inst110 <= 1000 && typeof (SpeciesError) != "undefined") {_RecordType("<2683,2695,74>",(SpeciesError)); Inst110++; } } catch(e) {}
+try { if (Inst113 <= 1000 && typeof (Error) != "undefined") {_RecordType("<2745,2750,75>",(Error)); Inst113++; } } catch(e) {}
+class ConstructorError extends Error { }
+try { if (Inst112 <= 1000 && typeof (ConstructorError) != "undefined") {_RecordType("<2720,2736,75>",(ConstructorError)); Inst112++; } } catch(e) {}
+
+for (let constructor of typedArrayConstructors) {
+try { if (Inst114 <= 1000 && typeof (constructor) != "undefined") {_RecordType("<2765,2776,77>",(constructor)); Inst114++; } } catch(e) {}try { if (Inst115 <= 1000 && typeof (typedArrayConstructors) != "undefined") {_RecordType("<2780,2802,77>",(typedArrayConstructors)); Inst115++; } } catch(e) {}
+try { if (Inst117 <= 1000 && typeof (constructor) != "undefined") {_RecordType("<2838,2849,78>",(constructor)); Inst117++; } } catch(e) {}
+  class MyThrowingArray extends constructor {
+try { if (Inst118 <= 1000 && typeof (SpeciesError) != "undefined") {_RecordType("<2898,2910,79>",(SpeciesError)); Inst118++; } } catch(e) {}
+    static get [Symbol.species]() { throw new SpeciesError; }
+  }
+try { if (Inst116 <= 1000 && typeof (MyThrowingArray) != "undefined") {_RecordType("<2814,2829,78>",(MyThrowingArray)); Inst116++; } } catch(e) {}
+try { if (Inst119 <= 1000 && typeof (assertThrows) != "undefined") {_RecordType("<2920,2932,81>",(assertThrows)); Inst119++; } } catch(e) {}try { if (Inst120 <= 1000 && typeof (new MyThrowingArray().map) != "undefined") {_RecordType("<2939,2964,81>",(new MyThrowingArray().map)); Inst120++; } } catch(e) {}try { if (Inst121 <= 1000 && typeof (MyThrowingArray) != "undefined") {_RecordType("<2943,2958,81>",(MyThrowingArray)); Inst121++; } } catch(e) {}try { if (Inst122 <= 1000 && typeof (SpeciesError) != "undefined") {_RecordType("<2974,2986,81>",(SpeciesError)); Inst122++; } } catch(e) {}
+  assertThrows(() => new MyThrowingArray().map(()=>{}), SpeciesError);
+try { if (Inst123 <= 1000 && typeof (Object.defineProperty) != "undefined") {_RecordType("<2991,3012,82>",(Object.defineProperty)); Inst123++; } } catch(e) {}try { if (Inst124 <= 1000 && typeof (Object) != "undefined") {_RecordType("<2991,2997,82>",(Object)); Inst124++; } } catch(e) {}try { if (Inst125 <= 1000 && typeof (MyThrowingArray.prototype) != "undefined") {_RecordType("<3013,3038,82>",(MyThrowingArray.prototype)); Inst125++; } } catch(e) {}try { if (Inst126 <= 1000 && typeof (MyThrowingArray) != "undefined") {_RecordType("<3013,3028,82>",(MyThrowingArray)); Inst126++; } } catch(e) {}try { if (Inst127 <= 1000 && typeof (get) != "undefined") {_RecordType("<3063,3066,83>",(get)); Inst127++; } } catch(e) {}
+  Object.defineProperty(MyThrowingArray.prototype, 'constructor', {
+try { if (Inst128 <= 1000 && typeof (ConstructorError) != "undefined") {_RecordType("<3081,3097,83>",(ConstructorError)); Inst128++; } } catch(e) {}
+      get() { throw new ConstructorError; }
+  });
+try { if (Inst129 <= 1000 && typeof (assertThrows) != "undefined") {_RecordType("<3109,3121,85>",(assertThrows)); Inst129++; } } catch(e) {}try { if (Inst130 <= 1000 && typeof (new MyThrowingArray().map) != "undefined") {_RecordType("<3128,3153,85>",(new MyThrowingArray().map)); Inst130++; } } catch(e) {}try { if (Inst131 <= 1000 && typeof (MyThrowingArray) != "undefined") {_RecordType("<3132,3147,85>",(MyThrowingArray)); Inst131++; } } catch(e) {}try { if (Inst132 <= 1000 && typeof (ConstructorError) != "undefined") {_RecordType("<3163,3179,85>",(ConstructorError)); Inst132++; } } catch(e) {}
+  assertThrows(() => new MyThrowingArray().map(()=>{}), ConstructorError);
+}
+

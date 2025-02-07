@@ -1,0 +1,94 @@
+var Inst0 = 0;
+var Inst1 = 0;
+var Inst2 = 0;
+var Inst3 = 0;
+var Inst4 = 0;
+var Inst5 = 0;
+var Inst6 = 0;
+var Inst7 = 0;
+var Inst8 = 0;
+var Inst9 = 0;
+var Inst10 = 0;
+var Inst11 = 0;
+var Inst12 = 0;
+var Inst13 = 0;
+var Inst14 = 0;
+var Inst15 = 0;
+var Inst16 = 0;
+var Inst17 = 0;
+var Inst18 = 0;
+var Inst19 = 0;
+var Inst20 = 0;
+ 
+function _TypeOfArray(a) {
+	let number = true;	
+	let string = true;
+	for (let i = 0; i < a.length; i++) {
+		if (number && (typeof a[i]) != "number") {
+			number = false;	
+		}
+		if (string && (typeof a[i]) != "string") {
+			string = false;	
+		}
+		if (!number && !string)
+			break;
+	}
+	if (number)
+		return "number";
+	else if (string)
+		return "string";
+	else
+		return "any";
+}
+
+function _TypeIsEqual(t1, t2) {
+	return JSON.stringify(t1) === JSON.stringify(t2);
+}
+
+function _TypeOf(a, step) {
+	var t;
+	var type = Object.prototype.toString.call(a).slice(8, -1).toLowerCase();	
+	if (type == "array") {
+		t = {type : type, extra: {elemType: _TypeOfArray(a)}};
+	} else if (type == "object") {
+		let shape = [];
+        if (step === undefined || step > 0) {
+            let keys = Object.keys(a);
+            let length = Math.min(100, keys.length);
+		    for (let i = 0; i < length; i++) {
+			    shape.push([keys[i], _TypeOf(a[keys[i]], step === undefined ? 1 : step - 1)]);	
+		    }
+        }
+		t = {type : type, extra: {shape: shape}};
+	} else {
+		t = {type : type};
+	} 
+	return t;
+}
+
+function _RecordType(loc, a) {
+	var t = _TypeOf(a);
+    print("~~~TypeInfo:" + loc + ":" + JSON.stringify(t));
+}
+
+
+try { if (Inst1 <= 1000 && typeof (WebAssembly.Table.prototype) != "undefined") {_RecordType("<12,39,3>",(WebAssembly.Table.prototype)); Inst1++; } } catch(e) {}try { if (Inst2 <= 1000 && typeof (WebAssembly.Table) != "undefined") {_RecordType("<12,29,3>",(WebAssembly.Table)); Inst2++; } } catch(e) {}try { if (Inst3 <= 1000 && typeof (WebAssembly) != "undefined") {_RecordType("<12,23,3>",(WebAssembly)); Inst3++; } } catch(e) {}
+var x = WebAssembly.Table.prototype;
+try { if (Inst0 <= 1000 && typeof (x) != "undefined") {_RecordType("<8,9,3>",(x)); Inst0++; } } catch(e) {}
+
+x.type = {};
+try { if (Inst4 <= 1000 && typeof (x.type) != "undefined") {_RecordType("<44,50,5>",(x.type)); Inst4++; } } catch(e) {}try { if (Inst5 <= 1000 && typeof (x) != "undefined") {_RecordType("<44,45,5>",(x)); Inst5++; } } catch(e) {}
+try { if (Inst6 <= 1000 && typeof (x.type) != "undefined") {_RecordType("<65,71,6>",(x.type)); Inst6++; } } catch(e) {}try { if (Inst7 <= 1000 && typeof (x) != "undefined") {_RecordType("<65,66,6>",(x)); Inst7++; } } catch(e) {}
+delete x.type;
+x.type = {};
+try { if (Inst8 <= 1000 && typeof (x.type) != "undefined") {_RecordType("<74,80,7>",(x.type)); Inst8++; } } catch(e) {}try { if (Inst9 <= 1000 && typeof (x) != "undefined") {_RecordType("<74,75,7>",(x)); Inst9++; } } catch(e) {}
+try { if (Inst11 <= 1000 && typeof (document.createElement) != "undefined") {_RecordType("<95,117,8>",(document.createElement)); Inst11++; } } catch(e) {}try { if (Inst12 <= 1000 && typeof (document) != "undefined") {_RecordType("<95,103,8>",(document)); Inst12++; } } catch(e) {}
+meta = document.createElement('meta');
+try { if (Inst10 <= 1000 && typeof (meta) != "undefined") {_RecordType("<88,92,8>",(meta)); Inst10++; } } catch(e) {}
+meta.httpEquiv = 'Origin-Trial';
+try { if (Inst13 <= 1000 && typeof (meta.httpEquiv) != "undefined") {_RecordType("<128,142,9>",(meta.httpEquiv)); Inst13++; } } catch(e) {}try { if (Inst14 <= 1000 && typeof (meta) != "undefined") {_RecordType("<128,132,9>",(meta)); Inst14++; } } catch(e) {}
+meta.content = '{"origin" : "http://localhost:8000", "feature": "WebAssemblyJSPromiseIntegration", "expiry": 1719702000}';
+try { if (Inst15 <= 1000 && typeof (meta.content) != "undefined") {_RecordType("<162,174,10>",(meta.content)); Inst15++; } } catch(e) {}try { if (Inst16 <= 1000 && typeof (meta) != "undefined") {_RecordType("<162,166,10>",(meta)); Inst16++; } } catch(e) {}
+try { if (Inst17 <= 1000 && typeof (document.head.appendChild) != "undefined") {_RecordType("<286,311,11>",(document.head.appendChild)); Inst17++; } } catch(e) {}try { if (Inst18 <= 1000 && typeof (document.head) != "undefined") {_RecordType("<286,299,11>",(document.head)); Inst18++; } } catch(e) {}try { if (Inst19 <= 1000 && typeof (document) != "undefined") {_RecordType("<286,294,11>",(document)); Inst19++; } } catch(e) {}try { if (Inst20 <= 1000 && typeof (meta) != "undefined") {_RecordType("<312,316,11>",(meta)); Inst20++; } } catch(e) {}
+document.head.appendChild(meta);
+

@@ -1,0 +1,116 @@
+var Inst0 = 0;
+var Inst1 = 0;
+var Inst2 = 0;
+var Inst3 = 0;
+var Inst4 = 0;
+var Inst5 = 0;
+var Inst6 = 0;
+var Inst7 = 0;
+var Inst8 = 0;
+var Inst9 = 0;
+var Inst10 = 0;
+var Inst11 = 0;
+var Inst12 = 0;
+var Inst13 = 0;
+var Inst14 = 0;
+var Inst15 = 0;
+var Inst16 = 0;
+var Inst17 = 0;
+var Inst18 = 0;
+var Inst19 = 0;
+var Inst20 = 0;
+var Inst21 = 0;
+var Inst22 = 0;
+var Inst23 = 0;
+var Inst24 = 0;
+var Inst25 = 0;
+ 
+function _TypeOfArray(a) {
+	let number = true;	
+	let string = true;
+	for (let i = 0; i < a.length; i++) {
+		if (number && (typeof a[i]) != "number") {
+			number = false;	
+		}
+		if (string && (typeof a[i]) != "string") {
+			string = false;	
+		}
+		if (!number && !string)
+			break;
+	}
+	if (number)
+		return "number";
+	else if (string)
+		return "string";
+	else
+		return "any";
+}
+
+function _TypeIsEqual(t1, t2) {
+	return JSON.stringify(t1) === JSON.stringify(t2);
+}
+
+function _TypeOf(a, step) {
+	var t;
+	var type = Object.prototype.toString.call(a).slice(8, -1).toLowerCase();	
+	if (type == "array") {
+		t = {type : type, extra: {elemType: _TypeOfArray(a)}};
+	} else if (type == "object") {
+		let shape = [];
+        if (step === undefined || step > 0) {
+            let keys = Object.keys(a);
+            let length = Math.min(100, keys.length);
+		    for (let i = 0; i < length; i++) {
+			    shape.push([keys[i], _TypeOf(a[keys[i]], step === undefined ? 1 : step - 1)]);	
+		    }
+        }
+		t = {type : type, extra: {shape: shape}};
+	} else {
+		t = {type : type};
+	} 
+	return t;
+}
+
+function _RecordType(loc, a) {
+	var t = _TypeOf(a);
+    print("~~~TypeInfo:" + loc + ":" + JSON.stringify(t));
+}
+// Copyright 2014 the V8 project authors. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
+// Flags: --expose-debug-as debug
+
+try { if (Inst1 <= 1000 && typeof (debug.Debug) != "undefined") {_RecordType("<215,226,7>",(debug.Debug)); Inst1++; } } catch(e) {}try { if (Inst2 <= 1000 && typeof (debug) != "undefined") {_RecordType("<215,220,7>",(debug)); Inst2++; } } catch(e) {}
+var Debug = debug.Debug;
+try { if (Inst0 <= 1000 && typeof (Debug) != "undefined") {_RecordType("<207,212,7>",(Debug)); Inst0++; } } catch(e) {}
+
+var listener_called;
+try { if (Inst3 <= 1000 && typeof (listener_called) != "undefined") {_RecordType("<233,248,9>",(listener_called)); Inst3++; } } catch(e) {}
+
+try { if (Inst4 <= 1000 && typeof (listener) != "undefined") {_RecordType("<260,268,11>",(listener)); Inst4++; } } catch(e) {}
+function listener(event, exec_state, event_data, data) {
+try { if (Inst5 <= 1000 && typeof (event) != "undefined") {_RecordType("<269,274,11>",(event)); Inst5++; } } catch(e) {}try { if (Inst6 <= 1000 && typeof (exec_state) != "undefined") {_RecordType("<276,286,11>",(exec_state)); Inst6++; } } catch(e) {}try { if (Inst7 <= 1000 && typeof (event_data) != "undefined") {_RecordType("<288,298,11>",(event_data)); Inst7++; } } catch(e) {}try { if (Inst8 <= 1000 && typeof (data) != "undefined") {_RecordType("<300,304,11>",(data)); Inst8++; } } catch(e) {}
+try { if (Inst9 <= 1000 && typeof (event) != "undefined") {_RecordType("<314,319,12>",(event)); Inst9++; } } catch(e) {}try { if (Inst10 <= 1000 && typeof (Debug.DebugEvent.Break) != "undefined") {_RecordType("<323,345,12>",(Debug.DebugEvent.Break)); Inst10++; } } catch(e) {}try { if (Inst11 <= 1000 && typeof (Debug.DebugEvent) != "undefined") {_RecordType("<323,339,12>",(Debug.DebugEvent)); Inst11++; } } catch(e) {}try { if (Inst12 <= 1000 && typeof (Debug) != "undefined") {_RecordType("<323,328,12>",(Debug)); Inst12++; } } catch(e) {}
+  if (event == Debug.DebugEvent.Break) {
+    listener_called = true;
+try { if (Inst13 <= 1000 && typeof (listener_called) != "undefined") {_RecordType("<353,368,13>",(listener_called)); Inst13++; } } catch(e) {}
+try { if (Inst14 <= 1000 && typeof (exec_state.frame().allScopes) != "undefined") {_RecordType("<381,409,14>",(exec_state.frame().allScopes)); Inst14++; } } catch(e) {}try { if (Inst15 <= 1000 && typeof (exec_state.frame) != "undefined") {_RecordType("<381,397,14>",(exec_state.frame)); Inst15++; } } catch(e) {}try { if (Inst16 <= 1000 && typeof (exec_state) != "undefined") {_RecordType("<381,391,14>",(exec_state)); Inst16++; } } catch(e) {}
+    exec_state.frame().allScopes();
+  }
+}
+
+try { if (Inst17 <= 1000 && typeof (Debug.setListener) != "undefined") {_RecordType("<420,437,18>",(Debug.setListener)); Inst17++; } } catch(e) {}try { if (Inst18 <= 1000 && typeof (Debug) != "undefined") {_RecordType("<420,425,18>",(Debug)); Inst18++; } } catch(e) {}try { if (Inst19 <= 1000 && typeof (listener) != "undefined") {_RecordType("<438,446,18>",(listener)); Inst19++; } } catch(e) {}
+Debug.setListener(listener);
+
+try { if (Inst20 <= 1000 && typeof (generator_local_2) != "undefined") {_RecordType("<460,477,20>",(generator_local_2)); Inst20++; } } catch(e) {}
+function *generator_local_2(a) {
+try { if (Inst21 <= 1000 && typeof (a) != "undefined") {_RecordType("<478,479,20>",(a)); Inst21++; } } catch(e) {}
+  debugger;
+}
+try { if (Inst22 <= 1000 && typeof (generator_local_2(1).next) != "undefined") {_RecordType("<497,522,23>",(generator_local_2(1).next)); Inst22++; } } catch(e) {}try { if (Inst23 <= 1000 && typeof (generator_local_2) != "undefined") {_RecordType("<497,514,23>",(generator_local_2)); Inst23++; } } catch(e) {}
+generator_local_2(1).next();
+
+try { if (Inst24 <= 1000 && typeof (assertTrue) != "undefined") {_RecordType("<527,537,25>",(assertTrue)); Inst24++; } } catch(e) {}try { if (Inst25 <= 1000 && typeof (listener_called) != "undefined") {_RecordType("<538,553,25>",(listener_called)); Inst25++; } } catch(e) {}
+assertTrue(listener_called, "listener not called");
+

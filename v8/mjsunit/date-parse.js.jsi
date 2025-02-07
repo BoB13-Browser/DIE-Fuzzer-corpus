@@ -1,0 +1,547 @@
+var Inst0 = 0;
+var Inst1 = 0;
+var Inst2 = 0;
+var Inst3 = 0;
+var Inst4 = 0;
+var Inst5 = 0;
+var Inst6 = 0;
+var Inst7 = 0;
+var Inst8 = 0;
+var Inst9 = 0;
+var Inst10 = 0;
+var Inst11 = 0;
+var Inst12 = 0;
+var Inst13 = 0;
+var Inst14 = 0;
+var Inst15 = 0;
+var Inst16 = 0;
+var Inst17 = 0;
+var Inst18 = 0;
+var Inst19 = 0;
+var Inst20 = 0;
+var Inst21 = 0;
+var Inst22 = 0;
+var Inst23 = 0;
+var Inst24 = 0;
+var Inst25 = 0;
+var Inst26 = 0;
+var Inst27 = 0;
+var Inst28 = 0;
+var Inst29 = 0;
+var Inst30 = 0;
+var Inst31 = 0;
+var Inst32 = 0;
+var Inst33 = 0;
+var Inst34 = 0;
+var Inst35 = 0;
+var Inst36 = 0;
+var Inst37 = 0;
+var Inst38 = 0;
+var Inst39 = 0;
+var Inst40 = 0;
+var Inst41 = 0;
+var Inst42 = 0;
+var Inst43 = 0;
+var Inst44 = 0;
+var Inst45 = 0;
+var Inst46 = 0;
+var Inst47 = 0;
+var Inst48 = 0;
+var Inst49 = 0;
+var Inst50 = 0;
+var Inst51 = 0;
+var Inst52 = 0;
+var Inst53 = 0;
+var Inst54 = 0;
+var Inst55 = 0;
+var Inst56 = 0;
+var Inst57 = 0;
+var Inst58 = 0;
+var Inst59 = 0;
+var Inst60 = 0;
+var Inst61 = 0;
+var Inst62 = 0;
+var Inst63 = 0;
+var Inst64 = 0;
+var Inst65 = 0;
+var Inst66 = 0;
+var Inst67 = 0;
+var Inst68 = 0;
+var Inst69 = 0;
+var Inst70 = 0;
+var Inst71 = 0;
+var Inst72 = 0;
+var Inst73 = 0;
+var Inst74 = 0;
+var Inst75 = 0;
+var Inst76 = 0;
+var Inst77 = 0;
+var Inst78 = 0;
+var Inst79 = 0;
+var Inst80 = 0;
+var Inst81 = 0;
+var Inst82 = 0;
+var Inst83 = 0;
+var Inst84 = 0;
+var Inst85 = 0;
+var Inst86 = 0;
+var Inst87 = 0;
+var Inst88 = 0;
+var Inst89 = 0;
+var Inst90 = 0;
+var Inst91 = 0;
+var Inst92 = 0;
+var Inst93 = 0;
+var Inst94 = 0;
+var Inst95 = 0;
+var Inst96 = 0;
+var Inst97 = 0;
+var Inst98 = 0;
+var Inst99 = 0;
+var Inst100 = 0;
+var Inst101 = 0;
+var Inst102 = 0;
+var Inst103 = 0;
+var Inst104 = 0;
+var Inst105 = 0;
+var Inst106 = 0;
+var Inst107 = 0;
+var Inst108 = 0;
+var Inst109 = 0;
+var Inst110 = 0;
+var Inst111 = 0;
+var Inst112 = 0;
+var Inst113 = 0;
+var Inst114 = 0;
+var Inst115 = 0;
+var Inst116 = 0;
+var Inst117 = 0;
+var Inst118 = 0;
+var Inst119 = 0;
+var Inst120 = 0;
+var Inst121 = 0;
+var Inst122 = 0;
+var Inst123 = 0;
+var Inst124 = 0;
+var Inst125 = 0;
+var Inst126 = 0;
+var Inst127 = 0;
+var Inst128 = 0;
+ 
+function _TypeOfArray(a) {
+	let number = true;	
+	let string = true;
+	for (let i = 0; i < a.length; i++) {
+		if (number && (typeof a[i]) != "number") {
+			number = false;	
+		}
+		if (string && (typeof a[i]) != "string") {
+			string = false;	
+		}
+		if (!number && !string)
+			break;
+	}
+	if (number)
+		return "number";
+	else if (string)
+		return "string";
+	else
+		return "any";
+}
+
+function _TypeIsEqual(t1, t2) {
+	return JSON.stringify(t1) === JSON.stringify(t2);
+}
+
+function _TypeOf(a, step) {
+	var t;
+	var type = Object.prototype.toString.call(a).slice(8, -1).toLowerCase();	
+	if (type == "array") {
+		t = {type : type, extra: {elemType: _TypeOfArray(a)}};
+	} else if (type == "object") {
+		let shape = [];
+        if (step === undefined || step > 0) {
+            let keys = Object.keys(a);
+            let length = Math.min(100, keys.length);
+		    for (let i = 0; i < length; i++) {
+			    shape.push([keys[i], _TypeOf(a[keys[i]], step === undefined ? 1 : step - 1)]);	
+		    }
+        }
+		t = {type : type, extra: {shape: shape}};
+	} else {
+		t = {type : type};
+	} 
+	return t;
+}
+
+function _RecordType(loc, a) {
+	var t = _TypeOf(a);
+    print("~~~TypeInfo:" + loc + ":" + JSON.stringify(t));
+}
+// Copyright 2008 the V8 project authors. All rights reserved.
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions are
+// met:
+//
+//     * Redistributions of source code must retain the above copyright
+//       notice, this list of conditions and the following disclaimer.
+//     * Redistributions in binary form must reproduce the above
+//       copyright notice, this list of conditions and the following
+//       disclaimer in the documentation and/or other materials provided
+//       with the distribution.
+//     * Neither the name of Google Inc. nor the names of its
+//       contributors may be used to endorse or promote products derived
+//       from this software without specific prior written permission.
+//
+// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+// "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+// LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+// A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+// OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+// SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+// LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+// DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+// THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+// (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+// OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+// Test that we can parse dates in all the different formats that we
+// have to support.
+//
+// These formats are all supported by KJS but a lot of them are not
+// supported by Spidermonkey.
+
+try { if (Inst0 <= 1000 && typeof (testDateParse) != "undefined") {_RecordType("<1798,1811,34>",(testDateParse)); Inst0++; } } catch(e) {}
+function testDateParse(string) {
+try { if (Inst1 <= 1000 && typeof (string) != "undefined") {_RecordType("<1812,1818,34>",(string)); Inst1++; } } catch(e) {}
+try { if (Inst3 <= 1000 && typeof (Date.parse) != "undefined") {_RecordType("<1832,1842,35>",(Date.parse)); Inst3++; } } catch(e) {}try { if (Inst4 <= 1000 && typeof (Date) != "undefined") {_RecordType("<1832,1836,35>",(Date)); Inst4++; } } catch(e) {}try { if (Inst5 <= 1000 && typeof (string) != "undefined") {_RecordType("<1843,1849,35>",(string)); Inst5++; } } catch(e) {}
+  var d = Date.parse(string);
+try { if (Inst2 <= 1000 && typeof (d) != "undefined") {_RecordType("<1828,1829,35>",(d)); Inst2++; } } catch(e) {}
+try { if (Inst6 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<1854,1866,36>",(assertEquals)); Inst6++; } } catch(e) {}try { if (Inst7 <= 1000 && typeof (d) != "undefined") {_RecordType("<1881,1882,36>",(d)); Inst7++; } } catch(e) {}try { if (Inst8 <= 1000 && typeof (string) != "undefined") {_RecordType("<1896,1902,36>",(string)); Inst8++; } } catch(e) {}
+  assertEquals(946713600000, d, "parse: " + string);
+};
+
+
+// For local time we just test that parsing returns non-NaN positive
+// number of milliseconds to make it timezone independent.
+try { if (Inst9 <= 1000 && typeof (testDateParseLocalTime) != "undefined") {_RecordType("<2047,2069,42>",(testDateParseLocalTime)); Inst9++; } } catch(e) {}
+function testDateParseLocalTime(string) {
+try { if (Inst10 <= 1000 && typeof (string) != "undefined") {_RecordType("<2070,2076,42>",(string)); Inst10++; } } catch(e) {}
+try { if (Inst12 <= 1000 && typeof (Date.parse) != "undefined") {_RecordType("<2090,2100,43>",(Date.parse)); Inst12++; } } catch(e) {}try { if (Inst13 <= 1000 && typeof (Date) != "undefined") {_RecordType("<2090,2094,43>",(Date)); Inst13++; } } catch(e) {}try { if (Inst14 <= 1000 && typeof (string) != "undefined") {_RecordType("<2123,2129,43>",(string)); Inst14++; } } catch(e) {}
+  var d = Date.parse("parse-local-time:" + string);
+try { if (Inst11 <= 1000 && typeof (d) != "undefined") {_RecordType("<2086,2087,43>",(d)); Inst11++; } } catch(e) {}
+try { if (Inst15 <= 1000 && typeof (assertTrue) != "undefined") {_RecordType("<2134,2144,44>",(assertTrue)); Inst15++; } } catch(e) {}try { if (Inst16 <= 1000 && typeof (isNaN) != "undefined") {_RecordType("<2146,2151,44>",(isNaN)); Inst16++; } } catch(e) {}try { if (Inst17 <= 1000 && typeof (d) != "undefined") {_RecordType("<2152,2153,44>",(d)); Inst17++; } } catch(e) {}try { if (Inst18 <= 1000 && typeof (string) != "undefined") {_RecordType("<2179,2185,44>",(string)); Inst18++; } } catch(e) {}
+  assertTrue(!isNaN(d), "parse-local-time: " + string + " is NaN.");
+try { if (Inst19 <= 1000 && typeof (assertTrue) != "undefined") {_RecordType("<2203,2213,45>",(assertTrue)); Inst19++; } } catch(e) {}try { if (Inst20 <= 1000 && typeof (d) != "undefined") {_RecordType("<2214,2215,45>",(d)); Inst20++; } } catch(e) {}try { if (Inst21 <= 1000 && typeof (string) != "undefined") {_RecordType("<2244,2250,45>",(string)); Inst21++; } } catch(e) {}
+  assertTrue(d > 0, "parse-local-time: " + string + " <= 0.");
+};
+
+
+try { if (Inst22 <= 1000 && typeof (testDateParseMisc) != "undefined") {_RecordType("<2278,2295,49>",(testDateParseMisc)); Inst22++; } } catch(e) {}
+function testDateParseMisc(array) {
+try { if (Inst23 <= 1000 && typeof (array) != "undefined") {_RecordType("<2296,2301,49>",(array)); Inst23++; } } catch(e) {}
+try { if (Inst24 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<2307,2319,50>",(assertEquals)); Inst24++; } } catch(e) {}try { if (Inst25 <= 1000 && typeof (array.length) != "undefined") {_RecordType("<2323,2335,50>",(array.length)); Inst25++; } } catch(e) {}try { if (Inst26 <= 1000 && typeof (array) != "undefined") {_RecordType("<2323,2328,50>",(array)); Inst26++; } } catch(e) {}try { if (Inst27 <= 1000 && typeof (array) != "undefined") {_RecordType("<2349,2354,50>",(array)); Inst27++; } } catch(e) {}
+  assertEquals(2, array.length, "array [" + array + "] length != 2.");
+try { if (Inst29 <= 1000 && typeof (array[0]) != "undefined") {_RecordType("<2391,2399,51>",(array[0])); Inst29++; } } catch(e) {}try { if (Inst30 <= 1000 && typeof (array) != "undefined") {_RecordType("<2391,2396,51>",(array)); Inst30++; } } catch(e) {}
+  var string = array[0];
+try { if (Inst28 <= 1000 && typeof (string) != "undefined") {_RecordType("<2382,2388,51>",(string)); Inst28++; } } catch(e) {}
+try { if (Inst32 <= 1000 && typeof (array[1]) != "undefined") {_RecordType("<2418,2426,52>",(array[1])); Inst32++; } } catch(e) {}try { if (Inst33 <= 1000 && typeof (array) != "undefined") {_RecordType("<2418,2423,52>",(array)); Inst33++; } } catch(e) {}
+  var expected = array[1];
+try { if (Inst31 <= 1000 && typeof (expected) != "undefined") {_RecordType("<2407,2415,52>",(expected)); Inst31++; } } catch(e) {}
+try { if (Inst35 <= 1000 && typeof (Date.parse) != "undefined") {_RecordType("<2438,2448,53>",(Date.parse)); Inst35++; } } catch(e) {}try { if (Inst36 <= 1000 && typeof (Date) != "undefined") {_RecordType("<2438,2442,53>",(Date)); Inst36++; } } catch(e) {}try { if (Inst37 <= 1000 && typeof (string) != "undefined") {_RecordType("<2449,2455,53>",(string)); Inst37++; } } catch(e) {}
+  var d = Date.parse(string);
+try { if (Inst34 <= 1000 && typeof (d) != "undefined") {_RecordType("<2434,2435,53>",(d)); Inst34++; } } catch(e) {}
+try { if (Inst38 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<2460,2472,54>",(assertEquals)); Inst38++; } } catch(e) {}try { if (Inst39 <= 1000 && typeof (expected) != "undefined") {_RecordType("<2473,2481,54>",(expected)); Inst39++; } } catch(e) {}try { if (Inst40 <= 1000 && typeof (d) != "undefined") {_RecordType("<2483,2484,54>",(d)); Inst40++; } } catch(e) {}try { if (Inst41 <= 1000 && typeof (string) != "undefined") {_RecordType("<2503,2509,54>",(string)); Inst41++; } } catch(e) {}
+  assertEquals(expected, d, "parse-misc: " + string);
+}
+
+
+//
+// Test all the formats in UT timezone.
+//
+var testCasesUT = [
+    'Sat, 01-Jan-2000 08:00:00 UT',
+    'Sat, 01 Jan 2000 08:00:00 UT',
+    'Jan 01 2000 08:00:00 UT',
+    'Jan 01 08:00:00 UT 2000',
+    'Saturday, 01-Jan-00 08:00:00 UT',
+    '01 Jan 00 08:00 +0000',
+    // Ignore weekdays.
+    'Mon, 01 Jan 2000 08:00:00 UT',
+    'Tue, 01 Jan 2000 08:00:00 UT',
+    // Ignore prefix that is not part of a date.
+    '[Saturday] Jan 01 08:00:00 UT 2000',
+    'Ignore all of this stuff because it is annoying 01 Jan 2000 08:00:00 UT',
+    '[Saturday] Jan 01 2000 08:00:00 UT',
+    'All of this stuff is really annnoying, so it will be ignored Jan 01 2000 08:00:00 UT',
+    // If the three first letters of the month is a
+    // month name we are happy - ignore the rest.
+    'Sat, 01-Janisamonth-2000 08:00:00 UT',
+    'Sat, 01 Janisamonth 2000 08:00:00 UT',
+    'Janisamonth 01 2000 08:00:00 UT',
+    'Janisamonth 01 08:00:00 UT 2000',
+    'Saturday, 01-Janisamonth-00 08:00:00 UT',
+    '01 Janisamonth 00 08:00 +0000',
+    // Allow missing space between month and day.
+    'Janisamonthandtherestisignored01 2000 08:00:00 UT',
+    'Jan01 2000 08:00:00 UT',
+    // Allow year/month/day format.
+    'Sat, 2000/01/01 08:00:00 UT',
+    // Allow month/day/year format.
+    'Sat, 01/01/2000 08:00:00 UT',
+    // Allow month/day year format.
+    'Sat, 01/01 2000 08:00:00 UT',
+    // Allow comma instead of space after day, month and year.
+    'Sat, 01,Jan,2000,08:00:00 UT',
+    // Seconds are optional.
+    'Sat, 01-Jan-2000 08:00 UT',
+    'Sat, 01 Jan 2000 08:00 UT',
+    'Jan 01 2000 08:00 UT',
+    'Jan 01 08:00 UT 2000',
+    'Saturday, 01-Jan-00 08:00 UT',
+    '01 Jan 00 08:00 +0000',
+    // Allow AM/PM after the time.
+    'Sat, 01-Jan-2000 08:00 AM UT',
+    'Sat, 01 Jan 2000 08:00 AM UT',
+    'Jan 01 2000 08:00 AM UT',
+    'Jan 01 08:00 AM UT 2000',
+    'Saturday, 01-Jan-00 08:00 AM UT',
+    '01 Jan 00 08:00 AM +0000',
+    // White space and stuff in parenthesis is
+    // apparently allowed in most places where white
+    // space is allowed.
+    '   Sat,   01-Jan-2000   08:00:00   UT  ',
+    '  Sat,   01   Jan   2000   08:00:00   UT  ',
+    '  Saturday,   01-Jan-00   08:00:00   UT  ',
+    '  01    Jan   00    08:00   +0000   ',
+    ' ()(Sat, 01-Jan-2000)  Sat,   01-Jan-2000   08:00:00   UT  ',
+    '  Sat()(Sat, 01-Jan-2000)01   Jan   2000   08:00:00   UT  ',
+    '  Sat,(02)01   Jan   2000   08:00:00   UT  ',
+    '  Sat,  01(02)Jan   2000   08:00:00   UT  ',
+    '  Sat,  01  Jan  2000 (2001)08:00:00   UT  ',
+    '  Sat,  01  Jan  2000 (01)08:00:00   UT  ',
+    '  Sat,  01  Jan  2000 (01:00:00)08:00:00   UT  ',
+    '  Sat,  01  Jan  2000  08:00:00 (CDT)UT  ',
+    '  Sat,  01  Jan  2000  08:00:00  UT((((CDT))))',
+    '  Saturday,   01-Jan-00 ()(((asfd)))(Sat, 01-Jan-2000)08:00:00   UT  ',
+    '  01    Jan   00    08:00 ()(((asdf)))(Sat, 01-Jan-2000)+0000   ',
+    '  01    Jan   00    08:00   +0000()((asfd)(Sat, 01-Jan-2000)) '];
+try { if (Inst42 <= 1000 && typeof (testCasesUT) != "undefined") {_RecordType("<2566,2577,61>",(testCasesUT)); Inst42++; } } catch(e) {}
+
+//
+// Test that we do the right correction for different time zones.
+// I'll assume that we can handle the same formats as for UT and only
+// test a few formats for each of the timezones.
+//
+
+// GMT = UT
+var testCasesGMT = [
+    'Sat, 01-Jan-2000 08:00:00 GMT',
+    'Sat, 01-Jan-2000 08:00:00 GMT+0',
+    'Sat, 01-Jan-2000 08:00:00 GMT+00',
+    'Sat, 01-Jan-2000 08:00:00 GMT+000',
+    'Sat, 01-Jan-2000 08:00:00 GMT+0000',
+    'Sat, 01-Jan-2000 08:00:00 GMT+00:00', // Interestingly, KJS cannot handle this.
+    'Sat, 01 Jan 2000 08:00:00 GMT',
+    'Saturday, 01-Jan-00 08:00:00 GMT',
+    '01 Jan 00 08:00 -0000',
+    '01 Jan 00 08:00 +0000'];
+try { if (Inst43 <= 1000 && typeof (testCasesGMT) != "undefined") {_RecordType("<5677,5689,136>",(testCasesGMT)); Inst43++; } } catch(e) {}
+
+// EST = UT minus 5 hours.
+var testCasesEST = [
+    'Sat, 01-Jan-2000 03:00:00 UTC-0500',
+    'Sat, 01-Jan-2000 03:00:00 UTC-05:00', // Interestingly, KJS cannot handle this.
+    'Sat, 01-Jan-2000 03:00:00 EST',
+    'Sat, 01 Jan 2000 03:00:00 EST',
+    'Saturday, 01-Jan-00 03:00:00 EST',
+    '01 Jan 00 03:00 -0500'];
+try { if (Inst44 <= 1000 && typeof (testCasesEST) != "undefined") {_RecordType("<6146,6158,149>",(testCasesEST)); Inst44++; } } catch(e) {}
+
+// EDT = UT minus 4 hours.
+var testCasesEDT = [
+    'Sat, 01-Jan-2000 04:00:00 EDT',
+    'Sat, 01 Jan 2000 04:00:00 EDT',
+    'Saturday, 01-Jan-00 04:00:00 EDT',
+    '01 Jan 00 04:00 -0400'];
+try { if (Inst45 <= 1000 && typeof (testCasesEDT) != "undefined") {_RecordType("<6466,6478,158>",(testCasesEDT)); Inst45++; } } catch(e) {}
+
+// CST = UT minus 6 hours.
+var testCasesCST = [
+    'Sat, 01-Jan-2000 02:00:00 CST',
+    'Sat, 01 Jan 2000 02:00:00 CST',
+    'Saturday, 01-Jan-00 02:00:00 CST',
+    '01 Jan 00 02:00 -0600'];
+try { if (Inst46 <= 1000 && typeof (testCasesCST) != "undefined") {_RecordType("<6659,6671,165>",(testCasesCST)); Inst46++; } } catch(e) {}
+
+// CDT = UT minus 5 hours.
+var testCasesCDT = [
+    'Sat, 01-Jan-2000 03:00:00 CDT',
+    'Sat, 01 Jan 2000 03:00:00 CDT',
+    'Saturday, 01-Jan-00 03:00:00 CDT',
+    '01 Jan 00 03:00 -0500'];
+try { if (Inst47 <= 1000 && typeof (testCasesCDT) != "undefined") {_RecordType("<6852,6864,172>",(testCasesCDT)); Inst47++; } } catch(e) {}
+
+// MST = UT minus 7 hours.
+var testCasesMST = [
+    'Sat, 01-Jan-2000 01:00:00 MST',
+    'Sat, 01 Jan 2000 01:00:00 MST',
+    'Saturday, 01-Jan-00 01:00:00 MST',
+    '01 Jan 00 01:00 -0700'];
+try { if (Inst48 <= 1000 && typeof (testCasesMST) != "undefined") {_RecordType("<7045,7057,179>",(testCasesMST)); Inst48++; } } catch(e) {}
+
+// MDT = UT minus 6 hours.
+var testCasesMDT = [
+    'Sat, 01-Jan-2000 02:00:00 MDT',
+    'Sat, 01 Jan 2000 02:00:00 MDT',
+    'Saturday, 01-Jan-00 02:00:00 MDT',
+    '01 Jan 00 02:00 -0600'];
+try { if (Inst49 <= 1000 && typeof (testCasesMDT) != "undefined") {_RecordType("<7238,7250,186>",(testCasesMDT)); Inst49++; } } catch(e) {}
+
+// PST = UT minus 8 hours.
+var testCasesPST = [
+    'Sat, 01-Jan-2000 00:00:00 PST',
+    'Sat, 01 Jan 2000 00:00:00 PST',
+    'Saturday, 01-Jan-00 00:00:00 PST',
+    '01 Jan 00 00:00 -0800',
+    // Allow missing time.
+    'Sat, 01-Jan-2000 PST'];
+try { if (Inst50 <= 1000 && typeof (testCasesPST) != "undefined") {_RecordType("<7431,7443,193>",(testCasesPST)); Inst50++; } } catch(e) {}
+
+// PDT = UT minus 7 hours.
+var testCasesPDT = [
+    'Sat, 01-Jan-2000 01:00:00 PDT',
+    'Sat, 01 Jan 2000 01:00:00 PDT',
+    'Saturday, 01-Jan-00 01:00:00 PDT',
+    '01 Jan 00 01:00 -0700'];
+try { if (Inst51 <= 1000 && typeof (testCasesPDT) != "undefined") {_RecordType("<7679,7691,202>",(testCasesPDT)); Inst51++; } } catch(e) {}
+
+// Local time cases.
+var testCasesLocalTime = [
+    // Allow timezone ommision.
+    'Sat, 01-Jan-2000 08:00:00',
+    'Sat, 01 Jan 2000 08:00:00',
+    'Jan 01 2000 08:00:00',
+    'Jan 01 08:00:00 2000',
+    'Saturday, 01-Jan-00 08:00:00',
+    '01 Jan 00 08:00'];
+try { if (Inst52 <= 1000 && typeof (testCasesLocalTime) != "undefined") {_RecordType("<7866,7884,209>",(testCasesLocalTime)); Inst52++; } } catch(e) {}
+
+
+// Misc. test cases that result in a different time value.
+var testCasesMisc = [
+    // Special handling for years in the [0, 100) range.
+    ['Sat, 01 Jan 0 08:00:00 UT', 946713600000], // year 2000
+    ['Sat, 01 Jan 49 08:00:00 UT', 2493100800000], // year 2049
+    ['Sat, 01 Jan 50 08:00:00 UT', -631123200000], // year 1950
+    ['Sat, 01 Jan 99 08:00:00 UT', 915177600000], // year 1999
+    ['Sat, 01 Jan 100 08:00:00 UT', -59011430400000], // year 100
+    // Test PM after time.
+    ['Sat, 01-Jan-2000 08:00 PM UT', 946756800000],
+    ['Sat, 01 Jan 2000 08:00 PM UT', 946756800000],
+    ['Jan 01 2000 08:00 PM UT', 946756800000],
+    ['Jan 01 08:00 PM UT 2000', 946756800000],
+    ['Saturday, 01-Jan-00 08:00 PM UT', 946756800000],
+    ['01 Jan 00 08:00 PM +0000', 946756800000]];
+try { if (Inst53 <= 1000 && typeof (testCasesMisc) != "undefined") {_RecordType("<8168,8181,220>",(testCasesMisc)); Inst53++; } } catch(e) {}
+
+// Test different version of the ES5 date time string format.
+var testCasesES5Misc = [
+    ['2000-01-01T08:00:00.000Z', 946713600000],
+    ['2000-01-01T08:00:00Z', 946713600000],
+    ['2000-01-01T08:00Z', 946713600000],
+    ['2000-01T08:00:00.000Z', 946713600000],
+    ['2000T08:00:00.000Z', 946713600000],
+    ['2000T08:00Z', 946713600000],
+    ['2000-01T00:00:00.000-08:00', 946713600000],
+    ['2000-01T08:00:00.001Z', 946713600001],
+    ['2000-01T08:00:00.099Z', 946713600099],
+    ['2000-01T08:00:00.999Z', 946713600999],
+    ['2000-01T00:00:00.001-08:00', 946713600001],
+    ['2000-01-01T24:00', 946771200000],
+    ['2000-01-01T24:00:00', 946771200000],
+    ['2000-01-01T24:00:00.000', 946771200000],
+    ['2000-01-01T24:00:00.000Z', 946771200000]];
+try { if (Inst54 <= 1000 && typeof (testCasesES5Misc) != "undefined") {_RecordType("<8958,8974,236>",(testCasesES5Misc)); Inst54++; } } catch(e) {}
+
+var testCasesES5MiscNegative = [
+    '2000-01-01TZ',
+    '2000-01-01T60Z',
+    '2000-01-01T60:60Z',
+    '2000-01-0108:00Z',
+    '2000-01-01T08Z',
+    '2000-01-01T24:01',
+    '2000-01-01T24:00:01',
+    '2000-01-01T24:00:00.001',
+    '2000-01-01T24:00:00.999Z'];
+try { if (Inst55 <= 1000 && typeof (testCasesES5MiscNegative) != "undefined") {_RecordType("<9653,9677,253>",(testCasesES5MiscNegative)); Inst55++; } } catch(e) {}
+
+
+// Run all the tests.
+try { if (Inst56 <= 1000 && typeof (testCasesUT.forEach) != "undefined") {_RecordType("<9934,9953,266>",(testCasesUT.forEach)); Inst56++; } } catch(e) {}try { if (Inst57 <= 1000 && typeof (testCasesUT) != "undefined") {_RecordType("<9934,9945,266>",(testCasesUT)); Inst57++; } } catch(e) {}try { if (Inst58 <= 1000 && typeof (testDateParse) != "undefined") {_RecordType("<9954,9967,266>",(testDateParse)); Inst58++; } } catch(e) {}
+testCasesUT.forEach(testDateParse);
+try { if (Inst59 <= 1000 && typeof (testCasesGMT.forEach) != "undefined") {_RecordType("<9970,9990,267>",(testCasesGMT.forEach)); Inst59++; } } catch(e) {}try { if (Inst60 <= 1000 && typeof (testCasesGMT) != "undefined") {_RecordType("<9970,9982,267>",(testCasesGMT)); Inst60++; } } catch(e) {}try { if (Inst61 <= 1000 && typeof (testDateParse) != "undefined") {_RecordType("<9991,10004,267>",(testDateParse)); Inst61++; } } catch(e) {}
+testCasesGMT.forEach(testDateParse);
+try { if (Inst62 <= 1000 && typeof (testCasesEST.forEach) != "undefined") {_RecordType("<10007,10027,268>",(testCasesEST.forEach)); Inst62++; } } catch(e) {}try { if (Inst63 <= 1000 && typeof (testCasesEST) != "undefined") {_RecordType("<10007,10019,268>",(testCasesEST)); Inst63++; } } catch(e) {}try { if (Inst64 <= 1000 && typeof (testDateParse) != "undefined") {_RecordType("<10028,10041,268>",(testDateParse)); Inst64++; } } catch(e) {}
+testCasesEST.forEach(testDateParse);
+try { if (Inst65 <= 1000 && typeof (testCasesEDT.forEach) != "undefined") {_RecordType("<10044,10064,269>",(testCasesEDT.forEach)); Inst65++; } } catch(e) {}try { if (Inst66 <= 1000 && typeof (testCasesEDT) != "undefined") {_RecordType("<10044,10056,269>",(testCasesEDT)); Inst66++; } } catch(e) {}try { if (Inst67 <= 1000 && typeof (testDateParse) != "undefined") {_RecordType("<10065,10078,269>",(testDateParse)); Inst67++; } } catch(e) {}
+testCasesEDT.forEach(testDateParse);
+try { if (Inst68 <= 1000 && typeof (testCasesCST.forEach) != "undefined") {_RecordType("<10081,10101,270>",(testCasesCST.forEach)); Inst68++; } } catch(e) {}try { if (Inst69 <= 1000 && typeof (testCasesCST) != "undefined") {_RecordType("<10081,10093,270>",(testCasesCST)); Inst69++; } } catch(e) {}try { if (Inst70 <= 1000 && typeof (testDateParse) != "undefined") {_RecordType("<10102,10115,270>",(testDateParse)); Inst70++; } } catch(e) {}
+testCasesCST.forEach(testDateParse);
+try { if (Inst71 <= 1000 && typeof (testCasesCDT.forEach) != "undefined") {_RecordType("<10118,10138,271>",(testCasesCDT.forEach)); Inst71++; } } catch(e) {}try { if (Inst72 <= 1000 && typeof (testCasesCDT) != "undefined") {_RecordType("<10118,10130,271>",(testCasesCDT)); Inst72++; } } catch(e) {}try { if (Inst73 <= 1000 && typeof (testDateParse) != "undefined") {_RecordType("<10139,10152,271>",(testDateParse)); Inst73++; } } catch(e) {}
+testCasesCDT.forEach(testDateParse);
+try { if (Inst74 <= 1000 && typeof (testCasesMST.forEach) != "undefined") {_RecordType("<10155,10175,272>",(testCasesMST.forEach)); Inst74++; } } catch(e) {}try { if (Inst75 <= 1000 && typeof (testCasesMST) != "undefined") {_RecordType("<10155,10167,272>",(testCasesMST)); Inst75++; } } catch(e) {}try { if (Inst76 <= 1000 && typeof (testDateParse) != "undefined") {_RecordType("<10176,10189,272>",(testDateParse)); Inst76++; } } catch(e) {}
+testCasesMST.forEach(testDateParse);
+try { if (Inst77 <= 1000 && typeof (testCasesMDT.forEach) != "undefined") {_RecordType("<10192,10212,273>",(testCasesMDT.forEach)); Inst77++; } } catch(e) {}try { if (Inst78 <= 1000 && typeof (testCasesMDT) != "undefined") {_RecordType("<10192,10204,273>",(testCasesMDT)); Inst78++; } } catch(e) {}try { if (Inst79 <= 1000 && typeof (testDateParse) != "undefined") {_RecordType("<10213,10226,273>",(testDateParse)); Inst79++; } } catch(e) {}
+testCasesMDT.forEach(testDateParse);
+try { if (Inst80 <= 1000 && typeof (testCasesPST.forEach) != "undefined") {_RecordType("<10229,10249,274>",(testCasesPST.forEach)); Inst80++; } } catch(e) {}try { if (Inst81 <= 1000 && typeof (testCasesPST) != "undefined") {_RecordType("<10229,10241,274>",(testCasesPST)); Inst81++; } } catch(e) {}try { if (Inst82 <= 1000 && typeof (testDateParse) != "undefined") {_RecordType("<10250,10263,274>",(testDateParse)); Inst82++; } } catch(e) {}
+testCasesPST.forEach(testDateParse);
+try { if (Inst83 <= 1000 && typeof (testCasesPDT.forEach) != "undefined") {_RecordType("<10266,10286,275>",(testCasesPDT.forEach)); Inst83++; } } catch(e) {}try { if (Inst84 <= 1000 && typeof (testCasesPDT) != "undefined") {_RecordType("<10266,10278,275>",(testCasesPDT)); Inst84++; } } catch(e) {}try { if (Inst85 <= 1000 && typeof (testDateParse) != "undefined") {_RecordType("<10287,10300,275>",(testDateParse)); Inst85++; } } catch(e) {}
+testCasesPDT.forEach(testDateParse);
+try { if (Inst86 <= 1000 && typeof (testCasesLocalTime.forEach) != "undefined") {_RecordType("<10303,10329,276>",(testCasesLocalTime.forEach)); Inst86++; } } catch(e) {}try { if (Inst87 <= 1000 && typeof (testCasesLocalTime) != "undefined") {_RecordType("<10303,10321,276>",(testCasesLocalTime)); Inst87++; } } catch(e) {}try { if (Inst88 <= 1000 && typeof (testDateParseLocalTime) != "undefined") {_RecordType("<10330,10352,276>",(testDateParseLocalTime)); Inst88++; } } catch(e) {}
+testCasesLocalTime.forEach(testDateParseLocalTime);
+try { if (Inst89 <= 1000 && typeof (testCasesMisc.forEach) != "undefined") {_RecordType("<10355,10376,277>",(testCasesMisc.forEach)); Inst89++; } } catch(e) {}try { if (Inst90 <= 1000 && typeof (testCasesMisc) != "undefined") {_RecordType("<10355,10368,277>",(testCasesMisc)); Inst90++; } } catch(e) {}try { if (Inst91 <= 1000 && typeof (testDateParseMisc) != "undefined") {_RecordType("<10377,10394,277>",(testDateParseMisc)); Inst91++; } } catch(e) {}
+testCasesMisc.forEach(testDateParseMisc);
+
+// ES5 date time string format compliance.
+try { if (Inst92 <= 1000 && typeof (testCasesES5Misc.forEach) != "undefined") {_RecordType("<10441,10465,280>",(testCasesES5Misc.forEach)); Inst92++; } } catch(e) {}try { if (Inst93 <= 1000 && typeof (testCasesES5Misc) != "undefined") {_RecordType("<10441,10457,280>",(testCasesES5Misc)); Inst93++; } } catch(e) {}try { if (Inst94 <= 1000 && typeof (testDateParseMisc) != "undefined") {_RecordType("<10466,10483,280>",(testDateParseMisc)); Inst94++; } } catch(e) {}
+testCasesES5Misc.forEach(testDateParseMisc);
+try { if (Inst95 <= 1000 && typeof (testCasesES5MiscNegative.forEach) != "undefined") {_RecordType("<10486,10518,281>",(testCasesES5MiscNegative.forEach)); Inst95++; } } catch(e) {}try { if (Inst96 <= 1000 && typeof (testCasesES5MiscNegative) != "undefined") {_RecordType("<10486,10510,281>",(testCasesES5MiscNegative)); Inst96++; } } catch(e) {}
+testCasesES5MiscNegative.forEach(function (s) {
+try { if (Inst97 <= 1000 && typeof (s) != "undefined") {_RecordType("<10529,10530,281>",(s)); Inst97++; } } catch(e) {}
+try { if (Inst98 <= 1000 && typeof (assertTrue) != "undefined") {_RecordType("<10538,10548,282>",(assertTrue)); Inst98++; } } catch(e) {}try { if (Inst99 <= 1000 && typeof (isNaN) != "undefined") {_RecordType("<10549,10554,282>",(isNaN)); Inst99++; } } catch(e) {}try { if (Inst100 <= 1000 && typeof (Date.parse) != "undefined") {_RecordType("<10555,10565,282>",(Date.parse)); Inst100++; } } catch(e) {}try { if (Inst101 <= 1000 && typeof (Date) != "undefined") {_RecordType("<10555,10559,282>",(Date)); Inst101++; } } catch(e) {}try { if (Inst102 <= 1000 && typeof (s) != "undefined") {_RecordType("<10566,10567,282>",(s)); Inst102++; } } catch(e) {}try { if (Inst103 <= 1000 && typeof (s) != "undefined") {_RecordType("<10571,10572,282>",(s)); Inst103++; } } catch(e) {}
+    assertTrue(isNaN(Date.parse(s)), s + " is not NaN.");
+});
+
+
+// Test that we can parse our own date format.
+// (Dates from 1970 to ~2070 with 150h steps.)
+for (var i = 0; i < 24 * 365 * 100; i += 150) {
+try { if (Inst104 <= 1000 && typeof (i) != "undefined") {_RecordType("<10701,10702,288>",(i)); Inst104++; } } catch(e) {}try { if (Inst105 <= 1000 && typeof (i) != "undefined") {_RecordType("<10708,10709,288>",(i)); Inst105++; } } catch(e) {}try { if (Inst106 <= 1000 && typeof (i) != "undefined") {_RecordType("<10728,10729,288>",(i)); Inst106++; } } catch(e) {}
+try { if (Inst108 <= 1000 && typeof (i) != "undefined") {_RecordType("<10751,10752,289>",(i)); Inst108++; } } catch(e) {}
+  var ms = i * (3600 * 1000);
+try { if (Inst107 <= 1000 && typeof (ms) != "undefined") {_RecordType("<10746,10748,289>",(ms)); Inst107++; } } catch(e) {}
+try { if (Inst110 <= 1000 && typeof ((new Date(ms)).toString) != "undefined") {_RecordType("<10780,10803,290>",((new Date(ms)).toString)); Inst110++; } } catch(e) {}try { if (Inst111 <= 1000 && typeof (Date) != "undefined") {_RecordType("<10785,10789,290>",(Date)); Inst111++; } } catch(e) {}try { if (Inst112 <= 1000 && typeof (ms) != "undefined") {_RecordType("<10790,10792,290>",(ms)); Inst112++; } } catch(e) {}
+  var s = (new Date(ms)).toString();
+try { if (Inst109 <= 1000 && typeof (s) != "undefined") {_RecordType("<10776,10777,290>",(s)); Inst109++; } } catch(e) {}
+try { if (Inst113 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<10809,10821,291>",(assertEquals)); Inst113++; } } catch(e) {}try { if (Inst114 <= 1000 && typeof (ms) != "undefined") {_RecordType("<10822,10824,291>",(ms)); Inst114++; } } catch(e) {}try { if (Inst115 <= 1000 && typeof (Date.parse) != "undefined") {_RecordType("<10826,10836,291>",(Date.parse)); Inst115++; } } catch(e) {}try { if (Inst116 <= 1000 && typeof (Date) != "undefined") {_RecordType("<10826,10830,291>",(Date)); Inst116++; } } catch(e) {}try { if (Inst117 <= 1000 && typeof (s) != "undefined") {_RecordType("<10837,10838,291>",(s)); Inst117++; } } catch(e) {}try { if (Inst118 <= 1000 && typeof (s) != "undefined") {_RecordType("<10857,10858,291>",(s)); Inst118++; } } catch(e) {}
+  assertEquals(ms, Date.parse(s), "parse own: " + s);
+}
+
+// Negative tests.
+var testCasesNegative = [
+    'May 25 2008 1:30 (PM)) UTC',  // Bad unmatched ')' after number.
+    'May 25 2008 1:30( )AM (PM)',  //
+    'a1',                          // Issue 126448, 53209.
+    'nasfdjklsfjoaifg1',
+    'x_2',
+    'May 25 2008 AAA (GMT)'];      // Unknown word after number.
+try { if (Inst119 <= 1000 && typeof (testCasesNegative) != "undefined") {_RecordType("<10887,10904,295>",(testCasesNegative)); Inst119++; } } catch(e) {}
+
+try { if (Inst120 <= 1000 && typeof (testCasesNegative.forEach) != "undefined") {_RecordType("<11178,11203,303>",(testCasesNegative.forEach)); Inst120++; } } catch(e) {}try { if (Inst121 <= 1000 && typeof (testCasesNegative) != "undefined") {_RecordType("<11178,11195,303>",(testCasesNegative)); Inst121++; } } catch(e) {}
+testCasesNegative.forEach(function (s) {
+try { if (Inst122 <= 1000 && typeof (s) != "undefined") {_RecordType("<11214,11215,303>",(s)); Inst122++; } } catch(e) {}
+try { if (Inst123 <= 1000 && typeof (assertTrue) != "undefined") {_RecordType("<11223,11233,304>",(assertTrue)); Inst123++; } } catch(e) {}try { if (Inst124 <= 1000 && typeof (isNaN) != "undefined") {_RecordType("<11234,11239,304>",(isNaN)); Inst124++; } } catch(e) {}try { if (Inst125 <= 1000 && typeof (Date.parse) != "undefined") {_RecordType("<11240,11250,304>",(Date.parse)); Inst125++; } } catch(e) {}try { if (Inst126 <= 1000 && typeof (Date) != "undefined") {_RecordType("<11240,11244,304>",(Date)); Inst126++; } } catch(e) {}try { if (Inst127 <= 1000 && typeof (s) != "undefined") {_RecordType("<11251,11252,304>",(s)); Inst127++; } } catch(e) {}try { if (Inst128 <= 1000 && typeof (s) != "undefined") {_RecordType("<11256,11257,304>",(s)); Inst128++; } } catch(e) {}
+    assertTrue(isNaN(Date.parse(s)), s + " is not NaN.");
+});
+

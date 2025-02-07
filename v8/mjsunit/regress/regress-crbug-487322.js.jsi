@@ -1,0 +1,122 @@
+var Inst0 = 0;
+var Inst1 = 0;
+var Inst2 = 0;
+var Inst3 = 0;
+var Inst4 = 0;
+var Inst5 = 0;
+var Inst6 = 0;
+var Inst7 = 0;
+var Inst8 = 0;
+var Inst9 = 0;
+var Inst10 = 0;
+var Inst11 = 0;
+var Inst12 = 0;
+var Inst13 = 0;
+var Inst14 = 0;
+var Inst15 = 0;
+var Inst16 = 0;
+var Inst17 = 0;
+var Inst18 = 0;
+var Inst19 = 0;
+var Inst20 = 0;
+var Inst21 = 0;
+var Inst22 = 0;
+var Inst23 = 0;
+var Inst24 = 0;
+var Inst25 = 0;
+var Inst26 = 0;
+var Inst27 = 0;
+var Inst28 = 0;
+var Inst29 = 0;
+var Inst30 = 0;
+var Inst31 = 0;
+ 
+function _TypeOfArray(a) {
+	let number = true;	
+	let string = true;
+	for (let i = 0; i < a.length; i++) {
+		if (number && (typeof a[i]) != "number") {
+			number = false;	
+		}
+		if (string && (typeof a[i]) != "string") {
+			string = false;	
+		}
+		if (!number && !string)
+			break;
+	}
+	if (number)
+		return "number";
+	else if (string)
+		return "string";
+	else
+		return "any";
+}
+
+function _TypeIsEqual(t1, t2) {
+	return JSON.stringify(t1) === JSON.stringify(t2);
+}
+
+function _TypeOf(a, step) {
+	var t;
+	var type = Object.prototype.toString.call(a).slice(8, -1).toLowerCase();	
+	if (type == "array") {
+		t = {type : type, extra: {elemType: _TypeOfArray(a)}};
+	} else if (type == "object") {
+		let shape = [];
+        if (step === undefined || step > 0) {
+            let keys = Object.keys(a);
+            let length = Math.min(100, keys.length);
+		    for (let i = 0; i < length; i++) {
+			    shape.push([keys[i], _TypeOf(a[keys[i]], step === undefined ? 1 : step - 1)]);	
+		    }
+        }
+		t = {type : type, extra: {shape: shape}};
+	} else {
+		t = {type : type};
+	} 
+	return t;
+}
+
+function _RecordType(loc, a) {
+	var t = _TypeOf(a);
+    print("~~~TypeInfo:" + loc + ":" + JSON.stringify(t));
+}
+// Copyright 2015 the V8 project authors. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
+try { if (Inst0 <= 1000 && typeof (this.Intl) != "undefined") {_RecordType("<172,181,5>",(this.Intl)); Inst0++; } } catch(e) {}
+if (this.Intl) {
+  // Normalizes Kat{h,}mandu (chromium:487322)
+  // According to the IANA timezone db, Kathmandu is the current canonical
+  // name, but ICU got it backward. To make this test robust against a future
+  // ICU change ( http://bugs.icu-project.org/trac/ticket/12044 ),
+  // just check that Kat(h)mandu is resolved identically.
+try { if (Inst2 <= 1000 && typeof (Intl.DateTimeFormat) != "undefined") {_RecordType("<522,541,11>",(Intl.DateTimeFormat)); Inst2++; } } catch(e) {}try { if (Inst3 <= 1000 && typeof (Intl) != "undefined") {_RecordType("<522,526,11>",(Intl)); Inst3++; } } catch(e) {}
+  df1 = new Intl.DateTimeFormat('en-US', {'timeZone': 'Asia/Katmandu'})
+try { if (Inst1 <= 1000 && typeof (df1) != "undefined") {_RecordType("<512,515,11>",(df1)); Inst1++; } } catch(e) {}
+try { if (Inst5 <= 1000 && typeof (Intl.DateTimeFormat) != "undefined") {_RecordType("<594,613,12>",(Intl.DateTimeFormat)); Inst5++; } } catch(e) {}try { if (Inst6 <= 1000 && typeof (Intl) != "undefined") {_RecordType("<594,598,12>",(Intl)); Inst6++; } } catch(e) {}
+  df2 = new Intl.DateTimeFormat('en-US', {'timeZone': 'Asia/Kathmandu'})
+try { if (Inst4 <= 1000 && typeof (df2) != "undefined") {_RecordType("<584,587,12>",(df2)); Inst4++; } } catch(e) {}
+try { if (Inst7 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<657,669,13>",(assertEquals)); Inst7++; } } catch(e) {}try { if (Inst8 <= 1000 && typeof (df1.resolvedOptions().timeZone) != "undefined") {_RecordType("<670,700,13>",(df1.resolvedOptions().timeZone)); Inst8++; } } catch(e) {}try { if (Inst9 <= 1000 && typeof (df1.resolvedOptions) != "undefined") {_RecordType("<670,689,13>",(df1.resolvedOptions)); Inst9++; } } catch(e) {}try { if (Inst10 <= 1000 && typeof (df1) != "undefined") {_RecordType("<670,673,13>",(df1)); Inst10++; } } catch(e) {}try { if (Inst11 <= 1000 && typeof (df2.resolvedOptions().timeZone) != "undefined") {_RecordType("<702,732,13>",(df2.resolvedOptions().timeZone)); Inst11++; } } catch(e) {}try { if (Inst12 <= 1000 && typeof (df2.resolvedOptions) != "undefined") {_RecordType("<702,721,13>",(df2.resolvedOptions)); Inst12++; } } catch(e) {}try { if (Inst13 <= 1000 && typeof (df2) != "undefined") {_RecordType("<702,705,13>",(df2)); Inst13++; } } catch(e) {}
+  assertEquals(df1.resolvedOptions().timeZone, df2.resolvedOptions().timeZone);
+
+  // Normalizes Ulan_Bator to Ulaanbaatar. Unlike Kat(h)mandu, ICU got this
+  // right so that we make sure that Ulan_Bator is resolved to Ulaanbaatar.
+try { if (Inst15 <= 1000 && typeof (Intl.DateTimeFormat) != "undefined") {_RecordType("<899,918,17>",(Intl.DateTimeFormat)); Inst15++; } } catch(e) {}try { if (Inst16 <= 1000 && typeof (Intl) != "undefined") {_RecordType("<899,903,17>",(Intl)); Inst16++; } } catch(e) {}
+  df = new Intl.DateTimeFormat('en-US', {'timeZone': 'Asia/Ulaanbaatar'})
+try { if (Inst14 <= 1000 && typeof (df) != "undefined") {_RecordType("<890,892,17>",(df)); Inst14++; } } catch(e) {}
+try { if (Inst17 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<964,976,18>",(assertEquals)); Inst17++; } } catch(e) {}try { if (Inst18 <= 1000 && typeof (df.resolvedOptions().timeZone) != "undefined") {_RecordType("<997,1026,18>",(df.resolvedOptions().timeZone)); Inst18++; } } catch(e) {}try { if (Inst19 <= 1000 && typeof (df.resolvedOptions) != "undefined") {_RecordType("<997,1015,18>",(df.resolvedOptions)); Inst19++; } } catch(e) {}try { if (Inst20 <= 1000 && typeof (df) != "undefined") {_RecordType("<997,999,18>",(df)); Inst20++; } } catch(e) {}
+  assertEquals('Asia/Ulaanbaatar', df.resolvedOptions().timeZone);
+
+try { if (Inst22 <= 1000 && typeof (Intl.DateTimeFormat) != "undefined") {_RecordType("<1041,1060,20>",(Intl.DateTimeFormat)); Inst22++; } } catch(e) {}try { if (Inst23 <= 1000 && typeof (Intl) != "undefined") {_RecordType("<1041,1045,20>",(Intl)); Inst23++; } } catch(e) {}
+  df = new Intl.DateTimeFormat('en-US', {'timeZone': 'Asia/Ulan_Bator'})
+try { if (Inst21 <= 1000 && typeof (df) != "undefined") {_RecordType("<1032,1034,20>",(df)); Inst21++; } } catch(e) {}
+try { if (Inst24 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<1105,1117,21>",(assertEquals)); Inst24++; } } catch(e) {}try { if (Inst25 <= 1000 && typeof (df.resolvedOptions().timeZone) != "undefined") {_RecordType("<1138,1167,21>",(df.resolvedOptions().timeZone)); Inst25++; } } catch(e) {}try { if (Inst26 <= 1000 && typeof (df.resolvedOptions) != "undefined") {_RecordType("<1138,1156,21>",(df.resolvedOptions)); Inst26++; } } catch(e) {}try { if (Inst27 <= 1000 && typeof (df) != "undefined") {_RecordType("<1138,1140,21>",(df)); Inst27++; } } catch(e) {}
+  assertEquals('Asia/Ulaanbaatar', df.resolvedOptions().timeZone);
+
+  // Throws for unsupported time zones.
+try { if (Inst28 <= 1000 && typeof (assertThrows) != "undefined") {_RecordType("<1213,1225,24>",(assertThrows)); Inst28++; } } catch(e) {}try { if (Inst29 <= 1000 && typeof (Intl.DateTimeFormat) != "undefined") {_RecordType("<1232,1251,24>",(Intl.DateTimeFormat)); Inst29++; } } catch(e) {}try { if (Inst30 <= 1000 && typeof (Intl) != "undefined") {_RecordType("<1232,1236,24>",(Intl)); Inst30++; } } catch(e) {}try { if (Inst31 <= 1000 && typeof (undefined) != "undefined") {_RecordType("<1252,1261,24>",(undefined)); Inst31++; } } catch(e) {}
+  assertThrows(() => Intl.DateTimeFormat(undefined, {timeZone: 'Aurope/Paris'}));
+}
+

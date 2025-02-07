@@ -1,0 +1,213 @@
+var Inst0 = 0;
+var Inst1 = 0;
+var Inst2 = 0;
+var Inst3 = 0;
+var Inst4 = 0;
+var Inst5 = 0;
+var Inst6 = 0;
+var Inst7 = 0;
+var Inst8 = 0;
+var Inst9 = 0;
+var Inst10 = 0;
+var Inst11 = 0;
+var Inst12 = 0;
+var Inst13 = 0;
+var Inst14 = 0;
+var Inst15 = 0;
+var Inst16 = 0;
+var Inst17 = 0;
+var Inst18 = 0;
+var Inst19 = 0;
+var Inst20 = 0;
+var Inst21 = 0;
+var Inst22 = 0;
+var Inst23 = 0;
+var Inst24 = 0;
+var Inst25 = 0;
+var Inst26 = 0;
+var Inst27 = 0;
+var Inst28 = 0;
+var Inst29 = 0;
+var Inst30 = 0;
+var Inst31 = 0;
+var Inst32 = 0;
+var Inst33 = 0;
+var Inst34 = 0;
+var Inst35 = 0;
+var Inst36 = 0;
+var Inst37 = 0;
+var Inst38 = 0;
+var Inst39 = 0;
+var Inst40 = 0;
+var Inst41 = 0;
+var Inst42 = 0;
+var Inst43 = 0;
+var Inst44 = 0;
+var Inst45 = 0;
+var Inst46 = 0;
+var Inst47 = 0;
+var Inst48 = 0;
+var Inst49 = 0;
+var Inst50 = 0;
+var Inst51 = 0;
+var Inst52 = 0;
+var Inst53 = 0;
+var Inst54 = 0;
+var Inst55 = 0;
+ 
+function _TypeOfArray(a) {
+	let number = true;	
+	let string = true;
+	for (let i = 0; i < a.length; i++) {
+		if (number && (typeof a[i]) != "number") {
+			number = false;	
+		}
+		if (string && (typeof a[i]) != "string") {
+			string = false;	
+		}
+		if (!number && !string)
+			break;
+	}
+	if (number)
+		return "number";
+	else if (string)
+		return "string";
+	else
+		return "any";
+}
+
+function _TypeIsEqual(t1, t2) {
+	return JSON.stringify(t1) === JSON.stringify(t2);
+}
+
+function _TypeOf(a, step) {
+	var t;
+	var type = Object.prototype.toString.call(a).slice(8, -1).toLowerCase();	
+	if (type == "array") {
+		t = {type : type, extra: {elemType: _TypeOfArray(a)}};
+	} else if (type == "object") {
+		let shape = [];
+        if (step === undefined || step > 0) {
+            let keys = Object.keys(a);
+            let length = Math.min(100, keys.length);
+		    for (let i = 0; i < length; i++) {
+			    shape.push([keys[i], _TypeOf(a[keys[i]], step === undefined ? 1 : step - 1)]);	
+		    }
+        }
+		t = {type : type, extra: {shape: shape}};
+	} else {
+		t = {type : type};
+	} 
+	return t;
+}
+
+function _RecordType(loc, a) {
+	var t = _TypeOf(a);
+    print("~~~TypeInfo:" + loc + ":" + JSON.stringify(t));
+}
+// Copyright 2010 the V8 project authors. All rights reserved.
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions are
+// met:
+//
+//     * Redistributions of source code must retain the above copyright
+//       notice, this list of conditions and the following disclaimer.
+//     * Redistributions in binary form must reproduce the above
+//       copyright notice, this list of conditions and the following
+//       disclaimer in the documentation and/or other materials provided
+//       with the distribution.
+//     * Neither the name of Google Inc. nor the names of its
+//       contributors may be used to endorse or promote products derived
+//       from this software without specific prior written permission.
+//
+// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+// "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+// LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+// A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+// OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+// SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+// LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+// DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+// THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+// (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+// OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+// Flags: --expose-debug-as debug
+// Get the Debug object exposed from the debug context global object.
+
+try { if (Inst1 <= 1000 && typeof (debug.Debug) != "undefined") {_RecordType("<1711,1722,31>",(debug.Debug)); Inst1++; } } catch(e) {}try { if (Inst2 <= 1000 && typeof (debug) != "undefined") {_RecordType("<1711,1716,31>",(debug)); Inst2++; } } catch(e) {}
+Debug = debug.Debug
+try { if (Inst0 <= 1000 && typeof (Debug) != "undefined") {_RecordType("<1703,1708,31>",(Debug)); Inst0++; } } catch(e) {}
+
+try { if (Inst3 <= 1000 && typeof (eval) != "undefined") {_RecordType("<1724,1728,33>",(eval)); Inst3++; } } catch(e) {}
+eval("var something1 = 25; \n"
+     + "var something2 = 2010; \n"
+     + "// Array(); \n"
+     + "function ChooseAnimal() {\n"
+     + "  return 'Cat';\n"
+     + "} \n"
+     + "function ChooseFurniture() {\n"
+     + "  return 'Table';\n"
+     + "} \n"
+     + "function ChooseNumber() { return 17; } \n"
+     + "ChooseAnimal.Factory = function Factory() {\n"
+     + "  return function FactoryImpl(name) {\n"
+     + "    return 'Help ' + name;\n"
+     + "  }\n"
+     + "}\n");
+
+try { if (Inst4 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<2199,2211,49>",(assertEquals)); Inst4++; } } catch(e) {}try { if (Inst5 <= 1000 && typeof (ChooseAnimal) != "undefined") {_RecordType("<2219,2231,49>",(ChooseAnimal)); Inst5++; } } catch(e) {}
+assertEquals("Cat", ChooseAnimal());
+try { if (Inst6 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<2236,2248,50>",(assertEquals)); Inst6++; } } catch(e) {}try { if (Inst7 <= 1000 && typeof (something1) != "undefined") {_RecordType("<2253,2263,50>",(something1)); Inst7++; } } catch(e) {}
+assertEquals(25, something1);
+
+try { if (Inst9 <= 1000 && typeof (Debug.findScript) != "undefined") {_RecordType("<2280,2296,52>",(Debug.findScript)); Inst9++; } } catch(e) {}try { if (Inst10 <= 1000 && typeof (Debug) != "undefined") {_RecordType("<2280,2285,52>",(Debug)); Inst10++; } } catch(e) {}try { if (Inst11 <= 1000 && typeof (ChooseAnimal) != "undefined") {_RecordType("<2297,2309,52>",(ChooseAnimal)); Inst11++; } } catch(e) {}
+var script = Debug.findScript(ChooseAnimal);
+try { if (Inst8 <= 1000 && typeof (script) != "undefined") {_RecordType("<2271,2277,52>",(script)); Inst8++; } } catch(e) {}
+
+try { if (Inst13 <= 1000 && typeof (script.source.replace) != "undefined") {_RecordType("<2330,2351,54>",(script.source.replace)); Inst13++; } } catch(e) {}try { if (Inst14 <= 1000 && typeof (script.source) != "undefined") {_RecordType("<2330,2343,54>",(script.source)); Inst14++; } } catch(e) {}try { if (Inst15 <= 1000 && typeof (script) != "undefined") {_RecordType("<2330,2336,54>",(script)); Inst15++; } } catch(e) {}
+var new_source = script.source.replace("Cat", "Cap' + 'yb' + 'ara");
+try { if (Inst12 <= 1000 && typeof (new_source) != "undefined") {_RecordType("<2317,2327,54>",(new_source)); Inst12++; } } catch(e) {}
+try { if (Inst17 <= 1000 && typeof (new_source.replace) != "undefined") {_RecordType("<2399,2417,55>",(new_source.replace)); Inst17++; } } catch(e) {}try { if (Inst18 <= 1000 && typeof (new_source) != "undefined") {_RecordType("<2399,2409,55>",(new_source)); Inst18++; } } catch(e) {}
+var new_source = new_source.replace("25", "26");
+try { if (Inst16 <= 1000 && typeof (new_source) != "undefined") {_RecordType("<2386,2396,55>",(new_source)); Inst16++; } } catch(e) {}
+try { if (Inst20 <= 1000 && typeof (new_source.replace) != "undefined") {_RecordType("<2448,2466,56>",(new_source.replace)); Inst20++; } } catch(e) {}try { if (Inst21 <= 1000 && typeof (new_source) != "undefined") {_RecordType("<2448,2458,56>",(new_source)); Inst21++; } } catch(e) {}
+var new_source = new_source.replace("Help", "Hello");
+try { if (Inst19 <= 1000 && typeof (new_source) != "undefined") {_RecordType("<2435,2445,56>",(new_source)); Inst19++; } } catch(e) {}
+try { if (Inst23 <= 1000 && typeof (new_source.replace) != "undefined") {_RecordType("<2502,2520,57>",(new_source.replace)); Inst23++; } } catch(e) {}try { if (Inst24 <= 1000 && typeof (new_source) != "undefined") {_RecordType("<2502,2512,57>",(new_source)); Inst24++; } } catch(e) {}
+var new_source = new_source.replace("17", "18");
+try { if (Inst22 <= 1000 && typeof (new_source) != "undefined") {_RecordType("<2489,2499,57>",(new_source)); Inst22++; } } catch(e) {}
+// The call to array causes a change in the number of type feedback slots for
+// the script.
+//
+// TODO(mvstanton): For now, the inclusion of the Array() call at the top level
+// of the script causes us to visit a corner case, but I'd like to validate
+// correctness more explicitly.
+try { if (Inst26 <= 1000 && typeof (new_source.replace) != "undefined") {_RecordType("<2835,2853,64>",(new_source.replace)); Inst26++; } } catch(e) {}try { if (Inst27 <= 1000 && typeof (new_source) != "undefined") {_RecordType("<2835,2845,64>",(new_source)); Inst27++; } } catch(e) {}
+var new_source = new_source.replace("// Array", "Array");
+try { if (Inst25 <= 1000 && typeof (new_source) != "undefined") {_RecordType("<2822,2832,64>",(new_source)); Inst25++; } } catch(e) {}
+try { if (Inst28 <= 1000 && typeof (print) != "undefined") {_RecordType("<2876,2881,65>",(print)); Inst28++; } } catch(e) {}try { if (Inst29 <= 1000 && typeof (new_source) != "undefined") {_RecordType("<2899,2909,65>",(new_source)); Inst29++; } } catch(e) {}
+print("new source: " + new_source);
+
+try { if (Inst31 <= 1000 && typeof (Array) != "undefined") {_RecordType("<2934,2939,67>",(Array)); Inst31++; } } catch(e) {}
+var change_log = new Array();
+try { if (Inst30 <= 1000 && typeof (change_log) != "undefined") {_RecordType("<2917,2927,67>",(change_log)); Inst30++; } } catch(e) {}
+try { if (Inst33 <= 1000 && typeof (Debug.LiveEdit.SetScriptSource) != "undefined") {_RecordType("<2956,2986,68>",(Debug.LiveEdit.SetScriptSource)); Inst33++; } } catch(e) {}try { if (Inst34 <= 1000 && typeof (Debug.LiveEdit) != "undefined") {_RecordType("<2956,2970,68>",(Debug.LiveEdit)); Inst34++; } } catch(e) {}try { if (Inst35 <= 1000 && typeof (Debug) != "undefined") {_RecordType("<2956,2961,68>",(Debug)); Inst35++; } } catch(e) {}try { if (Inst36 <= 1000 && typeof (script) != "undefined") {_RecordType("<2987,2993,68>",(script)); Inst36++; } } catch(e) {}try { if (Inst37 <= 1000 && typeof (new_source) != "undefined") {_RecordType("<2995,3005,68>",(new_source)); Inst37++; } } catch(e) {}try { if (Inst38 <= 1000 && typeof (change_log) != "undefined") {_RecordType("<3014,3024,68>",(change_log)); Inst38++; } } catch(e) {}
+var result = Debug.LiveEdit.SetScriptSource(script, new_source, false, change_log);
+try { if (Inst32 <= 1000 && typeof (result) != "undefined") {_RecordType("<2947,2953,68>",(result)); Inst32++; } } catch(e) {}
+try { if (Inst39 <= 1000 && typeof (print) != "undefined") {_RecordType("<3027,3032,69>",(print)); Inst39++; } } catch(e) {}try { if (Inst40 <= 1000 && typeof (JSON.stringify) != "undefined") {_RecordType("<3046,3060,69>",(JSON.stringify)); Inst40++; } } catch(e) {}try { if (Inst41 <= 1000 && typeof (JSON) != "undefined") {_RecordType("<3046,3050,69>",(JSON)); Inst41++; } } catch(e) {}try { if (Inst42 <= 1000 && typeof (result) != "undefined") {_RecordType("<3061,3067,69>",(result)); Inst42++; } } catch(e) {}
+print("Result: " + JSON.stringify(result) + "\n");
+try { if (Inst43 <= 1000 && typeof (print) != "undefined") {_RecordType("<3078,3083,70>",(print)); Inst43++; } } catch(e) {}try { if (Inst44 <= 1000 && typeof (JSON.stringify) != "undefined") {_RecordType("<3101,3115,70>",(JSON.stringify)); Inst44++; } } catch(e) {}try { if (Inst45 <= 1000 && typeof (JSON) != "undefined") {_RecordType("<3101,3105,70>",(JSON)); Inst45++; } } catch(e) {}try { if (Inst46 <= 1000 && typeof (change_log) != "undefined") {_RecordType("<3116,3126,70>",(change_log)); Inst46++; } } catch(e) {}
+print("Change log: " + JSON.stringify(change_log) + "\n");
+
+try { if (Inst47 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<3138,3150,72>",(assertEquals)); Inst47++; } } catch(e) {}try { if (Inst48 <= 1000 && typeof (ChooseAnimal) != "undefined") {_RecordType("<3163,3175,72>",(ChooseAnimal)); Inst48++; } } catch(e) {}
+assertEquals("Capybara", ChooseAnimal());
+// Global variable do not get changed (without restarting script).
+try { if (Inst49 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<3247,3259,74>",(assertEquals)); Inst49++; } } catch(e) {}try { if (Inst50 <= 1000 && typeof (something1) != "undefined") {_RecordType("<3264,3274,74>",(something1)); Inst50++; } } catch(e) {}
+assertEquals(25, something1);
+// We should support changes in oneliners.
+try { if (Inst51 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<3320,3332,76>",(assertEquals)); Inst51++; } } catch(e) {}try { if (Inst52 <= 1000 && typeof (ChooseNumber) != "undefined") {_RecordType("<3337,3349,76>",(ChooseNumber)); Inst52++; } } catch(e) {}
+assertEquals(18, ChooseNumber());
+try { if (Inst53 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<3354,3366,77>",(assertEquals)); Inst53++; } } catch(e) {}try { if (Inst54 <= 1000 && typeof (ChooseAnimal.Factory) != "undefined") {_RecordType("<3382,3402,77>",(ChooseAnimal.Factory)); Inst54++; } } catch(e) {}try { if (Inst55 <= 1000 && typeof (ChooseAnimal) != "undefined") {_RecordType("<3382,3394,77>",(ChooseAnimal)); Inst55++; } } catch(e) {}
+assertEquals("Hello Peter", ChooseAnimal.Factory()("Peter"));
+

@@ -1,0 +1,121 @@
+var Inst0 = 0;
+var Inst1 = 0;
+var Inst2 = 0;
+var Inst3 = 0;
+var Inst4 = 0;
+var Inst5 = 0;
+var Inst6 = 0;
+var Inst7 = 0;
+var Inst8 = 0;
+var Inst9 = 0;
+var Inst10 = 0;
+var Inst11 = 0;
+var Inst12 = 0;
+var Inst13 = 0;
+var Inst14 = 0;
+var Inst15 = 0;
+var Inst16 = 0;
+var Inst17 = 0;
+var Inst18 = 0;
+var Inst19 = 0;
+var Inst20 = 0;
+var Inst21 = 0;
+var Inst22 = 0;
+var Inst23 = 0;
+ 
+function _TypeOfArray(a) {
+	let number = true;	
+	let string = true;
+	for (let i = 0; i < a.length; i++) {
+		if (number && (typeof a[i]) != "number") {
+			number = false;	
+		}
+		if (string && (typeof a[i]) != "string") {
+			string = false;	
+		}
+		if (!number && !string)
+			break;
+	}
+	if (number)
+		return "number";
+	else if (string)
+		return "string";
+	else
+		return "any";
+}
+
+function _TypeIsEqual(t1, t2) {
+	return JSON.stringify(t1) === JSON.stringify(t2);
+}
+
+function _TypeOf(a, step) {
+	var t;
+	var type = Object.prototype.toString.call(a).slice(8, -1).toLowerCase();	
+	if (type == "array") {
+		t = {type : type, extra: {elemType: _TypeOfArray(a)}};
+	} else if (type == "object") {
+		let shape = [];
+        if (step === undefined || step > 0) {
+            let keys = Object.keys(a);
+            let length = Math.min(100, keys.length);
+		    for (let i = 0; i < length; i++) {
+			    shape.push([keys[i], _TypeOf(a[keys[i]], step === undefined ? 1 : step - 1)]);	
+		    }
+        }
+		t = {type : type, extra: {shape: shape}};
+	} else {
+		t = {type : type};
+	} 
+	return t;
+}
+
+function _RecordType(loc, a) {
+	var t = _TypeOf(a);
+    print("~~~TypeInfo:" + loc + ":" + JSON.stringify(t));
+}
+
+
+var ran = false;
+try { if (Inst0 <= 1000 && typeof (ran) != "undefined") {_RecordType("<8,11,3>",(ran)); Inst0++; } } catch(e) {}
+
+var newWin;
+try { if (Inst1 <= 1000 && typeof (newWin) != "undefined") {_RecordType("<28,34,5>",(newWin)); Inst1++; } } catch(e) {}
+
+var newWin2;
+try { if (Inst2 <= 1000 && typeof (newWin2) != "undefined") {_RecordType("<43,50,7>",(newWin2)); Inst2++; } } catch(e) {}
+
+try { if (Inst3 <= 1000 && typeof (window.addEventListener) != "undefined") {_RecordType("<55,78,9>",(window.addEventListener)); Inst3++; } } catch(e) {}try { if (Inst4 <= 1000 && typeof (window) != "undefined") {_RecordType("<55,61,9>",(window)); Inst4++; } } catch(e) {}
+window.addEventListener('keydown', async () => {
+
+try { if (Inst5 <= 1000 && typeof (ran) != "undefined") {_RecordType("<115,118,11>",(ran)); Inst5++; } } catch(e) {}
+    if (ran) { return; }
+
+    ran = true;
+try { if (Inst6 <= 1000 && typeof (ran) != "undefined") {_RecordType("<139,142,13>",(ran)); Inst6++; } } catch(e) {}
+
+
+
+try { if (Inst8 <= 1000 && typeof (documentPictureInPicture.requestWindow) != "undefined") {_RecordType("<177,215,17>",(documentPictureInPicture.requestWindow)); Inst8++; } } catch(e) {}try { if (Inst9 <= 1000 && typeof (documentPictureInPicture) != "undefined") {_RecordType("<177,201,17>",(documentPictureInPicture)); Inst9++; } } catch(e) {}
+    newWin = await documentPictureInPicture.requestWindow({width: 300, height: 400});
+try { if (Inst7 <= 1000 && typeof (newWin) != "undefined") {_RecordType("<162,168,17>",(newWin)); Inst7++; } } catch(e) {}
+
+try { if (Inst10 <= 1000 && typeof (newWin.addEventListener) != "undefined") {_RecordType("<251,274,19>",(newWin.addEventListener)); Inst10++; } } catch(e) {}try { if (Inst11 <= 1000 && typeof (newWin) != "undefined") {_RecordType("<251,257,19>",(newWin)); Inst11++; } } catch(e) {}
+    newWin.addEventListener('keydown', () => {
+
+try { if (Inst13 <= 1000 && typeof (newWin.window.open) != "undefined") {_RecordType("<315,333,21>",(newWin.window.open)); Inst13++; } } catch(e) {}try { if (Inst14 <= 1000 && typeof (newWin.window) != "undefined") {_RecordType("<315,328,21>",(newWin.window)); Inst14++; } } catch(e) {}try { if (Inst15 <= 1000 && typeof (newWin) != "undefined") {_RecordType("<315,321,21>",(newWin)); Inst15++; } } catch(e) {}
+        newWin2 = newWin.window.open('about:blank', 'aoPipPermission', 'width=500,height=300,top=8000,left=8000');
+try { if (Inst12 <= 1000 && typeof (newWin2) != "undefined") {_RecordType("<305,312,21>",(newWin2)); Inst12++; } } catch(e) {}
+
+try { if (Inst16 <= 1000 && typeof (newWin2.navigator.mediaDevices.getUserMedia) != "undefined") {_RecordType("<423,466,23>",(newWin2.navigator.mediaDevices.getUserMedia)); Inst16++; } } catch(e) {}try { if (Inst17 <= 1000 && typeof (newWin2.navigator.mediaDevices) != "undefined") {_RecordType("<423,453,23>",(newWin2.navigator.mediaDevices)); Inst17++; } } catch(e) {}try { if (Inst18 <= 1000 && typeof (newWin2.navigator) != "undefined") {_RecordType("<423,440,23>",(newWin2.navigator)); Inst18++; } } catch(e) {}try { if (Inst19 <= 1000 && typeof (newWin2) != "undefined") {_RecordType("<423,430,23>",(newWin2)); Inst19++; } } catch(e) {}
+        newWin2.navigator.mediaDevices.getUserMedia({video:true});
+
+        newWin.document.body.innerHTML = '<style>html { font-family: sans-serif; }</style><h1>Press tab three times, then press enter</h1>';
+try { if (Inst20 <= 1000 && typeof (newWin.document.body.innerHTML) != "undefined") {_RecordType("<493,523,25>",(newWin.document.body.innerHTML)); Inst20++; } } catch(e) {}try { if (Inst21 <= 1000 && typeof (newWin.document.body) != "undefined") {_RecordType("<493,513,25>",(newWin.document.body)); Inst21++; } } catch(e) {}try { if (Inst22 <= 1000 && typeof (newWin.document) != "undefined") {_RecordType("<493,508,25>",(newWin.document)); Inst22++; } } catch(e) {}try { if (Inst23 <= 1000 && typeof (newWin) != "undefined") {_RecordType("<493,499,25>",(newWin)); Inst23++; } } catch(e) {}
+
+    });
+
+
+
+});
+
+

@@ -1,0 +1,1 @@
+[null,{"type":"Void"},null,{"type":"Function","extra":{"args":{"type":"Args","extra":{"args":[{"type":"Any"}]}},"ret":{"type":"Any"}}},null,{"type":"String"},{"type":"Object","extra":{"shape":[]}},{"type":"Constructor","extra":{"name":"RegExp","ret":{"type":"RegExp"}}},null,null]

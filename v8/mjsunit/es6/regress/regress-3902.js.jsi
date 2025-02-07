@@ -1,0 +1,114 @@
+var Inst0 = 0;
+var Inst1 = 0;
+var Inst2 = 0;
+var Inst3 = 0;
+var Inst4 = 0;
+var Inst5 = 0;
+var Inst6 = 0;
+var Inst7 = 0;
+var Inst8 = 0;
+var Inst9 = 0;
+var Inst10 = 0;
+var Inst11 = 0;
+var Inst12 = 0;
+var Inst13 = 0;
+var Inst14 = 0;
+var Inst15 = 0;
+var Inst16 = 0;
+var Inst17 = 0;
+var Inst18 = 0;
+var Inst19 = 0;
+var Inst20 = 0;
+var Inst21 = 0;
+var Inst22 = 0;
+var Inst23 = 0;
+var Inst24 = 0;
+var Inst25 = 0;
+var Inst26 = 0;
+var Inst27 = 0;
+var Inst28 = 0;
+var Inst29 = 0;
+var Inst30 = 0;
+var Inst31 = 0;
+var Inst32 = 0;
+var Inst33 = 0;
+var Inst34 = 0;
+var Inst35 = 0;
+var Inst36 = 0;
+var Inst37 = 0;
+ 
+function _TypeOfArray(a) {
+	let number = true;	
+	let string = true;
+	for (let i = 0; i < a.length; i++) {
+		if (number && (typeof a[i]) != "number") {
+			number = false;	
+		}
+		if (string && (typeof a[i]) != "string") {
+			string = false;	
+		}
+		if (!number && !string)
+			break;
+	}
+	if (number)
+		return "number";
+	else if (string)
+		return "string";
+	else
+		return "any";
+}
+
+function _TypeIsEqual(t1, t2) {
+	return JSON.stringify(t1) === JSON.stringify(t2);
+}
+
+function _TypeOf(a, step) {
+	var t;
+	var type = Object.prototype.toString.call(a).slice(8, -1).toLowerCase();	
+	if (type == "array") {
+		t = {type : type, extra: {elemType: _TypeOfArray(a)}};
+	} else if (type == "object") {
+		let shape = [];
+        if (step === undefined || step > 0) {
+            let keys = Object.keys(a);
+            let length = Math.min(100, keys.length);
+		    for (let i = 0; i < length; i++) {
+			    shape.push([keys[i], _TypeOf(a[keys[i]], step === undefined ? 1 : step - 1)]);	
+		    }
+        }
+		t = {type : type, extra: {shape: shape}};
+	} else {
+		t = {type : type};
+	} 
+	return t;
+}
+
+function _RecordType(loc, a) {
+	var t = _TypeOf(a);
+    print("~~~TypeInfo:" + loc + ":" + JSON.stringify(t));
+}
+// Copyright 2015 the V8 project authors. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
+try { if (Inst0 <= 1000 && typeof (g) != "undefined") {_RecordType("<178,179,5>",(g)); Inst0++; } } catch(e) {}
+function* g() {}
+try { if (Inst1 <= 1000 && typeof (assertTrue) != "undefined") {_RecordType("<185,195,6>",(assertTrue)); Inst1++; } } catch(e) {}try { if (Inst2 <= 1000 && typeof (Object.getOwnPropertyDescriptor(g.__proto__, "constructor").configurable) != "undefined") {_RecordType("<196,268,6>",(Object.getOwnPropertyDescriptor(g.__proto__, "constructor").configurable)); Inst2++; } } catch(e) {}try { if (Inst3 <= 1000 && typeof (Object.getOwnPropertyDescriptor) != "undefined") {_RecordType("<196,227,6>",(Object.getOwnPropertyDescriptor)); Inst3++; } } catch(e) {}try { if (Inst4 <= 1000 && typeof (Object) != "undefined") {_RecordType("<196,202,6>",(Object)); Inst4++; } } catch(e) {}try { if (Inst5 <= 1000 && typeof (g.__proto__) != "undefined") {_RecordType("<228,239,6>",(g.__proto__)); Inst5++; } } catch(e) {}try { if (Inst6 <= 1000 && typeof (g) != "undefined") {_RecordType("<228,229,6>",(g)); Inst6++; } } catch(e) {}
+assertTrue(Object.getOwnPropertyDescriptor(g.__proto__, "constructor").configurable);
+try { if (Inst7 <= 1000 && typeof (assertTrue) != "undefined") {_RecordType("<271,281,7>",(assertTrue)); Inst7++; } } catch(e) {}try { if (Inst8 <= 1000 && typeof (Object.getOwnPropertyDescriptor(g.prototype.__proto__, "constructor").configurable) != "undefined") {_RecordType("<282,364,7>",(Object.getOwnPropertyDescriptor(g.prototype.__proto__, "constructor").configurable)); Inst8++; } } catch(e) {}try { if (Inst9 <= 1000 && typeof (Object.getOwnPropertyDescriptor) != "undefined") {_RecordType("<282,313,7>",(Object.getOwnPropertyDescriptor)); Inst9++; } } catch(e) {}try { if (Inst10 <= 1000 && typeof (Object) != "undefined") {_RecordType("<282,288,7>",(Object)); Inst10++; } } catch(e) {}try { if (Inst11 <= 1000 && typeof (g.prototype.__proto__) != "undefined") {_RecordType("<314,335,7>",(g.prototype.__proto__)); Inst11++; } } catch(e) {}try { if (Inst12 <= 1000 && typeof (g.prototype) != "undefined") {_RecordType("<314,325,7>",(g.prototype)); Inst12++; } } catch(e) {}try { if (Inst13 <= 1000 && typeof (g) != "undefined") {_RecordType("<314,315,7>",(g)); Inst13++; } } catch(e) {}
+assertTrue(Object.getOwnPropertyDescriptor(g.prototype.__proto__, "constructor").configurable);
+
+try { if (Inst14 <= 1000 && typeof (FakeGeneratorFunctionConstructor) != "undefined") {_RecordType("<377,409,9>",(FakeGeneratorFunctionConstructor)); Inst14++; } } catch(e) {}
+function FakeGeneratorFunctionConstructor() {}
+try { if (Inst15 <= 1000 && typeof (Object.defineProperty) != "undefined") {_RecordType("<415,436,10>",(Object.defineProperty)); Inst15++; } } catch(e) {}try { if (Inst16 <= 1000 && typeof (Object) != "undefined") {_RecordType("<415,421,10>",(Object)); Inst16++; } } catch(e) {}try { if (Inst17 <= 1000 && typeof (g.__proto__) != "undefined") {_RecordType("<437,448,10>",(g.__proto__)); Inst17++; } } catch(e) {}try { if (Inst18 <= 1000 && typeof (g) != "undefined") {_RecordType("<437,438,10>",(g)); Inst18++; } } catch(e) {}try { if (Inst19 <= 1000 && typeof (FakeGeneratorFunctionConstructor) != "undefined") {_RecordType("<473,505,10>",(FakeGeneratorFunctionConstructor)); Inst19++; } } catch(e) {}
+Object.defineProperty(g.__proto__, "constructor", {value: FakeGeneratorFunctionConstructor});
+try { if (Inst20 <= 1000 && typeof (assertSame) != "undefined") {_RecordType("<509,519,11>",(assertSame)); Inst20++; } } catch(e) {}try { if (Inst21 <= 1000 && typeof (g.__proto__.constructor) != "undefined") {_RecordType("<520,543,11>",(g.__proto__.constructor)); Inst21++; } } catch(e) {}try { if (Inst22 <= 1000 && typeof (g.__proto__) != "undefined") {_RecordType("<520,531,11>",(g.__proto__)); Inst22++; } } catch(e) {}try { if (Inst23 <= 1000 && typeof (g) != "undefined") {_RecordType("<520,521,11>",(g)); Inst23++; } } catch(e) {}try { if (Inst24 <= 1000 && typeof (FakeGeneratorFunctionConstructor) != "undefined") {_RecordType("<545,577,11>",(FakeGeneratorFunctionConstructor)); Inst24++; } } catch(e) {}
+assertSame(g.__proto__.constructor, FakeGeneratorFunctionConstructor);
+
+try { if (Inst25 <= 1000 && typeof (FakeGeneratorObjectConstructor) != "undefined") {_RecordType("<590,620,13>",(FakeGeneratorObjectConstructor)); Inst25++; } } catch(e) {}
+function FakeGeneratorObjectConstructor() {}
+try { if (Inst26 <= 1000 && typeof (Object.defineProperty) != "undefined") {_RecordType("<626,647,14>",(Object.defineProperty)); Inst26++; } } catch(e) {}try { if (Inst27 <= 1000 && typeof (Object) != "undefined") {_RecordType("<626,632,14>",(Object)); Inst27++; } } catch(e) {}try { if (Inst28 <= 1000 && typeof (g.prototype.__proto__) != "undefined") {_RecordType("<648,669,14>",(g.prototype.__proto__)); Inst28++; } } catch(e) {}try { if (Inst29 <= 1000 && typeof (g.prototype) != "undefined") {_RecordType("<648,659,14>",(g.prototype)); Inst29++; } } catch(e) {}try { if (Inst30 <= 1000 && typeof (g) != "undefined") {_RecordType("<648,649,14>",(g)); Inst30++; } } catch(e) {}try { if (Inst31 <= 1000 && typeof (FakeGeneratorObjectConstructor) != "undefined") {_RecordType("<694,724,14>",(FakeGeneratorObjectConstructor)); Inst31++; } } catch(e) {}
+Object.defineProperty(g.prototype.__proto__, "constructor", {value: FakeGeneratorObjectConstructor});
+try { if (Inst32 <= 1000 && typeof (assertSame) != "undefined") {_RecordType("<728,738,15>",(assertSame)); Inst32++; } } catch(e) {}try { if (Inst33 <= 1000 && typeof (g.prototype.__proto__.constructor) != "undefined") {_RecordType("<739,772,15>",(g.prototype.__proto__.constructor)); Inst33++; } } catch(e) {}try { if (Inst34 <= 1000 && typeof (g.prototype.__proto__) != "undefined") {_RecordType("<739,760,15>",(g.prototype.__proto__)); Inst34++; } } catch(e) {}try { if (Inst35 <= 1000 && typeof (g.prototype) != "undefined") {_RecordType("<739,750,15>",(g.prototype)); Inst35++; } } catch(e) {}try { if (Inst36 <= 1000 && typeof (g) != "undefined") {_RecordType("<739,740,15>",(g)); Inst36++; } } catch(e) {}try { if (Inst37 <= 1000 && typeof (FakeGeneratorObjectConstructor) != "undefined") {_RecordType("<774,804,15>",(FakeGeneratorObjectConstructor)); Inst37++; } } catch(e) {}
+assertSame(g.prototype.__proto__.constructor, FakeGeneratorObjectConstructor);
+

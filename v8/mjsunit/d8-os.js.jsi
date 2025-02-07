@@ -1,0 +1,505 @@
+var Inst0 = 0;
+var Inst1 = 0;
+var Inst2 = 0;
+var Inst3 = 0;
+var Inst4 = 0;
+var Inst5 = 0;
+var Inst6 = 0;
+var Inst7 = 0;
+var Inst8 = 0;
+var Inst9 = 0;
+var Inst10 = 0;
+var Inst11 = 0;
+var Inst12 = 0;
+var Inst13 = 0;
+var Inst14 = 0;
+var Inst15 = 0;
+var Inst16 = 0;
+var Inst17 = 0;
+var Inst18 = 0;
+var Inst19 = 0;
+var Inst20 = 0;
+var Inst21 = 0;
+var Inst22 = 0;
+var Inst23 = 0;
+var Inst24 = 0;
+var Inst25 = 0;
+var Inst26 = 0;
+var Inst27 = 0;
+var Inst28 = 0;
+var Inst29 = 0;
+var Inst30 = 0;
+var Inst31 = 0;
+var Inst32 = 0;
+var Inst33 = 0;
+var Inst34 = 0;
+var Inst35 = 0;
+var Inst36 = 0;
+var Inst37 = 0;
+var Inst38 = 0;
+var Inst39 = 0;
+var Inst40 = 0;
+var Inst41 = 0;
+var Inst42 = 0;
+var Inst43 = 0;
+var Inst44 = 0;
+var Inst45 = 0;
+var Inst46 = 0;
+var Inst47 = 0;
+var Inst48 = 0;
+var Inst49 = 0;
+var Inst50 = 0;
+var Inst51 = 0;
+var Inst52 = 0;
+var Inst53 = 0;
+var Inst54 = 0;
+var Inst55 = 0;
+var Inst56 = 0;
+var Inst57 = 0;
+var Inst58 = 0;
+var Inst59 = 0;
+var Inst60 = 0;
+var Inst61 = 0;
+var Inst62 = 0;
+var Inst63 = 0;
+var Inst64 = 0;
+var Inst65 = 0;
+var Inst66 = 0;
+var Inst67 = 0;
+var Inst68 = 0;
+var Inst69 = 0;
+var Inst70 = 0;
+var Inst71 = 0;
+var Inst72 = 0;
+var Inst73 = 0;
+var Inst74 = 0;
+var Inst75 = 0;
+var Inst76 = 0;
+var Inst77 = 0;
+var Inst78 = 0;
+var Inst79 = 0;
+var Inst80 = 0;
+var Inst81 = 0;
+var Inst82 = 0;
+var Inst83 = 0;
+var Inst84 = 0;
+var Inst85 = 0;
+var Inst86 = 0;
+var Inst87 = 0;
+var Inst88 = 0;
+var Inst89 = 0;
+var Inst90 = 0;
+var Inst91 = 0;
+var Inst92 = 0;
+var Inst93 = 0;
+var Inst94 = 0;
+var Inst95 = 0;
+var Inst96 = 0;
+var Inst97 = 0;
+var Inst98 = 0;
+var Inst99 = 0;
+var Inst100 = 0;
+var Inst101 = 0;
+var Inst102 = 0;
+var Inst103 = 0;
+var Inst104 = 0;
+var Inst105 = 0;
+var Inst106 = 0;
+var Inst107 = 0;
+var Inst108 = 0;
+var Inst109 = 0;
+var Inst110 = 0;
+var Inst111 = 0;
+var Inst112 = 0;
+var Inst113 = 0;
+var Inst114 = 0;
+var Inst115 = 0;
+var Inst116 = 0;
+var Inst117 = 0;
+var Inst118 = 0;
+var Inst119 = 0;
+var Inst120 = 0;
+var Inst121 = 0;
+var Inst122 = 0;
+var Inst123 = 0;
+var Inst124 = 0;
+var Inst125 = 0;
+var Inst126 = 0;
+var Inst127 = 0;
+var Inst128 = 0;
+var Inst129 = 0;
+var Inst130 = 0;
+var Inst131 = 0;
+var Inst132 = 0;
+var Inst133 = 0;
+var Inst134 = 0;
+var Inst135 = 0;
+var Inst136 = 0;
+var Inst137 = 0;
+var Inst138 = 0;
+var Inst139 = 0;
+var Inst140 = 0;
+var Inst141 = 0;
+var Inst142 = 0;
+var Inst143 = 0;
+var Inst144 = 0;
+var Inst145 = 0;
+var Inst146 = 0;
+var Inst147 = 0;
+var Inst148 = 0;
+var Inst149 = 0;
+var Inst150 = 0;
+var Inst151 = 0;
+var Inst152 = 0;
+var Inst153 = 0;
+var Inst154 = 0;
+var Inst155 = 0;
+var Inst156 = 0;
+var Inst157 = 0;
+var Inst158 = 0;
+var Inst159 = 0;
+var Inst160 = 0;
+var Inst161 = 0;
+var Inst162 = 0;
+var Inst163 = 0;
+var Inst164 = 0;
+var Inst165 = 0;
+var Inst166 = 0;
+ 
+function _TypeOfArray(a) {
+	let number = true;	
+	let string = true;
+	for (let i = 0; i < a.length; i++) {
+		if (number && (typeof a[i]) != "number") {
+			number = false;	
+		}
+		if (string && (typeof a[i]) != "string") {
+			string = false;	
+		}
+		if (!number && !string)
+			break;
+	}
+	if (number)
+		return "number";
+	else if (string)
+		return "string";
+	else
+		return "any";
+}
+
+function _TypeIsEqual(t1, t2) {
+	return JSON.stringify(t1) === JSON.stringify(t2);
+}
+
+function _TypeOf(a, step) {
+	var t;
+	var type = Object.prototype.toString.call(a).slice(8, -1).toLowerCase();	
+	if (type == "array") {
+		t = {type : type, extra: {elemType: _TypeOfArray(a)}};
+	} else if (type == "object") {
+		let shape = [];
+        if (step === undefined || step > 0) {
+            let keys = Object.keys(a);
+            let length = Math.min(100, keys.length);
+		    for (let i = 0; i < length; i++) {
+			    shape.push([keys[i], _TypeOf(a[keys[i]], step === undefined ? 1 : step - 1)]);	
+		    }
+        }
+		t = {type : type, extra: {shape: shape}};
+	} else {
+		t = {type : type};
+	} 
+	return t;
+}
+
+function _RecordType(loc, a) {
+	var t = _TypeOf(a);
+    print("~~~TypeInfo:" + loc + ":" + JSON.stringify(t));
+}
+// Copyright 2009 the V8 project authors. All rights reserved.
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions are
+// met:
+//
+//     * Redistributions of source code must retain the above copyright
+//       notice, this list of conditions and the following disclaimer.
+//     * Redistributions in binary form must reproduce the above
+//       copyright notice, this list of conditions and the following
+//       disclaimer in the documentation and/or other materials provided
+//       with the distribution.
+//     * Neither the name of Google Inc. nor the names of its
+//       contributors may be used to endorse or promote products derived
+//       from this software without specific prior written permission.
+//
+// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+// "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+// LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+// A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+// OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+// SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+// LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+// DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+// THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+// (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+// OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+// Test the OS module of d8.  This test only makes sense with d8.  It
+// only does non-trivial work on Unix since os.system() is not currently
+// implemented on Windows, and even if it were then many of the things
+// we are calling would not be available.
+
+try { if (Inst1 <= 1000 && typeof (Math.random) != "undefined") {_RecordType("<1903,1914,33>",(Math.random)); Inst1++; } } catch(e) {}try { if (Inst2 <= 1000 && typeof (Math) != "undefined") {_RecordType("<1903,1907,33>",(Math)); Inst2++; } } catch(e) {}
+var TEST_DIR = "/tmp/d8-os-test-directory-" + ((Math.random() * (1<<30)) | 0);
+try { if (Inst0 <= 1000 && typeof (TEST_DIR) != "undefined") {_RecordType("<1859,1867,33>",(TEST_DIR)); Inst0++; } } catch(e) {}
+
+
+try { if (Inst3 <= 1000 && typeof (arg_error) != "undefined") {_RecordType("<1945,1954,36>",(arg_error)); Inst3++; } } catch(e) {}
+function arg_error(str) {
+try { if (Inst4 <= 1000 && typeof (str) != "undefined") {_RecordType("<1955,1958,36>",(str)); Inst4++; } } catch(e) {}
+try { if (Inst7 <= 1000 && typeof (e) != "undefined") {_RecordType("<1996,1997,39>",(e)); Inst7++; } } catch(e) {}
+  try {
+try { if (Inst5 <= 1000 && typeof (eval) != "undefined") {_RecordType("<1974,1978,38>",(eval)); Inst5++; } } catch(e) {}try { if (Inst6 <= 1000 && typeof (str) != "undefined") {_RecordType("<1979,1982,38>",(str)); Inst6++; } } catch(e) {}
+    eval(str);
+  } catch (e) {
+try { if (Inst8 <= 1000 && typeof (assertTrue) != "undefined") {_RecordType("<2005,2015,40>",(assertTrue)); Inst8++; } } catch(e) {}try { if (Inst9 <= 1000 && typeof (/rgument/.test) != "undefined") {_RecordType("<2016,2030,40>",(/rgument/.test)); Inst9++; } } catch(e) {}try { if (Inst10 <= 1000 && typeof (e) != "undefined") {_RecordType("<2031,2032,40>",(e)); Inst10++; } } catch(e) {}try { if (Inst11 <= 1000 && typeof (str) != "undefined") {_RecordType("<2035,2038,40>",(str)); Inst11++; } } catch(e) {}
+    assertTrue(/rgument/.test(e), str);
+  }
+}
+
+
+try { if (Inst12 <= 1000 && typeof (str_error) != "undefined") {_RecordType("<2058,2067,45>",(str_error)); Inst12++; } } catch(e) {}
+function str_error(str) {
+try { if (Inst13 <= 1000 && typeof (str) != "undefined") {_RecordType("<2068,2071,45>",(str)); Inst13++; } } catch(e) {}
+try { if (Inst15 <= 1000 && typeof (Object) != "undefined") {_RecordType("<2089,2095,46>",(Object)); Inst15++; } } catch(e) {}
+  var e = new Object();
+try { if (Inst14 <= 1000 && typeof (e) != "undefined") {_RecordType("<2081,2082,46>",(e)); Inst14++; } } catch(e) {}
+try { if (Inst18 <= 1000 && typeof (Error) != "undefined") {_RecordType("<2137,2142,47>",(Error)); Inst18++; } } catch(e) {}
+  e.toString = function() { throw new Error("foo bar"); }
+try { if (Inst16 <= 1000 && typeof (e.toString) != "undefined") {_RecordType("<2101,2111,47>",(e.toString)); Inst16++; } } catch(e) {}try { if (Inst17 <= 1000 && typeof (e) != "undefined") {_RecordType("<2101,2102,47>",(e)); Inst17++; } } catch(e) {}
+try { if (Inst21 <= 1000 && typeof (exception) != "undefined") {_RecordType("<2191,2200,50>",(exception)); Inst21++; } } catch(e) {}
+  try {
+try { if (Inst19 <= 1000 && typeof (eval) != "undefined") {_RecordType("<2169,2173,49>",(eval)); Inst19++; } } catch(e) {}try { if (Inst20 <= 1000 && typeof (str) != "undefined") {_RecordType("<2174,2177,49>",(str)); Inst20++; } } catch(e) {}
+    eval(str);
+  } catch (exception) {
+try { if (Inst22 <= 1000 && typeof (assertTrue) != "undefined") {_RecordType("<2208,2218,51>",(assertTrue)); Inst22++; } } catch(e) {}try { if (Inst23 <= 1000 && typeof (/tring conversion/.test) != "undefined") {_RecordType("<2219,2242,51>",(/tring conversion/.test)); Inst23++; } } catch(e) {}try { if (Inst24 <= 1000 && typeof (exception) != "undefined") {_RecordType("<2243,2252,51>",(exception)); Inst24++; } } catch(e) {}try { if (Inst25 <= 1000 && typeof (str) != "undefined") {_RecordType("<2255,2258,51>",(str)); Inst25++; } } catch(e) {}
+    assertTrue(/tring conversion/.test(exception), str);
+  }
+}
+
+
+try { if (Inst26 <= 1000 && typeof (this.os) != "undefined") {_RecordType("<2273,2280,56>",(this.os)); Inst26++; } } catch(e) {}try { if (Inst27 <= 1000 && typeof (os.system) != "undefined") {_RecordType("<2284,2293,56>",(os.system)); Inst27++; } } catch(e) {}try { if (Inst28 <= 1000 && typeof (os) != "undefined") {_RecordType("<2284,2286,56>",(os)); Inst28++; } } catch(e) {}
+if (this.os && os.system) {
+  // Ensure that we have a valid working directory.
+try { if (Inst29 <= 1000 && typeof (os.chdir) != "undefined") {_RecordType("<2351,2359,58>",(os.chdir)); Inst29++; } } catch(e) {}try { if (Inst30 <= 1000 && typeof (os) != "undefined") {_RecordType("<2351,2353,58>",(os)); Inst30++; } } catch(e) {}
+  os.chdir("/tmp");
+try { if (Inst37 <= 1000 && typeof (e) != "undefined") {_RecordType("<2520,2521,63>",(e)); Inst37++; } } catch(e) {}
+  try {
+    // Delete the dir if it is lying around from last time.
+try { if (Inst31 <= 1000 && typeof (os.system) != "undefined") {_RecordType("<2441,2450,61>",(os.system)); Inst31++; } } catch(e) {}try { if (Inst32 <= 1000 && typeof (os) != "undefined") {_RecordType("<2441,2443,61>",(os)); Inst32++; } } catch(e) {}try { if (Inst33 <= 1000 && typeof (TEST_DIR) != "undefined") {_RecordType("<2458,2466,61>",(TEST_DIR)); Inst33++; } } catch(e) {}
+    os.system("ls", [TEST_DIR]);
+try { if (Inst34 <= 1000 && typeof (os.system) != "undefined") {_RecordType("<2474,2483,62>",(os.system)); Inst34++; } } catch(e) {}try { if (Inst35 <= 1000 && typeof (os) != "undefined") {_RecordType("<2474,2476,62>",(os)); Inst35++; } } catch(e) {}try { if (Inst36 <= 1000 && typeof (TEST_DIR) != "undefined") {_RecordType("<2497,2505,62>",(TEST_DIR)); Inst36++; } } catch(e) {}
+    os.system("rm", ["-r", TEST_DIR]);
+  } catch (e) {
+  }
+try { if (Inst38 <= 1000 && typeof (os.mkdirp) != "undefined") {_RecordType("<2531,2540,65>",(os.mkdirp)); Inst38++; } } catch(e) {}try { if (Inst39 <= 1000 && typeof (os) != "undefined") {_RecordType("<2531,2533,65>",(os)); Inst39++; } } catch(e) {}try { if (Inst40 <= 1000 && typeof (TEST_DIR) != "undefined") {_RecordType("<2541,2549,65>",(TEST_DIR)); Inst40++; } } catch(e) {}
+  os.mkdirp(TEST_DIR);
+  try {
+    // Check the chdir worked.
+try { if (Inst41 <= 1000 && typeof (os.system) != "undefined") {_RecordType("<2595,2604,68>",(os.system)); Inst41++; } } catch(e) {}try { if (Inst42 <= 1000 && typeof (os) != "undefined") {_RecordType("<2595,2597,68>",(os)); Inst42++; } } catch(e) {}try { if (Inst43 <= 1000 && typeof (TEST_DIR) != "undefined") {_RecordType("<2612,2620,68>",(TEST_DIR)); Inst43++; } } catch(e) {}
+    os.system('ls', [TEST_DIR]);
+    // Simple create dir.
+try { if (Inst44 <= 1000 && typeof (os.mkdirp) != "undefined") {_RecordType("<2654,2663,70>",(os.mkdirp)); Inst44++; } } catch(e) {}try { if (Inst45 <= 1000 && typeof (os) != "undefined") {_RecordType("<2654,2656,70>",(os)); Inst45++; } } catch(e) {}try { if (Inst46 <= 1000 && typeof (TEST_DIR) != "undefined") {_RecordType("<2664,2672,70>",(TEST_DIR)); Inst46++; } } catch(e) {}
+    os.mkdirp(TEST_DIR + "/dir");
+    // Create dir in dir.
+try { if (Inst47 <= 1000 && typeof (os.mkdirp) != "undefined") {_RecordType("<2714,2723,72>",(os.mkdirp)); Inst47++; } } catch(e) {}try { if (Inst48 <= 1000 && typeof (os) != "undefined") {_RecordType("<2714,2716,72>",(os)); Inst48++; } } catch(e) {}try { if (Inst49 <= 1000 && typeof (TEST_DIR) != "undefined") {_RecordType("<2724,2732,72>",(TEST_DIR)); Inst49++; } } catch(e) {}
+    os.mkdirp(TEST_DIR + "/dir/foo");
+    // Check that they are there.
+try { if (Inst50 <= 1000 && typeof (os.system) != "undefined") {_RecordType("<2786,2795,74>",(os.system)); Inst50++; } } catch(e) {}try { if (Inst51 <= 1000 && typeof (os) != "undefined") {_RecordType("<2786,2788,74>",(os)); Inst51++; } } catch(e) {}try { if (Inst52 <= 1000 && typeof (TEST_DIR) != "undefined") {_RecordType("<2803,2811,74>",(TEST_DIR)); Inst52++; } } catch(e) {}
+    os.system('ls', [TEST_DIR + '/dir/foo']);
+    // Check that we can detect when something is not there.
+try { if (Inst53 <= 1000 && typeof (assertThrows) != "undefined") {_RecordType("<2893,2905,76>",(assertThrows)); Inst53++; } } catch(e) {}
+    assertThrows("os.system('ls', [TEST_DIR + '/dir/bar']);");
+    // Check that mkdirp makes intermediate directories.
+try { if (Inst54 <= 1000 && typeof (os.mkdirp) != "undefined") {_RecordType("<3013,3022,78>",(os.mkdirp)); Inst54++; } } catch(e) {}try { if (Inst55 <= 1000 && typeof (os) != "undefined") {_RecordType("<3013,3015,78>",(os)); Inst55++; } } catch(e) {}try { if (Inst56 <= 1000 && typeof (TEST_DIR) != "undefined") {_RecordType("<3023,3031,78>",(TEST_DIR)); Inst56++; } } catch(e) {}
+    os.mkdirp(TEST_DIR + "/dir2/foo");
+try { if (Inst57 <= 1000 && typeof (os.system) != "undefined") {_RecordType("<3052,3061,79>",(os.system)); Inst57++; } } catch(e) {}try { if (Inst58 <= 1000 && typeof (os) != "undefined") {_RecordType("<3052,3054,79>",(os)); Inst58++; } } catch(e) {}try { if (Inst59 <= 1000 && typeof (TEST_DIR) != "undefined") {_RecordType("<3069,3077,79>",(TEST_DIR)); Inst59++; } } catch(e) {}
+    os.system("ls", [TEST_DIR + "/dir2/foo"]);
+    // Check that mkdirp doesn't mind if the dir is already there.
+try { if (Inst60 <= 1000 && typeof (os.mkdirp) != "undefined") {_RecordType("<3166,3175,81>",(os.mkdirp)); Inst60++; } } catch(e) {}try { if (Inst61 <= 1000 && typeof (os) != "undefined") {_RecordType("<3166,3168,81>",(os)); Inst61++; } } catch(e) {}try { if (Inst62 <= 1000 && typeof (TEST_DIR) != "undefined") {_RecordType("<3176,3184,81>",(TEST_DIR)); Inst62++; } } catch(e) {}
+    os.mkdirp(TEST_DIR + "/dir2/foo");
+try { if (Inst63 <= 1000 && typeof (os.mkdirp) != "undefined") {_RecordType("<3205,3214,82>",(os.mkdirp)); Inst63++; } } catch(e) {}try { if (Inst64 <= 1000 && typeof (os) != "undefined") {_RecordType("<3205,3207,82>",(os)); Inst64++; } } catch(e) {}try { if (Inst65 <= 1000 && typeof (TEST_DIR) != "undefined") {_RecordType("<3215,3223,82>",(TEST_DIR)); Inst65++; } } catch(e) {}
+    os.mkdirp(TEST_DIR + "/dir2/foo/");
+    // Check that mkdirp can cope with trailing /
+try { if (Inst66 <= 1000 && typeof (os.mkdirp) != "undefined") {_RecordType("<3295,3304,84>",(os.mkdirp)); Inst66++; } } catch(e) {}try { if (Inst67 <= 1000 && typeof (os) != "undefined") {_RecordType("<3295,3297,84>",(os)); Inst67++; } } catch(e) {}try { if (Inst68 <= 1000 && typeof (TEST_DIR) != "undefined") {_RecordType("<3305,3313,84>",(TEST_DIR)); Inst68++; } } catch(e) {}
+    os.mkdirp(TEST_DIR + "/dir3/");
+try { if (Inst69 <= 1000 && typeof (os.system) != "undefined") {_RecordType("<3331,3340,85>",(os.system)); Inst69++; } } catch(e) {}try { if (Inst70 <= 1000 && typeof (os) != "undefined") {_RecordType("<3331,3333,85>",(os)); Inst70++; } } catch(e) {}try { if (Inst71 <= 1000 && typeof (TEST_DIR) != "undefined") {_RecordType("<3348,3356,85>",(TEST_DIR)); Inst71++; } } catch(e) {}
+    os.system("ls", [TEST_DIR + "/dir3"]);
+    // Check that we get an error if the name is taken by a file.
+try { if (Inst72 <= 1000 && typeof (os.system) != "undefined") {_RecordType("<3440,3449,87>",(os.system)); Inst72++; } } catch(e) {}try { if (Inst73 <= 1000 && typeof (os) != "undefined") {_RecordType("<3440,3442,87>",(os)); Inst73++; } } catch(e) {}try { if (Inst74 <= 1000 && typeof (TEST_DIR) != "undefined") {_RecordType("<3479,3487,87>",(TEST_DIR)); Inst74++; } } catch(e) {}
+    os.system("sh", ["-c", "echo foo > " + TEST_DIR + "/file1"]);
+try { if (Inst75 <= 1000 && typeof (os.system) != "undefined") {_RecordType("<3506,3515,88>",(os.system)); Inst75++; } } catch(e) {}try { if (Inst76 <= 1000 && typeof (os) != "undefined") {_RecordType("<3506,3508,88>",(os)); Inst76++; } } catch(e) {}try { if (Inst77 <= 1000 && typeof (TEST_DIR) != "undefined") {_RecordType("<3523,3531,88>",(TEST_DIR)); Inst77++; } } catch(e) {}
+    os.system("ls", [TEST_DIR + "/file1"]);
+try { if (Inst78 <= 1000 && typeof (assertThrows) != "undefined") {_RecordType("<3550,3562,89>",(assertThrows)); Inst78++; } } catch(e) {}
+    assertThrows("os.mkdirp(TEST_DIR + '/file1');");
+try { if (Inst79 <= 1000 && typeof (assertThrows) != "undefined") {_RecordType("<3603,3615,90>",(assertThrows)); Inst79++; } } catch(e) {}
+    assertThrows("os.mkdirp(TEST_DIR + '/file1/foo');");
+try { if (Inst80 <= 1000 && typeof (assertThrows) != "undefined") {_RecordType("<3660,3672,91>",(assertThrows)); Inst80++; } } catch(e) {}
+    assertThrows("os.mkdirp(TEST_DIR + '/file1/');");
+try { if (Inst81 <= 1000 && typeof (assertThrows) != "undefined") {_RecordType("<3714,3726,92>",(assertThrows)); Inst81++; } } catch(e) {}
+    assertThrows("os.mkdirp(TEST_DIR + '/file1/foo/');");
+    // Create a dir we cannot read.
+try { if (Inst82 <= 1000 && typeof (os.mkdirp) != "undefined") {_RecordType("<3808,3817,94>",(os.mkdirp)); Inst82++; } } catch(e) {}try { if (Inst83 <= 1000 && typeof (os) != "undefined") {_RecordType("<3808,3810,94>",(os)); Inst83++; } } catch(e) {}try { if (Inst84 <= 1000 && typeof (TEST_DIR) != "undefined") {_RecordType("<3818,3826,94>",(TEST_DIR)); Inst84++; } } catch(e) {}
+    os.mkdirp(TEST_DIR + "/dir4", 0);
+    // This test fails if you are root since root can read any dir.
+try { if (Inst85 <= 1000 && typeof (assertThrows) != "undefined") {_RecordType("<3914,3926,96>",(assertThrows)); Inst85++; } } catch(e) {}
+    assertThrows("os.chdir(TEST_DIR + '/dir4');");
+try { if (Inst86 <= 1000 && typeof (os.rmdir) != "undefined") {_RecordType("<3965,3973,97>",(os.rmdir)); Inst86++; } } catch(e) {}try { if (Inst87 <= 1000 && typeof (os) != "undefined") {_RecordType("<3965,3967,97>",(os)); Inst87++; } } catch(e) {}try { if (Inst88 <= 1000 && typeof (TEST_DIR) != "undefined") {_RecordType("<3974,3982,97>",(TEST_DIR)); Inst88++; } } catch(e) {}
+    os.rmdir(TEST_DIR + "/dir4");
+try { if (Inst89 <= 1000 && typeof (assertThrows) != "undefined") {_RecordType("<3999,4011,98>",(assertThrows)); Inst89++; } } catch(e) {}
+    assertThrows("os.chdir(TEST_DIR + '/dir4');");
+
+    // Set umask.  This changes the umask for the whole process and is
+    // the reason why the test cannot be run multi-threaded.
+try { if (Inst91 <= 1000 && typeof (os.umask) != "undefined") {_RecordType("<4199,4207,102>",(os.umask)); Inst91++; } } catch(e) {}try { if (Inst92 <= 1000 && typeof (os) != "undefined") {_RecordType("<4199,4201,102>",(os)); Inst92++; } } catch(e) {}
+    var old_umask = os.umask(0777);
+try { if (Inst90 <= 1000 && typeof (old_umask) != "undefined") {_RecordType("<4187,4196,102>",(old_umask)); Inst90++; } } catch(e) {}
+    // Create a dir we cannot read.
+try { if (Inst93 <= 1000 && typeof (os.mkdirp) != "undefined") {_RecordType("<4255,4264,104>",(os.mkdirp)); Inst93++; } } catch(e) {}try { if (Inst94 <= 1000 && typeof (os) != "undefined") {_RecordType("<4255,4257,104>",(os)); Inst94++; } } catch(e) {}try { if (Inst95 <= 1000 && typeof (TEST_DIR) != "undefined") {_RecordType("<4265,4273,104>",(TEST_DIR)); Inst95++; } } catch(e) {}
+    os.mkdirp(TEST_DIR + "/dir5");
+    // This test fails if you are root since root can read any dir.
+try { if (Inst96 <= 1000 && typeof (assertThrows) != "undefined") {_RecordType("<4358,4370,106>",(assertThrows)); Inst96++; } } catch(e) {}
+    assertThrows("os.chdir(TEST_DIR + '/dir5');");
+try { if (Inst97 <= 1000 && typeof (os.rmdir) != "undefined") {_RecordType("<4409,4417,107>",(os.rmdir)); Inst97++; } } catch(e) {}try { if (Inst98 <= 1000 && typeof (os) != "undefined") {_RecordType("<4409,4411,107>",(os)); Inst98++; } } catch(e) {}try { if (Inst99 <= 1000 && typeof (TEST_DIR) != "undefined") {_RecordType("<4418,4426,107>",(TEST_DIR)); Inst99++; } } catch(e) {}
+    os.rmdir(TEST_DIR + "/dir5");
+try { if (Inst100 <= 1000 && typeof (assertThrows) != "undefined") {_RecordType("<4443,4455,108>",(assertThrows)); Inst100++; } } catch(e) {}
+    assertThrows("os.chdir(TEST_DIR + '/dir5');");
+try { if (Inst101 <= 1000 && typeof (os.umask) != "undefined") {_RecordType("<4494,4502,109>",(os.umask)); Inst101++; } } catch(e) {}try { if (Inst102 <= 1000 && typeof (os) != "undefined") {_RecordType("<4494,4496,109>",(os)); Inst102++; } } catch(e) {}try { if (Inst103 <= 1000 && typeof (old_umask) != "undefined") {_RecordType("<4503,4512,109>",(old_umask)); Inst103++; } } catch(e) {}
+    os.umask(old_umask);
+
+try { if (Inst104 <= 1000 && typeof (os.mkdirp) != "undefined") {_RecordType("<4520,4529,111>",(os.mkdirp)); Inst104++; } } catch(e) {}try { if (Inst105 <= 1000 && typeof (os) != "undefined") {_RecordType("<4520,4522,111>",(os)); Inst105++; } } catch(e) {}try { if (Inst106 <= 1000 && typeof (TEST_DIR) != "undefined") {_RecordType("<4530,4538,111>",(TEST_DIR)); Inst106++; } } catch(e) {}
+    os.mkdirp(TEST_DIR + "/hest/fisk/../fisk/ged");
+try { if (Inst107 <= 1000 && typeof (os.system) != "undefined") {_RecordType("<4572,4581,112>",(os.system)); Inst107++; } } catch(e) {}try { if (Inst108 <= 1000 && typeof (os) != "undefined") {_RecordType("<4572,4574,112>",(os)); Inst108++; } } catch(e) {}try { if (Inst109 <= 1000 && typeof (TEST_DIR) != "undefined") {_RecordType("<4589,4597,112>",(TEST_DIR)); Inst109++; } } catch(e) {}
+    os.system("ls", [TEST_DIR + "/hest/fisk/ged"]);
+
+try { if (Inst110 <= 1000 && typeof (os.setenv) != "undefined") {_RecordType("<4625,4634,114>",(os.setenv)); Inst110++; } } catch(e) {}try { if (Inst111 <= 1000 && typeof (os) != "undefined") {_RecordType("<4625,4627,114>",(os)); Inst111++; } } catch(e) {}
+    os.setenv("FOO", "bar");
+try { if (Inst113 <= 1000 && typeof (os.system) != "undefined") {_RecordType("<4672,4681,115>",(os.system)); Inst113++; } } catch(e) {}try { if (Inst114 <= 1000 && typeof (os) != "undefined") {_RecordType("<4672,4674,115>",(os)); Inst114++; } } catch(e) {}
+    var environment = os.system("printenv");
+try { if (Inst112 <= 1000 && typeof (environment) != "undefined") {_RecordType("<4658,4669,115>",(environment)); Inst112++; } } catch(e) {}
+try { if (Inst115 <= 1000 && typeof (assertTrue) != "undefined") {_RecordType("<4699,4709,116>",(assertTrue)); Inst115++; } } catch(e) {}try { if (Inst116 <= 1000 && typeof (/FOO=bar/.test) != "undefined") {_RecordType("<4710,4724,116>",(/FOO=bar/.test)); Inst116++; } } catch(e) {}try { if (Inst117 <= 1000 && typeof (environment) != "undefined") {_RecordType("<4725,4736,116>",(environment)); Inst117++; } } catch(e) {}
+    assertTrue(/FOO=bar/.test(environment));
+
+    // Check we time out.
+    var have_sleep = true;
+try { if (Inst118 <= 1000 && typeof (have_sleep) != "undefined") {_RecordType("<4775,4785,119>",(have_sleep)); Inst118++; } } catch(e) {}
+    var have_echo = true;
+try { if (Inst119 <= 1000 && typeof (have_echo) != "undefined") {_RecordType("<4802,4811,120>",(have_echo)); Inst119++; } } catch(e) {}
+try { if (Inst122 <= 1000 && typeof (e) != "undefined") {_RecordType("<4882,4883,123>",(e)); Inst122++; } } catch(e) {}
+    try {
+try { if (Inst120 <= 1000 && typeof (os.system) != "undefined") {_RecordType("<4836,4845,122>",(os.system)); Inst120++; } } catch(e) {}try { if (Inst121 <= 1000 && typeof (os) != "undefined") {_RecordType("<4836,4838,122>",(os)); Inst121++; } } catch(e) {}
+      os.system("ls", ["/bin/sleep"]);
+    } catch (e) {
+      have_sleep = false;
+try { if (Inst123 <= 1000 && typeof (have_sleep) != "undefined") {_RecordType("<4893,4903,124>",(have_sleep)); Inst123++; } } catch(e) {}
+    }
+try { if (Inst126 <= 1000 && typeof (e) != "undefined") {_RecordType("<4980,4981,128>",(e)); Inst126++; } } catch(e) {}
+    try {
+try { if (Inst124 <= 1000 && typeof (os.system) != "undefined") {_RecordType("<4935,4944,127>",(os.system)); Inst124++; } } catch(e) {}try { if (Inst125 <= 1000 && typeof (os) != "undefined") {_RecordType("<4935,4937,127>",(os)); Inst125++; } } catch(e) {}
+      os.system("ls", ["/bin/echo"]);
+    } catch (e) {
+      have_echo = false;
+try { if (Inst127 <= 1000 && typeof (have_echo) != "undefined") {_RecordType("<4991,5000,129>",(have_echo)); Inst127++; } } catch(e) {}
+    }
+try { if (Inst128 <= 1000 && typeof (have_sleep) != "undefined") {_RecordType("<5024,5034,131>",(have_sleep)); Inst128++; } } catch(e) {}
+    if (have_sleep) {
+try { if (Inst129 <= 1000 && typeof (assertThrows) != "undefined") {_RecordType("<5044,5056,132>",(assertThrows)); Inst129++; } } catch(e) {}
+      assertThrows("os.system('sleep', ['2000'], 20);");
+
+      // Check we time out with total time.
+try { if (Inst130 <= 1000 && typeof (assertThrows) != "undefined") {_RecordType("<5146,5158,135>",(assertThrows)); Inst130++; } } catch(e) {}
+      assertThrows("os.system('sleep', ['2000'], -1, 20);");
+
+      // Check that -1 means no timeout.
+try { if (Inst131 <= 1000 && typeof (os.system) != "undefined") {_RecordType("<5249,5258,138>",(os.system)); Inst131++; } } catch(e) {}try { if (Inst132 <= 1000 && typeof (os) != "undefined") {_RecordType("<5249,5251,138>",(os)); Inst132++; } } catch(e) {}
+      os.system('sleep', ['1'], -1, -1);
+
+    }
+
+    // Check that we don't fill up the process table with zombies.
+    // Disabled because it's too slow.
+try { if (Inst133 <= 1000 && typeof (have_echo) != "undefined") {_RecordType("<5406,5415,144>",(have_echo)); Inst133++; } } catch(e) {}
+    if (have_echo) {
+      //for (var i = 0; i < 65536; i++) {
+try { if (Inst134 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<5467,5479,146>",(assertEquals)); Inst134++; } } catch(e) {}try { if (Inst135 <= 1000 && typeof (os.system) != "undefined") {_RecordType("<5489,5498,146>",(os.system)); Inst135++; } } catch(e) {}try { if (Inst136 <= 1000 && typeof (os) != "undefined") {_RecordType("<5489,5491,146>",(os)); Inst136++; } } catch(e) {}
+      assertEquals("baz\n", os.system("echo", ["baz"]));
+      //}
+    }
+
+    // Too few args.
+try { if (Inst137 <= 1000 && typeof (arg_error) != "undefined") {_RecordType("<5560,5569,151>",(arg_error)); Inst137++; } } catch(e) {}
+    arg_error("os.umask();");
+try { if (Inst138 <= 1000 && typeof (arg_error) != "undefined") {_RecordType("<5590,5599,152>",(arg_error)); Inst138++; } } catch(e) {}
+    arg_error("os.system();");
+try { if (Inst139 <= 1000 && typeof (arg_error) != "undefined") {_RecordType("<5621,5630,153>",(arg_error)); Inst139++; } } catch(e) {}
+    arg_error("os.mkdirp();");
+try { if (Inst140 <= 1000 && typeof (arg_error) != "undefined") {_RecordType("<5652,5661,154>",(arg_error)); Inst140++; } } catch(e) {}
+    arg_error("os.chdir();");
+try { if (Inst141 <= 1000 && typeof (arg_error) != "undefined") {_RecordType("<5682,5691,155>",(arg_error)); Inst141++; } } catch(e) {}
+    arg_error("os.setenv();");
+try { if (Inst142 <= 1000 && typeof (arg_error) != "undefined") {_RecordType("<5713,5722,156>",(arg_error)); Inst142++; } } catch(e) {}
+    arg_error("os.rmdir();");
+
+    // Too many args.
+try { if (Inst143 <= 1000 && typeof (arg_error) != "undefined") {_RecordType("<5766,5775,159>",(arg_error)); Inst143++; } } catch(e) {}
+    arg_error("os.setenv('FOO=bar');");
+try { if (Inst144 <= 1000 && typeof (arg_error) != "undefined") {_RecordType("<5806,5815,160>",(arg_error)); Inst144++; } } catch(e) {}
+    arg_error("os.umask(0, 0);");
+try { if (Inst145 <= 1000 && typeof (arg_error) != "undefined") {_RecordType("<5840,5849,161>",(arg_error)); Inst145++; } } catch(e) {}
+    arg_error("os.system('ls', [], -1, -1, -1);");
+try { if (Inst146 <= 1000 && typeof (arg_error) != "undefined") {_RecordType("<5891,5900,162>",(arg_error)); Inst146++; } } catch(e) {}
+    arg_error("os.mkdirp('foo', 0, 0)");
+try { if (Inst147 <= 1000 && typeof (arg_error) != "undefined") {_RecordType("<5932,5941,163>",(arg_error)); Inst147++; } } catch(e) {}
+    arg_error("os.chdir('foo', 'bar')");
+try { if (Inst148 <= 1000 && typeof (arg_error) != "undefined") {_RecordType("<5973,5982,164>",(arg_error)); Inst148++; } } catch(e) {}
+    arg_error("os.rmdir('foo', 'bar');");
+
+    // Wrong kind of args.
+try { if (Inst149 <= 1000 && typeof (arg_error) != "undefined") {_RecordType("<6043,6052,167>",(arg_error)); Inst149++; } } catch(e) {}
+    arg_error("os.umask([]);");
+try { if (Inst150 <= 1000 && typeof (arg_error) != "undefined") {_RecordType("<6075,6084,168>",(arg_error)); Inst150++; } } catch(e) {}
+    arg_error("os.system('ls', 'foo');");
+try { if (Inst151 <= 1000 && typeof (arg_error) != "undefined") {_RecordType("<6117,6126,169>",(arg_error)); Inst151++; } } catch(e) {}
+    arg_error("os.system('ls', 123);");
+try { if (Inst152 <= 1000 && typeof (arg_error) != "undefined") {_RecordType("<6157,6166,170>",(arg_error)); Inst152++; } } catch(e) {}
+    arg_error("os.system('ls', [], 'foo');");
+try { if (Inst153 <= 1000 && typeof (arg_error) != "undefined") {_RecordType("<6203,6212,171>",(arg_error)); Inst153++; } } catch(e) {}
+    arg_error("os.system('ls', [], -1, 'foo');");
+try { if (Inst154 <= 1000 && typeof (arg_error) != "undefined") {_RecordType("<6253,6262,172>",(arg_error)); Inst154++; } } catch(e) {}
+    arg_error("os.mkdirp('foo', 'bar');");
+
+    // Test broken toString().
+try { if (Inst155 <= 1000 && typeof (str_error) != "undefined") {_RecordType("<6328,6337,175>",(str_error)); Inst155++; } } catch(e) {}
+    str_error("os.system(e);");
+try { if (Inst156 <= 1000 && typeof (str_error) != "undefined") {_RecordType("<6360,6369,176>",(str_error)); Inst156++; } } catch(e) {}
+    str_error("os.system('ls', [e]);");
+try { if (Inst157 <= 1000 && typeof (str_error) != "undefined") {_RecordType("<6400,6409,177>",(str_error)); Inst157++; } } catch(e) {}
+    str_error("os.system('ls', ['.', e]);");
+try { if (Inst158 <= 1000 && typeof (str_error) != "undefined") {_RecordType("<6445,6454,178>",(str_error)); Inst158++; } } catch(e) {}
+    str_error("os.system('ls', [e, '.']);");
+try { if (Inst159 <= 1000 && typeof (str_error) != "undefined") {_RecordType("<6490,6499,179>",(str_error)); Inst159++; } } catch(e) {}
+    str_error("os.mkdirp(e);");
+try { if (Inst160 <= 1000 && typeof (str_error) != "undefined") {_RecordType("<6522,6531,180>",(str_error)); Inst160++; } } catch(e) {}
+    str_error("os.setenv(e, 'goo');");
+try { if (Inst161 <= 1000 && typeof (str_error) != "undefined") {_RecordType("<6561,6570,181>",(str_error)); Inst161++; } } catch(e) {}
+    str_error("os.setenv('goo', e);");
+try { if (Inst162 <= 1000 && typeof (str_error) != "undefined") {_RecordType("<6600,6609,182>",(str_error)); Inst162++; } } catch(e) {}
+    str_error("os.chdir(e);");
+try { if (Inst163 <= 1000 && typeof (str_error) != "undefined") {_RecordType("<6631,6640,183>",(str_error)); Inst163++; } } catch(e) {}
+    str_error("os.rmdir(e);");
+
+  } finally {
+try { if (Inst164 <= 1000 && typeof (os.system) != "undefined") {_RecordType("<6677,6686,186>",(os.system)); Inst164++; } } catch(e) {}try { if (Inst165 <= 1000 && typeof (os) != "undefined") {_RecordType("<6677,6679,186>",(os)); Inst165++; } } catch(e) {}try { if (Inst166 <= 1000 && typeof (TEST_DIR) != "undefined") {_RecordType("<6700,6708,186>",(TEST_DIR)); Inst166++; } } catch(e) {}
+    os.system("rm", ["-r", TEST_DIR]);
+  }
+}
+

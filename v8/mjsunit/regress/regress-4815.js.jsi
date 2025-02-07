@@ -1,0 +1,152 @@
+var Inst0 = 0;
+var Inst1 = 0;
+var Inst2 = 0;
+var Inst3 = 0;
+var Inst4 = 0;
+var Inst5 = 0;
+var Inst6 = 0;
+var Inst7 = 0;
+var Inst8 = 0;
+var Inst9 = 0;
+var Inst10 = 0;
+var Inst11 = 0;
+var Inst12 = 0;
+var Inst13 = 0;
+var Inst14 = 0;
+var Inst15 = 0;
+var Inst16 = 0;
+var Inst17 = 0;
+var Inst18 = 0;
+var Inst19 = 0;
+var Inst20 = 0;
+var Inst21 = 0;
+var Inst22 = 0;
+var Inst23 = 0;
+var Inst24 = 0;
+var Inst25 = 0;
+var Inst26 = 0;
+var Inst27 = 0;
+var Inst28 = 0;
+var Inst29 = 0;
+var Inst30 = 0;
+var Inst31 = 0;
+var Inst32 = 0;
+var Inst33 = 0;
+var Inst34 = 0;
+var Inst35 = 0;
+var Inst36 = 0;
+var Inst37 = 0;
+var Inst38 = 0;
+var Inst39 = 0;
+var Inst40 = 0;
+ 
+function _TypeOfArray(a) {
+	let number = true;	
+	let string = true;
+	for (let i = 0; i < a.length; i++) {
+		if (number && (typeof a[i]) != "number") {
+			number = false;	
+		}
+		if (string && (typeof a[i]) != "string") {
+			string = false;	
+		}
+		if (!number && !string)
+			break;
+	}
+	if (number)
+		return "number";
+	else if (string)
+		return "string";
+	else
+		return "any";
+}
+
+function _TypeIsEqual(t1, t2) {
+	return JSON.stringify(t1) === JSON.stringify(t2);
+}
+
+function _TypeOf(a, step) {
+	var t;
+	var type = Object.prototype.toString.call(a).slice(8, -1).toLowerCase();	
+	if (type == "array") {
+		t = {type : type, extra: {elemType: _TypeOfArray(a)}};
+	} else if (type == "object") {
+		let shape = [];
+        if (step === undefined || step > 0) {
+            let keys = Object.keys(a);
+            let length = Math.min(100, keys.length);
+		    for (let i = 0; i < length; i++) {
+			    shape.push([keys[i], _TypeOf(a[keys[i]], step === undefined ? 1 : step - 1)]);	
+		    }
+        }
+		t = {type : type, extra: {shape: shape}};
+	} else {
+		t = {type : type};
+	} 
+	return t;
+}
+
+function _RecordType(loc, a) {
+	var t = _TypeOf(a);
+    print("~~~TypeInfo:" + loc + ":" + JSON.stringify(t));
+}
+// Copyright 2016 the V8 project authors. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
+try { if (Inst1 <= 1000 && typeof (FAIL) != "undefined") {_RecordType("<212,216,5>",(FAIL)); Inst1++; } } catch(e) {}
+var thrower = { [Symbol.toPrimitive]: () => FAIL };
+try { if (Inst0 <= 1000 && typeof (thrower) != "undefined") {_RecordType("<172,179,5>",(thrower)); Inst0++; } } catch(e) {}
+
+// Tests that a native conversion function is included in the
+// stack trace.
+try { if (Inst2 <= 1000 && typeof (testTraceNativeConversion) != "undefined") {_RecordType("<308,333,9>",(testTraceNativeConversion)); Inst2++; } } catch(e) {}
+function testTraceNativeConversion(nativeFunc) {
+try { if (Inst3 <= 1000 && typeof (nativeFunc) != "undefined") {_RecordType("<334,344,9>",(nativeFunc)); Inst3++; } } catch(e) {}
+try { if (Inst5 <= 1000 && typeof (nativeFunc.name) != "undefined") {_RecordType("<371,386,10>",(nativeFunc.name)); Inst5++; } } catch(e) {}try { if (Inst6 <= 1000 && typeof (nativeFunc) != "undefined") {_RecordType("<371,381,10>",(nativeFunc)); Inst6++; } } catch(e) {}
+  var nativeFuncName = nativeFunc.name;
+try { if (Inst4 <= 1000 && typeof (nativeFuncName) != "undefined") {_RecordType("<354,368,10>",(nativeFuncName)); Inst4++; } } catch(e) {}
+try { if (Inst11 <= 1000 && typeof (e) != "undefined") {_RecordType("<471,472,14>",(e)); Inst11++; } } catch(e) {}
+  try {
+try { if (Inst7 <= 1000 && typeof (nativeFunc) != "undefined") {_RecordType("<400,410,12>",(nativeFunc)); Inst7++; } } catch(e) {}try { if (Inst8 <= 1000 && typeof (thrower) != "undefined") {_RecordType("<411,418,12>",(thrower)); Inst8++; } } catch(e) {}
+    nativeFunc(thrower);
+try { if (Inst9 <= 1000 && typeof (assertUnreachable) != "undefined") {_RecordType("<425,442,13>",(assertUnreachable)); Inst9++; } } catch(e) {}try { if (Inst10 <= 1000 && typeof (nativeFuncName) != "undefined") {_RecordType("<443,457,13>",(nativeFuncName)); Inst10++; } } catch(e) {}
+    assertUnreachable(nativeFuncName);
+  } catch (e) {
+try { if (Inst12 <= 1000 && typeof (assertTrue) != "undefined") {_RecordType("<480,490,15>",(assertTrue)); Inst12++; } } catch(e) {}try { if (Inst13 <= 1000 && typeof (e.stack.indexOf) != "undefined") {_RecordType("<491,506,15>",(e.stack.indexOf)); Inst13++; } } catch(e) {}try { if (Inst14 <= 1000 && typeof (e.stack) != "undefined") {_RecordType("<491,498,15>",(e.stack)); Inst14++; } } catch(e) {}try { if (Inst15 <= 1000 && typeof (e) != "undefined") {_RecordType("<491,492,15>",(e)); Inst15++; } } catch(e) {}try { if (Inst16 <= 1000 && typeof (nativeFuncName) != "undefined") {_RecordType("<507,521,15>",(nativeFuncName)); Inst16++; } } catch(e) {}try { if (Inst17 <= 1000 && typeof (nativeFuncName) != "undefined") {_RecordType("<529,543,15>",(nativeFuncName)); Inst17++; } } catch(e) {}
+    assertTrue(e.stack.indexOf(nativeFuncName) >= 0, nativeFuncName);
+  }
+}
+
+try { if (Inst18 <= 1000 && typeof (testTraceNativeConversion) != "undefined") {_RecordType("<553,578,19>",(testTraceNativeConversion)); Inst18++; } } catch(e) {}try { if (Inst19 <= 1000 && typeof (Math.max) != "undefined") {_RecordType("<579,587,19>",(Math.max)); Inst19++; } } catch(e) {}try { if (Inst20 <= 1000 && typeof (Math) != "undefined") {_RecordType("<579,583,19>",(Math)); Inst20++; } } catch(e) {}
+testTraceNativeConversion(Math.max);
+try { if (Inst21 <= 1000 && typeof (testTraceNativeConversion) != "undefined") {_RecordType("<590,615,20>",(testTraceNativeConversion)); Inst21++; } } catch(e) {}try { if (Inst22 <= 1000 && typeof (Math.min) != "undefined") {_RecordType("<616,624,20>",(Math.min)); Inst22++; } } catch(e) {}try { if (Inst23 <= 1000 && typeof (Math) != "undefined") {_RecordType("<616,620,20>",(Math)); Inst23++; } } catch(e) {}
+testTraceNativeConversion(Math.min);
+
+try { if (Inst24 <= 1000 && typeof (testBuiltinInStackTrace) != "undefined") {_RecordType("<637,660,22>",(testBuiltinInStackTrace)); Inst24++; } } catch(e) {}
+function testBuiltinInStackTrace(script, nativeFuncName) {
+try { if (Inst25 <= 1000 && typeof (script) != "undefined") {_RecordType("<661,667,22>",(script)); Inst25++; } } catch(e) {}try { if (Inst26 <= 1000 && typeof (nativeFuncName) != "undefined") {_RecordType("<669,683,22>",(nativeFuncName)); Inst26++; } } catch(e) {}
+try { if (Inst31 <= 1000 && typeof (e) != "undefined") {_RecordType("<763,764,26>",(e)); Inst31++; } } catch(e) {}
+  try {
+try { if (Inst27 <= 1000 && typeof (eval) != "undefined") {_RecordType("<699,703,24>",(eval)); Inst27++; } } catch(e) {}try { if (Inst28 <= 1000 && typeof (script) != "undefined") {_RecordType("<704,710,24>",(script)); Inst28++; } } catch(e) {}
+    eval(script);
+try { if (Inst29 <= 1000 && typeof (assertUnreachable) != "undefined") {_RecordType("<717,734,25>",(assertUnreachable)); Inst29++; } } catch(e) {}try { if (Inst30 <= 1000 && typeof (nativeFuncName) != "undefined") {_RecordType("<735,749,25>",(nativeFuncName)); Inst30++; } } catch(e) {}
+    assertUnreachable(nativeFuncName);
+  } catch (e) {
+try { if (Inst32 <= 1000 && typeof (assertTrue) != "undefined") {_RecordType("<772,782,27>",(assertTrue)); Inst32++; } } catch(e) {}try { if (Inst33 <= 1000 && typeof (e.stack.indexOf) != "undefined") {_RecordType("<783,798,27>",(e.stack.indexOf)); Inst33++; } } catch(e) {}try { if (Inst34 <= 1000 && typeof (e.stack) != "undefined") {_RecordType("<783,790,27>",(e.stack)); Inst34++; } } catch(e) {}try { if (Inst35 <= 1000 && typeof (e) != "undefined") {_RecordType("<783,784,27>",(e)); Inst35++; } } catch(e) {}try { if (Inst36 <= 1000 && typeof (nativeFuncName) != "undefined") {_RecordType("<799,813,27>",(nativeFuncName)); Inst36++; } } catch(e) {}try { if (Inst37 <= 1000 && typeof (nativeFuncName) != "undefined") {_RecordType("<821,835,27>",(nativeFuncName)); Inst37++; } } catch(e) {}
+    assertTrue(e.stack.indexOf(nativeFuncName) >= 0, nativeFuncName);
+  }
+}
+
+// Use the full name ('String.getDate') in order to avoid false pass
+// results when the method name is mentioned in the error message itself.
+// This occurs, e.g., for Date.prototype.getYear, which uses a different code
+// path and never hits the Generate_DatePrototype_GetField builtin.
+try { if (Inst38 <= 1000 && typeof (testBuiltinInStackTrace) != "undefined") {_RecordType("<1134,1157,35>",(testBuiltinInStackTrace)); Inst38++; } } catch(e) {}
+testBuiltinInStackTrace("Date.prototype.getDate.call('')", "String.getDate");
+try { if (Inst39 <= 1000 && typeof (testBuiltinInStackTrace) != "undefined") {_RecordType("<1212,1235,36>",(testBuiltinInStackTrace)); Inst39++; } } catch(e) {}
+testBuiltinInStackTrace("Date.prototype.getUTCDate.call('')",
+                        "String.getUTCDate");
+try { if (Inst40 <= 1000 && typeof (testBuiltinInStackTrace) != "undefined") {_RecordType("<1320,1343,38>",(testBuiltinInStackTrace)); Inst40++; } } catch(e) {}
+testBuiltinInStackTrace("Date.prototype.getTime.call('')", "String.getTime");
+

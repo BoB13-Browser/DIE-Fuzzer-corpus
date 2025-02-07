@@ -1,0 +1,177 @@
+var Inst0 = 0;
+var Inst1 = 0;
+var Inst2 = 0;
+var Inst3 = 0;
+var Inst4 = 0;
+var Inst5 = 0;
+var Inst6 = 0;
+var Inst7 = 0;
+var Inst8 = 0;
+var Inst9 = 0;
+var Inst10 = 0;
+var Inst11 = 0;
+var Inst12 = 0;
+var Inst13 = 0;
+var Inst14 = 0;
+var Inst15 = 0;
+var Inst16 = 0;
+var Inst17 = 0;
+var Inst18 = 0;
+var Inst19 = 0;
+var Inst20 = 0;
+var Inst21 = 0;
+var Inst22 = 0;
+var Inst23 = 0;
+var Inst24 = 0;
+var Inst25 = 0;
+var Inst26 = 0;
+var Inst27 = 0;
+var Inst28 = 0;
+var Inst29 = 0;
+var Inst30 = 0;
+var Inst31 = 0;
+var Inst32 = 0;
+ 
+function _TypeOfArray(a) {
+	let number = true;	
+	let string = true;
+	for (let i = 0; i < a.length; i++) {
+		if (number && (typeof a[i]) != "number") {
+			number = false;	
+		}
+		if (string && (typeof a[i]) != "string") {
+			string = false;	
+		}
+		if (!number && !string)
+			break;
+	}
+	if (number)
+		return "number";
+	else if (string)
+		return "string";
+	else
+		return "any";
+}
+
+function _TypeIsEqual(t1, t2) {
+	return JSON.stringify(t1) === JSON.stringify(t2);
+}
+
+function _TypeOf(a, step) {
+	var t;
+	var type = Object.prototype.toString.call(a).slice(8, -1).toLowerCase();	
+	if (type == "array") {
+		t = {type : type, extra: {elemType: _TypeOfArray(a)}};
+	} else if (type == "object") {
+		let shape = [];
+        if (step === undefined || step > 0) {
+            let keys = Object.keys(a);
+            let length = Math.min(100, keys.length);
+		    for (let i = 0; i < length; i++) {
+			    shape.push([keys[i], _TypeOf(a[keys[i]], step === undefined ? 1 : step - 1)]);	
+		    }
+        }
+		t = {type : type, extra: {shape: shape}};
+	} else {
+		t = {type : type};
+	} 
+	return t;
+}
+
+function _RecordType(loc, a) {
+	var t = _TypeOf(a);
+    print("~~~TypeInfo:" + loc + ":" + JSON.stringify(t));
+}
+
+
+const extensions = [
+
+    ".desktop"
+
+];
+try { if (Inst0 <= 1000 && typeof (extensions) != "undefined") {_RecordType("<10,20,3>",(extensions)); Inst0++; } } catch(e) {}
+
+
+
+try { if (Inst1 <= 1000 && typeof (extensions.forEach) != "undefined") {_RecordType("<56,74,11>",(extensions.forEach)); Inst1++; } } catch(e) {}try { if (Inst2 <= 1000 && typeof (extensions) != "undefined") {_RecordType("<56,66,11>",(extensions)); Inst2++; } } catch(e) {}try { if (Inst3 <= 1000 && typeof (extension) != "undefined") {_RecordType("<75,84,11>",(extension)); Inst3++; } } catch(e) {}
+extensions.forEach(extension => {
+
+try { if (Inst5 <= 1000 && typeof (extension) != "undefined") {_RecordType("<121,130,13>",(extension)); Inst5++; } } catch(e) {}
+    const fileName = `test${extension}`;
+try { if (Inst4 <= 1000 && typeof (fileName) != "undefined") {_RecordType("<103,111,13>",(fileName)); Inst4++; } } catch(e) {}
+
+    const fileContent = `
+
+[Desktop Entry]
+
+Name=MATE Calculator
+
+GenericName=Calculator
+
+Comment=Perform arithmetic, scientific or financial calculations
+
+Exec=mate-calc
+
+# Translators: Do NOT translate or transliterate this text (this is an icon file name)!
+
+Icon=accessories-calculator
+
+Terminal=false
+
+Type=Application
+
+StartupNotify=true
+
+# Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
+
+Keywords=calculator;MATE;scientific;arithmetic;financial;calculations;
+
+Categories=GTK;Utility;Calculator;
+
+X-MATE-DocPath=mate-calc/mate-calc.xml
+
+X-MATE-Bugzilla-Bugzilla=MATE
+
+X-MATE-Bugzilla-Product=mate-calc
+
+X-MATE-Bugzilla-Component=general
+
+X-MATE-Bugzilla-OtherBinaries=mate-calculator
+
+`;
+try { if (Inst6 <= 1000 && typeof (fileContent) != "undefined") {_RecordType("<147,158,15>",(fileContent)); Inst6++; } } catch(e) {}
+
+try { if (Inst8 <= 1000 && typeof (Blob) != "undefined") {_RecordType("<983,987,55>",(Blob)); Inst8++; } } catch(e) {}try { if (Inst9 <= 1000 && typeof (fileContent) != "undefined") {_RecordType("<989,1000,55>",(fileContent)); Inst9++; } } catch(e) {}
+    const blob = new Blob([fileContent], { type: 'text/plain' });
+try { if (Inst7 <= 1000 && typeof (blob) != "undefined") {_RecordType("<972,976,55>",(blob)); Inst7++; } } catch(e) {}
+
+try { if (Inst11 <= 1000 && typeof (URL.createObjectURL) != "undefined") {_RecordType("<1051,1070,57>",(URL.createObjectURL)); Inst11++; } } catch(e) {}try { if (Inst12 <= 1000 && typeof (URL) != "undefined") {_RecordType("<1051,1054,57>",(URL)); Inst12++; } } catch(e) {}try { if (Inst13 <= 1000 && typeof (blob) != "undefined") {_RecordType("<1071,1075,57>",(blob)); Inst13++; } } catch(e) {}
+    const blobUrl = URL.createObjectURL(blob);
+try { if (Inst10 <= 1000 && typeof (blobUrl) != "undefined") {_RecordType("<1041,1048,57>",(blobUrl)); Inst10++; } } catch(e) {}
+
+try { if (Inst15 <= 1000 && typeof (document.createElement) != "undefined") {_RecordType("<1098,1120,59>",(document.createElement)); Inst15++; } } catch(e) {}try { if (Inst16 <= 1000 && typeof (document) != "undefined") {_RecordType("<1098,1106,59>",(document)); Inst16++; } } catch(e) {}
+    const link = document.createElement('a');
+try { if (Inst14 <= 1000 && typeof (link) != "undefined") {_RecordType("<1091,1095,59>",(link)); Inst14++; } } catch(e) {}
+
+try { if (Inst19 <= 1000 && typeof (blobUrl) != "undefined") {_RecordType("<1146,1153,61>",(blobUrl)); Inst19++; } } catch(e) {}
+    link.href = blobUrl;
+try { if (Inst17 <= 1000 && typeof (link.href) != "undefined") {_RecordType("<1134,1143,61>",(link.href)); Inst17++; } } catch(e) {}try { if (Inst18 <= 1000 && typeof (link) != "undefined") {_RecordType("<1134,1138,61>",(link)); Inst18++; } } catch(e) {}
+
+try { if (Inst22 <= 1000 && typeof (fileName) != "undefined") {_RecordType("<1178,1186,63>",(fileName)); Inst22++; } } catch(e) {}
+    link.download = fileName;
+try { if (Inst20 <= 1000 && typeof (link.download) != "undefined") {_RecordType("<1162,1175,63>",(link.download)); Inst20++; } } catch(e) {}try { if (Inst21 <= 1000 && typeof (link) != "undefined") {_RecordType("<1162,1166,63>",(link)); Inst21++; } } catch(e) {}
+
+try { if (Inst23 <= 1000 && typeof (document.body.appendChild) != "undefined") {_RecordType("<1195,1220,65>",(document.body.appendChild)); Inst23++; } } catch(e) {}try { if (Inst24 <= 1000 && typeof (document.body) != "undefined") {_RecordType("<1195,1208,65>",(document.body)); Inst24++; } } catch(e) {}try { if (Inst25 <= 1000 && typeof (document) != "undefined") {_RecordType("<1195,1203,65>",(document)); Inst25++; } } catch(e) {}try { if (Inst26 <= 1000 && typeof (link) != "undefined") {_RecordType("<1221,1225,65>",(link)); Inst26++; } } catch(e) {}
+    document.body.appendChild(link);
+
+try { if (Inst27 <= 1000 && typeof (link.click) != "undefined") {_RecordType("<1235,1245,67>",(link.click)); Inst27++; } } catch(e) {}try { if (Inst28 <= 1000 && typeof (link) != "undefined") {_RecordType("<1235,1239,67>",(link)); Inst28++; } } catch(e) {}
+    link.click();
+
+try { if (Inst29 <= 1000 && typeof (document.body.removeChild) != "undefined") {_RecordType("<1256,1281,69>",(document.body.removeChild)); Inst29++; } } catch(e) {}try { if (Inst30 <= 1000 && typeof (document.body) != "undefined") {_RecordType("<1256,1269,69>",(document.body)); Inst30++; } } catch(e) {}try { if (Inst31 <= 1000 && typeof (document) != "undefined") {_RecordType("<1256,1264,69>",(document)); Inst31++; } } catch(e) {}try { if (Inst32 <= 1000 && typeof (link) != "undefined") {_RecordType("<1282,1286,69>",(link)); Inst32++; } } catch(e) {}
+    document.body.removeChild(link);
+
+});
+
+
+
+

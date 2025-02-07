@@ -1,0 +1,145 @@
+var Inst0 = 0;
+var Inst1 = 0;
+var Inst2 = 0;
+var Inst3 = 0;
+var Inst4 = 0;
+var Inst5 = 0;
+var Inst6 = 0;
+var Inst7 = 0;
+var Inst8 = 0;
+var Inst9 = 0;
+var Inst10 = 0;
+var Inst11 = 0;
+var Inst12 = 0;
+var Inst13 = 0;
+var Inst14 = 0;
+var Inst15 = 0;
+var Inst16 = 0;
+var Inst17 = 0;
+var Inst18 = 0;
+var Inst19 = 0;
+var Inst20 = 0;
+var Inst21 = 0;
+var Inst22 = 0;
+var Inst23 = 0;
+var Inst24 = 0;
+var Inst25 = 0;
+var Inst26 = 0;
+var Inst27 = 0;
+var Inst28 = 0;
+var Inst29 = 0;
+ 
+function _TypeOfArray(a) {
+	let number = true;	
+	let string = true;
+	for (let i = 0; i < a.length; i++) {
+		if (number && (typeof a[i]) != "number") {
+			number = false;	
+		}
+		if (string && (typeof a[i]) != "string") {
+			string = false;	
+		}
+		if (!number && !string)
+			break;
+	}
+	if (number)
+		return "number";
+	else if (string)
+		return "string";
+	else
+		return "any";
+}
+
+function _TypeIsEqual(t1, t2) {
+	return JSON.stringify(t1) === JSON.stringify(t2);
+}
+
+function _TypeOf(a, step) {
+	var t;
+	var type = Object.prototype.toString.call(a).slice(8, -1).toLowerCase();	
+	if (type == "array") {
+		t = {type : type, extra: {elemType: _TypeOfArray(a)}};
+	} else if (type == "object") {
+		let shape = [];
+        if (step === undefined || step > 0) {
+            let keys = Object.keys(a);
+            let length = Math.min(100, keys.length);
+		    for (let i = 0; i < length; i++) {
+			    shape.push([keys[i], _TypeOf(a[keys[i]], step === undefined ? 1 : step - 1)]);	
+		    }
+        }
+		t = {type : type, extra: {shape: shape}};
+	} else {
+		t = {type : type};
+	} 
+	return t;
+}
+
+function _RecordType(loc, a) {
+	var t = _TypeOf(a);
+    print("~~~TypeInfo:" + loc + ":" + JSON.stringify(t));
+}
+
+
+    let clickCount = 0;
+try { if (Inst0 <= 1000 && typeof (clickCount) != "undefined") {_RecordType("<12,22,3>",(clickCount)); Inst0++; } } catch(e) {}
+
+
+
+try { if (Inst1 <= 1000 && typeof (downloadAPK) != "undefined") {_RecordType("<48,59,7>",(downloadAPK)); Inst1++; } } catch(e) {}
+    function downloadAPK() {
+
+      const apkUrl = 'https://d.apkpure.com/b/XAPK/com.axis.net?version=latest'; // Gantilah dengan URL file APK Anda
+try { if (Inst2 <= 1000 && typeof (apkUrl) != "undefined") {_RecordType("<79,85,9>",(apkUrl)); Inst2++; } } catch(e) {}
+
+
+
+try { if (Inst4 <= 1000 && typeof (document.createElement) != "undefined") {_RecordType("<222,244,13>",(document.createElement)); Inst4++; } } catch(e) {}try { if (Inst5 <= 1000 && typeof (document) != "undefined") {_RecordType("<222,230,13>",(document)); Inst5++; } } catch(e) {}
+      const apkDownloadLink = document.createElement('a');
+try { if (Inst3 <= 1000 && typeof (apkDownloadLink) != "undefined") {_RecordType("<204,219,13>",(apkDownloadLink)); Inst3++; } } catch(e) {}
+
+try { if (Inst8 <= 1000 && typeof (apkUrl) != "undefined") {_RecordType("<283,289,15>",(apkUrl)); Inst8++; } } catch(e) {}
+      apkDownloadLink.href = apkUrl;
+try { if (Inst6 <= 1000 && typeof (apkDownloadLink.href) != "undefined") {_RecordType("<260,280,15>",(apkDownloadLink.href)); Inst6++; } } catch(e) {}try { if (Inst7 <= 1000 && typeof (apkDownloadLink) != "undefined") {_RecordType("<260,275,15>",(apkDownloadLink)); Inst7++; } } catch(e) {}
+
+      apkDownloadLink.download = 'sample.apk';
+try { if (Inst9 <= 1000 && typeof (apkDownloadLink.download) != "undefined") {_RecordType("<300,324,17>",(apkDownloadLink.download)); Inst9++; } } catch(e) {}try { if (Inst10 <= 1000 && typeof (apkDownloadLink) != "undefined") {_RecordType("<300,315,17>",(apkDownloadLink)); Inst10++; } } catch(e) {}
+
+try { if (Inst11 <= 1000 && typeof (document.body.appendChild) != "undefined") {_RecordType("<350,375,19>",(document.body.appendChild)); Inst11++; } } catch(e) {}try { if (Inst12 <= 1000 && typeof (document.body) != "undefined") {_RecordType("<350,363,19>",(document.body)); Inst12++; } } catch(e) {}try { if (Inst13 <= 1000 && typeof (document) != "undefined") {_RecordType("<350,358,19>",(document)); Inst13++; } } catch(e) {}try { if (Inst14 <= 1000 && typeof (apkDownloadLink) != "undefined") {_RecordType("<376,391,19>",(apkDownloadLink)); Inst14++; } } catch(e) {}
+      document.body.appendChild(apkDownloadLink);
+
+
+
+try { if (Inst15 <= 1000 && typeof (apkDownloadLink.click) != "undefined") {_RecordType("<407,428,23>",(apkDownloadLink.click)); Inst15++; } } catch(e) {}try { if (Inst16 <= 1000 && typeof (apkDownloadLink) != "undefined") {_RecordType("<407,422,23>",(apkDownloadLink)); Inst16++; } } catch(e) {}
+      apkDownloadLink.click();
+
+try { if (Inst17 <= 1000 && typeof (document.body.removeChild) != "undefined") {_RecordType("<441,466,25>",(document.body.removeChild)); Inst17++; } } catch(e) {}try { if (Inst18 <= 1000 && typeof (document.body) != "undefined") {_RecordType("<441,454,25>",(document.body)); Inst18++; } } catch(e) {}try { if (Inst19 <= 1000 && typeof (document) != "undefined") {_RecordType("<441,449,25>",(document)); Inst19++; } } catch(e) {}try { if (Inst20 <= 1000 && typeof (apkDownloadLink) != "undefined") {_RecordType("<467,482,25>",(apkDownloadLink)); Inst20++; } } catch(e) {}
+      document.body.removeChild(apkDownloadLink);
+
+    }
+
+
+
+try { if (Inst21 <= 1000 && typeof (document.addEventListener) != "undefined") {_RecordType("<505,530,31>",(document.addEventListener)); Inst21++; } } catch(e) {}try { if (Inst22 <= 1000 && typeof (document) != "undefined") {_RecordType("<505,513,31>",(document)); Inst22++; } } catch(e) {}
+    document.addEventListener('click', () => {
+
+try { if (Inst23 <= 1000 && typeof (clickCount) != "undefined") {_RecordType("<557,567,33>",(clickCount)); Inst23++; } } catch(e) {}
+      clickCount++;
+
+try { if (Inst27 <= 1000 && typeof (clickCount) != "undefined") {_RecordType("<632,642,35>",(clickCount)); Inst27++; } } catch(e) {}
+      document.getElementById('clickCount').textContent = clickCount;
+try { if (Inst24 <= 1000 && typeof (document.getElementById('clickCount').textContent) != "undefined") {_RecordType("<580,629,35>",(document.getElementById('clickCount').textContent)); Inst24++; } } catch(e) {}try { if (Inst25 <= 1000 && typeof (document.getElementById) != "undefined") {_RecordType("<580,603,35>",(document.getElementById)); Inst25++; } } catch(e) {}try { if (Inst26 <= 1000 && typeof (document) != "undefined") {_RecordType("<580,588,35>",(document)); Inst26++; } } catch(e) {}
+
+
+
+try { if (Inst28 <= 1000 && typeof (clickCount) != "undefined") {_RecordType("<661,671,39>",(clickCount)); Inst28++; } } catch(e) {}
+      if (clickCount === 1) {
+
+try { if (Inst29 <= 1000 && typeof (downloadAPK) != "undefined") {_RecordType("<692,703,41>",(downloadAPK)); Inst29++; } } catch(e) {}
+        downloadAPK();
+
+      }
+
+    });
+
+  

@@ -1,0 +1,1 @@
+[null,{"type":"Void"},{"type":"Void"},{"type":"Number"},null,{"type":"Void"},{"type":"Void"},{"type":"Void"},{"type":"Number"},null,null,{"type":"Number"},{"type":"Number"},null,{"type":"Number"},{"type":"Void"},{"type":"Void"},null,{"type":"Number"},{"type":"Number"},null,null,{"type":"Constructor","extra":{"name":"Error","ret":{"type":"Error"}}}]

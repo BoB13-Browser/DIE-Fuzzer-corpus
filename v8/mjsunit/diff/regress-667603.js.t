@@ -1,0 +1,1 @@
+[null,null,{"type":"Void"},{"type":"Void"},{"type":"Void"},{"type":"ArrayBuffer"},null,{"type":"Constructor","extra":{"name":"ArrayBuffer","ret":{"type":"ArrayBuffer"}}},null,null,null,{"type":"Void"},{"type":"Void"},null,null,null]

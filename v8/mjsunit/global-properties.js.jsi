@@ -1,0 +1,254 @@
+var Inst0 = 0;
+var Inst1 = 0;
+var Inst2 = 0;
+var Inst3 = 0;
+var Inst4 = 0;
+var Inst5 = 0;
+var Inst6 = 0;
+var Inst7 = 0;
+var Inst8 = 0;
+var Inst9 = 0;
+var Inst10 = 0;
+var Inst11 = 0;
+var Inst12 = 0;
+var Inst13 = 0;
+var Inst14 = 0;
+var Inst15 = 0;
+var Inst16 = 0;
+var Inst17 = 0;
+var Inst18 = 0;
+var Inst19 = 0;
+var Inst20 = 0;
+var Inst21 = 0;
+var Inst22 = 0;
+var Inst23 = 0;
+var Inst24 = 0;
+var Inst25 = 0;
+var Inst26 = 0;
+var Inst27 = 0;
+var Inst28 = 0;
+var Inst29 = 0;
+var Inst30 = 0;
+var Inst31 = 0;
+var Inst32 = 0;
+var Inst33 = 0;
+var Inst34 = 0;
+var Inst35 = 0;
+var Inst36 = 0;
+var Inst37 = 0;
+var Inst38 = 0;
+var Inst39 = 0;
+var Inst40 = 0;
+var Inst41 = 0;
+var Inst42 = 0;
+var Inst43 = 0;
+var Inst44 = 0;
+var Inst45 = 0;
+var Inst46 = 0;
+var Inst47 = 0;
+var Inst48 = 0;
+var Inst49 = 0;
+var Inst50 = 0;
+var Inst51 = 0;
+var Inst52 = 0;
+var Inst53 = 0;
+var Inst54 = 0;
+var Inst55 = 0;
+var Inst56 = 0;
+var Inst57 = 0;
+var Inst58 = 0;
+var Inst59 = 0;
+var Inst60 = 0;
+var Inst61 = 0;
+var Inst62 = 0;
+var Inst63 = 0;
+var Inst64 = 0;
+var Inst65 = 0;
+var Inst66 = 0;
+var Inst67 = 0;
+var Inst68 = 0;
+var Inst69 = 0;
+var Inst70 = 0;
+var Inst71 = 0;
+var Inst72 = 0;
+var Inst73 = 0;
+var Inst74 = 0;
+var Inst75 = 0;
+var Inst76 = 0;
+var Inst77 = 0;
+var Inst78 = 0;
+var Inst79 = 0;
+var Inst80 = 0;
+var Inst81 = 0;
+var Inst82 = 0;
+var Inst83 = 0;
+var Inst84 = 0;
+var Inst85 = 0;
+var Inst86 = 0;
+var Inst87 = 0;
+var Inst88 = 0;
+var Inst89 = 0;
+var Inst90 = 0;
+var Inst91 = 0;
+var Inst92 = 0;
+var Inst93 = 0;
+var Inst94 = 0;
+var Inst95 = 0;
+var Inst96 = 0;
+var Inst97 = 0;
+var Inst98 = 0;
+ 
+function _TypeOfArray(a) {
+	let number = true;	
+	let string = true;
+	for (let i = 0; i < a.length; i++) {
+		if (number && (typeof a[i]) != "number") {
+			number = false;	
+		}
+		if (string && (typeof a[i]) != "string") {
+			string = false;	
+		}
+		if (!number && !string)
+			break;
+	}
+	if (number)
+		return "number";
+	else if (string)
+		return "string";
+	else
+		return "any";
+}
+
+function _TypeIsEqual(t1, t2) {
+	return JSON.stringify(t1) === JSON.stringify(t2);
+}
+
+function _TypeOf(a, step) {
+	var t;
+	var type = Object.prototype.toString.call(a).slice(8, -1).toLowerCase();	
+	if (type == "array") {
+		t = {type : type, extra: {elemType: _TypeOfArray(a)}};
+	} else if (type == "object") {
+		let shape = [];
+        if (step === undefined || step > 0) {
+            let keys = Object.keys(a);
+            let length = Math.min(100, keys.length);
+		    for (let i = 0; i < length; i++) {
+			    shape.push([keys[i], _TypeOf(a[keys[i]], step === undefined ? 1 : step - 1)]);	
+		    }
+        }
+		t = {type : type, extra: {shape: shape}};
+	} else {
+		t = {type : type};
+	} 
+	return t;
+}
+
+function _RecordType(loc, a) {
+	var t = _TypeOf(a);
+    print("~~~TypeInfo:" + loc + ":" + JSON.stringify(t));
+}
+// Copyright 2010 the V8 project authors. All rights reserved.
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions are
+// met:
+//
+//     * Redistributions of source code must retain the above copyright
+//       notice, this list of conditions and the following disclaimer.
+//     * Redistributions in binary form must reproduce the above
+//       copyright notice, this list of conditions and the following
+//       disclaimer in the documentation and/or other materials provided
+//       with the distribution.
+//     * Neither the name of Google Inc. nor the names of its
+//       contributors may be used to endorse or promote products derived
+//       from this software without specific prior written permission.
+//
+// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+// "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+// LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+// A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+// OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+// SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+// LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+// DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+// THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+// (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+// OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+var global = this;
+try { if (Inst0 <= 1000 && typeof (global) != "undefined") {_RecordType("<1602,1608,28>",(global)); Inst0++; } } catch(e) {}
+
+try { if (Inst1 <= 1000 && typeof (testNamedProperty) != "undefined") {_RecordType("<1627,1644,30>",(testNamedProperty)); Inst1++; } } catch(e) {}
+function testNamedProperty(key, value) {
+try { if (Inst2 <= 1000 && typeof (key) != "undefined") {_RecordType("<1645,1648,30>",(key)); Inst2++; } } catch(e) {}try { if (Inst3 <= 1000 && typeof (value) != "undefined") {_RecordType("<1650,1655,30>",(value)); Inst3++; } } catch(e) {}
+try { if (Inst6 <= 1000 && typeof (value) != "undefined") {_RecordType("<1675,1680,31>",(value)); Inst6++; } } catch(e) {}
+  global[key] = value;
+try { if (Inst4 <= 1000 && typeof (global[key]) != "undefined") {_RecordType("<1661,1672,31>",(global[key])); Inst4++; } } catch(e) {}try { if (Inst5 <= 1000 && typeof (global) != "undefined") {_RecordType("<1661,1667,31>",(global)); Inst5++; } } catch(e) {}
+try { if (Inst7 <= 1000 && typeof (assertTrue) != "undefined") {_RecordType("<1684,1694,32>",(assertTrue)); Inst7++; } } catch(e) {}try { if (Inst8 <= 1000 && typeof (global.hasOwnProperty) != "undefined") {_RecordType("<1695,1716,32>",(global.hasOwnProperty)); Inst8++; } } catch(e) {}try { if (Inst9 <= 1000 && typeof (global) != "undefined") {_RecordType("<1695,1701,32>",(global)); Inst9++; } } catch(e) {}try { if (Inst10 <= 1000 && typeof (key) != "undefined") {_RecordType("<1717,1720,32>",(key)); Inst10++; } } catch(e) {}
+  assertTrue(global.hasOwnProperty(key));
+try { if (Inst11 <= 1000 && typeof (assertTrue) != "undefined") {_RecordType("<1726,1736,33>",(assertTrue)); Inst11++; } } catch(e) {}try { if (Inst12 <= 1000 && typeof (Object.keys(global).indexOf) != "undefined") {_RecordType("<1742,1769,33>",(Object.keys(global).indexOf)); Inst12++; } } catch(e) {}try { if (Inst13 <= 1000 && typeof (Object.keys) != "undefined") {_RecordType("<1742,1753,33>",(Object.keys)); Inst13++; } } catch(e) {}try { if (Inst14 <= 1000 && typeof (Object) != "undefined") {_RecordType("<1742,1748,33>",(Object)); Inst14++; } } catch(e) {}try { if (Inst15 <= 1000 && typeof (global) != "undefined") {_RecordType("<1754,1760,33>",(global)); Inst15++; } } catch(e) {}try { if (Inst16 <= 1000 && typeof (key) != "undefined") {_RecordType("<1770,1773,33>",(key)); Inst16++; } } catch(e) {}
+  assertTrue(-1 < Object.keys(global).indexOf(key));
+try { if (Inst17 <= 1000 && typeof (assertTrue) != "undefined") {_RecordType("<1779,1789,34>",(assertTrue)); Inst17++; } } catch(e) {}try { if (Inst18 <= 1000 && typeof (Object.getOwnPropertyNames(global).indexOf) != "undefined") {_RecordType("<1795,1837,34>",(Object.getOwnPropertyNames(global).indexOf)); Inst18++; } } catch(e) {}try { if (Inst19 <= 1000 && typeof (Object.getOwnPropertyNames) != "undefined") {_RecordType("<1795,1821,34>",(Object.getOwnPropertyNames)); Inst19++; } } catch(e) {}try { if (Inst20 <= 1000 && typeof (Object) != "undefined") {_RecordType("<1795,1801,34>",(Object)); Inst20++; } } catch(e) {}try { if (Inst21 <= 1000 && typeof (global) != "undefined") {_RecordType("<1822,1828,34>",(global)); Inst21++; } } catch(e) {}try { if (Inst22 <= 1000 && typeof (key) != "undefined") {_RecordType("<1838,1841,34>",(key)); Inst22++; } } catch(e) {}
+  assertTrue(-1 < Object.getOwnPropertyNames(global).indexOf(key));
+try { if (Inst23 <= 1000 && typeof (assertTrue) != "undefined") {_RecordType("<1847,1857,35>",(assertTrue)); Inst23++; } } catch(e) {}try { if (Inst24 <= 1000 && typeof (Object.getOwnPropertySymbols(global).indexOf) != "undefined") {_RecordType("<1864,1908,35>",(Object.getOwnPropertySymbols(global).indexOf)); Inst24++; } } catch(e) {}try { if (Inst25 <= 1000 && typeof (Object.getOwnPropertySymbols) != "undefined") {_RecordType("<1864,1892,35>",(Object.getOwnPropertySymbols)); Inst25++; } } catch(e) {}try { if (Inst26 <= 1000 && typeof (Object) != "undefined") {_RecordType("<1864,1870,35>",(Object)); Inst26++; } } catch(e) {}try { if (Inst27 <= 1000 && typeof (global) != "undefined") {_RecordType("<1893,1899,35>",(global)); Inst27++; } } catch(e) {}try { if (Inst28 <= 1000 && typeof (key) != "undefined") {_RecordType("<1909,1912,35>",(key)); Inst28++; } } catch(e) {}
+  assertTrue(-1 == Object.getOwnPropertySymbols(global).indexOf(key));
+}
+
+try { if (Inst29 <= 1000 && typeof (testNamedProperty) != "undefined") {_RecordType("<1919,1936,38>",(testNamedProperty)); Inst29++; } } catch(e) {}
+testNamedProperty('property0', 'value');
+try { if (Inst30 <= 1000 && typeof (testNamedProperty) != "undefined") {_RecordType("<1960,1977,39>",(testNamedProperty)); Inst30++; } } catch(e) {}
+testNamedProperty('0property', 'value');
+try { if (Inst31 <= 1000 && typeof (testNamedProperty) != "undefined") {_RecordType("<2001,2018,40>",(testNamedProperty)); Inst31++; } } catch(e) {}
+testNamedProperty('42', 'value');
+
+try { if (Inst32 <= 1000 && typeof (testNamedNonEnumerableProperty) != "undefined") {_RecordType("<2045,2075,42>",(testNamedNonEnumerableProperty)); Inst32++; } } catch(e) {}
+function testNamedNonEnumerableProperty(key, value) {
+try { if (Inst33 <= 1000 && typeof (key) != "undefined") {_RecordType("<2076,2079,42>",(key)); Inst33++; } } catch(e) {}try { if (Inst34 <= 1000 && typeof (value) != "undefined") {_RecordType("<2081,2086,42>",(value)); Inst34++; } } catch(e) {}
+try { if (Inst35 <= 1000 && typeof (Object.defineProperty) != "undefined") {_RecordType("<2092,2113,43>",(Object.defineProperty)); Inst35++; } } catch(e) {}try { if (Inst36 <= 1000 && typeof (Object) != "undefined") {_RecordType("<2092,2098,43>",(Object)); Inst36++; } } catch(e) {}try { if (Inst37 <= 1000 && typeof (global) != "undefined") {_RecordType("<2114,2120,43>",(global)); Inst37++; } } catch(e) {}try { if (Inst38 <= 1000 && typeof (key) != "undefined") {_RecordType("<2122,2125,43>",(key)); Inst38++; } } catch(e) {}try { if (Inst39 <= 1000 && typeof (value) != "undefined") {_RecordType("<2163,2168,45>",(value)); Inst39++; } } catch(e) {}
+  Object.defineProperty(global, key, {
+    enumerable: false,
+    value: value
+  });
+try { if (Inst40 <= 1000 && typeof (assertTrue) != "undefined") {_RecordType("<2177,2187,47>",(assertTrue)); Inst40++; } } catch(e) {}try { if (Inst41 <= 1000 && typeof (global.hasOwnProperty) != "undefined") {_RecordType("<2188,2209,47>",(global.hasOwnProperty)); Inst41++; } } catch(e) {}try { if (Inst42 <= 1000 && typeof (global) != "undefined") {_RecordType("<2188,2194,47>",(global)); Inst42++; } } catch(e) {}try { if (Inst43 <= 1000 && typeof (key) != "undefined") {_RecordType("<2210,2213,47>",(key)); Inst43++; } } catch(e) {}
+  assertTrue(global.hasOwnProperty(key));
+try { if (Inst44 <= 1000 && typeof (assertTrue) != "undefined") {_RecordType("<2219,2229,48>",(assertTrue)); Inst44++; } } catch(e) {}try { if (Inst45 <= 1000 && typeof (Object.keys(global).indexOf) != "undefined") {_RecordType("<2236,2263,48>",(Object.keys(global).indexOf)); Inst45++; } } catch(e) {}try { if (Inst46 <= 1000 && typeof (Object.keys) != "undefined") {_RecordType("<2236,2247,48>",(Object.keys)); Inst46++; } } catch(e) {}try { if (Inst47 <= 1000 && typeof (Object) != "undefined") {_RecordType("<2236,2242,48>",(Object)); Inst47++; } } catch(e) {}try { if (Inst48 <= 1000 && typeof (global) != "undefined") {_RecordType("<2248,2254,48>",(global)); Inst48++; } } catch(e) {}try { if (Inst49 <= 1000 && typeof (key) != "undefined") {_RecordType("<2264,2267,48>",(key)); Inst49++; } } catch(e) {}
+  assertTrue(-1 == Object.keys(global).indexOf(key));
+try { if (Inst50 <= 1000 && typeof (assertTrue) != "undefined") {_RecordType("<2273,2283,49>",(assertTrue)); Inst50++; } } catch(e) {}try { if (Inst51 <= 1000 && typeof (Object.getOwnPropertyNames(global).indexOf) != "undefined") {_RecordType("<2289,2331,49>",(Object.getOwnPropertyNames(global).indexOf)); Inst51++; } } catch(e) {}try { if (Inst52 <= 1000 && typeof (Object.getOwnPropertyNames) != "undefined") {_RecordType("<2289,2315,49>",(Object.getOwnPropertyNames)); Inst52++; } } catch(e) {}try { if (Inst53 <= 1000 && typeof (Object) != "undefined") {_RecordType("<2289,2295,49>",(Object)); Inst53++; } } catch(e) {}try { if (Inst54 <= 1000 && typeof (global) != "undefined") {_RecordType("<2316,2322,49>",(global)); Inst54++; } } catch(e) {}try { if (Inst55 <= 1000 && typeof (key) != "undefined") {_RecordType("<2332,2335,49>",(key)); Inst55++; } } catch(e) {}
+  assertTrue(-1 < Object.getOwnPropertyNames(global).indexOf(key));
+try { if (Inst56 <= 1000 && typeof (assertTrue) != "undefined") {_RecordType("<2341,2351,50>",(assertTrue)); Inst56++; } } catch(e) {}try { if (Inst57 <= 1000 && typeof (Object.getOwnPropertySymbols(global).indexOf) != "undefined") {_RecordType("<2358,2402,50>",(Object.getOwnPropertySymbols(global).indexOf)); Inst57++; } } catch(e) {}try { if (Inst58 <= 1000 && typeof (Object.getOwnPropertySymbols) != "undefined") {_RecordType("<2358,2386,50>",(Object.getOwnPropertySymbols)); Inst58++; } } catch(e) {}try { if (Inst59 <= 1000 && typeof (Object) != "undefined") {_RecordType("<2358,2364,50>",(Object)); Inst59++; } } catch(e) {}try { if (Inst60 <= 1000 && typeof (global) != "undefined") {_RecordType("<2387,2393,50>",(global)); Inst60++; } } catch(e) {}try { if (Inst61 <= 1000 && typeof (key) != "undefined") {_RecordType("<2403,2406,50>",(key)); Inst61++; } } catch(e) {}
+  assertTrue(-1 == Object.getOwnPropertySymbols(global).indexOf(key));
+}
+
+try { if (Inst62 <= 1000 && typeof (testNamedNonEnumerableProperty) != "undefined") {_RecordType("<2413,2443,53>",(testNamedNonEnumerableProperty)); Inst62++; } } catch(e) {}
+testNamedNonEnumerableProperty('property1', 'value');
+try { if (Inst63 <= 1000 && typeof (testNamedNonEnumerableProperty) != "undefined") {_RecordType("<2467,2497,54>",(testNamedNonEnumerableProperty)); Inst63++; } } catch(e) {}
+testNamedNonEnumerableProperty('1property', 'value');
+try { if (Inst64 <= 1000 && typeof (testNamedNonEnumerableProperty) != "undefined") {_RecordType("<2521,2551,55>",(testNamedNonEnumerableProperty)); Inst64++; } } catch(e) {}
+testNamedNonEnumerableProperty('43', 'value');
+
+try { if (Inst65 <= 1000 && typeof (testSymbolProperty) != "undefined") {_RecordType("<2578,2596,57>",(testSymbolProperty)); Inst65++; } } catch(e) {}
+function testSymbolProperty(key, value) {
+try { if (Inst66 <= 1000 && typeof (key) != "undefined") {_RecordType("<2597,2600,57>",(key)); Inst66++; } } catch(e) {}try { if (Inst67 <= 1000 && typeof (value) != "undefined") {_RecordType("<2602,2607,57>",(value)); Inst67++; } } catch(e) {}
+try { if (Inst69 <= 1000 && typeof (Symbol) != "undefined") {_RecordType("<2619,2625,58>",(Symbol)); Inst69++; } } catch(e) {}try { if (Inst70 <= 1000 && typeof (key) != "undefined") {_RecordType("<2626,2629,58>",(key)); Inst70++; } } catch(e) {}
+  key = Symbol(key);
+try { if (Inst68 <= 1000 && typeof (key) != "undefined") {_RecordType("<2613,2616,58>",(key)); Inst68++; } } catch(e) {}
+try { if (Inst73 <= 1000 && typeof (value) != "undefined") {_RecordType("<2648,2653,59>",(value)); Inst73++; } } catch(e) {}
+  global[key] = value;
+try { if (Inst71 <= 1000 && typeof (global[key]) != "undefined") {_RecordType("<2634,2645,59>",(global[key])); Inst71++; } } catch(e) {}try { if (Inst72 <= 1000 && typeof (global) != "undefined") {_RecordType("<2634,2640,59>",(global)); Inst72++; } } catch(e) {}
+try { if (Inst74 <= 1000 && typeof (assertTrue) != "undefined") {_RecordType("<2657,2667,60>",(assertTrue)); Inst74++; } } catch(e) {}try { if (Inst75 <= 1000 && typeof (global.hasOwnProperty) != "undefined") {_RecordType("<2668,2689,60>",(global.hasOwnProperty)); Inst75++; } } catch(e) {}try { if (Inst76 <= 1000 && typeof (global) != "undefined") {_RecordType("<2668,2674,60>",(global)); Inst76++; } } catch(e) {}try { if (Inst77 <= 1000 && typeof (key) != "undefined") {_RecordType("<2690,2693,60>",(key)); Inst77++; } } catch(e) {}
+  assertTrue(global.hasOwnProperty(key));
+try { if (Inst78 <= 1000 && typeof (assertTrue) != "undefined") {_RecordType("<2699,2709,61>",(assertTrue)); Inst78++; } } catch(e) {}try { if (Inst79 <= 1000 && typeof (Object.keys(global).indexOf) != "undefined") {_RecordType("<2716,2743,61>",(Object.keys(global).indexOf)); Inst79++; } } catch(e) {}try { if (Inst80 <= 1000 && typeof (Object.keys) != "undefined") {_RecordType("<2716,2727,61>",(Object.keys)); Inst80++; } } catch(e) {}try { if (Inst81 <= 1000 && typeof (Object) != "undefined") {_RecordType("<2716,2722,61>",(Object)); Inst81++; } } catch(e) {}try { if (Inst82 <= 1000 && typeof (global) != "undefined") {_RecordType("<2728,2734,61>",(global)); Inst82++; } } catch(e) {}try { if (Inst83 <= 1000 && typeof (key) != "undefined") {_RecordType("<2744,2747,61>",(key)); Inst83++; } } catch(e) {}
+  assertTrue(-1 == Object.keys(global).indexOf(key));
+try { if (Inst84 <= 1000 && typeof (assertTrue) != "undefined") {_RecordType("<2753,2763,62>",(assertTrue)); Inst84++; } } catch(e) {}try { if (Inst85 <= 1000 && typeof (Object.getOwnPropertyNames(global).indexOf) != "undefined") {_RecordType("<2770,2812,62>",(Object.getOwnPropertyNames(global).indexOf)); Inst85++; } } catch(e) {}try { if (Inst86 <= 1000 && typeof (Object.getOwnPropertyNames) != "undefined") {_RecordType("<2770,2796,62>",(Object.getOwnPropertyNames)); Inst86++; } } catch(e) {}try { if (Inst87 <= 1000 && typeof (Object) != "undefined") {_RecordType("<2770,2776,62>",(Object)); Inst87++; } } catch(e) {}try { if (Inst88 <= 1000 && typeof (global) != "undefined") {_RecordType("<2797,2803,62>",(global)); Inst88++; } } catch(e) {}try { if (Inst89 <= 1000 && typeof (key) != "undefined") {_RecordType("<2813,2816,62>",(key)); Inst89++; } } catch(e) {}
+  assertTrue(-1 == Object.getOwnPropertyNames(global).indexOf(key));
+try { if (Inst90 <= 1000 && typeof (assertTrue) != "undefined") {_RecordType("<2822,2832,63>",(assertTrue)); Inst90++; } } catch(e) {}try { if (Inst91 <= 1000 && typeof (Object.getOwnPropertySymbols(global).indexOf) != "undefined") {_RecordType("<2838,2882,63>",(Object.getOwnPropertySymbols(global).indexOf)); Inst91++; } } catch(e) {}try { if (Inst92 <= 1000 && typeof (Object.getOwnPropertySymbols) != "undefined") {_RecordType("<2838,2866,63>",(Object.getOwnPropertySymbols)); Inst92++; } } catch(e) {}try { if (Inst93 <= 1000 && typeof (Object) != "undefined") {_RecordType("<2838,2844,63>",(Object)); Inst93++; } } catch(e) {}try { if (Inst94 <= 1000 && typeof (global) != "undefined") {_RecordType("<2867,2873,63>",(global)); Inst94++; } } catch(e) {}try { if (Inst95 <= 1000 && typeof (key) != "undefined") {_RecordType("<2883,2886,63>",(key)); Inst95++; } } catch(e) {}
+  assertTrue(-1 < Object.getOwnPropertySymbols(global).indexOf(key));
+}
+
+try { if (Inst96 <= 1000 && typeof (testSymbolProperty) != "undefined") {_RecordType("<2893,2911,66>",(testSymbolProperty)); Inst96++; } } catch(e) {}
+testSymbolProperty('property2', 'value');
+try { if (Inst97 <= 1000 && typeof (testSymbolProperty) != "undefined") {_RecordType("<2935,2953,67>",(testSymbolProperty)); Inst97++; } } catch(e) {}
+testSymbolProperty('2property', 'value');
+try { if (Inst98 <= 1000 && typeof (testSymbolProperty) != "undefined") {_RecordType("<2977,2995,68>",(testSymbolProperty)); Inst98++; } } catch(e) {}
+testSymbolProperty('43', 'value');
+

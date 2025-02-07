@@ -1,0 +1,131 @@
+var Inst0 = 0;
+var Inst1 = 0;
+var Inst2 = 0;
+var Inst3 = 0;
+var Inst4 = 0;
+var Inst5 = 0;
+var Inst6 = 0;
+var Inst7 = 0;
+var Inst8 = 0;
+var Inst9 = 0;
+var Inst10 = 0;
+var Inst11 = 0;
+var Inst12 = 0;
+var Inst13 = 0;
+var Inst14 = 0;
+var Inst15 = 0;
+var Inst16 = 0;
+var Inst17 = 0;
+var Inst18 = 0;
+var Inst19 = 0;
+var Inst20 = 0;
+var Inst21 = 0;
+var Inst22 = 0;
+var Inst23 = 0;
+var Inst24 = 0;
+var Inst25 = 0;
+var Inst26 = 0;
+var Inst27 = 0;
+var Inst28 = 0;
+var Inst29 = 0;
+var Inst30 = 0;
+var Inst31 = 0;
+var Inst32 = 0;
+ 
+function _TypeOfArray(a) {
+	let number = true;	
+	let string = true;
+	for (let i = 0; i < a.length; i++) {
+		if (number && (typeof a[i]) != "number") {
+			number = false;	
+		}
+		if (string && (typeof a[i]) != "string") {
+			string = false;	
+		}
+		if (!number && !string)
+			break;
+	}
+	if (number)
+		return "number";
+	else if (string)
+		return "string";
+	else
+		return "any";
+}
+
+function _TypeIsEqual(t1, t2) {
+	return JSON.stringify(t1) === JSON.stringify(t2);
+}
+
+function _TypeOf(a, step) {
+	var t;
+	var type = Object.prototype.toString.call(a).slice(8, -1).toLowerCase();	
+	if (type == "array") {
+		t = {type : type, extra: {elemType: _TypeOfArray(a)}};
+	} else if (type == "object") {
+		let shape = [];
+        if (step === undefined || step > 0) {
+            let keys = Object.keys(a);
+            let length = Math.min(100, keys.length);
+		    for (let i = 0; i < length; i++) {
+			    shape.push([keys[i], _TypeOf(a[keys[i]], step === undefined ? 1 : step - 1)]);	
+		    }
+        }
+		t = {type : type, extra: {shape: shape}};
+	} else {
+		t = {type : type};
+	} 
+	return t;
+}
+
+function _RecordType(loc, a) {
+	var t = _TypeOf(a);
+    print("~~~TypeInfo:" + loc + ":" + JSON.stringify(t));
+}
+// Copyright 2011 the V8 project authors. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
+// Flags: --harmony-unicode-regexps --harmony-regexp-property
+
+try { if (Inst0 <= 1000 && typeof (assertThrows) != "undefined") {_RecordType("<231,243,7>",(assertThrows)); Inst0++; } } catch(e) {}
+assertThrows("/[\\p]/u");
+try { if (Inst1 <= 1000 && typeof (assertThrows) != "undefined") {_RecordType("<257,269,8>",(assertThrows)); Inst1++; } } catch(e) {}
+assertThrows("/[\\p{garbage}]/u");
+try { if (Inst2 <= 1000 && typeof (assertThrows) != "undefined") {_RecordType("<292,304,9>",(assertThrows)); Inst2++; } } catch(e) {}
+assertThrows("/[\\p{}]/u");
+try { if (Inst3 <= 1000 && typeof (assertThrows) != "undefined") {_RecordType("<320,332,10>",(assertThrows)); Inst3++; } } catch(e) {}
+assertThrows("/[\\p{]/u");
+try { if (Inst4 <= 1000 && typeof (assertThrows) != "undefined") {_RecordType("<347,359,11>",(assertThrows)); Inst4++; } } catch(e) {}
+assertThrows("/[\\p}]/u");
+
+try { if (Inst5 <= 1000 && typeof (assertTrue) != "undefined") {_RecordType("<375,385,13>",(assertTrue)); Inst5++; } } catch(e) {}try { if (Inst6 <= 1000 && typeof (/^[\p{Lu}\p{Ll}]+$/u.test) != "undefined") {_RecordType("<386,411,13>",(/^[\p{Lu}\p{Ll}]+$/u.test)); Inst6++; } } catch(e) {}
+assertTrue(/^[\p{Lu}\p{Ll}]+$/u.test("ABCabc"));
+try { if (Inst7 <= 1000 && typeof (assertTrue) != "undefined") {_RecordType("<424,434,14>",(assertTrue)); Inst7++; } } catch(e) {}try { if (Inst8 <= 1000 && typeof (/^[\p{Lu}-\p{Ll}]+$/u.test) != "undefined") {_RecordType("<435,461,14>",(/^[\p{Lu}-\p{Ll}]+$/u.test)); Inst8++; } } catch(e) {}
+assertTrue(/^[\p{Lu}-\p{Ll}]+$/u.test("ABC-abc"));
+try { if (Inst9 <= 1000 && typeof (assertFalse) != "undefined") {_RecordType("<475,486,15>",(assertFalse)); Inst9++; } } catch(e) {}try { if (Inst10 <= 1000 && typeof (/^[\P{Lu}\p{Ll}]+$/u.test) != "undefined") {_RecordType("<487,512,15>",(/^[\P{Lu}\p{Ll}]+$/u.test)); Inst10++; } } catch(e) {}
+assertFalse(/^[\P{Lu}\p{Ll}]+$/u.test("ABCabc"));
+try { if (Inst11 <= 1000 && typeof (assertTrue) != "undefined") {_RecordType("<525,535,16>",(assertTrue)); Inst11++; } } catch(e) {}try { if (Inst12 <= 1000 && typeof (/^[\P{Lu}\p{Ll}]+$/u.test) != "undefined") {_RecordType("<536,561,16>",(/^[\P{Lu}\p{Ll}]+$/u.test)); Inst12++; } } catch(e) {}
+assertTrue(/^[\P{Lu}\p{Ll}]+$/u.test("abc"));
+try { if (Inst13 <= 1000 && typeof (assertTrue) != "undefined") {_RecordType("<571,581,17>",(assertTrue)); Inst13++; } } catch(e) {}try { if (Inst14 <= 1000 && typeof (/^[\P{Lu}]+$/u.test) != "undefined") {_RecordType("<582,601,17>",(/^[\P{Lu}]+$/u.test)); Inst14++; } } catch(e) {}
+assertTrue(/^[\P{Lu}]+$/u.test("abc123"));
+try { if (Inst15 <= 1000 && typeof (assertFalse) != "undefined") {_RecordType("<614,625,18>",(assertFalse)); Inst15++; } } catch(e) {}try { if (Inst16 <= 1000 && typeof (/^[\P{Lu}]+$/u.test) != "undefined") {_RecordType("<626,645,18>",(/^[\P{Lu}]+$/u.test)); Inst16++; } } catch(e) {}
+assertFalse(/^[\P{Lu}]+$/u.test("XYZ"));
+try { if (Inst17 <= 1000 && typeof (assertTrue) != "undefined") {_RecordType("<655,665,19>",(assertTrue)); Inst17++; } } catch(e) {}try { if (Inst18 <= 1000 && typeof (/[\p{Math}]/u.test) != "undefined") {_RecordType("<666,684,19>",(/[\p{Math}]/u.test)); Inst18++; } } catch(e) {}
+assertTrue(/[\p{Math}]/u.test("+"));
+try { if (Inst19 <= 1000 && typeof (assertTrue) != "undefined") {_RecordType("<692,702,20>",(assertTrue)); Inst19++; } } catch(e) {}try { if (Inst20 <= 1000 && typeof (/[\P{Bidi_M}]/u.test) != "undefined") {_RecordType("<703,723,20>",(/[\P{Bidi_M}]/u.test)); Inst20++; } } catch(e) {}
+assertTrue(/[\P{Bidi_M}]/u.test(" "));
+try { if (Inst21 <= 1000 && typeof (assertTrue) != "undefined") {_RecordType("<731,741,21>",(assertTrue)); Inst21++; } } catch(e) {}try { if (Inst22 <= 1000 && typeof (/[\p{Hex}]/u.test) != "undefined") {_RecordType("<742,759,21>",(/[\p{Hex}]/u.test)); Inst22++; } } catch(e) {}
+assertTrue(/[\p{Hex}]/u.test("A"));
+
+try { if (Inst23 <= 1000 && typeof (assertTrue) != "undefined") {_RecordType("<768,778,23>",(assertTrue)); Inst23++; } } catch(e) {}try { if (Inst24 <= 1000 && typeof (/^[^\P{Lu}]+$/u.test) != "undefined") {_RecordType("<779,799,23>",(/^[^\P{Lu}]+$/u.test)); Inst24++; } } catch(e) {}
+assertTrue(/^[^\P{Lu}]+$/u.test("XYZ"));
+try { if (Inst25 <= 1000 && typeof (assertFalse) != "undefined") {_RecordType("<809,820,24>",(assertFalse)); Inst25++; } } catch(e) {}try { if (Inst26 <= 1000 && typeof (/^[^\p{Lu}\p{Ll}]+$/u.test) != "undefined") {_RecordType("<821,847,24>",(/^[^\p{Lu}\p{Ll}]+$/u.test)); Inst26++; } } catch(e) {}
+assertFalse(/^[^\p{Lu}\p{Ll}]+$/u.test("abc"));
+try { if (Inst27 <= 1000 && typeof (assertFalse) != "undefined") {_RecordType("<857,868,25>",(assertFalse)); Inst27++; } } catch(e) {}try { if (Inst28 <= 1000 && typeof (/^[^\p{Lu}\p{Ll}]+$/u.test) != "undefined") {_RecordType("<869,895,25>",(/^[^\p{Lu}\p{Ll}]+$/u.test)); Inst28++; } } catch(e) {}
+assertFalse(/^[^\p{Lu}\p{Ll}]+$/u.test("ABC"));
+try { if (Inst29 <= 1000 && typeof (assertTrue) != "undefined") {_RecordType("<905,915,26>",(assertTrue)); Inst29++; } } catch(e) {}try { if (Inst30 <= 1000 && typeof (/^[^\p{Lu}\p{Ll}]+$/u.test) != "undefined") {_RecordType("<916,942,26>",(/^[^\p{Lu}\p{Ll}]+$/u.test)); Inst30++; } } catch(e) {}
+assertTrue(/^[^\p{Lu}\p{Ll}]+$/u.test("123"));
+try { if (Inst31 <= 1000 && typeof (assertTrue) != "undefined") {_RecordType("<952,962,27>",(assertTrue)); Inst31++; } } catch(e) {}try { if (Inst32 <= 1000 && typeof (/^[^\p{Lu}\P{Ll}]+$/u.test) != "undefined") {_RecordType("<963,989,27>",(/^[^\p{Lu}\P{Ll}]+$/u.test)); Inst32++; } } catch(e) {}
+assertTrue(/^[^\p{Lu}\P{Ll}]+$/u.test("abc"));
+

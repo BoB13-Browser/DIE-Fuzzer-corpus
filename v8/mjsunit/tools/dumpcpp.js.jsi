@@ -1,0 +1,173 @@
+var Inst0 = 0;
+var Inst1 = 0;
+var Inst2 = 0;
+var Inst3 = 0;
+var Inst4 = 0;
+var Inst5 = 0;
+var Inst6 = 0;
+var Inst7 = 0;
+var Inst8 = 0;
+var Inst9 = 0;
+var Inst10 = 0;
+var Inst11 = 0;
+var Inst12 = 0;
+var Inst13 = 0;
+var Inst14 = 0;
+var Inst15 = 0;
+var Inst16 = 0;
+var Inst17 = 0;
+var Inst18 = 0;
+var Inst19 = 0;
+var Inst20 = 0;
+var Inst21 = 0;
+var Inst22 = 0;
+var Inst23 = 0;
+var Inst24 = 0;
+var Inst25 = 0;
+var Inst26 = 0;
+var Inst27 = 0;
+var Inst28 = 0;
+var Inst29 = 0;
+var Inst30 = 0;
+var Inst31 = 0;
+var Inst32 = 0;
+var Inst33 = 0;
+var Inst34 = 0;
+var Inst35 = 0;
+var Inst36 = 0;
+var Inst37 = 0;
+ 
+function _TypeOfArray(a) {
+	let number = true;	
+	let string = true;
+	for (let i = 0; i < a.length; i++) {
+		if (number && (typeof a[i]) != "number") {
+			number = false;	
+		}
+		if (string && (typeof a[i]) != "string") {
+			string = false;	
+		}
+		if (!number && !string)
+			break;
+	}
+	if (number)
+		return "number";
+	else if (string)
+		return "string";
+	else
+		return "any";
+}
+
+function _TypeIsEqual(t1, t2) {
+	return JSON.stringify(t1) === JSON.stringify(t2);
+}
+
+function _TypeOf(a, step) {
+	var t;
+	var type = Object.prototype.toString.call(a).slice(8, -1).toLowerCase();	
+	if (type == "array") {
+		t = {type : type, extra: {elemType: _TypeOfArray(a)}};
+	} else if (type == "object") {
+		let shape = [];
+        if (step === undefined || step > 0) {
+            let keys = Object.keys(a);
+            let length = Math.min(100, keys.length);
+		    for (let i = 0; i < length; i++) {
+			    shape.push([keys[i], _TypeOf(a[keys[i]], step === undefined ? 1 : step - 1)]);	
+		    }
+        }
+		t = {type : type, extra: {shape: shape}};
+	} else {
+		t = {type : type};
+	} 
+	return t;
+}
+
+function _RecordType(loc, a) {
+	var t = _TypeOf(a);
+    print("~~~TypeInfo:" + loc + ":" + JSON.stringify(t));
+}
+// Copyright 2016 the V8 project authors. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
+// Load implementations from <project root>/tools.
+// Files: tools/splaytree.js tools/codemap.js tools/csvparser.js
+// Files: tools/consarray.js tools/profile.js tools/profile_view.js
+// Files: tools/logreader.js tools/tickprocessor.js
+// Files: tools/dumpcpp.js
+// Env: TEST_FILE_NAME
+
+try { if (Inst0 <= 1000 && typeof (testProcessSharedLibrary) != "undefined") {_RecordType("<465,489,12>",(testProcessSharedLibrary)); Inst0++; } } catch(e) {}
+(function testProcessSharedLibrary() {
+try { if (Inst2 <= 1000 && typeof (UnixCppEntriesProvider.prototype.loadSymbols) != "undefined") {_RecordType("<517,561,13>",(UnixCppEntriesProvider.prototype.loadSymbols)); Inst2++; } } catch(e) {}try { if (Inst3 <= 1000 && typeof (UnixCppEntriesProvider.prototype) != "undefined") {_RecordType("<517,549,13>",(UnixCppEntriesProvider.prototype)); Inst3++; } } catch(e) {}try { if (Inst4 <= 1000 && typeof (UnixCppEntriesProvider) != "undefined") {_RecordType("<517,539,13>",(UnixCppEntriesProvider)); Inst4++; } } catch(e) {}
+  var oldLoadSymbols = UnixCppEntriesProvider.prototype.loadSymbols;
+try { if (Inst1 <= 1000 && typeof (oldLoadSymbols) != "undefined") {_RecordType("<500,514,13>",(oldLoadSymbols)); Inst1++; } } catch(e) {}
+
+  UnixCppEntriesProvider.prototype.loadSymbols = function(libName) {
+try { if (Inst8 <= 1000 && typeof (libName) != "undefined") {_RecordType("<622,629,15>",(libName)); Inst8++; } } catch(e) {}
+try { if (Inst10 <= 1000 && typeof ([
+      '00000100 00000001 t v8::internal::Runtime_StringReplaceRegExpWithString(v8::internal::Arguments)',
+      '00000110 00000001 T v8::internal::Runtime::GetElementOrCharAt(v8::internal::Handle<v8::internal::Object>, unsigned int)',
+      '00000120 00000001 t v8::internal::Runtime_DebugGetPropertyDetails(v8::internal::Arguments)',
+      '00000130 00000001 W v8::internal::RegExpMacroAssembler::CheckPosition(int, v8::internal::Label*)'
+    ].join) != "undefined") {_RecordType("<653,1105,16>",([
+      '00000100 00000001 t v8::internal::Runtime_StringReplaceRegExpWithString(v8::internal::Arguments)',
+      '00000110 00000001 T v8::internal::Runtime::GetElementOrCharAt(v8::internal::Handle<v8::internal::Object>, unsigned int)',
+      '00000120 00000001 t v8::internal::Runtime_DebugGetPropertyDetails(v8::internal::Arguments)',
+      '00000130 00000001 W v8::internal::RegExpMacroAssembler::CheckPosition(int, v8::internal::Label*)'
+    ].join)); Inst10++; } } catch(e) {}
+    this.symbols = [[
+      '00000100 00000001 t v8::internal::Runtime_StringReplaceRegExpWithString(v8::internal::Arguments)',
+      '00000110 00000001 T v8::internal::Runtime::GetElementOrCharAt(v8::internal::Handle<v8::internal::Object>, unsigned int)',
+      '00000120 00000001 t v8::internal::Runtime_DebugGetPropertyDetails(v8::internal::Arguments)',
+      '00000130 00000001 W v8::internal::RegExpMacroAssembler::CheckPosition(int, v8::internal::Label*)'
+    ].join('\n'), ''];
+try { if (Inst9 <= 1000 && typeof (this.symbols) != "undefined") {_RecordType("<637,649,16>",(this.symbols)); Inst9++; } } catch(e) {}
+  };
+try { if (Inst5 <= 1000 && typeof (UnixCppEntriesProvider.prototype.loadSymbols) != "undefined") {_RecordType("<566,610,15>",(UnixCppEntriesProvider.prototype.loadSymbols)); Inst5++; } } catch(e) {}try { if (Inst6 <= 1000 && typeof (UnixCppEntriesProvider.prototype) != "undefined") {_RecordType("<566,598,15>",(UnixCppEntriesProvider.prototype)); Inst6++; } } catch(e) {}try { if (Inst7 <= 1000 && typeof (UnixCppEntriesProvider) != "undefined") {_RecordType("<566,588,15>",(UnixCppEntriesProvider)); Inst7++; } } catch(e) {}
+
+try { if (Inst12 <= 1000 && typeof (CppProcessor) != "undefined") {_RecordType("<1153,1165,24>",(CppProcessor)); Inst12++; } } catch(e) {}try { if (Inst13 <= 1000 && typeof (UnixCppEntriesProvider) != "undefined") {_RecordType("<1170,1192,24>",(UnixCppEntriesProvider)); Inst13++; } } catch(e) {}
+  var testCppProcessor = new CppProcessor(new UnixCppEntriesProvider(),
+                                          false, false);
+try { if (Inst11 <= 1000 && typeof (testCppProcessor) != "undefined") {_RecordType("<1130,1146,24>",(testCppProcessor)); Inst11++; } } catch(e) {}
+try { if (Inst14 <= 1000 && typeof (testCppProcessor.processSharedLibrary) != "undefined") {_RecordType("<1255,1292,26>",(testCppProcessor.processSharedLibrary)); Inst14++; } } catch(e) {}try { if (Inst15 <= 1000 && typeof (testCppProcessor) != "undefined") {_RecordType("<1255,1271,26>",(testCppProcessor)); Inst15++; } } catch(e) {}
+  testCppProcessor.processSharedLibrary(
+    '/usr/local/google/home/lpy/v8/out/native/d8',
+    0x00000100, 0x00000400, 0);
+
+try { if (Inst17 <= 1000 && typeof (testCppProcessor.codeMap_.getAllStaticEntriesWithAddresses) != "undefined") {_RecordType("<1400,1458,30>",(testCppProcessor.codeMap_.getAllStaticEntriesWithAddresses)); Inst17++; } } catch(e) {}try { if (Inst18 <= 1000 && typeof (testCppProcessor.codeMap_) != "undefined") {_RecordType("<1400,1425,30>",(testCppProcessor.codeMap_)); Inst18++; } } catch(e) {}try { if (Inst19 <= 1000 && typeof (testCppProcessor) != "undefined") {_RecordType("<1400,1416,30>",(testCppProcessor)); Inst19++; } } catch(e) {}
+  var staticEntries = testCppProcessor.codeMap_.getAllStaticEntriesWithAddresses();
+try { if (Inst16 <= 1000 && typeof (staticEntries) != "undefined") {_RecordType("<1384,1397,30>",(staticEntries)); Inst16++; } } catch(e) {}
+try { if (Inst21 <= 1000 && typeof (staticEntries.length) != "undefined") {_RecordType("<1476,1496,31>",(staticEntries.length)); Inst21++; } } catch(e) {}try { if (Inst22 <= 1000 && typeof (staticEntries) != "undefined") {_RecordType("<1476,1489,31>",(staticEntries)); Inst22++; } } catch(e) {}
+  var total = staticEntries.length;
+try { if (Inst20 <= 1000 && typeof (total) != "undefined") {_RecordType("<1468,1473,31>",(total)); Inst20++; } } catch(e) {}
+try { if (Inst23 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<1500,1512,32>",(assertEquals)); Inst23++; } } catch(e) {}try { if (Inst24 <= 1000 && typeof (total) != "undefined") {_RecordType("<1513,1518,32>",(total)); Inst24++; } } catch(e) {}
+  assertEquals(total, 3);
+try { if (Inst25 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<1526,1538,33>",(assertEquals)); Inst25++; } } catch(e) {}try { if (Inst26 <= 1000 && typeof (staticEntries[0]) != "undefined") {_RecordType("<1539,1555,33>",(staticEntries[0])); Inst26++; } } catch(e) {}try { if (Inst27 <= 1000 && typeof (staticEntries) != "undefined") {_RecordType("<1539,1552,33>",(staticEntries)); Inst27++; } } catch(e) {}
+  assertEquals(staticEntries[0],
+               [288,{size:1,
+                     name:'v8::internal::Runtime_DebugGetPropertyDetails(v8::internal::Arguments)',
+                     type:'CPP',
+                     nameUpdated_:false}
+               ]);
+try { if (Inst28 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<1781,1793,39>",(assertEquals)); Inst28++; } } catch(e) {}try { if (Inst29 <= 1000 && typeof (staticEntries[1]) != "undefined") {_RecordType("<1794,1810,39>",(staticEntries[1])); Inst29++; } } catch(e) {}try { if (Inst30 <= 1000 && typeof (staticEntries) != "undefined") {_RecordType("<1794,1807,39>",(staticEntries)); Inst30++; } } catch(e) {}
+  assertEquals(staticEntries[1],
+               [272,{size:1,
+                     name:'v8::internal::Runtime::GetElementOrCharAt(v8::internal::Handle<v8::internal::Object>, unsigned int)',
+                     type:'CPP',
+                     nameUpdated_:false}
+               ]);
+try { if (Inst31 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<2065,2077,45>",(assertEquals)); Inst31++; } } catch(e) {}try { if (Inst32 <= 1000 && typeof (staticEntries[2]) != "undefined") {_RecordType("<2078,2094,45>",(staticEntries[2])); Inst32++; } } catch(e) {}try { if (Inst33 <= 1000 && typeof (staticEntries) != "undefined") {_RecordType("<2078,2091,45>",(staticEntries)); Inst33++; } } catch(e) {}
+  assertEquals(staticEntries[2],
+              [256,{size:1,
+                    name:'v8::internal::Runtime_StringReplaceRegExpWithString(v8::internal::Arguments)',
+                    type:'CPP',
+                    nameUpdated_:false}
+              ]);
+
+try { if (Inst37 <= 1000 && typeof (oldLoadSymbols) != "undefined") {_RecordType("<2369,2383,52>",(oldLoadSymbols)); Inst37++; } } catch(e) {}
+  UnixCppEntriesProvider.prototype.loadSymbols = oldLoadSymbols;
+try { if (Inst34 <= 1000 && typeof (UnixCppEntriesProvider.prototype.loadSymbols) != "undefined") {_RecordType("<2322,2366,52>",(UnixCppEntriesProvider.prototype.loadSymbols)); Inst34++; } } catch(e) {}try { if (Inst35 <= 1000 && typeof (UnixCppEntriesProvider.prototype) != "undefined") {_RecordType("<2322,2354,52>",(UnixCppEntriesProvider.prototype)); Inst35++; } } catch(e) {}try { if (Inst36 <= 1000 && typeof (UnixCppEntriesProvider) != "undefined") {_RecordType("<2322,2344,52>",(UnixCppEntriesProvider)); Inst36++; } } catch(e) {}
+})();
+

@@ -1,0 +1,1 @@
+[null,{"type":"Void"},null,null,null,{"type":"Constructor","extra":{"name":"RegExp","ret":{"type":"RegExp"}}},null,null,{"type":"Void"},null]

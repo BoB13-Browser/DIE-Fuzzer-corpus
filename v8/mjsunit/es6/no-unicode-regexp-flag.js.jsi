@@ -1,0 +1,99 @@
+var Inst0 = 0;
+var Inst1 = 0;
+var Inst2 = 0;
+var Inst3 = 0;
+var Inst4 = 0;
+var Inst5 = 0;
+var Inst6 = 0;
+var Inst7 = 0;
+var Inst8 = 0;
+var Inst9 = 0;
+var Inst10 = 0;
+var Inst11 = 0;
+var Inst12 = 0;
+var Inst13 = 0;
+var Inst14 = 0;
+var Inst15 = 0;
+ 
+function _TypeOfArray(a) {
+	let number = true;	
+	let string = true;
+	for (let i = 0; i < a.length; i++) {
+		if (number && (typeof a[i]) != "number") {
+			number = false;	
+		}
+		if (string && (typeof a[i]) != "string") {
+			string = false;	
+		}
+		if (!number && !string)
+			break;
+	}
+	if (number)
+		return "number";
+	else if (string)
+		return "string";
+	else
+		return "any";
+}
+
+function _TypeIsEqual(t1, t2) {
+	return JSON.stringify(t1) === JSON.stringify(t2);
+}
+
+function _TypeOf(a, step) {
+	var t;
+	var type = Object.prototype.toString.call(a).slice(8, -1).toLowerCase();	
+	if (type == "array") {
+		t = {type : type, extra: {elemType: _TypeOfArray(a)}};
+	} else if (type == "object") {
+		let shape = [];
+        if (step === undefined || step > 0) {
+            let keys = Object.keys(a);
+            let length = Math.min(100, keys.length);
+		    for (let i = 0; i < length; i++) {
+			    shape.push([keys[i], _TypeOf(a[keys[i]], step === undefined ? 1 : step - 1)]);	
+		    }
+        }
+		t = {type : type, extra: {shape: shape}};
+	} else {
+		t = {type : type};
+	} 
+	return t;
+}
+
+function _RecordType(loc, a) {
+	var t = _TypeOf(a);
+    print("~~~TypeInfo:" + loc + ":" + JSON.stringify(t));
+}
+// Copyright 2015 the V8 project authors. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
+// Before Unicode RegExps are shipped, we shouldn't have the 'unicode'
+// property on RegExp.prototype, or read it from 'flags'.
+// mjsunit/es6/regexp-flags tests that the property is there when the
+// flag is on.
+
+// Flags: --no-harmony-unicode-regexps
+
+'use strict';
+
+try { if (Inst0 <= 1000 && typeof (assertFalse) != "undefined") {_RecordType("<438,449,14>",(assertFalse)); Inst0++; } } catch(e) {}try { if (Inst1 <= 1000 && typeof (RegExp.prototype.hasOwnProperty) != "undefined") {_RecordType("<450,481,14>",(RegExp.prototype.hasOwnProperty)); Inst1++; } } catch(e) {}try { if (Inst2 <= 1000 && typeof (RegExp.prototype) != "undefined") {_RecordType("<450,466,14>",(RegExp.prototype)); Inst2++; } } catch(e) {}try { if (Inst3 <= 1000 && typeof (RegExp) != "undefined") {_RecordType("<450,456,14>",(RegExp)); Inst3++; } } catch(e) {}
+assertFalse(RegExp.prototype.hasOwnProperty('unicode'));
+
+// If we were going to be really strict, we could have a test like this,
+// with the assertTrue replaced by assertFalse, since flags shouldn't
+// Get the 'unicode' property. However, it is probably OK to omit this
+// detailed fix.
+var x = /a/;
+try { if (Inst4 <= 1000 && typeof (x) != "undefined") {_RecordType("<731,732,20>",(x)); Inst4++; } } catch(e) {}
+var y = false;
+try { if (Inst5 <= 1000 && typeof (y) != "undefined") {_RecordType("<744,745,21>",(y)); Inst5++; } } catch(e) {}
+try { if (Inst6 <= 1000 && typeof (Object.defineProperty) != "undefined") {_RecordType("<755,776,22>",(Object.defineProperty)); Inst6++; } } catch(e) {}try { if (Inst7 <= 1000 && typeof (Object) != "undefined") {_RecordType("<755,761,22>",(Object)); Inst7++; } } catch(e) {}try { if (Inst8 <= 1000 && typeof (x) != "undefined") {_RecordType("<777,778,22>",(x)); Inst8++; } } catch(e) {}try { if (Inst9 <= 1000 && typeof (get) != "undefined") {_RecordType("<793,796,22>",(get)); Inst9++; } } catch(e) {}
+Object.defineProperty(x, 'unicode', { get() { y = true; } });
+try { if (Inst10 <= 1000 && typeof (y) != "undefined") {_RecordType("<801,802,22>",(y)); Inst10++; } } catch(e) {}
+try { if (Inst11 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<817,829,23>",(assertEquals)); Inst11++; } } catch(e) {}try { if (Inst12 <= 1000 && typeof (x.flags) != "undefined") {_RecordType("<834,841,23>",(x.flags)); Inst12++; } } catch(e) {}try { if (Inst13 <= 1000 && typeof (x) != "undefined") {_RecordType("<834,835,23>",(x)); Inst13++; } } catch(e) {}
+assertEquals("", x.flags);
+try { if (Inst14 <= 1000 && typeof (assertTrue) != "undefined") {_RecordType("<844,854,24>",(assertTrue)); Inst14++; } } catch(e) {}try { if (Inst15 <= 1000 && typeof (y) != "undefined") {_RecordType("<855,856,24>",(y)); Inst15++; } } catch(e) {}
+assertTrue(y);
+

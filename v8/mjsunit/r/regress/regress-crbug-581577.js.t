@@ -1,1 +1,0 @@
-[null,null,null,{"type":"Void"},{"type":"String"},{"type":"Prototype","extra":{"name":"RegExp","construct":{"type":"RegExp"}}},{"type":"Constructor","extra":{"name":"RegExp","ret":{"type":"RegExp"}}},{"type":"Immutable"},{"type":"Immutable"}]

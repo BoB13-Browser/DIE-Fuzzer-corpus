@@ -1,0 +1,142 @@
+var Inst0 = 0;
+var Inst1 = 0;
+var Inst2 = 0;
+var Inst3 = 0;
+var Inst4 = 0;
+var Inst5 = 0;
+var Inst6 = 0;
+var Inst7 = 0;
+var Inst8 = 0;
+var Inst9 = 0;
+var Inst10 = 0;
+var Inst11 = 0;
+var Inst12 = 0;
+var Inst13 = 0;
+var Inst14 = 0;
+var Inst15 = 0;
+var Inst16 = 0;
+var Inst17 = 0;
+var Inst18 = 0;
+var Inst19 = 0;
+var Inst20 = 0;
+var Inst21 = 0;
+var Inst22 = 0;
+var Inst23 = 0;
+var Inst24 = 0;
+var Inst25 = 0;
+var Inst26 = 0;
+var Inst27 = 0;
+var Inst28 = 0;
+var Inst29 = 0;
+var Inst30 = 0;
+var Inst31 = 0;
+var Inst32 = 0;
+var Inst33 = 0;
+var Inst34 = 0;
+var Inst35 = 0;
+var Inst36 = 0;
+var Inst37 = 0;
+var Inst38 = 0;
+var Inst39 = 0;
+ 
+function _TypeOfArray(a) {
+	let number = true;	
+	let string = true;
+	for (let i = 0; i < a.length; i++) {
+		if (number && (typeof a[i]) != "number") {
+			number = false;	
+		}
+		if (string && (typeof a[i]) != "string") {
+			string = false;	
+		}
+		if (!number && !string)
+			break;
+	}
+	if (number)
+		return "number";
+	else if (string)
+		return "string";
+	else
+		return "any";
+}
+
+function _TypeIsEqual(t1, t2) {
+	return JSON.stringify(t1) === JSON.stringify(t2);
+}
+
+function _TypeOf(a, step) {
+	var t;
+	var type = Object.prototype.toString.call(a).slice(8, -1).toLowerCase();	
+	if (type == "array") {
+		t = {type : type, extra: {elemType: _TypeOfArray(a)}};
+	} else if (type == "object") {
+		let shape = [];
+        if (step === undefined || step > 0) {
+            let keys = Object.keys(a);
+            let length = Math.min(100, keys.length);
+		    for (let i = 0; i < length; i++) {
+			    shape.push([keys[i], _TypeOf(a[keys[i]], step === undefined ? 1 : step - 1)]);	
+		    }
+        }
+		t = {type : type, extra: {shape: shape}};
+	} else {
+		t = {type : type};
+	} 
+	return t;
+}
+
+function _RecordType(loc, a) {
+	var t = _TypeOf(a);
+    print("~~~TypeInfo:" + loc + ":" + JSON.stringify(t));
+}
+// Copyright 2014 the V8 project authors. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
+if ("Intl" in this) {
+try { if (Inst0 <= 1000 && typeof (overflow) != "undefined") {_RecordType("<201,209,6>",(overflow)); Inst0++; } } catch(e) {}
+  function overflow() {
+try { if (Inst1 <= 1000 && typeof (overflow) != "undefined") {_RecordType("<225,233,7>",(overflow)); Inst1++; } } catch(e) {}
+    return overflow() + 1;
+  }
+try { if (Inst4 <= 1000 && typeof (overflow) != "undefined") {_RecordType("<271,279,9>",(overflow)); Inst4++; } } catch(e) {}
+  Object.defineProperty = overflow;
+try { if (Inst2 <= 1000 && typeof (Object.defineProperty) != "undefined") {_RecordType("<247,268,9>",(Object.defineProperty)); Inst2++; } } catch(e) {}try { if (Inst3 <= 1000 && typeof (Object) != "undefined") {_RecordType("<247,253,9>",(Object)); Inst3++; } } catch(e) {}
+try { if (Inst5 <= 1000 && typeof (assertDoesNotThrow) != "undefined") {_RecordType("<283,301,10>",(assertDoesNotThrow)); Inst5++; } } catch(e) {}try { if (Inst6 <= 1000 && typeof (Intl.Collator.supportedLocalesOf) != "undefined") {_RecordType("<315,347,10>",(Intl.Collator.supportedLocalesOf)); Inst6++; } } catch(e) {}try { if (Inst7 <= 1000 && typeof (Intl.Collator) != "undefined") {_RecordType("<315,328,10>",(Intl.Collator)); Inst7++; } } catch(e) {}try { if (Inst8 <= 1000 && typeof (Intl) != "undefined") {_RecordType("<315,319,10>",(Intl)); Inst8++; } } catch(e) {}
+  assertDoesNotThrow(function() { Intl.Collator.supportedLocalesOf("en"); });
+
+try { if (Inst10 <= 1000 && typeof (Date) != "undefined") {_RecordType("<377,381,12>",(Date)); Inst10++; } } catch(e) {}try { if (Inst11 <= 1000 && typeof (Date.UTC) != "undefined") {_RecordType("<382,390,12>",(Date.UTC)); Inst11++; } } catch(e) {}try { if (Inst12 <= 1000 && typeof (Date) != "undefined") {_RecordType("<382,386,12>",(Date)); Inst12++; } } catch(e) {}
+  var date = new Date(Date.UTC(2004, 12, 25, 3, 0, 0));
+try { if (Inst9 <= 1000 && typeof (date) != "undefined") {_RecordType("<366,370,12>",(date)); Inst9++; } } catch(e) {}
+  var options = {
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric"
+  };
+try { if (Inst13 <= 1000 && typeof (options) != "undefined") {_RecordType("<422,429,13>",(options)); Inst13++; } } catch(e) {}
+
+try { if (Inst16 <= 1000 && typeof (overflow) != "undefined") {_RecordType("<537,545,20>",(overflow)); Inst16++; } } catch(e) {}
+  Object.apply = overflow;
+try { if (Inst14 <= 1000 && typeof (Object.apply) != "undefined") {_RecordType("<522,534,20>",(Object.apply)); Inst14++; } } catch(e) {}try { if (Inst15 <= 1000 && typeof (Object) != "undefined") {_RecordType("<522,528,20>",(Object)); Inst15++; } } catch(e) {}
+try { if (Inst17 <= 1000 && typeof (assertDoesNotThrow) != "undefined") {_RecordType("<549,567,21>",(assertDoesNotThrow)); Inst17++; } } catch(e) {}try { if (Inst18 <= 1000 && typeof (date.toLocaleDateString) != "undefined") {_RecordType("<581,604,21>",(date.toLocaleDateString)); Inst18++; } } catch(e) {}try { if (Inst19 <= 1000 && typeof (date) != "undefined") {_RecordType("<581,585,21>",(date)); Inst19++; } } catch(e) {}try { if (Inst20 <= 1000 && typeof (options) != "undefined") {_RecordType("<614,621,21>",(options)); Inst20++; } } catch(e) {}
+  assertDoesNotThrow(function() { date.toLocaleDateString("de-DE", options); });
+
+  var options_incomplete = {};
+try { if (Inst21 <= 1000 && typeof (options_incomplete) != "undefined") {_RecordType("<635,653,23>",(options_incomplete)); Inst21++; } } catch(e) {}
+try { if (Inst22 <= 1000 && typeof (assertDoesNotThrow) != "undefined") {_RecordType("<662,680,24>",(assertDoesNotThrow)); Inst22++; } } catch(e) {}
+  assertDoesNotThrow(function() {
+try { if (Inst23 <= 1000 && typeof (date.toLocaleDateString) != "undefined") {_RecordType("<698,721,25>",(date.toLocaleDateString)); Inst23++; } } catch(e) {}try { if (Inst24 <= 1000 && typeof (date) != "undefined") {_RecordType("<698,702,25>",(date)); Inst24++; } } catch(e) {}try { if (Inst25 <= 1000 && typeof (options_incomplete) != "undefined") {_RecordType("<731,749,25>",(options_incomplete)); Inst25++; } } catch(e) {}
+    date.toLocaleDateString("de-DE", options_incomplete);
+  });
+try { if (Inst26 <= 1000 && typeof (assertTrue) != "undefined") {_RecordType("<760,770,27>",(assertTrue)); Inst26++; } } catch(e) {}try { if (Inst27 <= 1000 && typeof (options_incomplete.hasOwnProperty) != "undefined") {_RecordType("<771,804,27>",(options_incomplete.hasOwnProperty)); Inst27++; } } catch(e) {}try { if (Inst28 <= 1000 && typeof (options_incomplete) != "undefined") {_RecordType("<771,789,27>",(options_incomplete)); Inst28++; } } catch(e) {}
+  assertTrue(options_incomplete.hasOwnProperty("year"));
+
+try { if (Inst29 <= 1000 && typeof (assertDoesNotThrow) != "undefined") {_RecordType("<818,836,29>",(assertDoesNotThrow)); Inst29++; } } catch(e) {}try { if (Inst30 <= 1000 && typeof (date.toLocaleDateString) != "undefined") {_RecordType("<850,873,29>",(date.toLocaleDateString)); Inst30++; } } catch(e) {}try { if (Inst31 <= 1000 && typeof (date) != "undefined") {_RecordType("<850,854,29>",(date)); Inst31++; } } catch(e) {}try { if (Inst32 <= 1000 && typeof (undefined) != "undefined") {_RecordType("<883,892,29>",(undefined)); Inst32++; } } catch(e) {}
+  assertDoesNotThrow(function() { date.toLocaleDateString("de-DE", undefined); });
+try { if (Inst33 <= 1000 && typeof (assertDoesNotThrow) != "undefined") {_RecordType("<901,919,30>",(assertDoesNotThrow)); Inst33++; } } catch(e) {}try { if (Inst34 <= 1000 && typeof (date.toLocaleDateString) != "undefined") {_RecordType("<933,956,30>",(date.toLocaleDateString)); Inst34++; } } catch(e) {}try { if (Inst35 <= 1000 && typeof (date) != "undefined") {_RecordType("<933,937,30>",(date)); Inst35++; } } catch(e) {}
+  assertDoesNotThrow(function() { date.toLocaleDateString("de-DE"); });
+try { if (Inst36 <= 1000 && typeof (assertThrows) != "undefined") {_RecordType("<973,985,31>",(assertThrows)); Inst36++; } } catch(e) {}try { if (Inst37 <= 1000 && typeof (date.toLocaleDateString) != "undefined") {_RecordType("<999,1022,31>",(date.toLocaleDateString)); Inst37++; } } catch(e) {}try { if (Inst38 <= 1000 && typeof (date) != "undefined") {_RecordType("<999,1003,31>",(date)); Inst38++; } } catch(e) {}try { if (Inst39 <= 1000 && typeof (TypeError) != "undefined") {_RecordType("<1042,1051,31>",(TypeError)); Inst39++; } } catch(e) {}
+  assertThrows(function() { date.toLocaleDateString("de-DE", null); }, TypeError);
+}
+

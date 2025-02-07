@@ -1,0 +1,152 @@
+var Inst0 = 0;
+var Inst1 = 0;
+var Inst2 = 0;
+var Inst3 = 0;
+var Inst4 = 0;
+var Inst5 = 0;
+var Inst6 = 0;
+var Inst7 = 0;
+var Inst8 = 0;
+var Inst9 = 0;
+var Inst10 = 0;
+var Inst11 = 0;
+var Inst12 = 0;
+var Inst13 = 0;
+var Inst14 = 0;
+var Inst15 = 0;
+var Inst16 = 0;
+var Inst17 = 0;
+var Inst18 = 0;
+var Inst19 = 0;
+var Inst20 = 0;
+var Inst21 = 0;
+var Inst22 = 0;
+var Inst23 = 0;
+var Inst24 = 0;
+var Inst25 = 0;
+var Inst26 = 0;
+var Inst27 = 0;
+var Inst28 = 0;
+var Inst29 = 0;
+var Inst30 = 0;
+var Inst31 = 0;
+var Inst32 = 0;
+var Inst33 = 0;
+var Inst34 = 0;
+var Inst35 = 0;
+var Inst36 = 0;
+var Inst37 = 0;
+ 
+function _TypeOfArray(a) {
+	let number = true;	
+	let string = true;
+	for (let i = 0; i < a.length; i++) {
+		if (number && (typeof a[i]) != "number") {
+			number = false;	
+		}
+		if (string && (typeof a[i]) != "string") {
+			string = false;	
+		}
+		if (!number && !string)
+			break;
+	}
+	if (number)
+		return "number";
+	else if (string)
+		return "string";
+	else
+		return "any";
+}
+
+function _TypeIsEqual(t1, t2) {
+	return JSON.stringify(t1) === JSON.stringify(t2);
+}
+
+function _TypeOf(a, step) {
+	var t;
+	var type = Object.prototype.toString.call(a).slice(8, -1).toLowerCase();	
+	if (type == "array") {
+		t = {type : type, extra: {elemType: _TypeOfArray(a)}};
+	} else if (type == "object") {
+		let shape = [];
+        if (step === undefined || step > 0) {
+            let keys = Object.keys(a);
+            let length = Math.min(100, keys.length);
+		    for (let i = 0; i < length; i++) {
+			    shape.push([keys[i], _TypeOf(a[keys[i]], step === undefined ? 1 : step - 1)]);	
+		    }
+        }
+		t = {type : type, extra: {shape: shape}};
+	} else {
+		t = {type : type};
+	} 
+	return t;
+}
+
+function _RecordType(loc, a) {
+	var t = _TypeOf(a);
+    print("~~~TypeInfo:" + loc + ":" + JSON.stringify(t));
+}
+// Copyright 2016 the V8 project authors. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
+// https://bugs.chromium.org/p/chromium/issues/detail?id=595319
+// Ensure exceptions are checked for by Array.prototype.concat from adding
+// an element, and that elements are added to array subclasses appropriately
+
+// If adding a property does throw, the exception is propagated
+try { if (Inst1 <= 1000 && typeof (Error) != "undefined") {_RecordType("<475,480,10>",(Error)); Inst1++; } } catch(e) {}
+class MyException extends Error { }
+try { if (Inst0 <= 1000 && typeof (MyException) != "undefined") {_RecordType("<455,466,10>",(MyException)); Inst0++; } } catch(e) {}
+try { if (Inst3 <= 1000 && typeof (Array) != "undefined") {_RecordType("<521,526,11>",(Array)); Inst3++; } } catch(e) {}
+class NoDefinePropertyArray extends Array {
+  constructor(...args) {
+try { if (Inst4 <= 1000 && typeof (args) != "undefined") {_RecordType("<546,550,12>",(args)); Inst4++; } } catch(e) {}
+try { if (Inst5 <= 1000 && typeof (args) != "undefined") {_RecordType("<567,571,13>",(args)); Inst5++; } } catch(e) {}
+    super(...args);
+try { if (Inst6 <= 1000 && typeof (Proxy) != "undefined") {_RecordType("<589,594,14>",(Proxy)); Inst6++; } } catch(e) {}try { if (Inst7 <= 1000 && typeof (defineProperty) != "undefined") {_RecordType("<609,623,15>",(defineProperty)); Inst7++; } } catch(e) {}
+    return new Proxy(this, {
+try { if (Inst8 <= 1000 && typeof (MyException) != "undefined") {_RecordType("<638,649,15>",(MyException)); Inst8++; } } catch(e) {}
+      defineProperty() { throw new MyException(); }
+    });
+  }
+}
+try { if (Inst2 <= 1000 && typeof (NoDefinePropertyArray) != "undefined") {_RecordType("<491,512,11>",(NoDefinePropertyArray)); Inst2++; } } catch(e) {}
+try { if (Inst9 <= 1000 && typeof (assertThrows) != "undefined") {_RecordType("<669,681,19>",(assertThrows)); Inst9++; } } catch(e) {}try { if (Inst10 <= 1000 && typeof (new NoDefinePropertyArray().concat) != "undefined") {_RecordType("<688,722,19>",(new NoDefinePropertyArray().concat)); Inst10++; } } catch(e) {}try { if (Inst11 <= 1000 && typeof (NoDefinePropertyArray) != "undefined") {_RecordType("<692,713,19>",(NoDefinePropertyArray)); Inst11++; } } catch(e) {}try { if (Inst12 <= 1000 && typeof (MyException) != "undefined") {_RecordType("<729,740,19>",(MyException)); Inst12++; } } catch(e) {}
+assertThrows(() => new NoDefinePropertyArray().concat([1]), MyException);
+
+// Ensure elements are added to the instance, rather than calling [[Set]].
+try { if (Inst14 <= 1000 && typeof (Array) != "undefined") {_RecordType("<849,854,22>",(Array)); Inst14++; } } catch(e) {}
+class ZeroGetterArray extends Array { get 0() {} };
+try { if (Inst13 <= 1000 && typeof (ZeroGetterArray) != "undefined") {_RecordType("<825,840,22>",(ZeroGetterArray)); Inst13++; } } catch(e) {}
+try { if (Inst15 <= 1000 && typeof (assertArrayEquals) != "undefined") {_RecordType("<871,888,23>",(assertArrayEquals)); Inst15++; } } catch(e) {}try { if (Inst16 <= 1000 && typeof (new ZeroGetterArray().concat) != "undefined") {_RecordType("<894,922,23>",(new ZeroGetterArray().concat)); Inst16++; } } catch(e) {}try { if (Inst17 <= 1000 && typeof (ZeroGetterArray) != "undefined") {_RecordType("<898,913,23>",(ZeroGetterArray)); Inst17++; } } catch(e) {}
+assertArrayEquals([1], new ZeroGetterArray().concat(1));
+
+// Frozen arrays lead to throwing
+
+try { if (Inst19 <= 1000 && typeof (Array) != "undefined") {_RecordType("<990,995,27>",(Array)); Inst19++; } } catch(e) {}
+class FrozenArray extends Array {
+try { if (Inst21 <= 1000 && typeof (args) != "undefined") {_RecordType("<1032,1036,28>",(args)); Inst21++; } } catch(e) {}try { if (Inst22 <= 1000 && typeof (Object.freeze) != "undefined") {_RecordType("<1039,1052,28>",(Object.freeze)); Inst22++; } } catch(e) {}try { if (Inst23 <= 1000 && typeof (Object) != "undefined") {_RecordType("<1039,1045,28>",(Object)); Inst23++; } } catch(e) {}
+  constructor(...args) { super(...args); Object.freeze(this); }
+try { if (Inst20 <= 1000 && typeof (args) != "undefined") {_RecordType("<1015,1019,28>",(args)); Inst20++; } } catch(e) {}
+}
+try { if (Inst18 <= 1000 && typeof (FrozenArray) != "undefined") {_RecordType("<970,981,27>",(FrozenArray)); Inst18++; } } catch(e) {}
+try { if (Inst24 <= 1000 && typeof (assertThrows) != "undefined") {_RecordType("<1064,1076,30>",(assertThrows)); Inst24++; } } catch(e) {}try { if (Inst25 <= 1000 && typeof (new FrozenArray().concat) != "undefined") {_RecordType("<1083,1107,30>",(new FrozenArray().concat)); Inst25++; } } catch(e) {}try { if (Inst26 <= 1000 && typeof (FrozenArray) != "undefined") {_RecordType("<1087,1098,30>",(FrozenArray)); Inst26++; } } catch(e) {}try { if (Inst27 <= 1000 && typeof (TypeError) != "undefined") {_RecordType("<1114,1123,30>",(TypeError)); Inst27++; } } catch(e) {}
+assertThrows(() => new FrozenArray().concat([1]), TypeError);
+
+// Non-configurable non-writable zero leads to throwing
+try { if (Inst29 <= 1000 && typeof (Array) != "undefined") {_RecordType("<1213,1218,33>",(Array)); Inst29++; } } catch(e) {}
+class ZeroFrozenArray extends Array {
+  constructor(...args) {
+try { if (Inst30 <= 1000 && typeof (args) != "undefined") {_RecordType("<1238,1242,34>",(args)); Inst30++; } } catch(e) {}
+try { if (Inst31 <= 1000 && typeof (args) != "undefined") {_RecordType("<1259,1263,35>",(args)); Inst31++; } } catch(e) {}
+    super(...args);
+try { if (Inst32 <= 1000 && typeof (Object.defineProperty) != "undefined") {_RecordType("<1270,1291,36>",(Object.defineProperty)); Inst32++; } } catch(e) {}try { if (Inst33 <= 1000 && typeof (Object) != "undefined") {_RecordType("<1270,1276,36>",(Object)); Inst33++; } } catch(e) {}
+    Object.defineProperty(this, 0, {value: 1});
+  }
+}
+try { if (Inst28 <= 1000 && typeof (ZeroFrozenArray) != "undefined") {_RecordType("<1189,1204,33>",(ZeroFrozenArray)); Inst28++; } } catch(e) {}
+try { if (Inst34 <= 1000 && typeof (assertThrows) != "undefined") {_RecordType("<1320,1332,39>",(assertThrows)); Inst34++; } } catch(e) {}try { if (Inst35 <= 1000 && typeof (new ZeroFrozenArray().concat) != "undefined") {_RecordType("<1339,1367,39>",(new ZeroFrozenArray().concat)); Inst35++; } } catch(e) {}try { if (Inst36 <= 1000 && typeof (ZeroFrozenArray) != "undefined") {_RecordType("<1343,1358,39>",(ZeroFrozenArray)); Inst36++; } } catch(e) {}try { if (Inst37 <= 1000 && typeof (TypeError) != "undefined") {_RecordType("<1374,1383,39>",(TypeError)); Inst37++; } } catch(e) {}
+assertThrows(() => new ZeroFrozenArray().concat([1]), TypeError);
+

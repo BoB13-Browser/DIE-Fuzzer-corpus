@@ -1,0 +1,170 @@
+var Inst0 = 0;
+var Inst1 = 0;
+var Inst2 = 0;
+var Inst3 = 0;
+var Inst4 = 0;
+var Inst5 = 0;
+var Inst6 = 0;
+var Inst7 = 0;
+var Inst8 = 0;
+var Inst9 = 0;
+var Inst10 = 0;
+var Inst11 = 0;
+var Inst12 = 0;
+var Inst13 = 0;
+var Inst14 = 0;
+var Inst15 = 0;
+var Inst16 = 0;
+var Inst17 = 0;
+var Inst18 = 0;
+var Inst19 = 0;
+var Inst20 = 0;
+var Inst21 = 0;
+var Inst22 = 0;
+var Inst23 = 0;
+var Inst24 = 0;
+var Inst25 = 0;
+var Inst26 = 0;
+var Inst27 = 0;
+var Inst28 = 0;
+var Inst29 = 0;
+var Inst30 = 0;
+var Inst31 = 0;
+var Inst32 = 0;
+var Inst33 = 0;
+var Inst34 = 0;
+var Inst35 = 0;
+var Inst36 = 0;
+ 
+function _TypeOfArray(a) {
+	let number = true;	
+	let string = true;
+	for (let i = 0; i < a.length; i++) {
+		if (number && (typeof a[i]) != "number") {
+			number = false;	
+		}
+		if (string && (typeof a[i]) != "string") {
+			string = false;	
+		}
+		if (!number && !string)
+			break;
+	}
+	if (number)
+		return "number";
+	else if (string)
+		return "string";
+	else
+		return "any";
+}
+
+function _TypeIsEqual(t1, t2) {
+	return JSON.stringify(t1) === JSON.stringify(t2);
+}
+
+function _TypeOf(a, step) {
+	var t;
+	var type = Object.prototype.toString.call(a).slice(8, -1).toLowerCase();	
+	if (type == "array") {
+		t = {type : type, extra: {elemType: _TypeOfArray(a)}};
+	} else if (type == "object") {
+		let shape = [];
+        if (step === undefined || step > 0) {
+            let keys = Object.keys(a);
+            let length = Math.min(100, keys.length);
+		    for (let i = 0; i < length; i++) {
+			    shape.push([keys[i], _TypeOf(a[keys[i]], step === undefined ? 1 : step - 1)]);	
+		    }
+        }
+		t = {type : type, extra: {shape: shape}};
+	} else {
+		t = {type : type};
+	} 
+	return t;
+}
+
+function _RecordType(loc, a) {
+	var t = _TypeOf(a);
+    print("~~~TypeInfo:" + loc + ":" + JSON.stringify(t));
+}
+// Copyright 2016 the V8 project authors. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
+// Flags: --no-harmony-restrictive-generators
+
+// In legacy mode, generators get sloppy-mode block-scoped function hoisting
+
+// Hoisting to the global scope
+
+{
+try { if (Inst0 <= 1000 && typeof (foo) != "undefined") {_RecordType("<340,343,12>",(foo)); Inst0++; } } catch(e) {}
+  function* foo() {}
+try { if (Inst1 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<351,363,13>",(assertEquals)); Inst1++; } } catch(e) {}try { if (Inst2 <= 1000 && typeof (foo) != "undefined") {_RecordType("<383,386,13>",(foo)); Inst2++; } } catch(e) {}
+  assertEquals('function', typeof foo);
+}
+//assertEquals('function', typeof foo);
+
+// Hoisting within a function scope
+(function() {
+try { if (Inst3 <= 1000 && typeof (bar) != "undefined") {_RecordType("<496,499,19>",(bar)); Inst3++; } } catch(e) {}
+  { function* bar() {} }
+try { if (Inst4 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<509,521,20>",(assertEquals)); Inst4++; } } catch(e) {}try { if (Inst5 <= 1000 && typeof (bar) != "undefined") {_RecordType("<541,544,20>",(bar)); Inst5++; } } catch(e) {}
+  assertEquals('function', typeof bar);
+})();
+
+// Lexical shadowing allowed; hoisting happens
+(function() {
+try { if (Inst6 <= 1000 && typeof (x) != "undefined") {_RecordType("<627,628,25>",(x)); Inst6++; } } catch(e) {}
+  function* x() { yield 1; }
+try { if (Inst7 <= 1000 && typeof (x) != "undefined") {_RecordType("<658,659,26>",(x)); Inst7++; } } catch(e) {}
+  { function* x() { yield 2 } }
+try { if (Inst8 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<678,690,27>",(assertEquals)); Inst8++; } } catch(e) {}try { if (Inst9 <= 1000 && typeof (x().next().value) != "undefined") {_RecordType("<694,710,27>",(x().next().value)); Inst9++; } } catch(e) {}try { if (Inst10 <= 1000 && typeof (x().next) != "undefined") {_RecordType("<694,702,27>",(x().next)); Inst10++; } } catch(e) {}try { if (Inst11 <= 1000 && typeof (x) != "undefined") {_RecordType("<694,695,27>",(x)); Inst11++; } } catch(e) {}
+  assertEquals(2, x().next().value);
+})();
+
+// Duplicates allowed
+(function() {
+try { if (Inst12 <= 1000 && typeof (y) != "undefined") {_RecordType("<768,769,32>",(y)); Inst12++; } } catch(e) {}
+  function* y() { yield 1; }
+try { if (Inst13 <= 1000 && typeof (y) != "undefined") {_RecordType("<797,798,33>",(y)); Inst13++; } } catch(e) {}
+  function* y() { yield 2 }
+try { if (Inst14 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<815,827,34>",(assertEquals)); Inst14++; } } catch(e) {}try { if (Inst15 <= 1000 && typeof (y().next().value) != "undefined") {_RecordType("<831,847,34>",(y().next().value)); Inst15++; } } catch(e) {}try { if (Inst16 <= 1000 && typeof (y().next) != "undefined") {_RecordType("<831,839,34>",(y().next)); Inst16++; } } catch(e) {}try { if (Inst17 <= 1000 && typeof (y) != "undefined") {_RecordType("<831,832,34>",(y)); Inst17++; } } catch(e) {}
+  assertEquals(2, y().next().value);
+})();
+
+// Functions and generators may duplicate each other
+(function() {
+try { if (Inst18 <= 1000 && typeof (z) != "undefined") {_RecordType("<936,937,39>",(z)); Inst18++; } } catch(e) {}
+  function* z() { yield 1; }
+try { if (Inst19 <= 1000 && typeof (z) != "undefined") {_RecordType("<964,965,40>",(z)); Inst19++; } } catch(e) {}
+  function z() { return 2 }
+try { if (Inst20 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<983,995,41>",(assertEquals)); Inst20++; } } catch(e) {}try { if (Inst21 <= 1000 && typeof (z) != "undefined") {_RecordType("<999,1000,41>",(z)); Inst21++; } } catch(e) {}
+  assertEquals(2, z());
+
+try { if (Inst22 <= 1000 && typeof (a) != "undefined") {_RecordType("<1017,1018,43>",(a)); Inst22++; } } catch(e) {}
+  function a() { return 1; }
+try { if (Inst23 <= 1000 && typeof (a) != "undefined") {_RecordType("<1047,1048,44>",(a)); Inst23++; } } catch(e) {}
+  function* a() { yield 2 }
+try { if (Inst24 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<1065,1077,45>",(assertEquals)); Inst24++; } } catch(e) {}try { if (Inst25 <= 1000 && typeof (a().next().value) != "undefined") {_RecordType("<1081,1097,45>",(a().next().value)); Inst25++; } } catch(e) {}try { if (Inst26 <= 1000 && typeof (a().next) != "undefined") {_RecordType("<1081,1089,45>",(a().next)); Inst26++; } } catch(e) {}try { if (Inst27 <= 1000 && typeof (a) != "undefined") {_RecordType("<1081,1082,45>",(a)); Inst27++; } } catch(e) {}
+  assertEquals(2, a().next().value);
+})();
+
+// In strict mode, none of this happens
+
+(function() {
+  'use strict';
+
+try { if (Inst28 <= 1000 && typeof (bar) != "undefined") {_RecordType("<1193,1196,53>",(bar)); Inst28++; } } catch(e) {}
+  { function* bar() {} }
+try { if (Inst29 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<1206,1218,54>",(assertEquals)); Inst29++; } } catch(e) {}try { if (Inst30 <= 1000 && typeof (bar) != "undefined") {_RecordType("<1239,1242,54>",(bar)); Inst30++; } } catch(e) {}
+  assertEquals('undefined', typeof bar);
+
+  // Lexical shadowing allowed; hoisting happens
+try { if (Inst31 <= 1000 && typeof (x) != "undefined") {_RecordType("<1307,1308,57>",(x)); Inst31++; } } catch(e) {}
+  function* x() { yield 1; }
+try { if (Inst32 <= 1000 && typeof (x) != "undefined") {_RecordType("<1338,1339,58>",(x)); Inst32++; } } catch(e) {}
+  { function* x() { yield 2 } }
+try { if (Inst33 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<1358,1370,59>",(assertEquals)); Inst33++; } } catch(e) {}try { if (Inst34 <= 1000 && typeof (x().next().value) != "undefined") {_RecordType("<1374,1390,59>",(x().next().value)); Inst34++; } } catch(e) {}try { if (Inst35 <= 1000 && typeof (x().next) != "undefined") {_RecordType("<1374,1382,59>",(x().next)); Inst35++; } } catch(e) {}try { if (Inst36 <= 1000 && typeof (x) != "undefined") {_RecordType("<1374,1375,59>",(x)); Inst36++; } } catch(e) {}
+  assertEquals(1, x().next().value);
+})();
+

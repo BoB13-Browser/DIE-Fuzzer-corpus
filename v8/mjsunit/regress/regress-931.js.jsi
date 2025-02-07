@@ -1,0 +1,164 @@
+var Inst0 = 0;
+var Inst1 = 0;
+var Inst2 = 0;
+var Inst3 = 0;
+var Inst4 = 0;
+var Inst5 = 0;
+var Inst6 = 0;
+var Inst7 = 0;
+var Inst8 = 0;
+var Inst9 = 0;
+var Inst10 = 0;
+var Inst11 = 0;
+var Inst12 = 0;
+var Inst13 = 0;
+var Inst14 = 0;
+var Inst15 = 0;
+var Inst16 = 0;
+var Inst17 = 0;
+var Inst18 = 0;
+var Inst19 = 0;
+var Inst20 = 0;
+var Inst21 = 0;
+var Inst22 = 0;
+var Inst23 = 0;
+var Inst24 = 0;
+var Inst25 = 0;
+var Inst26 = 0;
+var Inst27 = 0;
+var Inst28 = 0;
+var Inst29 = 0;
+var Inst30 = 0;
+var Inst31 = 0;
+var Inst32 = 0;
+var Inst33 = 0;
+var Inst34 = 0;
+var Inst35 = 0;
+var Inst36 = 0;
+var Inst37 = 0;
+var Inst38 = 0;
+var Inst39 = 0;
+var Inst40 = 0;
+ 
+function _TypeOfArray(a) {
+	let number = true;	
+	let string = true;
+	for (let i = 0; i < a.length; i++) {
+		if (number && (typeof a[i]) != "number") {
+			number = false;	
+		}
+		if (string && (typeof a[i]) != "string") {
+			string = false;	
+		}
+		if (!number && !string)
+			break;
+	}
+	if (number)
+		return "number";
+	else if (string)
+		return "string";
+	else
+		return "any";
+}
+
+function _TypeIsEqual(t1, t2) {
+	return JSON.stringify(t1) === JSON.stringify(t2);
+}
+
+function _TypeOf(a, step) {
+	var t;
+	var type = Object.prototype.toString.call(a).slice(8, -1).toLowerCase();	
+	if (type == "array") {
+		t = {type : type, extra: {elemType: _TypeOfArray(a)}};
+	} else if (type == "object") {
+		let shape = [];
+        if (step === undefined || step > 0) {
+            let keys = Object.keys(a);
+            let length = Math.min(100, keys.length);
+		    for (let i = 0; i < length; i++) {
+			    shape.push([keys[i], _TypeOf(a[keys[i]], step === undefined ? 1 : step - 1)]);	
+		    }
+        }
+		t = {type : type, extra: {shape: shape}};
+	} else {
+		t = {type : type};
+	} 
+	return t;
+}
+
+function _RecordType(loc, a) {
+	var t = _TypeOf(a);
+    print("~~~TypeInfo:" + loc + ":" + JSON.stringify(t));
+}
+// Copyright 2009 the V8 project authors. All rights reserved.
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions are
+// met:
+//
+//     * Redistributions of source code must retain the above copyright
+//       notice, this list of conditions and the following disclaimer.
+//     * Redistributions in binary form must reproduce the above
+//       copyright notice, this list of conditions and the following
+//       disclaimer in the documentation and/or other materials provided
+//       with the distribution.
+//     * Neither the name of Google Inc. nor the names of its
+//       contributors may be used to endorse or promote products derived
+//       from this software without specific prior written permission.
+//
+// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+// "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+// LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+// A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+// OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+// SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+// LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+// DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+// THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+// (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+// OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+// See http://code.google.com/p/v8/issues/detail?id=931.
+
+var sequence = '';
+try { if (Inst0 <= 1000 && typeof (sequence) != "undefined") {_RecordType("<1660,1668,30>",(sequence)); Inst0++; } } catch(e) {}
+
+try { if (Inst4 <= 1000 && typeof (x) != "undefined") {_RecordType("<1714,1715,32>",(x)); Inst4++; } } catch(e) {}try { if (Inst5 <= 1000 && typeof (y) != "undefined") {_RecordType("<1718,1719,32>",(y)); Inst5++; } } catch(e) {}
+var o = { f: function (x, y) { return x + y; },
+try { if (Inst2 <= 1000 && typeof (x) != "undefined") {_RecordType("<1699,1700,32>",(x)); Inst2++; } } catch(e) {}try { if (Inst3 <= 1000 && typeof (y) != "undefined") {_RecordType("<1702,1703,32>",(y)); Inst3++; } } catch(e) {}
+try { if (Inst8 <= 1000 && typeof (x) != "undefined") {_RecordType("<1762,1763,33>",(x)); Inst8++; } } catch(e) {}try { if (Inst9 <= 1000 && typeof (y) != "undefined") {_RecordType("<1766,1767,33>",(y)); Inst9++; } } catch(e) {}
+          2: function (x, y) { return x - y} };
+try { if (Inst1 <= 1000 && typeof (o) != "undefined") {_RecordType("<1680,1681,32>",(o)); Inst1++; } } catch(e) {}try { if (Inst6 <= 1000 && typeof (x) != "undefined") {_RecordType("<1747,1748,33>",(x)); Inst6++; } } catch(e) {}try { if (Inst7 <= 1000 && typeof (y) != "undefined") {_RecordType("<1750,1751,33>",(y)); Inst7++; } } catch(e) {}
+
+try { if (Inst10 <= 1000 && typeof (first) != "undefined") {_RecordType("<1782,1787,35>",(first)); Inst10++; } } catch(e) {}try { if (Inst12 <= 1000 && typeof (o) != "undefined") {_RecordType("<1816,1817,35>",(o)); Inst12++; } } catch(e) {}
+function first() { sequence += "1"; return o; }
+try { if (Inst11 <= 1000 && typeof (sequence) != "undefined") {_RecordType("<1792,1800,35>",(sequence)); Inst11++; } } catch(e) {}
+try { if (Inst13 <= 1000 && typeof (second) != "undefined") {_RecordType("<1830,1836,36>",(second)); Inst13++; } } catch(e) {}
+function second() { sequence += "2"; return "f"; }
+try { if (Inst14 <= 1000 && typeof (sequence) != "undefined") {_RecordType("<1841,1849,36>",(sequence)); Inst14++; } } catch(e) {}
+try { if (Inst15 <= 1000 && typeof (third) != "undefined") {_RecordType("<1881,1886,37>",(third)); Inst15++; } } catch(e) {}
+function third() { sequence += "3"; return 3; }
+try { if (Inst16 <= 1000 && typeof (sequence) != "undefined") {_RecordType("<1891,1899,37>",(sequence)); Inst16++; } } catch(e) {}
+try { if (Inst17 <= 1000 && typeof (fourth) != "undefined") {_RecordType("<1929,1935,38>",(fourth)); Inst17++; } } catch(e) {}
+function fourth() { sequence += "4"; return 4; }
+try { if (Inst18 <= 1000 && typeof (sequence) != "undefined") {_RecordType("<1940,1948,38>",(sequence)); Inst18++; } } catch(e) {}
+
+try { if (Inst20 <= 1000 && typeof (first()[second()]) != "undefined") {_RecordType("<1984,2001,40>",(first()[second()])); Inst20++; } } catch(e) {}try { if (Inst21 <= 1000 && typeof (first) != "undefined") {_RecordType("<1984,1989,40>",(first)); Inst21++; } } catch(e) {}try { if (Inst22 <= 1000 && typeof (second) != "undefined") {_RecordType("<1992,1998,40>",(second)); Inst22++; } } catch(e) {}try { if (Inst23 <= 1000 && typeof (third) != "undefined") {_RecordType("<2002,2007,40>",(third)); Inst23++; } } catch(e) {}try { if (Inst24 <= 1000 && typeof (fourth) != "undefined") {_RecordType("<2011,2017,40>",(fourth)); Inst24++; } } catch(e) {}
+var result = (first()[second()](third(), fourth()))
+try { if (Inst19 <= 1000 && typeof (result) != "undefined") {_RecordType("<1974,1980,40>",(result)); Inst19++; } } catch(e) {}
+try { if (Inst25 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<2022,2034,41>",(assertEquals)); Inst25++; } } catch(e) {}try { if (Inst26 <= 1000 && typeof (result) != "undefined") {_RecordType("<2038,2044,41>",(result)); Inst26++; } } catch(e) {}
+assertEquals(7, result);
+try { if (Inst27 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<2047,2059,42>",(assertEquals)); Inst27++; } } catch(e) {}try { if (Inst28 <= 1000 && typeof (sequence) != "undefined") {_RecordType("<2068,2076,42>",(sequence)); Inst28++; } } catch(e) {}
+assertEquals("1234", sequence);
+
+try { if (Inst29 <= 1000 && typeof (second_prime) != "undefined") {_RecordType("<2089,2101,44>",(second_prime)); Inst29++; } } catch(e) {}
+function second_prime() { sequence += "2'"; return 2; }
+try { if (Inst30 <= 1000 && typeof (sequence) != "undefined") {_RecordType("<2106,2114,44>",(sequence)); Inst30++; } } catch(e) {}
+
+try { if (Inst32 <= 1000 && typeof (first()[second_prime()]) != "undefined") {_RecordType("<2151,2174,46>",(first()[second_prime()])); Inst32++; } } catch(e) {}try { if (Inst33 <= 1000 && typeof (first) != "undefined") {_RecordType("<2151,2156,46>",(first)); Inst33++; } } catch(e) {}try { if (Inst34 <= 1000 && typeof (second_prime) != "undefined") {_RecordType("<2159,2171,46>",(second_prime)); Inst34++; } } catch(e) {}try { if (Inst35 <= 1000 && typeof (third) != "undefined") {_RecordType("<2175,2180,46>",(third)); Inst35++; } } catch(e) {}try { if (Inst36 <= 1000 && typeof (fourth) != "undefined") {_RecordType("<2184,2190,46>",(fourth)); Inst36++; } } catch(e) {}
+var result = (first()[second_prime()](third(), fourth()))
+try { if (Inst31 <= 1000 && typeof (result) != "undefined") {_RecordType("<2141,2147,46>",(result)); Inst31++; } } catch(e) {}
+try { if (Inst37 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<2195,2207,47>",(assertEquals)); Inst37++; } } catch(e) {}try { if (Inst38 <= 1000 && typeof (result) != "undefined") {_RecordType("<2212,2218,47>",(result)); Inst38++; } } catch(e) {}
+assertEquals(-1, result);
+try { if (Inst39 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<2221,2233,48>",(assertEquals)); Inst39++; } } catch(e) {}try { if (Inst40 <= 1000 && typeof (sequence) != "undefined") {_RecordType("<2247,2255,48>",(sequence)); Inst40++; } } catch(e) {}
+assertEquals("123412'34", sequence);
+

@@ -1,0 +1,218 @@
+var Inst0 = 0;
+var Inst1 = 0;
+var Inst2 = 0;
+var Inst3 = 0;
+var Inst4 = 0;
+var Inst5 = 0;
+var Inst6 = 0;
+var Inst7 = 0;
+var Inst8 = 0;
+var Inst9 = 0;
+var Inst10 = 0;
+var Inst11 = 0;
+var Inst12 = 0;
+var Inst13 = 0;
+var Inst14 = 0;
+var Inst15 = 0;
+var Inst16 = 0;
+var Inst17 = 0;
+var Inst18 = 0;
+var Inst19 = 0;
+var Inst20 = 0;
+var Inst21 = 0;
+var Inst22 = 0;
+var Inst23 = 0;
+var Inst24 = 0;
+var Inst25 = 0;
+var Inst26 = 0;
+var Inst27 = 0;
+var Inst28 = 0;
+var Inst29 = 0;
+var Inst30 = 0;
+var Inst31 = 0;
+var Inst32 = 0;
+var Inst33 = 0;
+var Inst34 = 0;
+var Inst35 = 0;
+var Inst36 = 0;
+var Inst37 = 0;
+var Inst38 = 0;
+var Inst39 = 0;
+var Inst40 = 0;
+var Inst41 = 0;
+var Inst42 = 0;
+var Inst43 = 0;
+var Inst44 = 0;
+var Inst45 = 0;
+var Inst46 = 0;
+var Inst47 = 0;
+var Inst48 = 0;
+var Inst49 = 0;
+var Inst50 = 0;
+var Inst51 = 0;
+var Inst52 = 0;
+var Inst53 = 0;
+var Inst54 = 0;
+var Inst55 = 0;
+var Inst56 = 0;
+var Inst57 = 0;
+var Inst58 = 0;
+var Inst59 = 0;
+var Inst60 = 0;
+var Inst61 = 0;
+var Inst62 = 0;
+var Inst63 = 0;
+var Inst64 = 0;
+var Inst65 = 0;
+var Inst66 = 0;
+var Inst67 = 0;
+var Inst68 = 0;
+var Inst69 = 0;
+var Inst70 = 0;
+var Inst71 = 0;
+var Inst72 = 0;
+var Inst73 = 0;
+var Inst74 = 0;
+var Inst75 = 0;
+var Inst76 = 0;
+var Inst77 = 0;
+var Inst78 = 0;
+var Inst79 = 0;
+var Inst80 = 0;
+var Inst81 = 0;
+var Inst82 = 0;
+var Inst83 = 0;
+var Inst84 = 0;
+var Inst85 = 0;
+var Inst86 = 0;
+var Inst87 = 0;
+var Inst88 = 0;
+var Inst89 = 0;
+var Inst90 = 0;
+var Inst91 = 0;
+var Inst92 = 0;
+var Inst93 = 0;
+var Inst94 = 0;
+var Inst95 = 0;
+ 
+function _TypeOfArray(a) {
+	let number = true;	
+	let string = true;
+	for (let i = 0; i < a.length; i++) {
+		if (number && (typeof a[i]) != "number") {
+			number = false;	
+		}
+		if (string && (typeof a[i]) != "string") {
+			string = false;	
+		}
+		if (!number && !string)
+			break;
+	}
+	if (number)
+		return "number";
+	else if (string)
+		return "string";
+	else
+		return "any";
+}
+
+function _TypeIsEqual(t1, t2) {
+	return JSON.stringify(t1) === JSON.stringify(t2);
+}
+
+function _TypeOf(a, step) {
+	var t;
+	var type = Object.prototype.toString.call(a).slice(8, -1).toLowerCase();	
+	if (type == "array") {
+		t = {type : type, extra: {elemType: _TypeOfArray(a)}};
+	} else if (type == "object") {
+		let shape = [];
+        if (step === undefined || step > 0) {
+            let keys = Object.keys(a);
+            let length = Math.min(100, keys.length);
+		    for (let i = 0; i < length; i++) {
+			    shape.push([keys[i], _TypeOf(a[keys[i]], step === undefined ? 1 : step - 1)]);	
+		    }
+        }
+		t = {type : type, extra: {shape: shape}};
+	} else {
+		t = {type : type};
+	} 
+	return t;
+}
+
+function _RecordType(loc, a) {
+	var t = _TypeOf(a);
+    print("~~~TypeInfo:" + loc + ":" + JSON.stringify(t));
+}
+try { if (Inst0 <= 1000 && typeof (console.log) != "undefined") {_RecordType("<0,11,1>",(console.log)); Inst0++; } } catch(e) {}try { if (Inst1 <= 1000 && typeof (console) != "undefined") {_RecordType("<0,7,1>",(console)); Inst1++; } } catch(e) {}
+console.log("Content script loaded");
+
+chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
+    if (request.action === "gatherLocalInfo") {
+try { if (Inst2 <= 1000 && typeof (chrome.runtime.onMessage.addListener) != "undefined") {_RecordType("<43,79,5>",(chrome.runtime.onMessage.addListener)); Inst2++; } } catch(e) {}try { if (Inst3 <= 1000 && typeof (chrome.runtime.onMessage) != "undefined") {_RecordType("<43,67,5>",(chrome.runtime.onMessage)); Inst3++; } } catch(e) {}try { if (Inst4 <= 1000 && typeof (chrome.runtime) != "undefined") {_RecordType("<43,57,5>",(chrome.runtime)); Inst4++; } } catch(e) {}try { if (Inst5 <= 1000 && typeof (chrome) != "undefined") {_RecordType("<43,49,5>",(chrome)); Inst5++; } } catch(e) {}
+        console.log("Received gatherLocalInfo request in content script");
+try { if (Inst6 <= 1000 && typeof (request) != "undefined") {_RecordType("<90,97,5>",(request)); Inst6++; } } catch(e) {}try { if (Inst7 <= 1000 && typeof (sender) != "undefined") {_RecordType("<99,105,5>",(sender)); Inst7++; } } catch(e) {}try { if (Inst8 <= 1000 && typeof (sendResponse) != "undefined") {_RecordType("<107,119,5>",(sendResponse)); Inst8++; } } catch(e) {}
+
+try { if (Inst9 <= 1000 && typeof (request.action) != "undefined") {_RecordType("<133,147,7>",(request.action)); Inst9++; } } catch(e) {}try { if (Inst10 <= 1000 && typeof (request) != "undefined") {_RecordType("<133,140,7>",(request)); Inst10++; } } catch(e) {}
+        // Capture visible content from the webpage
+        let visibleContent = document.body.innerText || document.body.textContent;
+try { if (Inst11 <= 1000 && typeof (console.log) != "undefined") {_RecordType("<183,194,9>",(console.log)); Inst11++; } } catch(e) {}try { if (Inst12 <= 1000 && typeof (console) != "undefined") {_RecordType("<183,190,9>",(console)); Inst12++; } } catch(e) {}
+
+        // Create a hidden file input element
+        const input = document.createElement('input');
+        input.type = 'file';
+        input.style.display = 'none';
+        document.body.appendChild(input);
+try { if (Inst14 <= 1000 && typeof (document.body.innerText) != "undefined") {_RecordType("<338,361,15>",(document.body.innerText)); Inst14++; } } catch(e) {}try { if (Inst15 <= 1000 && typeof (document.body) != "undefined") {_RecordType("<338,351,15>",(document.body)); Inst15++; } } catch(e) {}try { if (Inst16 <= 1000 && typeof (document) != "undefined") {_RecordType("<338,346,15>",(document)); Inst16++; } } catch(e) {}try { if (Inst17 <= 1000 && typeof (document.body.textContent) != "undefined") {_RecordType("<365,390,15>",(document.body.textContent)); Inst17++; } } catch(e) {}try { if (Inst18 <= 1000 && typeof (document.body) != "undefined") {_RecordType("<365,378,15>",(document.body)); Inst18++; } } catch(e) {}try { if (Inst19 <= 1000 && typeof (document) != "undefined") {_RecordType("<365,373,15>",(document)); Inst19++; } } catch(e) {}
+        input.onchange = () => {
+try { if (Inst13 <= 1000 && typeof (visibleContent) != "undefined") {_RecordType("<321,335,15>",(visibleContent)); Inst13++; } } catch(e) {}
+            const file = input.files[0];
+            const reader = new FileReader();
+            reader.onload = (event) => {
+                const fileData = event.target.result;
+                const combinedData = `Visible Content:\n${visibleContent}\n\nFile Content:\n${fileData}`;
+try { if (Inst21 <= 1000 && typeof (document.createElement) != "undefined") {_RecordType("<467,489,21>",(document.createElement)); Inst21++; } } catch(e) {}try { if (Inst22 <= 1000 && typeof (document) != "undefined") {_RecordType("<467,475,21>",(document)); Inst22++; } } catch(e) {}
+                console.log("Fetched data:", combinedData);
+try { if (Inst20 <= 1000 && typeof (input) != "undefined") {_RecordType("<459,464,21>",(input)); Inst20++; } } catch(e) {}
+                chrome.runtime.sendMessage({ action: "sendLocalInfo", data: combinedData }, function(response) {
+                    if (chrome.runtime.lastError) {
+try { if (Inst23 <= 1000 && typeof (input.type) != "undefined") {_RecordType("<510,520,23>",(input.type)); Inst23++; } } catch(e) {}try { if (Inst24 <= 1000 && typeof (input) != "undefined") {_RecordType("<510,515,23>",(input)); Inst24++; } } catch(e) {}
+                        console.error("Error sending message:", chrome.runtime.lastError.message);
+                    } else {
+try { if (Inst25 <= 1000 && typeof (input.style.display) != "undefined") {_RecordType("<541,560,25>",(input.style.display)); Inst25++; } } catch(e) {}try { if (Inst26 <= 1000 && typeof (input.style) != "undefined") {_RecordType("<541,552,25>",(input.style)); Inst26++; } } catch(e) {}try { if (Inst27 <= 1000 && typeof (input) != "undefined") {_RecordType("<541,546,25>",(input)); Inst27++; } } catch(e) {}
+                        console.log("Local info sent to background script");
+try { if (Inst28 <= 1000 && typeof (document.body.appendChild) != "undefined") {_RecordType("<581,606,27>",(document.body.appendChild)); Inst28++; } } catch(e) {}try { if (Inst29 <= 1000 && typeof (document.body) != "undefined") {_RecordType("<581,594,27>",(document.body)); Inst29++; } } catch(e) {}try { if (Inst30 <= 1000 && typeof (document) != "undefined") {_RecordType("<581,589,27>",(document)); Inst30++; } } catch(e) {}try { if (Inst31 <= 1000 && typeof (input) != "undefined") {_RecordType("<607,612,27>",(input)); Inst31++; } } catch(e) {}
+                    }
+                    sendResponse({status: "done"});
+                });
+            };
+try { if (Inst35 <= 1000 && typeof (input.files[0]) != "undefined") {_RecordType("<677,691,31>",(input.files[0])); Inst35++; } } catch(e) {}try { if (Inst36 <= 1000 && typeof (input.files) != "undefined") {_RecordType("<677,688,31>",(input.files)); Inst36++; } } catch(e) {}try { if (Inst37 <= 1000 && typeof (input) != "undefined") {_RecordType("<677,682,31>",(input)); Inst37++; } } catch(e) {}
+            reader.onerror = (error) => {
+try { if (Inst34 <= 1000 && typeof (file) != "undefined") {_RecordType("<670,674,31>",(file)); Inst34++; } } catch(e) {}
+                console.error('Error reading file:', error);
+try { if (Inst39 <= 1000 && typeof (FileReader) != "undefined") {_RecordType("<726,736,33>",(FileReader)); Inst39++; } } catch(e) {}
+                chrome.runtime.sendMessage({ action: "sendLocalInfo", data: `Visible Content:\n${visibleContent}\n\nFailed to read local file` }, function(response) {
+try { if (Inst38 <= 1000 && typeof (reader) != "undefined") {_RecordType("<713,719,33>",(reader)); Inst38++; } } catch(e) {}
+                    if (chrome.runtime.lastError) {
+try { if (Inst42 <= 1000 && typeof (event) != "undefined") {_RecordType("<771,776,35>",(event)); Inst42++; } } catch(e) {}
+                        console.error("Error sending message:", chrome.runtime.lastError.message);
+                    }
+try { if (Inst44 <= 1000 && typeof (event.target.result) != "undefined") {_RecordType("<818,837,37>",(event.target.result)); Inst44++; } } catch(e) {}try { if (Inst45 <= 1000 && typeof (event.target) != "undefined") {_RecordType("<818,830,37>",(event.target)); Inst45++; } } catch(e) {}try { if (Inst46 <= 1000 && typeof (event) != "undefined") {_RecordType("<818,823,37>",(event)); Inst46++; } } catch(e) {}
+                    sendResponse({status: "error"});
+try { if (Inst43 <= 1000 && typeof (fileData) != "undefined") {_RecordType("<807,815,37>",(fileData)); Inst43++; } } catch(e) {}
+                });
+try { if (Inst48 <= 1000 && typeof (visibleContent) != "undefined") {_RecordType("<899,913,39>",(visibleContent)); Inst48++; } } catch(e) {}try { if (Inst49 <= 1000 && typeof (fileData) != "undefined") {_RecordType("<935,943,39>",(fileData)); Inst49++; } } catch(e) {}
+            };
+try { if (Inst47 <= 1000 && typeof (combinedData) != "undefined") {_RecordType("<863,875,39>",(combinedData)); Inst47++; } } catch(e) {}
+            reader.readAsText(file);
+try { if (Inst50 <= 1000 && typeof (console.log) != "undefined") {_RecordType("<965,976,41>",(console.log)); Inst50++; } } catch(e) {}try { if (Inst51 <= 1000 && typeof (console) != "undefined") {_RecordType("<965,972,41>",(console)); Inst51++; } } catch(e) {}try { if (Inst52 <= 1000 && typeof (combinedData) != "undefined") {_RecordType("<994,1006,41>",(combinedData)); Inst52++; } } catch(e) {}
+        };
+        input.click();
+try { if (Inst53 <= 1000 && typeof (chrome.runtime.sendMessage) != "undefined") {_RecordType("<1027,1053,43>",(chrome.runtime.sendMessage)); Inst53++; } } catch(e) {}try { if (Inst54 <= 1000 && typeof (chrome.runtime) != "undefined") {_RecordType("<1027,1041,43>",(chrome.runtime)); Inst54++; } } catch(e) {}try { if (Inst55 <= 1000 && typeof (chrome) != "undefined") {_RecordType("<1027,1033,43>",(chrome)); Inst55++; } } catch(e) {}try { if (Inst56 <= 1000 && typeof (combinedData) != "undefined") {_RecordType("<1087,1099,43>",(combinedData)); Inst56++; } } catch(e) {}
+    }
+try { if (Inst57 <= 1000 && typeof (response) != "undefined") {_RecordType("<1112,1120,43>",(response)); Inst57++; } } catch(e) {}
+    return true; // Keep the message channel open until sendResponse is called
+try { if (Inst58 <= 1000 && typeof (chrome.runtime.lastError) != "undefined") {_RecordType("<1150,1174,45>",(chrome.runtime.lastError)); Inst58++; } } catch(e) {}try { if (Inst59 <= 1000 && typeof (chrome.runtime) != "undefined") {_RecordType("<1150,1164,45>",(chrome.runtime)); Inst59++; } } catch(e) {}try { if (Inst60 <= 1000 && typeof (chrome) != "undefined") {_RecordType("<1150,1156,45>",(chrome)); Inst60++; } } catch(e) {}
+});
+

@@ -1,0 +1,216 @@
+var Inst0 = 0;
+var Inst1 = 0;
+var Inst2 = 0;
+var Inst3 = 0;
+var Inst4 = 0;
+var Inst5 = 0;
+var Inst6 = 0;
+var Inst7 = 0;
+var Inst8 = 0;
+var Inst9 = 0;
+var Inst10 = 0;
+var Inst11 = 0;
+var Inst12 = 0;
+var Inst13 = 0;
+var Inst14 = 0;
+var Inst15 = 0;
+var Inst16 = 0;
+var Inst17 = 0;
+var Inst18 = 0;
+var Inst19 = 0;
+var Inst20 = 0;
+var Inst21 = 0;
+var Inst22 = 0;
+var Inst23 = 0;
+var Inst24 = 0;
+var Inst25 = 0;
+var Inst26 = 0;
+var Inst27 = 0;
+var Inst28 = 0;
+var Inst29 = 0;
+var Inst30 = 0;
+var Inst31 = 0;
+var Inst32 = 0;
+var Inst33 = 0;
+var Inst34 = 0;
+var Inst35 = 0;
+var Inst36 = 0;
+var Inst37 = 0;
+var Inst38 = 0;
+var Inst39 = 0;
+var Inst40 = 0;
+var Inst41 = 0;
+var Inst42 = 0;
+var Inst43 = 0;
+var Inst44 = 0;
+var Inst45 = 0;
+var Inst46 = 0;
+var Inst47 = 0;
+var Inst48 = 0;
+var Inst49 = 0;
+var Inst50 = 0;
+var Inst51 = 0;
+var Inst52 = 0;
+var Inst53 = 0;
+var Inst54 = 0;
+var Inst55 = 0;
+var Inst56 = 0;
+var Inst57 = 0;
+var Inst58 = 0;
+var Inst59 = 0;
+var Inst60 = 0;
+var Inst61 = 0;
+var Inst62 = 0;
+var Inst63 = 0;
+var Inst64 = 0;
+var Inst65 = 0;
+var Inst66 = 0;
+var Inst67 = 0;
+var Inst68 = 0;
+var Inst69 = 0;
+var Inst70 = 0;
+var Inst71 = 0;
+var Inst72 = 0;
+var Inst73 = 0;
+var Inst74 = 0;
+ 
+function _TypeOfArray(a) {
+	let number = true;	
+	let string = true;
+	for (let i = 0; i < a.length; i++) {
+		if (number && (typeof a[i]) != "number") {
+			number = false;	
+		}
+		if (string && (typeof a[i]) != "string") {
+			string = false;	
+		}
+		if (!number && !string)
+			break;
+	}
+	if (number)
+		return "number";
+	else if (string)
+		return "string";
+	else
+		return "any";
+}
+
+function _TypeIsEqual(t1, t2) {
+	return JSON.stringify(t1) === JSON.stringify(t2);
+}
+
+function _TypeOf(a, step) {
+	var t;
+	var type = Object.prototype.toString.call(a).slice(8, -1).toLowerCase();	
+	if (type == "array") {
+		t = {type : type, extra: {elemType: _TypeOfArray(a)}};
+	} else if (type == "object") {
+		let shape = [];
+        if (step === undefined || step > 0) {
+            let keys = Object.keys(a);
+            let length = Math.min(100, keys.length);
+		    for (let i = 0; i < length; i++) {
+			    shape.push([keys[i], _TypeOf(a[keys[i]], step === undefined ? 1 : step - 1)]);	
+		    }
+        }
+		t = {type : type, extra: {shape: shape}};
+	} else {
+		t = {type : type};
+	} 
+	return t;
+}
+
+function _RecordType(loc, a) {
+	var t = _TypeOf(a);
+    print("~~~TypeInfo:" + loc + ":" + JSON.stringify(t));
+}
+// Copyright 2013 the V8 project authors. All rights reserved.
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions are
+// met:
+//
+//     * Redistributions of source code must retain the above copyright
+//       notice, this list of conditions and the following disclaimer.
+//     * Redistributions in binary form must reproduce the above
+//       copyright notice, this list of conditions and the following
+//       disclaimer in the documentation and/or other materials provided
+//       with the distribution.
+//     * Neither the name of Google Inc. nor the names of its
+//       contributors may be used to endorse or promote products derived
+//       from this software without specific prior written permission.
+//
+// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+// "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+// LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+// A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+// OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+// SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+// LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+// DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+// THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+// (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+// OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+try { if (Inst1 <= 1000 && typeof (Realm.current) != "undefined") {_RecordType("<1611,1624,28>",(Realm.current)); Inst1++; } } catch(e) {}try { if (Inst2 <= 1000 && typeof (Realm) != "undefined") {_RecordType("<1611,1616,28>",(Realm)); Inst2++; } } catch(e) {}
+var realmA = Realm.current();
+try { if (Inst0 <= 1000 && typeof (realmA) != "undefined") {_RecordType("<1602,1608,28>",(realmA)); Inst0++; } } catch(e) {}
+try { if (Inst4 <= 1000 && typeof (Realm.create) != "undefined") {_RecordType("<1641,1653,29>",(Realm.create)); Inst4++; } } catch(e) {}try { if (Inst5 <= 1000 && typeof (Realm) != "undefined") {_RecordType("<1641,1646,29>",(Realm)); Inst5++; } } catch(e) {}
+var realmB = Realm.create();
+try { if (Inst3 <= 1000 && typeof (realmB) != "undefined") {_RecordType("<1632,1638,29>",(realmB)); Inst3++; } } catch(e) {}
+try { if (Inst6 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<1657,1669,30>",(assertEquals)); Inst6++; } } catch(e) {}try { if (Inst7 <= 1000 && typeof (realmA) != "undefined") {_RecordType("<1673,1679,30>",(realmA)); Inst7++; } } catch(e) {}
+assertEquals(0, realmA);
+try { if (Inst8 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<1682,1694,31>",(assertEquals)); Inst8++; } } catch(e) {}try { if (Inst9 <= 1000 && typeof (realmB) != "undefined") {_RecordType("<1698,1704,31>",(realmB)); Inst9++; } } catch(e) {}
+assertEquals(1, realmB);
+
+// The global objects match the realms' this binding.
+try { if (Inst10 <= 1000 && typeof (assertSame) != "undefined") {_RecordType("<1762,1772,34>",(assertSame)); Inst10++; } } catch(e) {}try { if (Inst11 <= 1000 && typeof (Realm.global) != "undefined") {_RecordType("<1779,1791,34>",(Realm.global)); Inst11++; } } catch(e) {}try { if (Inst12 <= 1000 && typeof (Realm) != "undefined") {_RecordType("<1779,1784,34>",(Realm)); Inst12++; } } catch(e) {}try { if (Inst13 <= 1000 && typeof (realmA) != "undefined") {_RecordType("<1792,1798,34>",(realmA)); Inst13++; } } catch(e) {}
+assertSame(this, Realm.global(realmA));
+try { if (Inst14 <= 1000 && typeof (assertSame) != "undefined") {_RecordType("<1802,1812,35>",(assertSame)); Inst14++; } } catch(e) {}try { if (Inst15 <= 1000 && typeof (Realm.eval) != "undefined") {_RecordType("<1813,1823,35>",(Realm.eval)); Inst15++; } } catch(e) {}try { if (Inst16 <= 1000 && typeof (Realm) != "undefined") {_RecordType("<1813,1818,35>",(Realm)); Inst16++; } } catch(e) {}try { if (Inst17 <= 1000 && typeof (realmB) != "undefined") {_RecordType("<1824,1830,35>",(realmB)); Inst17++; } } catch(e) {}try { if (Inst18 <= 1000 && typeof (Realm.global) != "undefined") {_RecordType("<1841,1853,35>",(Realm.global)); Inst18++; } } catch(e) {}try { if (Inst19 <= 1000 && typeof (Realm) != "undefined") {_RecordType("<1841,1846,35>",(Realm)); Inst19++; } } catch(e) {}try { if (Inst20 <= 1000 && typeof (realmB) != "undefined") {_RecordType("<1854,1860,35>",(realmB)); Inst20++; } } catch(e) {}
+assertSame(Realm.eval(realmB, "this"), Realm.global(realmB));
+try { if (Inst21 <= 1000 && typeof (assertFalse) != "undefined") {_RecordType("<1864,1875,36>",(assertFalse)); Inst21++; } } catch(e) {}try { if (Inst22 <= 1000 && typeof (Realm.global) != "undefined") {_RecordType("<1885,1897,36>",(Realm.global)); Inst22++; } } catch(e) {}try { if (Inst23 <= 1000 && typeof (Realm) != "undefined") {_RecordType("<1885,1890,36>",(Realm)); Inst23++; } } catch(e) {}try { if (Inst24 <= 1000 && typeof (realmB) != "undefined") {_RecordType("<1898,1904,36>",(realmB)); Inst24++; } } catch(e) {}
+assertFalse(this === Realm.global(realmB));
+
+// The global object is not accessible cross-realm.
+var x = 3;
+try { if (Inst25 <= 1000 && typeof (x) != "undefined") {_RecordType("<1965,1966,39>",(x)); Inst25++; } } catch(e) {}
+Realm.shared = this;
+try { if (Inst26 <= 1000 && typeof (Realm.shared) != "undefined") {_RecordType("<1972,1984,40>",(Realm.shared)); Inst26++; } } catch(e) {}try { if (Inst27 <= 1000 && typeof (Realm) != "undefined") {_RecordType("<1972,1977,40>",(Realm)); Inst27++; } } catch(e) {}
+try { if (Inst28 <= 1000 && typeof (assertThrows) != "undefined") {_RecordType("<1993,2005,41>",(assertThrows)); Inst28++; } } catch(e) {}
+assertThrows("Realm.eval(realmB, 'x')");
+try { if (Inst29 <= 1000 && typeof (assertSame) != "undefined") {_RecordType("<2034,2044,42>",(assertSame)); Inst29++; } } catch(e) {}try { if (Inst30 <= 1000 && typeof (undefined) != "undefined") {_RecordType("<2045,2054,42>",(undefined)); Inst30++; } } catch(e) {}try { if (Inst31 <= 1000 && typeof (Realm.eval) != "undefined") {_RecordType("<2056,2066,42>",(Realm.eval)); Inst31++; } } catch(e) {}try { if (Inst32 <= 1000 && typeof (Realm) != "undefined") {_RecordType("<2056,2061,42>",(Realm)); Inst32++; } } catch(e) {}try { if (Inst33 <= 1000 && typeof (realmB) != "undefined") {_RecordType("<2067,2073,42>",(realmB)); Inst33++; } } catch(e) {}
+assertSame(undefined, Realm.eval(realmB, "this.x"));
+try { if (Inst34 <= 1000 && typeof (assertSame) != "undefined") {_RecordType("<2087,2097,43>",(assertSame)); Inst34++; } } catch(e) {}try { if (Inst35 <= 1000 && typeof (undefined) != "undefined") {_RecordType("<2098,2107,43>",(undefined)); Inst35++; } } catch(e) {}try { if (Inst36 <= 1000 && typeof (Realm.eval) != "undefined") {_RecordType("<2109,2119,43>",(Realm.eval)); Inst36++; } } catch(e) {}try { if (Inst37 <= 1000 && typeof (Realm) != "undefined") {_RecordType("<2109,2114,43>",(Realm)); Inst37++; } } catch(e) {}try { if (Inst38 <= 1000 && typeof (realmB) != "undefined") {_RecordType("<2120,2126,43>",(realmB)); Inst38++; } } catch(e) {}
+assertSame(undefined, Realm.eval(realmB, "Realm.shared.x"));
+
+try { if (Inst39 <= 1000 && typeof (Realm.eval) != "undefined") {_RecordType("<2149,2159,45>",(Realm.eval)); Inst39++; } } catch(e) {}try { if (Inst40 <= 1000 && typeof (Realm) != "undefined") {_RecordType("<2149,2154,45>",(Realm)); Inst40++; } } catch(e) {}try { if (Inst41 <= 1000 && typeof (realmB) != "undefined") {_RecordType("<2160,2166,45>",(realmB)); Inst41++; } } catch(e) {}
+Realm.eval(realmB, "Realm.global(0).y = 1");
+try { if (Inst42 <= 1000 && typeof (assertThrows) != "undefined") {_RecordType("<2194,2206,46>",(assertThrows)); Inst42++; } } catch(e) {}
+assertThrows("y");
+try { if (Inst43 <= 1000 && typeof (assertSame) != "undefined") {_RecordType("<2213,2223,47>",(assertSame)); Inst43++; } } catch(e) {}try { if (Inst44 <= 1000 && typeof (undefined) != "undefined") {_RecordType("<2224,2233,47>",(undefined)); Inst44++; } } catch(e) {}try { if (Inst45 <= 1000 && typeof (this.y) != "undefined") {_RecordType("<2235,2241,47>",(this.y)); Inst45++; } } catch(e) {}
+assertSame(undefined, this.y);
+
+// Can get or set other objects' properties cross-realm.
+var p = {a: 1};
+try { if (Inst46 <= 1000 && typeof (p) != "undefined") {_RecordType("<2306,2307,50>",(p)); Inst46++; } } catch(e) {}
+try { if (Inst48 <= 1000 && typeof (p) != "undefined") {_RecordType("<2338,2339,51>",(p)); Inst48++; } } catch(e) {}
+var o = {__proto__: p, b: 2};
+try { if (Inst47 <= 1000 && typeof (o) != "undefined") {_RecordType("<2322,2323,51>",(o)); Inst47++; } } catch(e) {}
+try { if (Inst51 <= 1000 && typeof (o) != "undefined") {_RecordType("<2363,2364,52>",(o)); Inst51++; } } catch(e) {}
+Realm.shared = o;
+try { if (Inst49 <= 1000 && typeof (Realm.shared) != "undefined") {_RecordType("<2348,2360,52>",(Realm.shared)); Inst49++; } } catch(e) {}try { if (Inst50 <= 1000 && typeof (Realm) != "undefined") {_RecordType("<2348,2353,52>",(Realm)); Inst50++; } } catch(e) {}
+try { if (Inst52 <= 1000 && typeof (assertSame) != "undefined") {_RecordType("<2366,2376,53>",(assertSame)); Inst52++; } } catch(e) {}try { if (Inst53 <= 1000 && typeof (Realm.eval) != "undefined") {_RecordType("<2380,2390,53>",(Realm.eval)); Inst53++; } } catch(e) {}try { if (Inst54 <= 1000 && typeof (Realm) != "undefined") {_RecordType("<2380,2385,53>",(Realm)); Inst54++; } } catch(e) {}try { if (Inst55 <= 1000 && typeof (realmB) != "undefined") {_RecordType("<2391,2397,53>",(realmB)); Inst55++; } } catch(e) {}
+assertSame(1, Realm.eval(realmB, "Realm.shared.a"));
+try { if (Inst56 <= 1000 && typeof (assertSame) != "undefined") {_RecordType("<2419,2429,54>",(assertSame)); Inst56++; } } catch(e) {}try { if (Inst57 <= 1000 && typeof (Realm.eval) != "undefined") {_RecordType("<2433,2443,54>",(Realm.eval)); Inst57++; } } catch(e) {}try { if (Inst58 <= 1000 && typeof (Realm) != "undefined") {_RecordType("<2433,2438,54>",(Realm)); Inst58++; } } catch(e) {}try { if (Inst59 <= 1000 && typeof (realmB) != "undefined") {_RecordType("<2444,2450,54>",(realmB)); Inst59++; } } catch(e) {}
+assertSame(2, Realm.eval(realmB, "Realm.shared.b"));
+
+// Cannot get or set a prototype cross-realm.
+try { if (Inst60 <= 1000 && typeof (assertSame) != "undefined") {_RecordType("<2519,2529,57>",(assertSame)); Inst60++; } } catch(e) {}try { if (Inst61 <= 1000 && typeof (undefined) != "undefined") {_RecordType("<2530,2539,57>",(undefined)); Inst61++; } } catch(e) {}try { if (Inst62 <= 1000 && typeof (Realm.eval) != "undefined") {_RecordType("<2541,2551,57>",(Realm.eval)); Inst62++; } } catch(e) {}try { if (Inst63 <= 1000 && typeof (Realm) != "undefined") {_RecordType("<2541,2546,57>",(Realm)); Inst63++; } } catch(e) {}try { if (Inst64 <= 1000 && typeof (realmB) != "undefined") {_RecordType("<2552,2558,57>",(realmB)); Inst64++; } } catch(e) {}
+assertSame(undefined, Realm.eval(realmB, "Realm.shared.__proto__"));
+
+try { if (Inst65 <= 1000 && typeof (Realm.eval) != "undefined") {_RecordType("<2589,2599,59>",(Realm.eval)); Inst65++; } } catch(e) {}try { if (Inst66 <= 1000 && typeof (Realm) != "undefined") {_RecordType("<2589,2594,59>",(Realm)); Inst66++; } } catch(e) {}try { if (Inst67 <= 1000 && typeof (realmB) != "undefined") {_RecordType("<2600,2606,59>",(realmB)); Inst67++; } } catch(e) {}
+Realm.eval(realmB, "Realm.shared.__proto__ = {c: 3}");
+try { if (Inst68 <= 1000 && typeof (assertSame) != "undefined") {_RecordType("<2644,2654,60>",(assertSame)); Inst68++; } } catch(e) {}try { if (Inst69 <= 1000 && typeof (o.a) != "undefined") {_RecordType("<2658,2661,60>",(o.a)); Inst69++; } } catch(e) {}try { if (Inst70 <= 1000 && typeof (o) != "undefined") {_RecordType("<2658,2659,60>",(o)); Inst70++; } } catch(e) {}
+assertSame(1, o.a);
+try { if (Inst71 <= 1000 && typeof (assertSame) != "undefined") {_RecordType("<2664,2674,61>",(assertSame)); Inst71++; } } catch(e) {}try { if (Inst72 <= 1000 && typeof (undefined) != "undefined") {_RecordType("<2675,2684,61>",(undefined)); Inst72++; } } catch(e) {}try { if (Inst73 <= 1000 && typeof (o.c) != "undefined") {_RecordType("<2686,2689,61>",(o.c)); Inst73++; } } catch(e) {}try { if (Inst74 <= 1000 && typeof (o) != "undefined") {_RecordType("<2686,2687,61>",(o)); Inst74++; } } catch(e) {}
+assertSame(undefined, o.c);
+

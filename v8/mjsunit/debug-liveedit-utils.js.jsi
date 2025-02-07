@@ -1,0 +1,282 @@
+var Inst0 = 0;
+var Inst1 = 0;
+var Inst2 = 0;
+var Inst3 = 0;
+var Inst4 = 0;
+var Inst5 = 0;
+var Inst6 = 0;
+var Inst7 = 0;
+var Inst8 = 0;
+var Inst9 = 0;
+var Inst10 = 0;
+var Inst11 = 0;
+var Inst12 = 0;
+var Inst13 = 0;
+var Inst14 = 0;
+var Inst15 = 0;
+var Inst16 = 0;
+var Inst17 = 0;
+var Inst18 = 0;
+var Inst19 = 0;
+var Inst20 = 0;
+var Inst21 = 0;
+var Inst22 = 0;
+var Inst23 = 0;
+var Inst24 = 0;
+var Inst25 = 0;
+var Inst26 = 0;
+var Inst27 = 0;
+var Inst28 = 0;
+var Inst29 = 0;
+var Inst30 = 0;
+var Inst31 = 0;
+var Inst32 = 0;
+var Inst33 = 0;
+var Inst34 = 0;
+var Inst35 = 0;
+var Inst36 = 0;
+var Inst37 = 0;
+var Inst38 = 0;
+var Inst39 = 0;
+var Inst40 = 0;
+var Inst41 = 0;
+var Inst42 = 0;
+var Inst43 = 0;
+var Inst44 = 0;
+var Inst45 = 0;
+var Inst46 = 0;
+var Inst47 = 0;
+var Inst48 = 0;
+var Inst49 = 0;
+var Inst50 = 0;
+var Inst51 = 0;
+var Inst52 = 0;
+var Inst53 = 0;
+var Inst54 = 0;
+var Inst55 = 0;
+var Inst56 = 0;
+var Inst57 = 0;
+var Inst58 = 0;
+var Inst59 = 0;
+var Inst60 = 0;
+var Inst61 = 0;
+var Inst62 = 0;
+var Inst63 = 0;
+var Inst64 = 0;
+var Inst65 = 0;
+var Inst66 = 0;
+var Inst67 = 0;
+var Inst68 = 0;
+var Inst69 = 0;
+var Inst70 = 0;
+var Inst71 = 0;
+var Inst72 = 0;
+var Inst73 = 0;
+var Inst74 = 0;
+var Inst75 = 0;
+var Inst76 = 0;
+var Inst77 = 0;
+var Inst78 = 0;
+var Inst79 = 0;
+var Inst80 = 0;
+var Inst81 = 0;
+var Inst82 = 0;
+var Inst83 = 0;
+var Inst84 = 0;
+var Inst85 = 0;
+var Inst86 = 0;
+var Inst87 = 0;
+var Inst88 = 0;
+var Inst89 = 0;
+var Inst90 = 0;
+var Inst91 = 0;
+var Inst92 = 0;
+var Inst93 = 0;
+var Inst94 = 0;
+var Inst95 = 0;
+var Inst96 = 0;
+var Inst97 = 0;
+ 
+function _TypeOfArray(a) {
+	let number = true;	
+	let string = true;
+	for (let i = 0; i < a.length; i++) {
+		if (number && (typeof a[i]) != "number") {
+			number = false;	
+		}
+		if (string && (typeof a[i]) != "string") {
+			string = false;	
+		}
+		if (!number && !string)
+			break;
+	}
+	if (number)
+		return "number";
+	else if (string)
+		return "string";
+	else
+		return "any";
+}
+
+function _TypeIsEqual(t1, t2) {
+	return JSON.stringify(t1) === JSON.stringify(t2);
+}
+
+function _TypeOf(a, step) {
+	var t;
+	var type = Object.prototype.toString.call(a).slice(8, -1).toLowerCase();	
+	if (type == "array") {
+		t = {type : type, extra: {elemType: _TypeOfArray(a)}};
+	} else if (type == "object") {
+		let shape = [];
+        if (step === undefined || step > 0) {
+            let keys = Object.keys(a);
+            let length = Math.min(100, keys.length);
+		    for (let i = 0; i < length; i++) {
+			    shape.push([keys[i], _TypeOf(a[keys[i]], step === undefined ? 1 : step - 1)]);	
+		    }
+        }
+		t = {type : type, extra: {shape: shape}};
+	} else {
+		t = {type : type};
+	} 
+	return t;
+}
+
+function _RecordType(loc, a) {
+	var t = _TypeOf(a);
+    print("~~~TypeInfo:" + loc + ":" + JSON.stringify(t));
+}
+// Copyright 2010 the V8 project authors. All rights reserved.
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions are
+// met:
+//
+//     * Redistributions of source code must retain the above copyright
+//       notice, this list of conditions and the following disclaimer.
+//     * Redistributions in binary form must reproduce the above
+//       copyright notice, this list of conditions and the following
+//       disclaimer in the documentation and/or other materials provided
+//       with the distribution.
+//     * Neither the name of Google Inc. nor the names of its
+//       contributors may be used to endorse or promote products derived
+//       from this software without specific prior written permission.
+//
+// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+// "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+// LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+// A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+// OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+// SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+// LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+// DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+// THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+// (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+// OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+// Flags: --expose-debug-as debug
+// Get the Debug object exposed from the debug context global object.
+
+try { if (Inst1 <= 1000 && typeof (debug.Debug) != "undefined") {_RecordType("<1711,1722,31>",(debug.Debug)); Inst1++; } } catch(e) {}try { if (Inst2 <= 1000 && typeof (debug) != "undefined") {_RecordType("<1711,1716,31>",(debug)); Inst2++; } } catch(e) {}
+Debug = debug.Debug
+try { if (Inst0 <= 1000 && typeof (Debug) != "undefined") {_RecordType("<1703,1708,31>",(Debug)); Inst0++; } } catch(e) {}
+
+try { if (Inst3 <= 1000 && typeof (Return2010) != "undefined") {_RecordType("<1733,1743,33>",(Return2010)); Inst3++; } } catch(e) {}
+function Return2010() {
+  return 2010;
+}
+
+
+// Diff it trivial: zero chunks
+try { if (Inst5 <= 1000 && typeof (Debug.LiveEdit.TestApi.PosTranslator) != "undefined") {_RecordType("<1827,1863,39>",(Debug.LiveEdit.TestApi.PosTranslator)); Inst5++; } } catch(e) {}try { if (Inst6 <= 1000 && typeof (Debug.LiveEdit.TestApi) != "undefined") {_RecordType("<1827,1849,39>",(Debug.LiveEdit.TestApi)); Inst6++; } } catch(e) {}try { if (Inst7 <= 1000 && typeof (Debug.LiveEdit) != "undefined") {_RecordType("<1827,1841,39>",(Debug.LiveEdit)); Inst7++; } } catch(e) {}try { if (Inst8 <= 1000 && typeof (Debug) != "undefined") {_RecordType("<1827,1832,39>",(Debug)); Inst8++; } } catch(e) {}
+var NoChunkTranslator = new Debug.LiveEdit.TestApi.PosTranslator([]);
+try { if (Inst4 <= 1000 && typeof (NoChunkTranslator) != "undefined") {_RecordType("<1803,1820,39>",(NoChunkTranslator)); Inst4++; } } catch(e) {}
+
+try { if (Inst9 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<1870,1882,41>",(assertEquals)); Inst9++; } } catch(e) {}try { if (Inst10 <= 1000 && typeof (NoChunkTranslator.Translate) != "undefined") {_RecordType("<1886,1913,41>",(NoChunkTranslator.Translate)); Inst10++; } } catch(e) {}try { if (Inst11 <= 1000 && typeof (NoChunkTranslator) != "undefined") {_RecordType("<1886,1903,41>",(NoChunkTranslator)); Inst11++; } } catch(e) {}
+assertEquals(0, NoChunkTranslator.Translate(0));
+try { if (Inst12 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<1919,1931,42>",(assertEquals)); Inst12++; } } catch(e) {}try { if (Inst13 <= 1000 && typeof (NoChunkTranslator.Translate) != "undefined") {_RecordType("<1936,1963,42>",(NoChunkTranslator.Translate)); Inst13++; } } catch(e) {}try { if (Inst14 <= 1000 && typeof (NoChunkTranslator) != "undefined") {_RecordType("<1936,1953,42>",(NoChunkTranslator)); Inst14++; } } catch(e) {}
+assertEquals(10, NoChunkTranslator.Translate(10));
+
+
+// Diff has one chunk
+try { if (Inst16 <= 1000 && typeof (Debug.LiveEdit.TestApi.PosTranslator) != "undefined") {_RecordType("<2026,2062,46>",(Debug.LiveEdit.TestApi.PosTranslator)); Inst16++; } } catch(e) {}try { if (Inst17 <= 1000 && typeof (Debug.LiveEdit.TestApi) != "undefined") {_RecordType("<2026,2048,46>",(Debug.LiveEdit.TestApi)); Inst17++; } } catch(e) {}try { if (Inst18 <= 1000 && typeof (Debug.LiveEdit) != "undefined") {_RecordType("<2026,2040,46>",(Debug.LiveEdit)); Inst18++; } } catch(e) {}try { if (Inst19 <= 1000 && typeof (Debug) != "undefined") {_RecordType("<2026,2031,46>",(Debug)); Inst19++; } } catch(e) {}
+var SingleChunkTranslator = new Debug.LiveEdit.TestApi.PosTranslator([20, 30, 25]);
+try { if (Inst15 <= 1000 && typeof (SingleChunkTranslator) != "undefined") {_RecordType("<1998,2019,46>",(SingleChunkTranslator)); Inst15++; } } catch(e) {}
+
+try { if (Inst20 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<2079,2091,48>",(assertEquals)); Inst20++; } } catch(e) {}try { if (Inst21 <= 1000 && typeof (SingleChunkTranslator.Translate) != "undefined") {_RecordType("<2095,2126,48>",(SingleChunkTranslator.Translate)); Inst21++; } } catch(e) {}try { if (Inst22 <= 1000 && typeof (SingleChunkTranslator) != "undefined") {_RecordType("<2095,2116,48>",(SingleChunkTranslator)); Inst22++; } } catch(e) {}
+assertEquals(0, SingleChunkTranslator.Translate(0));
+try { if (Inst23 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<2132,2144,49>",(assertEquals)); Inst23++; } } catch(e) {}try { if (Inst24 <= 1000 && typeof (SingleChunkTranslator.Translate) != "undefined") {_RecordType("<2148,2179,49>",(SingleChunkTranslator.Translate)); Inst24++; } } catch(e) {}try { if (Inst25 <= 1000 && typeof (SingleChunkTranslator) != "undefined") {_RecordType("<2148,2169,49>",(SingleChunkTranslator)); Inst25++; } } catch(e) {}
+assertEquals(5, SingleChunkTranslator.Translate(5));
+try { if (Inst26 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<2185,2197,50>",(assertEquals)); Inst26++; } } catch(e) {}try { if (Inst27 <= 1000 && typeof (SingleChunkTranslator.Translate) != "undefined") {_RecordType("<2202,2233,50>",(SingleChunkTranslator.Translate)); Inst27++; } } catch(e) {}try { if (Inst28 <= 1000 && typeof (SingleChunkTranslator) != "undefined") {_RecordType("<2202,2223,50>",(SingleChunkTranslator)); Inst28++; } } catch(e) {}
+assertEquals(10, SingleChunkTranslator.Translate(10));
+try { if (Inst29 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<2240,2252,51>",(assertEquals)); Inst29++; } } catch(e) {}try { if (Inst30 <= 1000 && typeof (SingleChunkTranslator.Translate) != "undefined") {_RecordType("<2257,2288,51>",(SingleChunkTranslator.Translate)); Inst30++; } } catch(e) {}try { if (Inst31 <= 1000 && typeof (SingleChunkTranslator) != "undefined") {_RecordType("<2257,2278,51>",(SingleChunkTranslator)); Inst31++; } } catch(e) {}
+assertEquals(19, SingleChunkTranslator.Translate(19));
+try { if (Inst32 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<2295,2307,52>",(assertEquals)); Inst32++; } } catch(e) {}try { if (Inst33 <= 1000 && typeof (SingleChunkTranslator.Translate) != "undefined") {_RecordType("<2314,2345,52>",(SingleChunkTranslator.Translate)); Inst33++; } } catch(e) {}try { if (Inst34 <= 1000 && typeof (SingleChunkTranslator) != "undefined") {_RecordType("<2314,2335,52>",(SingleChunkTranslator)); Inst34++; } } catch(e) {}try { if (Inst35 <= 1000 && typeof (Return2010) != "undefined") {_RecordType("<2350,2360,52>",(Return2010)); Inst35++; } } catch(e) {}
+assertEquals(2010, SingleChunkTranslator.Translate(20, Return2010));
+try { if (Inst36 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<2364,2376,53>",(assertEquals)); Inst36++; } } catch(e) {}try { if (Inst37 <= 1000 && typeof (SingleChunkTranslator.Translate) != "undefined") {_RecordType("<2381,2412,53>",(SingleChunkTranslator.Translate)); Inst37++; } } catch(e) {}try { if (Inst38 <= 1000 && typeof (SingleChunkTranslator) != "undefined") {_RecordType("<2381,2402,53>",(SingleChunkTranslator)); Inst38++; } } catch(e) {}
+assertEquals(25, SingleChunkTranslator.Translate(30));
+try { if (Inst39 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<2419,2431,54>",(assertEquals)); Inst39++; } } catch(e) {}try { if (Inst40 <= 1000 && typeof (SingleChunkTranslator.Translate) != "undefined") {_RecordType("<2436,2467,54>",(SingleChunkTranslator.Translate)); Inst40++; } } catch(e) {}try { if (Inst41 <= 1000 && typeof (SingleChunkTranslator) != "undefined") {_RecordType("<2436,2457,54>",(SingleChunkTranslator)); Inst41++; } } catch(e) {}
+assertEquals(26, SingleChunkTranslator.Translate(31));
+try { if (Inst42 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<2474,2486,55>",(assertEquals)); Inst42++; } } catch(e) {}try { if (Inst43 <= 1000 && typeof (SingleChunkTranslator.Translate) != "undefined") {_RecordType("<2493,2524,55>",(SingleChunkTranslator.Translate)); Inst43++; } } catch(e) {}try { if (Inst44 <= 1000 && typeof (SingleChunkTranslator) != "undefined") {_RecordType("<2493,2514,55>",(SingleChunkTranslator)); Inst44++; } } catch(e) {}try { if (Inst45 <= 1000 && typeof (Return2010) != "undefined") {_RecordType("<2529,2539,55>",(Return2010)); Inst45++; } } catch(e) {}
+assertEquals(2010, SingleChunkTranslator.Translate(26, Return2010));
+
+try { if (Inst49 <= 1000 && typeof (ignore) != "undefined") {_RecordType("<2619,2625,60>",(ignore)); Inst49++; } } catch(e) {}
+try {
+try { if (Inst46 <= 1000 && typeof (SingleChunkTranslator.Translate) != "undefined") {_RecordType("<2552,2583,58>",(SingleChunkTranslator.Translate)); Inst46++; } } catch(e) {}try { if (Inst47 <= 1000 && typeof (SingleChunkTranslator) != "undefined") {_RecordType("<2552,2573,58>",(SingleChunkTranslator)); Inst47++; } } catch(e) {}
+  SingleChunkTranslator.Translate(21);
+try { if (Inst48 <= 1000 && typeof (assertTrue) != "undefined") {_RecordType("<2591,2601,59>",(assertTrue)); Inst48++; } } catch(e) {}
+  assertTrue(false);
+} catch (ignore) {
+}
+try { if (Inst53 <= 1000 && typeof (ignore) != "undefined") {_RecordType("<2706,2712,65>",(ignore)); Inst53++; } } catch(e) {}
+try {
+try { if (Inst50 <= 1000 && typeof (SingleChunkTranslator.Translate) != "undefined") {_RecordType("<2639,2670,63>",(SingleChunkTranslator.Translate)); Inst50++; } } catch(e) {}try { if (Inst51 <= 1000 && typeof (SingleChunkTranslator) != "undefined") {_RecordType("<2639,2660,63>",(SingleChunkTranslator)); Inst51++; } } catch(e) {}
+  SingleChunkTranslator.Translate(24);
+try { if (Inst52 <= 1000 && typeof (assertTrue) != "undefined") {_RecordType("<2678,2688,64>",(assertTrue)); Inst52++; } } catch(e) {}
+  assertTrue(false);
+} catch (ignore) {
+}
+
+
+// Diff has several chunk (3). See the table below.
+
+/*
+chunks: (new <- old)
+ 10   10
+ 15   20
+
+ 35   40
+ 50   40
+
+ 70   60
+ 70   70
+*/
+
+try { if (Inst55 <= 1000 && typeof (Debug.LiveEdit.TestApi.PosTranslator) != "undefined") {_RecordType("<2888,2924,83>",(Debug.LiveEdit.TestApi.PosTranslator)); Inst55++; } } catch(e) {}try { if (Inst56 <= 1000 && typeof (Debug.LiveEdit.TestApi) != "undefined") {_RecordType("<2888,2910,83>",(Debug.LiveEdit.TestApi)); Inst56++; } } catch(e) {}try { if (Inst57 <= 1000 && typeof (Debug.LiveEdit) != "undefined") {_RecordType("<2888,2902,83>",(Debug.LiveEdit)); Inst57++; } } catch(e) {}try { if (Inst58 <= 1000 && typeof (Debug) != "undefined") {_RecordType("<2888,2893,83>",(Debug)); Inst58++; } } catch(e) {}
+var MultiChunkTranslator = new Debug.LiveEdit.TestApi.PosTranslator([10, 20, 15, 40, 40, 50, 60, 70, 70 ]);
+try { if (Inst54 <= 1000 && typeof (MultiChunkTranslator) != "undefined") {_RecordType("<2861,2881,83>",(MultiChunkTranslator)); Inst54++; } } catch(e) {}
+try { if (Inst59 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<2965,2977,84>",(assertEquals)); Inst59++; } } catch(e) {}try { if (Inst60 <= 1000 && typeof (MultiChunkTranslator.Translate) != "undefined") {_RecordType("<2981,3011,84>",(MultiChunkTranslator.Translate)); Inst60++; } } catch(e) {}try { if (Inst61 <= 1000 && typeof (MultiChunkTranslator) != "undefined") {_RecordType("<2981,3001,84>",(MultiChunkTranslator)); Inst61++; } } catch(e) {}
+assertEquals(5, MultiChunkTranslator.Translate(5));
+try { if (Inst62 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<3017,3029,85>",(assertEquals)); Inst62++; } } catch(e) {}try { if (Inst63 <= 1000 && typeof (MultiChunkTranslator.Translate) != "undefined") {_RecordType("<3033,3063,85>",(MultiChunkTranslator.Translate)); Inst63++; } } catch(e) {}try { if (Inst64 <= 1000 && typeof (MultiChunkTranslator) != "undefined") {_RecordType("<3033,3053,85>",(MultiChunkTranslator)); Inst64++; } } catch(e) {}
+assertEquals(9, MultiChunkTranslator.Translate(9));
+try { if (Inst65 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<3069,3081,86>",(assertEquals)); Inst65++; } } catch(e) {}try { if (Inst66 <= 1000 && typeof (MultiChunkTranslator.Translate) != "undefined") {_RecordType("<3088,3118,86>",(MultiChunkTranslator.Translate)); Inst66++; } } catch(e) {}try { if (Inst67 <= 1000 && typeof (MultiChunkTranslator) != "undefined") {_RecordType("<3088,3108,86>",(MultiChunkTranslator)); Inst67++; } } catch(e) {}try { if (Inst68 <= 1000 && typeof (Return2010) != "undefined") {_RecordType("<3123,3133,86>",(Return2010)); Inst68++; } } catch(e) {}
+assertEquals(2010, MultiChunkTranslator.Translate(10, Return2010));
+try { if (Inst69 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<3137,3149,87>",(assertEquals)); Inst69++; } } catch(e) {}try { if (Inst70 <= 1000 && typeof (MultiChunkTranslator.Translate) != "undefined") {_RecordType("<3154,3184,87>",(MultiChunkTranslator.Translate)); Inst70++; } } catch(e) {}try { if (Inst71 <= 1000 && typeof (MultiChunkTranslator) != "undefined") {_RecordType("<3154,3174,87>",(MultiChunkTranslator)); Inst71++; } } catch(e) {}
+assertEquals(15, MultiChunkTranslator.Translate(20));
+try { if (Inst72 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<3191,3203,88>",(assertEquals)); Inst72++; } } catch(e) {}try { if (Inst73 <= 1000 && typeof (MultiChunkTranslator.Translate) != "undefined") {_RecordType("<3208,3238,88>",(MultiChunkTranslator.Translate)); Inst73++; } } catch(e) {}try { if (Inst74 <= 1000 && typeof (MultiChunkTranslator) != "undefined") {_RecordType("<3208,3228,88>",(MultiChunkTranslator)); Inst74++; } } catch(e) {}
+assertEquals(20, MultiChunkTranslator.Translate(25));
+try { if (Inst75 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<3245,3257,89>",(assertEquals)); Inst75++; } } catch(e) {}try { if (Inst76 <= 1000 && typeof (MultiChunkTranslator.Translate) != "undefined") {_RecordType("<3262,3292,89>",(MultiChunkTranslator.Translate)); Inst76++; } } catch(e) {}try { if (Inst77 <= 1000 && typeof (MultiChunkTranslator) != "undefined") {_RecordType("<3262,3282,89>",(MultiChunkTranslator)); Inst77++; } } catch(e) {}
+assertEquals(34, MultiChunkTranslator.Translate(39));
+try { if (Inst78 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<3299,3311,90>",(assertEquals)); Inst78++; } } catch(e) {}try { if (Inst79 <= 1000 && typeof (MultiChunkTranslator.Translate) != "undefined") {_RecordType("<3316,3346,90>",(MultiChunkTranslator.Translate)); Inst79++; } } catch(e) {}try { if (Inst80 <= 1000 && typeof (MultiChunkTranslator) != "undefined") {_RecordType("<3316,3336,90>",(MultiChunkTranslator)); Inst80++; } } catch(e) {}try { if (Inst81 <= 1000 && typeof (Return2010) != "undefined") {_RecordType("<3351,3361,90>",(Return2010)); Inst81++; } } catch(e) {}
+assertEquals(50, MultiChunkTranslator.Translate(40, Return2010));
+try { if (Inst82 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<3365,3377,91>",(assertEquals)); Inst82++; } } catch(e) {}try { if (Inst83 <= 1000 && typeof (MultiChunkTranslator.Translate) != "undefined") {_RecordType("<3382,3412,91>",(MultiChunkTranslator.Translate)); Inst83++; } } catch(e) {}try { if (Inst84 <= 1000 && typeof (MultiChunkTranslator) != "undefined") {_RecordType("<3382,3402,91>",(MultiChunkTranslator)); Inst84++; } } catch(e) {}
+assertEquals(55, MultiChunkTranslator.Translate(45));
+try { if (Inst85 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<3419,3431,92>",(assertEquals)); Inst85++; } } catch(e) {}try { if (Inst86 <= 1000 && typeof (MultiChunkTranslator.Translate) != "undefined") {_RecordType("<3436,3466,92>",(MultiChunkTranslator.Translate)); Inst86++; } } catch(e) {}try { if (Inst87 <= 1000 && typeof (MultiChunkTranslator) != "undefined") {_RecordType("<3436,3456,92>",(MultiChunkTranslator)); Inst87++; } } catch(e) {}
+assertEquals(69, MultiChunkTranslator.Translate(59));
+try { if (Inst88 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<3473,3485,93>",(assertEquals)); Inst88++; } } catch(e) {}try { if (Inst89 <= 1000 && typeof (MultiChunkTranslator.Translate) != "undefined") {_RecordType("<3492,3522,93>",(MultiChunkTranslator.Translate)); Inst89++; } } catch(e) {}try { if (Inst90 <= 1000 && typeof (MultiChunkTranslator) != "undefined") {_RecordType("<3492,3512,93>",(MultiChunkTranslator)); Inst90++; } } catch(e) {}try { if (Inst91 <= 1000 && typeof (Return2010) != "undefined") {_RecordType("<3527,3537,93>",(Return2010)); Inst91++; } } catch(e) {}
+assertEquals(2010, MultiChunkTranslator.Translate(60, Return2010));
+try { if (Inst92 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<3541,3553,94>",(assertEquals)); Inst92++; } } catch(e) {}try { if (Inst93 <= 1000 && typeof (MultiChunkTranslator.Translate) != "undefined") {_RecordType("<3558,3588,94>",(MultiChunkTranslator.Translate)); Inst93++; } } catch(e) {}try { if (Inst94 <= 1000 && typeof (MultiChunkTranslator) != "undefined") {_RecordType("<3558,3578,94>",(MultiChunkTranslator)); Inst94++; } } catch(e) {}
+assertEquals(70, MultiChunkTranslator.Translate(70));
+try { if (Inst95 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<3595,3607,95>",(assertEquals)); Inst95++; } } catch(e) {}try { if (Inst96 <= 1000 && typeof (MultiChunkTranslator.Translate) != "undefined") {_RecordType("<3612,3642,95>",(MultiChunkTranslator.Translate)); Inst96++; } } catch(e) {}try { if (Inst97 <= 1000 && typeof (MultiChunkTranslator) != "undefined") {_RecordType("<3612,3632,95>",(MultiChunkTranslator)); Inst97++; } } catch(e) {}
+assertEquals(75, MultiChunkTranslator.Translate(75));
+

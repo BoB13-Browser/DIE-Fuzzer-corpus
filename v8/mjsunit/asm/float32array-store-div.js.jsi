@@ -1,0 +1,103 @@
+var Inst0 = 0;
+var Inst1 = 0;
+var Inst2 = 0;
+var Inst3 = 0;
+var Inst4 = 0;
+var Inst5 = 0;
+var Inst6 = 0;
+var Inst7 = 0;
+var Inst8 = 0;
+var Inst9 = 0;
+var Inst10 = 0;
+var Inst11 = 0;
+var Inst12 = 0;
+var Inst13 = 0;
+var Inst14 = 0;
+var Inst15 = 0;
+var Inst16 = 0;
+var Inst17 = 0;
+var Inst18 = 0;
+var Inst19 = 0;
+var Inst20 = 0;
+var Inst21 = 0;
+ 
+function _TypeOfArray(a) {
+	let number = true;	
+	let string = true;
+	for (let i = 0; i < a.length; i++) {
+		if (number && (typeof a[i]) != "number") {
+			number = false;	
+		}
+		if (string && (typeof a[i]) != "string") {
+			string = false;	
+		}
+		if (!number && !string)
+			break;
+	}
+	if (number)
+		return "number";
+	else if (string)
+		return "string";
+	else
+		return "any";
+}
+
+function _TypeIsEqual(t1, t2) {
+	return JSON.stringify(t1) === JSON.stringify(t2);
+}
+
+function _TypeOf(a, step) {
+	var t;
+	var type = Object.prototype.toString.call(a).slice(8, -1).toLowerCase();	
+	if (type == "array") {
+		t = {type : type, extra: {elemType: _TypeOfArray(a)}};
+	} else if (type == "object") {
+		let shape = [];
+        if (step === undefined || step > 0) {
+            let keys = Object.keys(a);
+            let length = Math.min(100, keys.length);
+		    for (let i = 0; i < length; i++) {
+			    shape.push([keys[i], _TypeOf(a[keys[i]], step === undefined ? 1 : step - 1)]);	
+		    }
+        }
+		t = {type : type, extra: {shape: shape}};
+	} else {
+		t = {type : type};
+	} 
+	return t;
+}
+
+function _RecordType(loc, a) {
+	var t = _TypeOf(a);
+    print("~~~TypeInfo:" + loc + ":" + JSON.stringify(t));
+}
+// Copyright 2014 the V8 project authors. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
+try { if (Inst0 <= 1000 && typeof (Module) != "undefined") {_RecordType("<177,183,5>",(Module)); Inst0++; } } catch(e) {}
+function Module(stdlib, foreign, heap) {
+try { if (Inst1 <= 1000 && typeof (stdlib) != "undefined") {_RecordType("<184,190,5>",(stdlib)); Inst1++; } } catch(e) {}try { if (Inst2 <= 1000 && typeof (foreign) != "undefined") {_RecordType("<192,199,5>",(foreign)); Inst2++; } } catch(e) {}try { if (Inst3 <= 1000 && typeof (heap) != "undefined") {_RecordType("<201,205,5>",(heap)); Inst3++; } } catch(e) {}
+  "use asm";
+try { if (Inst5 <= 1000 && typeof (stdlib.Float32Array) != "undefined") {_RecordType("<240,259,7>",(stdlib.Float32Array)); Inst5++; } } catch(e) {}try { if (Inst6 <= 1000 && typeof (stdlib) != "undefined") {_RecordType("<240,246,7>",(stdlib)); Inst6++; } } catch(e) {}try { if (Inst7 <= 1000 && typeof (heap) != "undefined") {_RecordType("<260,264,7>",(heap)); Inst7++; } } catch(e) {}
+  var MEM32 = new stdlib.Float32Array(heap);
+try { if (Inst4 <= 1000 && typeof (MEM32) != "undefined") {_RecordType("<228,233,7>",(MEM32)); Inst4++; } } catch(e) {}
+try { if (Inst8 <= 1000 && typeof (foo) != "undefined") {_RecordType("<278,281,8>",(foo)); Inst8++; } } catch(e) {}
+  function foo(i) {
+try { if (Inst9 <= 1000 && typeof (i) != "undefined") {_RecordType("<282,283,8>",(i)); Inst9++; } } catch(e) {}
+try { if (Inst12 <= 1000 && typeof (i) != "undefined") {_RecordType("<303,304,9>",(i)); Inst12++; } } catch(e) {}
+    MEM32[0] = (i >>> 0) / 2;
+try { if (Inst10 <= 1000 && typeof (MEM32[0]) != "undefined") {_RecordType("<291,299,9>",(MEM32[0])); Inst10++; } } catch(e) {}try { if (Inst11 <= 1000 && typeof (MEM32) != "undefined") {_RecordType("<291,296,9>",(MEM32)); Inst11++; } } catch(e) {}
+try { if (Inst13 <= 1000 && typeof (MEM32[0]) != "undefined") {_RecordType("<328,336,10>",(MEM32[0])); Inst13++; } } catch(e) {}try { if (Inst14 <= 1000 && typeof (MEM32) != "undefined") {_RecordType("<328,333,10>",(MEM32)); Inst14++; } } catch(e) {}
+    return MEM32[0];
+  }
+try { if (Inst15 <= 1000 && typeof (foo) != "undefined") {_RecordType("<358,361,12>",(foo)); Inst15++; } } catch(e) {}
+  return { foo: foo };
+}
+
+try { if (Inst17 <= 1000 && typeof (Module(this, {}, new ArrayBuffer(64 * 1024)).foo) != "undefined") {_RecordType("<378,426,15>",(Module(this, {}, new ArrayBuffer(64 * 1024)).foo)); Inst17++; } } catch(e) {}try { if (Inst18 <= 1000 && typeof (Module) != "undefined") {_RecordType("<378,384,15>",(Module)); Inst18++; } } catch(e) {}try { if (Inst19 <= 1000 && typeof (ArrayBuffer) != "undefined") {_RecordType("<399,410,15>",(ArrayBuffer)); Inst19++; } } catch(e) {}
+var foo = Module(this, {}, new ArrayBuffer(64 * 1024)).foo;
+try { if (Inst16 <= 1000 && typeof (foo) != "undefined") {_RecordType("<372,375,15>",(foo)); Inst16++; } } catch(e) {}
+try { if (Inst20 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<428,440,16>",(assertEquals)); Inst20++; } } catch(e) {}try { if (Inst21 <= 1000 && typeof (foo) != "undefined") {_RecordType("<446,449,16>",(foo)); Inst21++; } } catch(e) {}
+assertEquals(0.5, foo(1));
+

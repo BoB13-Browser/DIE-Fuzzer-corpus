@@ -1,0 +1,104 @@
+var Inst0 = 0;
+var Inst1 = 0;
+var Inst2 = 0;
+var Inst3 = 0;
+var Inst4 = 0;
+var Inst5 = 0;
+var Inst6 = 0;
+var Inst7 = 0;
+var Inst8 = 0;
+var Inst9 = 0;
+var Inst10 = 0;
+ 
+function _TypeOfArray(a) {
+	let number = true;	
+	let string = true;
+	for (let i = 0; i < a.length; i++) {
+		if (number && (typeof a[i]) != "number") {
+			number = false;	
+		}
+		if (string && (typeof a[i]) != "string") {
+			string = false;	
+		}
+		if (!number && !string)
+			break;
+	}
+	if (number)
+		return "number";
+	else if (string)
+		return "string";
+	else
+		return "any";
+}
+
+function _TypeIsEqual(t1, t2) {
+	return JSON.stringify(t1) === JSON.stringify(t2);
+}
+
+function _TypeOf(a, step) {
+	var t;
+	var type = Object.prototype.toString.call(a).slice(8, -1).toLowerCase();	
+	if (type == "array") {
+		t = {type : type, extra: {elemType: _TypeOfArray(a)}};
+	} else if (type == "object") {
+		let shape = [];
+        if (step === undefined || step > 0) {
+            let keys = Object.keys(a);
+            let length = Math.min(100, keys.length);
+		    for (let i = 0; i < length; i++) {
+			    shape.push([keys[i], _TypeOf(a[keys[i]], step === undefined ? 1 : step - 1)]);	
+		    }
+        }
+		t = {type : type, extra: {shape: shape}};
+	} else {
+		t = {type : type};
+	} 
+	return t;
+}
+
+function _RecordType(loc, a) {
+	var t = _TypeOf(a);
+    print("~~~TypeInfo:" + loc + ":" + JSON.stringify(t));
+}
+for (let i2 = 0, i3 = 10; i3--, 0.5166086559535142 < i3;) {
+try { if (Inst0 <= 1000 && typeof (i2) != "undefined") {_RecordType("<9,11,1>",(i2)); Inst0++; } } catch(e) {}try { if (Inst1 <= 1000 && typeof (i3) != "undefined") {_RecordType("<17,19,1>",(i3)); Inst1++; } } catch(e) {}try { if (Inst2 <= 1000 && typeof (i3) != "undefined") {_RecordType("<26,28,1>",(i3)); Inst2++; } } catch(e) {}try { if (Inst3 <= 1000 && typeof (i3) != "undefined") {_RecordType("<53,55,1>",(i3)); Inst3++; } } catch(e) {}
+}
+for (let i13 = 0, i14 = 10; i14--;) {
+try { if (Inst4 <= 1000 && typeof (i13) != "undefined") {_RecordType("<73,76,3>",(i13)); Inst4++; } } catch(e) {}try { if (Inst5 <= 1000 && typeof (i14) != "undefined") {_RecordType("<82,85,3>",(i14)); Inst5++; } } catch(e) {}try { if (Inst6 <= 1000 && typeof (i14) != "undefined") {_RecordType("<92,95,3>",(i14)); Inst6++; } } catch(e) {}
+}
+try { if (Inst7 <= 1000 && typeof (d8.getExtrasBindingObject(d8).trace) != "undefined") {_RecordType("<106,141,5>",(d8.getExtrasBindingObject(d8).trace)); Inst7++; } } catch(e) {}try { if (Inst8 <= 1000 && typeof (d8.getExtrasBindingObject) != "undefined") {_RecordType("<106,131,5>",(d8.getExtrasBindingObject)); Inst8++; } } catch(e) {}try { if (Inst9 <= 1000 && typeof (d8) != "undefined") {_RecordType("<106,108,5>",(d8)); Inst9++; } } catch(e) {}try { if (Inst10 <= 1000 && typeof (d8) != "undefined") {_RecordType("<132,134,5>",(d8)); Inst10++; } } catch(e) {}
+d8.getExtrasBindingObject(d8).trace();
+
+// CRASH INFO
+// ==========
+// INSTANCE TAG: 2d71de11
+// TERMSIG: 6
+// STDERR:
+// [COV] edge counters initialized. Shared memory: shm_id_3574252_0 with 3091490 edges
+// 
+// 
+// #
+// # Fatal error in ../../src/builtins/builtins-trace.cc, line 140
+// # Debug check failed: Handle<To> v8::internal::Cast(Handle<From>, const v8::SourceLocation &) [To = v8::internal::String, From = v8::internal::Object].
+// #
+// #
+// #
+// #FailureMessage Object: 0x70d69c238060
+// ==== C stack trace ===============================
+// 
+//     ../v8/out/fuzzbuild/d8(___interceptor_backtrace+0x46) [0x59e9956cb8c6]
+//     ../v8/out/fuzzbuild/d8(v8::base::debug::StackTrace::StackTrace()+0x22) [0x59e995b03052]
+//     ../v8/out/fuzzbuild/d8(+0x6142867) [0x59e995afb867]
+//     ../v8/out/fuzzbuild/d8(V8_Fatal(char const*, int, char const*, ...)+0x346) [0x59e995ad20ae]
+//     ../v8/out/fuzzbuild/d8(+0x6117b0c) [0x59e995ad0b0c]
+//     ../v8/out/fuzzbuild/d8(+0x65ad9fa) [0x59e995f669fa]
+//     ../v8/out/fuzzbuild/d8(v8::internal::Builtin_Trace(int, unsigned long*, v8::internal::Isolate*)+0x1ae) [0x59e995f65f46]
+//     ../v8/out/fuzzbuild/d8(+0x10ccb7b6) [0x59e9a06847b6]
+// Received signal 6
+// STDOUT:
+// 
+// FUZZER ARGS: .build/x86_64-unknown-linux-gnu/debug/FuzzilliCli --profile=v8 ../v8/out/fuzzbuild/d8 --jobs=32 --engine=multi --logLevel=verbose --timeout=800 --storagePath=../v8_fuzzing_results --resume --exportStatistics --statisticsExportInterval=5 --diagnostics --tag=2d71de11
+// TARGET ARGS: ../v8/out/fuzzbuild/d8 --expose-gc --omit-quit --allow-natives-syntax --fuzzing --jit-fuzzing --future --harmony --js-staging
+// CONTRIBUTORS: SpliceMutator, ObjectLiteralSetterGenerator, InputMutator, ExplorationMutator, FastToSlowPropertiesGenerator, FloatGenerator, ObjectLiteralPropertyGenerator, ObjectConstructorGenerator, StringGenerator, ObjectBuilderFunctionGenerator
+// EXECUTION TIME: 417ms
+

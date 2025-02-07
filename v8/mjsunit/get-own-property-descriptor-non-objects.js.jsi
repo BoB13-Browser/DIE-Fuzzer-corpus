@@ -1,0 +1,128 @@
+var Inst0 = 0;
+var Inst1 = 0;
+var Inst2 = 0;
+var Inst3 = 0;
+var Inst4 = 0;
+var Inst5 = 0;
+var Inst6 = 0;
+var Inst7 = 0;
+var Inst8 = 0;
+var Inst9 = 0;
+var Inst10 = 0;
+var Inst11 = 0;
+var Inst12 = 0;
+var Inst13 = 0;
+var Inst14 = 0;
+var Inst15 = 0;
+var Inst16 = 0;
+var Inst17 = 0;
+var Inst18 = 0;
+var Inst19 = 0;
+var Inst20 = 0;
+var Inst21 = 0;
+var Inst22 = 0;
+var Inst23 = 0;
+var Inst24 = 0;
+var Inst25 = 0;
+var Inst26 = 0;
+var Inst27 = 0;
+var Inst28 = 0;
+var Inst29 = 0;
+var Inst30 = 0;
+var Inst31 = 0;
+ 
+function _TypeOfArray(a) {
+	let number = true;	
+	let string = true;
+	for (let i = 0; i < a.length; i++) {
+		if (number && (typeof a[i]) != "number") {
+			number = false;	
+		}
+		if (string && (typeof a[i]) != "string") {
+			string = false;	
+		}
+		if (!number && !string)
+			break;
+	}
+	if (number)
+		return "number";
+	else if (string)
+		return "string";
+	else
+		return "any";
+}
+
+function _TypeIsEqual(t1, t2) {
+	return JSON.stringify(t1) === JSON.stringify(t2);
+}
+
+function _TypeOf(a, step) {
+	var t;
+	var type = Object.prototype.toString.call(a).slice(8, -1).toLowerCase();	
+	if (type == "array") {
+		t = {type : type, extra: {elemType: _TypeOfArray(a)}};
+	} else if (type == "object") {
+		let shape = [];
+        if (step === undefined || step > 0) {
+            let keys = Object.keys(a);
+            let length = Math.min(100, keys.length);
+		    for (let i = 0; i < length; i++) {
+			    shape.push([keys[i], _TypeOf(a[keys[i]], step === undefined ? 1 : step - 1)]);	
+		    }
+        }
+		t = {type : type, extra: {shape: shape}};
+	} else {
+		t = {type : type};
+	} 
+	return t;
+}
+
+function _RecordType(loc, a) {
+	var t = _TypeOf(a);
+    print("~~~TypeInfo:" + loc + ":" + JSON.stringify(t));
+}
+// Copyright 2015 the V8 project authors. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
+try { if (Inst0 <= 1000 && typeof (assertThrows) != "undefined") {_RecordType("<168,180,5>",(assertThrows)); Inst0++; } } catch(e) {}try { if (Inst3 <= 1000 && typeof (TypeError) != "undefined") {_RecordType("<243,252,7>",(TypeError)); Inst3++; } } catch(e) {}
+assertThrows(function() {
+try { if (Inst1 <= 1000 && typeof (Object.getOwnPropertyDescriptor) != "undefined") {_RecordType("<196,227,6>",(Object.getOwnPropertyDescriptor)); Inst1++; } } catch(e) {}try { if (Inst2 <= 1000 && typeof (Object) != "undefined") {_RecordType("<196,202,6>",(Object)); Inst2++; } } catch(e) {}
+  Object.getOwnPropertyDescriptor(null, 'x');
+}, TypeError);
+
+
+try { if (Inst4 <= 1000 && typeof (assertThrows) != "undefined") {_RecordType("<257,269,10>",(assertThrows)); Inst4++; } } catch(e) {}try { if (Inst8 <= 1000 && typeof (TypeError) != "undefined") {_RecordType("<337,346,12>",(TypeError)); Inst8++; } } catch(e) {}
+assertThrows(function() {
+try { if (Inst5 <= 1000 && typeof (Object.getOwnPropertyDescriptor) != "undefined") {_RecordType("<285,316,11>",(Object.getOwnPropertyDescriptor)); Inst5++; } } catch(e) {}try { if (Inst6 <= 1000 && typeof (Object) != "undefined") {_RecordType("<285,291,11>",(Object)); Inst6++; } } catch(e) {}try { if (Inst7 <= 1000 && typeof (undefined) != "undefined") {_RecordType("<317,326,11>",(undefined)); Inst7++; } } catch(e) {}
+  Object.getOwnPropertyDescriptor(undefined, 'x');
+}, TypeError);
+
+
+try { if (Inst9 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<351,363,15>",(assertEquals)); Inst9++; } } catch(e) {}try { if (Inst10 <= 1000 && typeof (Object.getOwnPropertyDescriptor) != "undefined") {_RecordType("<444,475,20>",(Object.getOwnPropertyDescriptor)); Inst10++; } } catch(e) {}try { if (Inst11 <= 1000 && typeof (Object) != "undefined") {_RecordType("<444,450,20>",(Object)); Inst11++; } } catch(e) {}
+assertEquals({
+  configurable: false,
+  enumerable: false,
+  value: 3,
+  writable: false,
+}, Object.getOwnPropertyDescriptor('abc', 'length'));
+
+
+try { if (Inst12 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<497,509,23>",(assertEquals)); Inst12++; } } catch(e) {}try { if (Inst13 <= 1000 && typeof (Object.getOwnPropertyDescriptor) != "undefined") {_RecordType("<591,622,28>",(Object.getOwnPropertyDescriptor)); Inst13++; } } catch(e) {}try { if (Inst14 <= 1000 && typeof (Object) != "undefined") {_RecordType("<591,597,28>",(Object)); Inst14++; } } catch(e) {}
+assertEquals({
+  configurable: false,
+  enumerable: true,
+  value: 'a',
+  writable: false,
+}, Object.getOwnPropertyDescriptor('abc', 0));
+
+
+try { if (Inst15 <= 1000 && typeof (assertSame) != "undefined") {_RecordType("<637,647,31>",(assertSame)); Inst15++; } } catch(e) {}try { if (Inst16 <= 1000 && typeof (undefined) != "undefined") {_RecordType("<648,657,31>",(undefined)); Inst16++; } } catch(e) {}try { if (Inst17 <= 1000 && typeof (Object.getOwnPropertyDescriptor) != "undefined") {_RecordType("<659,690,31>",(Object.getOwnPropertyDescriptor)); Inst17++; } } catch(e) {}try { if (Inst18 <= 1000 && typeof (Object) != "undefined") {_RecordType("<659,665,31>",(Object)); Inst18++; } } catch(e) {}
+assertSame(undefined, Object.getOwnPropertyDescriptor(42, 'x'));
+try { if (Inst19 <= 1000 && typeof (assertSame) != "undefined") {_RecordType("<702,712,32>",(assertSame)); Inst19++; } } catch(e) {}try { if (Inst20 <= 1000 && typeof (undefined) != "undefined") {_RecordType("<713,722,32>",(undefined)); Inst20++; } } catch(e) {}try { if (Inst21 <= 1000 && typeof (Object.getOwnPropertyDescriptor) != "undefined") {_RecordType("<724,755,32>",(Object.getOwnPropertyDescriptor)); Inst21++; } } catch(e) {}try { if (Inst22 <= 1000 && typeof (Object) != "undefined") {_RecordType("<724,730,32>",(Object)); Inst22++; } } catch(e) {}
+assertSame(undefined, Object.getOwnPropertyDescriptor(true, 'x'));
+try { if (Inst23 <= 1000 && typeof (assertSame) != "undefined") {_RecordType("<769,779,33>",(assertSame)); Inst23++; } } catch(e) {}try { if (Inst24 <= 1000 && typeof (undefined) != "undefined") {_RecordType("<780,789,33>",(undefined)); Inst24++; } } catch(e) {}try { if (Inst25 <= 1000 && typeof (Object.getOwnPropertyDescriptor) != "undefined") {_RecordType("<791,822,33>",(Object.getOwnPropertyDescriptor)); Inst25++; } } catch(e) {}try { if (Inst26 <= 1000 && typeof (Object) != "undefined") {_RecordType("<791,797,33>",(Object)); Inst26++; } } catch(e) {}
+assertSame(undefined, Object.getOwnPropertyDescriptor(false, 'x'));
+try { if (Inst27 <= 1000 && typeof (assertSame) != "undefined") {_RecordType("<837,847,34>",(assertSame)); Inst27++; } } catch(e) {}try { if (Inst28 <= 1000 && typeof (undefined) != "undefined") {_RecordType("<848,857,34>",(undefined)); Inst28++; } } catch(e) {}try { if (Inst29 <= 1000 && typeof (Object.getOwnPropertyDescriptor) != "undefined") {_RecordType("<859,890,34>",(Object.getOwnPropertyDescriptor)); Inst29++; } } catch(e) {}try { if (Inst30 <= 1000 && typeof (Object) != "undefined") {_RecordType("<859,865,34>",(Object)); Inst30++; } } catch(e) {}try { if (Inst31 <= 1000 && typeof (Symbol) != "undefined") {_RecordType("<891,897,34>",(Symbol)); Inst31++; } } catch(e) {}
+assertSame(undefined, Object.getOwnPropertyDescriptor(Symbol(), 'x'));
+

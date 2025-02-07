@@ -1,1 +1,0 @@
-[null,{"type":"Void"},{"type":"Boolean"},{"type":"Function","extra":{"args":{"type":"Args","extra":{"args":[{"type":"Any"}]}},"ret":{"type":"Any"}}},{"type":"String"},{"type":"String"},{"type":"Immutable"},{"type":"Iterator"},{"type":"Constructor","extra":{"name":"Symbol","ret":{"type":"Symbol"}}},{"type":"Immutable"}]

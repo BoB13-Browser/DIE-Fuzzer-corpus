@@ -1,0 +1,66 @@
+var Inst0 = 0;
+var Inst1 = 0;
+var Inst2 = 0;
+var Inst3 = 0;
+var Inst4 = 0;
+ 
+function _TypeOfArray(a) {
+	let number = true;	
+	let string = true;
+	for (let i = 0; i < a.length; i++) {
+		if (number && (typeof a[i]) != "number") {
+			number = false;	
+		}
+		if (string && (typeof a[i]) != "string") {
+			string = false;	
+		}
+		if (!number && !string)
+			break;
+	}
+	if (number)
+		return "number";
+	else if (string)
+		return "string";
+	else
+		return "any";
+}
+
+function _TypeIsEqual(t1, t2) {
+	return JSON.stringify(t1) === JSON.stringify(t2);
+}
+
+function _TypeOf(a, step) {
+	var t;
+	var type = Object.prototype.toString.call(a).slice(8, -1).toLowerCase();	
+	if (type == "array") {
+		t = {type : type, extra: {elemType: _TypeOfArray(a)}};
+	} else if (type == "object") {
+		let shape = [];
+        if (step === undefined || step > 0) {
+            let keys = Object.keys(a);
+            let length = Math.min(100, keys.length);
+		    for (let i = 0; i < length; i++) {
+			    shape.push([keys[i], _TypeOf(a[keys[i]], step === undefined ? 1 : step - 1)]);	
+		    }
+        }
+		t = {type : type, extra: {shape: shape}};
+	} else {
+		t = {type : type};
+	} 
+	return t;
+}
+
+function _RecordType(loc, a) {
+	var t = _TypeOf(a);
+    print("~~~TypeInfo:" + loc + ":" + JSON.stringify(t));
+}
+
+try { if (Inst0 <= 1000 && typeof (func) != "undefined") {_RecordType("<17,21,2>",(func)); Inst0++; } } catch(e) {}
+      function func() {
+try { if (Inst2 <= 1000 && typeof (PresentationRequest) != "undefined") {_RecordType("<55,74,3>",(PresentationRequest)); Inst2++; } } catch(e) {}
+        const request = new PresentationRequest(['presentation.html']);
+try { if (Inst1 <= 1000 && typeof (request) != "undefined") {_RecordType("<41,48,3>",(request)); Inst1++; } } catch(e) {}
+try { if (Inst3 <= 1000 && typeof (request.start) != "undefined") {_RecordType("<108,121,4>",(request.start)); Inst3++; } } catch(e) {}try { if (Inst4 <= 1000 && typeof (request) != "undefined") {_RecordType("<108,115,4>",(request)); Inst4++; } } catch(e) {}
+        request.start();
+      }
+    

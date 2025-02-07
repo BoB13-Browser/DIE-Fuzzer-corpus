@@ -1,0 +1,137 @@
+var Inst0 = 0;
+var Inst1 = 0;
+var Inst2 = 0;
+var Inst3 = 0;
+var Inst4 = 0;
+var Inst5 = 0;
+var Inst6 = 0;
+var Inst7 = 0;
+var Inst8 = 0;
+var Inst9 = 0;
+var Inst10 = 0;
+var Inst11 = 0;
+var Inst12 = 0;
+var Inst13 = 0;
+var Inst14 = 0;
+var Inst15 = 0;
+var Inst16 = 0;
+var Inst17 = 0;
+var Inst18 = 0;
+var Inst19 = 0;
+var Inst20 = 0;
+var Inst21 = 0;
+var Inst22 = 0;
+var Inst23 = 0;
+var Inst24 = 0;
+var Inst25 = 0;
+var Inst26 = 0;
+var Inst27 = 0;
+var Inst28 = 0;
+var Inst29 = 0;
+var Inst30 = 0;
+var Inst31 = 0;
+var Inst32 = 0;
+var Inst33 = 0;
+var Inst34 = 0;
+var Inst35 = 0;
+var Inst36 = 0;
+ 
+function _TypeOfArray(a) {
+	let number = true;	
+	let string = true;
+	for (let i = 0; i < a.length; i++) {
+		if (number && (typeof a[i]) != "number") {
+			number = false;	
+		}
+		if (string && (typeof a[i]) != "string") {
+			string = false;	
+		}
+		if (!number && !string)
+			break;
+	}
+	if (number)
+		return "number";
+	else if (string)
+		return "string";
+	else
+		return "any";
+}
+
+function _TypeIsEqual(t1, t2) {
+	return JSON.stringify(t1) === JSON.stringify(t2);
+}
+
+function _TypeOf(a, step) {
+	var t;
+	var type = Object.prototype.toString.call(a).slice(8, -1).toLowerCase();	
+	if (type == "array") {
+		t = {type : type, extra: {elemType: _TypeOfArray(a)}};
+	} else if (type == "object") {
+		let shape = [];
+        if (step === undefined || step > 0) {
+            let keys = Object.keys(a);
+            let length = Math.min(100, keys.length);
+		    for (let i = 0; i < length; i++) {
+			    shape.push([keys[i], _TypeOf(a[keys[i]], step === undefined ? 1 : step - 1)]);	
+		    }
+        }
+		t = {type : type, extra: {shape: shape}};
+	} else {
+		t = {type : type};
+	} 
+	return t;
+}
+
+function _RecordType(loc, a) {
+	var t = _TypeOf(a);
+    print("~~~TypeInfo:" + loc + ":" + JSON.stringify(t));
+}
+// Copyright 2013 the V8 project authors. All rights reserved.
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions are
+// met:
+//
+//     * Redistributions of source code must retain the above copyright
+//       notice, this list of conditions and the following disclaimer.
+//     * Redistributions in binary form must reproduce the above
+//       copyright notice, this list of conditions and the following
+//       disclaimer in the documentation and/or other materials provided
+//       with the distribution.
+//     * Neither the name of Google Inc. nor the names of its
+//       contributors may be used to endorse or promote products derived
+//       from this software without specific prior written permission.
+//
+// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+// "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+// LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+// A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+// OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+// SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+// LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+// DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+// THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+// (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+// OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+var badObj = { length : 1e40 };
+try { if (Inst0 <= 1000 && typeof (badObj) != "undefined") {_RecordType("<1602,1608,28>",(badObj)); Inst0++; } } catch(e) {}
+
+try { if (Inst1 <= 1000 && typeof (assertThrows) != "undefined") {_RecordType("<1631,1643,30>",(assertThrows)); Inst1++; } } catch(e) {}try { if (Inst2 <= 1000 && typeof (Uint8Array) != "undefined") {_RecordType("<1661,1671,30>",(Uint8Array)); Inst2++; } } catch(e) {}try { if (Inst3 <= 1000 && typeof (badObj) != "undefined") {_RecordType("<1672,1678,30>",(badObj)); Inst3++; } } catch(e) {}try { if (Inst4 <= 1000 && typeof (RangeError) != "undefined") {_RecordType("<1684,1694,30>",(RangeError)); Inst4++; } } catch(e) {}
+assertThrows(function() { new Uint8Array(badObj); }, RangeError);
+try { if (Inst5 <= 1000 && typeof (assertThrows) != "undefined") {_RecordType("<1697,1709,31>",(assertThrows)); Inst5++; } } catch(e) {}try { if (Inst6 <= 1000 && typeof (Uint8ClampedArray) != "undefined") {_RecordType("<1727,1744,31>",(Uint8ClampedArray)); Inst6++; } } catch(e) {}try { if (Inst7 <= 1000 && typeof (badObj) != "undefined") {_RecordType("<1745,1751,31>",(badObj)); Inst7++; } } catch(e) {}try { if (Inst8 <= 1000 && typeof (RangeError) != "undefined") {_RecordType("<1757,1767,31>",(RangeError)); Inst8++; } } catch(e) {}
+assertThrows(function() { new Uint8ClampedArray(badObj); }, RangeError);
+try { if (Inst9 <= 1000 && typeof (assertThrows) != "undefined") {_RecordType("<1770,1782,32>",(assertThrows)); Inst9++; } } catch(e) {}try { if (Inst10 <= 1000 && typeof (Int8Array) != "undefined") {_RecordType("<1800,1809,32>",(Int8Array)); Inst10++; } } catch(e) {}try { if (Inst11 <= 1000 && typeof (badObj) != "undefined") {_RecordType("<1810,1816,32>",(badObj)); Inst11++; } } catch(e) {}try { if (Inst12 <= 1000 && typeof (RangeError) != "undefined") {_RecordType("<1822,1832,32>",(RangeError)); Inst12++; } } catch(e) {}
+assertThrows(function() { new Int8Array(badObj); }, RangeError);
+try { if (Inst13 <= 1000 && typeof (assertThrows) != "undefined") {_RecordType("<1835,1847,33>",(assertThrows)); Inst13++; } } catch(e) {}try { if (Inst14 <= 1000 && typeof (Uint16Array) != "undefined") {_RecordType("<1865,1876,33>",(Uint16Array)); Inst14++; } } catch(e) {}try { if (Inst15 <= 1000 && typeof (badObj) != "undefined") {_RecordType("<1877,1883,33>",(badObj)); Inst15++; } } catch(e) {}try { if (Inst16 <= 1000 && typeof (RangeError) != "undefined") {_RecordType("<1889,1899,33>",(RangeError)); Inst16++; } } catch(e) {}
+assertThrows(function() { new Uint16Array(badObj); }, RangeError);
+try { if (Inst17 <= 1000 && typeof (assertThrows) != "undefined") {_RecordType("<1902,1914,34>",(assertThrows)); Inst17++; } } catch(e) {}try { if (Inst18 <= 1000 && typeof (Int16Array) != "undefined") {_RecordType("<1932,1942,34>",(Int16Array)); Inst18++; } } catch(e) {}try { if (Inst19 <= 1000 && typeof (badObj) != "undefined") {_RecordType("<1943,1949,34>",(badObj)); Inst19++; } } catch(e) {}try { if (Inst20 <= 1000 && typeof (RangeError) != "undefined") {_RecordType("<1955,1965,34>",(RangeError)); Inst20++; } } catch(e) {}
+assertThrows(function() { new Int16Array(badObj); }, RangeError);
+try { if (Inst21 <= 1000 && typeof (assertThrows) != "undefined") {_RecordType("<1968,1980,35>",(assertThrows)); Inst21++; } } catch(e) {}try { if (Inst22 <= 1000 && typeof (Uint32Array) != "undefined") {_RecordType("<1998,2009,35>",(Uint32Array)); Inst22++; } } catch(e) {}try { if (Inst23 <= 1000 && typeof (badObj) != "undefined") {_RecordType("<2010,2016,35>",(badObj)); Inst23++; } } catch(e) {}try { if (Inst24 <= 1000 && typeof (RangeError) != "undefined") {_RecordType("<2022,2032,35>",(RangeError)); Inst24++; } } catch(e) {}
+assertThrows(function() { new Uint32Array(badObj); }, RangeError);
+try { if (Inst25 <= 1000 && typeof (assertThrows) != "undefined") {_RecordType("<2035,2047,36>",(assertThrows)); Inst25++; } } catch(e) {}try { if (Inst26 <= 1000 && typeof (Int32Array) != "undefined") {_RecordType("<2065,2075,36>",(Int32Array)); Inst26++; } } catch(e) {}try { if (Inst27 <= 1000 && typeof (badObj) != "undefined") {_RecordType("<2076,2082,36>",(badObj)); Inst27++; } } catch(e) {}try { if (Inst28 <= 1000 && typeof (RangeError) != "undefined") {_RecordType("<2088,2098,36>",(RangeError)); Inst28++; } } catch(e) {}
+assertThrows(function() { new Int32Array(badObj); }, RangeError);
+try { if (Inst29 <= 1000 && typeof (assertThrows) != "undefined") {_RecordType("<2101,2113,37>",(assertThrows)); Inst29++; } } catch(e) {}try { if (Inst30 <= 1000 && typeof (Float32Array) != "undefined") {_RecordType("<2131,2143,37>",(Float32Array)); Inst30++; } } catch(e) {}try { if (Inst31 <= 1000 && typeof (badObj) != "undefined") {_RecordType("<2144,2150,37>",(badObj)); Inst31++; } } catch(e) {}try { if (Inst32 <= 1000 && typeof (RangeError) != "undefined") {_RecordType("<2156,2166,37>",(RangeError)); Inst32++; } } catch(e) {}
+assertThrows(function() { new Float32Array(badObj); }, RangeError);
+try { if (Inst33 <= 1000 && typeof (assertThrows) != "undefined") {_RecordType("<2169,2181,38>",(assertThrows)); Inst33++; } } catch(e) {}try { if (Inst34 <= 1000 && typeof (Float64Array) != "undefined") {_RecordType("<2199,2211,38>",(Float64Array)); Inst34++; } } catch(e) {}try { if (Inst35 <= 1000 && typeof (badObj) != "undefined") {_RecordType("<2212,2218,38>",(badObj)); Inst35++; } } catch(e) {}try { if (Inst36 <= 1000 && typeof (RangeError) != "undefined") {_RecordType("<2224,2234,38>",(RangeError)); Inst36++; } } catch(e) {}
+assertThrows(function() { new Float64Array(badObj); }, RangeError);
+

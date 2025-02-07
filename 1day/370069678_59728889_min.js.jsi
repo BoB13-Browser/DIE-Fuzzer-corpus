@@ -1,0 +1,266 @@
+var Inst0 = 0;
+var Inst1 = 0;
+var Inst2 = 0;
+var Inst3 = 0;
+var Inst4 = 0;
+var Inst5 = 0;
+var Inst6 = 0;
+var Inst7 = 0;
+var Inst8 = 0;
+var Inst9 = 0;
+var Inst10 = 0;
+var Inst11 = 0;
+var Inst12 = 0;
+var Inst13 = 0;
+var Inst14 = 0;
+var Inst15 = 0;
+var Inst16 = 0;
+var Inst17 = 0;
+var Inst18 = 0;
+var Inst19 = 0;
+var Inst20 = 0;
+var Inst21 = 0;
+var Inst22 = 0;
+var Inst23 = 0;
+var Inst24 = 0;
+var Inst25 = 0;
+var Inst26 = 0;
+var Inst27 = 0;
+var Inst28 = 0;
+var Inst29 = 0;
+var Inst30 = 0;
+var Inst31 = 0;
+var Inst32 = 0;
+var Inst33 = 0;
+var Inst34 = 0;
+var Inst35 = 0;
+var Inst36 = 0;
+var Inst37 = 0;
+var Inst38 = 0;
+var Inst39 = 0;
+var Inst40 = 0;
+var Inst41 = 0;
+var Inst42 = 0;
+var Inst43 = 0;
+var Inst44 = 0;
+var Inst45 = 0;
+var Inst46 = 0;
+var Inst47 = 0;
+var Inst48 = 0;
+var Inst49 = 0;
+var Inst50 = 0;
+var Inst51 = 0;
+var Inst52 = 0;
+var Inst53 = 0;
+var Inst54 = 0;
+var Inst55 = 0;
+var Inst56 = 0;
+var Inst57 = 0;
+var Inst58 = 0;
+var Inst59 = 0;
+var Inst60 = 0;
+var Inst61 = 0;
+var Inst62 = 0;
+var Inst63 = 0;
+var Inst64 = 0;
+var Inst65 = 0;
+var Inst66 = 0;
+var Inst67 = 0;
+var Inst68 = 0;
+var Inst69 = 0;
+var Inst70 = 0;
+var Inst71 = 0;
+var Inst72 = 0;
+var Inst73 = 0;
+var Inst74 = 0;
+var Inst75 = 0;
+var Inst76 = 0;
+var Inst77 = 0;
+var Inst78 = 0;
+var Inst79 = 0;
+var Inst80 = 0;
+var Inst81 = 0;
+var Inst82 = 0;
+var Inst83 = 0;
+var Inst84 = 0;
+var Inst85 = 0;
+var Inst86 = 0;
+var Inst87 = 0;
+var Inst88 = 0;
+var Inst89 = 0;
+var Inst90 = 0;
+var Inst91 = 0;
+var Inst92 = 0;
+var Inst93 = 0;
+var Inst94 = 0;
+var Inst95 = 0;
+ 
+function _TypeOfArray(a) {
+	let number = true;	
+	let string = true;
+	for (let i = 0; i < a.length; i++) {
+		if (number && (typeof a[i]) != "number") {
+			number = false;	
+		}
+		if (string && (typeof a[i]) != "string") {
+			string = false;	
+		}
+		if (!number && !string)
+			break;
+	}
+	if (number)
+		return "number";
+	else if (string)
+		return "string";
+	else
+		return "any";
+}
+
+function _TypeIsEqual(t1, t2) {
+	return JSON.stringify(t1) === JSON.stringify(t2);
+}
+
+function _TypeOf(a, step) {
+	var t;
+	var type = Object.prototype.toString.call(a).slice(8, -1).toLowerCase();	
+	if (type == "array") {
+		t = {type : type, extra: {elemType: _TypeOfArray(a)}};
+	} else if (type == "object") {
+		let shape = [];
+        if (step === undefined || step > 0) {
+            let keys = Object.keys(a);
+            let length = Math.min(100, keys.length);
+		    for (let i = 0; i < length; i++) {
+			    shape.push([keys[i], _TypeOf(a[keys[i]], step === undefined ? 1 : step - 1)]);	
+		    }
+        }
+		t = {type : type, extra: {shape: shape}};
+	} else {
+		t = {type : type};
+	} 
+	return t;
+}
+
+function _RecordType(loc, a) {
+	var t = _TypeOf(a);
+    print("~~~TypeInfo:" + loc + ":" + JSON.stringify(t));
+}
+
+try { if (Inst0 <= 1000 && typeof (help_tag2id) != "undefined") {_RecordType("<13,24,2>",(help_tag2id)); Inst0++; } } catch(e) {}
+		function help_tag2id(tag, idx) {
+try { if (Inst1 <= 1000 && typeof (tag) != "undefined") {_RecordType("<25,28,2>",(tag)); Inst1++; } } catch(e) {}try { if (Inst2 <= 1000 && typeof (idx) != "undefined") {_RecordType("<30,33,2>",(idx)); Inst2++; } } catch(e) {}
+try { if (Inst4 <= 1000 && typeof (tag.toLowerCase) != "undefined") {_RecordType("<47,62,3>",(tag.toLowerCase)); Inst4++; } } catch(e) {}try { if (Inst5 <= 1000 && typeof (tag) != "undefined") {_RecordType("<47,50,3>",(tag)); Inst5++; } } catch(e) {}
+			tag = tag.toLowerCase();
+try { if (Inst3 <= 1000 && typeof (tag) != "undefined") {_RecordType("<41,44,3>",(tag)); Inst3++; } } catch(e) {}
+try { if (Inst7 <= 1000 && typeof (document.querySelectorAll) != "undefined") {_RecordType("<79,104,4>",(document.querySelectorAll)); Inst7++; } } catch(e) {}try { if (Inst8 <= 1000 && typeof (document) != "undefined") {_RecordType("<79,87,4>",(document)); Inst8++; } } catch(e) {}try { if (Inst9 <= 1000 && typeof (tag) != "undefined") {_RecordType("<105,108,4>",(tag)); Inst9++; } } catch(e) {}
+			let t2 = document.querySelectorAll(tag);
+try { if (Inst6 <= 1000 && typeof (t2) != "undefined") {_RecordType("<74,76,4>",(t2)); Inst6++; } } catch(e) {}
+try { if (Inst10 <= 1000 && typeof (t2.length) != "undefined") {_RecordType("<124,133,5>",(t2.length)); Inst10++; } } catch(e) {}try { if (Inst11 <= 1000 && typeof (t2) != "undefined") {_RecordType("<124,126,5>",(t2)); Inst11++; } } catch(e) {}try { if (Inst12 <= 1000 && typeof (tag) != "undefined") {_RecordType("<183,186,5>",(tag)); Inst12++; } } catch(e) {}
+			if (0 == t2.length) throw (`FAIL: help_tag2id -> querySelectorAll:${tag}`);
+try { if (Inst14 <= 1000 && typeof (t2[idx % t2.length]) != "undefined") {_RecordType("<200,219,6>",(t2[idx % t2.length])); Inst14++; } } catch(e) {}try { if (Inst15 <= 1000 && typeof (t2) != "undefined") {_RecordType("<200,202,6>",(t2)); Inst15++; } } catch(e) {}try { if (Inst16 <= 1000 && typeof (idx) != "undefined") {_RecordType("<203,206,6>",(idx)); Inst16++; } } catch(e) {}try { if (Inst17 <= 1000 && typeof (t2.length) != "undefined") {_RecordType("<209,218,6>",(t2.length)); Inst17++; } } catch(e) {}try { if (Inst18 <= 1000 && typeof (t2) != "undefined") {_RecordType("<209,211,6>",(t2)); Inst18++; } } catch(e) {}
+			t3 = t2[idx % t2.length]
+try { if (Inst13 <= 1000 && typeof (t3) != "undefined") {_RecordType("<195,197,6>",(t3)); Inst13++; } } catch(e) {}
+try { if (Inst19 <= 1000 && typeof (t3) != "undefined") {_RecordType("<231,233,7>",(t3)); Inst19++; } } catch(e) {}
+			return t3;
+		}
+
+try { if (Inst20 <= 1000 && typeof (trigger1) != "undefined") {_RecordType("<260,268,10>",(trigger1)); Inst20++; } } catch(e) {}
+		async function trigger1(img) {
+try { if (Inst21 <= 1000 && typeof (img) != "undefined") {_RecordType("<269,272,10>",(img)); Inst21++; } } catch(e) {}
+
+try { if (Inst23 <= 1000 && typeof (help_tag2id) != "undefined") {_RecordType("<321,332,12>",(help_tag2id)); Inst23++; } } catch(e) {}try { if (Inst24 <= 1000 && typeof (e) != "undefined") {_RecordType("<353,354,12>",(e)); Inst24++; } } catch(e) {}
+			try { /*HTMLImageElement*/ var v1926 = help_tag2id("img", 4); } catch (e) { }
+try { if (Inst22 <= 1000 && typeof (v1926) != "undefined") {_RecordType("<313,318,12>",(v1926)); Inst22++; } } catch(e) {}
+try { if (Inst27 <= 1000 && typeof (e) != "undefined") {_RecordType("<406,407,13>",(e)); Inst27++; } } catch(e) {}
+			try { v1926.crossOrigin = "bar"; } catch (e) { }
+try { if (Inst25 <= 1000 && typeof (v1926.crossOrigin) != "undefined") {_RecordType("<370,387,13>",(v1926.crossOrigin)); Inst25++; } } catch(e) {}try { if (Inst26 <= 1000 && typeof (v1926) != "undefined") {_RecordType("<370,375,13>",(v1926)); Inst26++; } } catch(e) {}
+
+try { if (Inst29 <= 1000 && typeof (help_tag2id) != "undefined") {_RecordType("<459,470,15>",(help_tag2id)); Inst29++; } } catch(e) {}try { if (Inst30 <= 1000 && typeof (e) != "undefined") {_RecordType("<496,497,15>",(e)); Inst30++; } } catch(e) {}
+			try { /*HTMLIFrameElement*/ var v2012 = help_tag2id("iframe", 245); } catch (e) { }
+try { if (Inst28 <= 1000 && typeof (v2012) != "undefined") {_RecordType("<451,456,15>",(v2012)); Inst28++; } } catch(e) {}
+
+try { if (Inst32 <= 1000 && typeof (v2012.contentWindow) != "undefined") {_RecordType("<573,592,17>",(v2012.contentWindow)); Inst32++; } } catch(e) {}try { if (Inst33 <= 1000 && typeof (v2012) != "undefined") {_RecordType("<573,578,17>",(v2012)); Inst33++; } } catch(e) {}try { if (Inst34 <= 1000 && typeof (e) != "undefined") {_RecordType("<603,604,17>",(e)); Inst34++; } } catch(e) {}
+			try { /*attr_HTMLIFrameElement_contentWindow_type*/ var v2545 = v2012.contentWindow; } catch (e) { }
+try { if (Inst31 <= 1000 && typeof (v2545) != "undefined") {_RecordType("<565,570,17>",(v2545)); Inst31++; } } catch(e) {}
+try { if (Inst36 <= 1000 && typeof (v2545.caches) != "undefined") {_RecordType("<660,672,18>",(v2545.caches)); Inst36++; } } catch(e) {}try { if (Inst37 <= 1000 && typeof (v2545) != "undefined") {_RecordType("<660,665,18>",(v2545)); Inst37++; } } catch(e) {}try { if (Inst38 <= 1000 && typeof (e) != "undefined") {_RecordType("<683,684,18>",(e)); Inst38++; } } catch(e) {}
+			try { /*attr_Window_caches_type*/ var v2544 = v2545.caches; } catch (e) { }
+try { if (Inst35 <= 1000 && typeof (v2544) != "undefined") {_RecordType("<652,657,18>",(v2544)); Inst35++; } } catch(e) {}
+
+try { if (Inst40 <= 1000 && typeof (e) != "undefined") {_RecordType("<807,808,20>",(e)); Inst40++; } } catch(e) {}
+			try { /*CacheQueryOptions*/ var v2548 = { ignoreSearch: null, ignoreMethod: null, ignoreVary: null }; } catch (e) { }
+try { if (Inst39 <= 1000 && typeof (v2548) != "undefined") {_RecordType("<728,733,20>",(v2548)); Inst39++; } } catch(e) {}
+try { if (Inst42 <= 1000 && typeof (v2544.match) != "undefined") {_RecordType("<861,872,21>",(v2544.match)); Inst42++; } } catch(e) {}try { if (Inst43 <= 1000 && typeof (v2544) != "undefined") {_RecordType("<861,866,21>",(v2544)); Inst43++; } } catch(e) {}try { if (Inst44 <= 1000 && typeof (v2548) != "undefined") {_RecordType("<879,884,21>",(v2548)); Inst44++; } } catch(e) {}try { if (Inst45 <= 1000 && typeof (e) != "undefined") {_RecordType("<896,897,21>",(e)); Inst45++; } } catch(e) {}
+			try { /*ret_match_type*/ var v2543 = await v2544.match(null, v2548); } catch (e) { }
+try { if (Inst41 <= 1000 && typeof (v2543) != "undefined") {_RecordType("<847,852,21>",(v2543)); Inst41++; } } catch(e) {}
+
+		}
+
+		const cacheName = 'my-cache-v1';
+try { if (Inst46 <= 1000 && typeof (cacheName) != "undefined") {_RecordType("<921,930,25>",(cacheName)); Inst46++; } } catch(e) {}
+		const key = 'my-data-key';
+try { if (Inst47 <= 1000 && typeof (key) != "undefined") {_RecordType("<957,960,26>",(key)); Inst47++; } } catch(e) {}
+		const data = 'This is some cached data';
+try { if (Inst48 <= 1000 && typeof (data) != "undefined") {_RecordType("<987,991,27>",(data)); Inst48++; } } catch(e) {}
+
+try { if (Inst49 <= 1000 && typeof (getCache) != "undefined") {_RecordType("<1042,1050,29>",(getCache)); Inst49++; } } catch(e) {}
+		async function getCache() {
+try { if (Inst50 <= 1000 && typeof (caches.open) != "undefined") {_RecordType("<1072,1083,30>",(caches.open)); Inst50++; } } catch(e) {}try { if (Inst51 <= 1000 && typeof (caches) != "undefined") {_RecordType("<1072,1078,30>",(caches)); Inst51++; } } catch(e) {}try { if (Inst52 <= 1000 && typeof (cacheName) != "undefined") {_RecordType("<1084,1093,30>",(cacheName)); Inst52++; } } catch(e) {}
+			return await caches.open(cacheName);
+		}
+
+try { if (Inst53 <= 1000 && typeof (checkCache) != "undefined") {_RecordType("<1121,1131,33>",(checkCache)); Inst53++; } } catch(e) {}
+		async function checkCache(key) {
+try { if (Inst54 <= 1000 && typeof (key) != "undefined") {_RecordType("<1132,1135,33>",(key)); Inst54++; } } catch(e) {}
+try { if (Inst56 <= 1000 && typeof (getCache) != "undefined") {_RecordType("<1163,1171,34>",(getCache)); Inst56++; } } catch(e) {}
+			const cache = await getCache();
+try { if (Inst55 <= 1000 && typeof (cache) != "undefined") {_RecordType("<1149,1154,34>",(cache)); Inst55++; } } catch(e) {}
+try { if (Inst58 <= 1000 && typeof (cache.match) != "undefined") {_RecordType("<1202,1213,35>",(cache.match)); Inst58++; } } catch(e) {}try { if (Inst59 <= 1000 && typeof (cache) != "undefined") {_RecordType("<1202,1207,35>",(cache)); Inst59++; } } catch(e) {}try { if (Inst60 <= 1000 && typeof (Request) != "undefined") {_RecordType("<1218,1225,35>",(Request)); Inst60++; } } catch(e) {}try { if (Inst61 <= 1000 && typeof (key) != "undefined") {_RecordType("<1226,1229,35>",(key)); Inst61++; } } catch(e) {}
+			const response = await cache.match(new Request(key));
+try { if (Inst57 <= 1000 && typeof (response) != "undefined") {_RecordType("<1185,1193,35>",(response)); Inst57++; } } catch(e) {}
+		}
+
+try { if (Inst62 <= 1000 && typeof (checkVisit) != "undefined") {_RecordType("<1252,1262,38>",(checkVisit)); Inst62++; } } catch(e) {}
+		function checkVisit() {
+try { if (Inst64 <= 1000 && typeof (window.location.hash) != "undefined") {_RecordType("<1284,1304,39>",(window.location.hash)); Inst64++; } } catch(e) {}try { if (Inst65 <= 1000 && typeof (window.location) != "undefined") {_RecordType("<1284,1299,39>",(window.location)); Inst65++; } } catch(e) {}try { if (Inst66 <= 1000 && typeof (window) != "undefined") {_RecordType("<1284,1290,39>",(window)); Inst66++; } } catch(e) {}
+			const hash = window.location.hash;
+try { if (Inst63 <= 1000 && typeof (hash) != "undefined") {_RecordType("<1277,1281,39>",(hash)); Inst63++; } } catch(e) {}
+try { if (Inst67 <= 1000 && typeof (hash) != "undefined") {_RecordType("<1314,1318,40>",(hash)); Inst67++; } } catch(e) {}
+			if (hash === '') {
+				window.location.hash = 'visited';
+try { if (Inst68 <= 1000 && typeof (window.location.hash) != "undefined") {_RecordType("<1334,1354,41>",(window.location.hash)); Inst68++; } } catch(e) {}try { if (Inst69 <= 1000 && typeof (window.location) != "undefined") {_RecordType("<1334,1349,41>",(window.location)); Inst69++; } } catch(e) {}try { if (Inst70 <= 1000 && typeof (window) != "undefined") {_RecordType("<1334,1340,41>",(window)); Inst70++; } } catch(e) {}
+try { if (Inst71 <= 1000 && typeof (checkCache) != "undefined") {_RecordType("<1373,1383,42>",(checkCache)); Inst71++; } } catch(e) {}try { if (Inst72 <= 1000 && typeof (key) != "undefined") {_RecordType("<1384,1387,42>",(key)); Inst72++; } } catch(e) {}
+				checkCache(key)
+try { if (Inst73 <= 1000 && typeof (window.location.reload) != "undefined") {_RecordType("<1394,1416,43>",(window.location.reload)); Inst73++; } } catch(e) {}try { if (Inst74 <= 1000 && typeof (window.location) != "undefined") {_RecordType("<1394,1409,43>",(window.location)); Inst74++; } } catch(e) {}try { if (Inst75 <= 1000 && typeof (window) != "undefined") {_RecordType("<1394,1400,43>",(window)); Inst75++; } } catch(e) {}
+				window.location.reload();
+				return true
+			}
+
+			return false
+		}
+
+try { if (Inst76 <= 1000 && typeof (start) != "undefined") {_RecordType("<1481,1486,50>",(start)); Inst76++; } } catch(e) {}
+		function start() {
+try { if (Inst77 <= 1000 && typeof (checkVisit) != "undefined") {_RecordType("<1499,1509,51>",(checkVisit)); Inst77++; } } catch(e) {}
+			if (checkVisit()) return;
+			var ImageData = "data:image/gif;base64,R0lGODlhAQABAIAAAAUEBAAAACwAAAAAAQABAAACAkQBADs=";
+try { if (Inst78 <= 1000 && typeof (ImageData) != "undefined") {_RecordType("<1529,1538,52>",(ImageData)); Inst78++; } } catch(e) {}
+
+try { if (Inst80 <= 1000 && typeof (document.createElement) != "undefined") {_RecordType("<1631,1653,54>",(document.createElement)); Inst80++; } } catch(e) {}try { if (Inst81 <= 1000 && typeof (document) != "undefined") {_RecordType("<1631,1639,54>",(document)); Inst81++; } } catch(e) {}
+			let img = document.createElement('img');
+try { if (Inst79 <= 1000 && typeof (img) != "undefined") {_RecordType("<1625,1628,54>",(img)); Inst79++; } } catch(e) {}
+try { if (Inst84 <= 1000 && typeof (ImageData) != "undefined") {_RecordType("<1676,1685,55>",(ImageData)); Inst84++; } } catch(e) {}
+			img.src = ImageData;
+try { if (Inst82 <= 1000 && typeof (img.src) != "undefined") {_RecordType("<1666,1673,55>",(img.src)); Inst82++; } } catch(e) {}try { if (Inst83 <= 1000 && typeof (img) != "undefined") {_RecordType("<1666,1669,55>",(img)); Inst83++; } } catch(e) {}
+
+			img.onload = function () {
+try { if (Inst87 <= 1000 && typeof (document.body.appendChild) != "undefined") {_RecordType("<1725,1750,58>",(document.body.appendChild)); Inst87++; } } catch(e) {}try { if (Inst88 <= 1000 && typeof (document.body) != "undefined") {_RecordType("<1725,1738,58>",(document.body)); Inst88++; } } catch(e) {}try { if (Inst89 <= 1000 && typeof (document) != "undefined") {_RecordType("<1725,1733,58>",(document)); Inst89++; } } catch(e) {}try { if (Inst90 <= 1000 && typeof (img) != "undefined") {_RecordType("<1751,1754,58>",(img)); Inst90++; } } catch(e) {}
+				document.body.appendChild(img);
+try { if (Inst91 <= 1000 && typeof (document.body.offsetTop) != "undefined") {_RecordType("<1762,1785,59>",(document.body.offsetTop)); Inst91++; } } catch(e) {}try { if (Inst92 <= 1000 && typeof (document.body) != "undefined") {_RecordType("<1762,1775,59>",(document.body)); Inst92++; } } catch(e) {}try { if (Inst93 <= 1000 && typeof (document) != "undefined") {_RecordType("<1762,1770,59>",(document)); Inst93++; } } catch(e) {}
+				document.body.offsetTop;
+try { if (Inst94 <= 1000 && typeof (trigger1) != "undefined") {_RecordType("<1792,1800,60>",(trigger1)); Inst94++; } } catch(e) {}try { if (Inst95 <= 1000 && typeof (img) != "undefined") {_RecordType("<1801,1804,60>",(img)); Inst95++; } } catch(e) {}
+				trigger1(img);
+			}
+try { if (Inst85 <= 1000 && typeof (img.onload) != "undefined") {_RecordType("<1693,1703,57>",(img.onload)); Inst85++; } } catch(e) {}try { if (Inst86 <= 1000 && typeof (img) != "undefined") {_RecordType("<1693,1696,57>",(img)); Inst86++; } } catch(e) {}
+		}
+
+	

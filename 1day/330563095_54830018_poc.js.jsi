@@ -1,0 +1,132 @@
+var Inst0 = 0;
+var Inst1 = 0;
+var Inst2 = 0;
+var Inst3 = 0;
+var Inst4 = 0;
+var Inst5 = 0;
+var Inst6 = 0;
+var Inst7 = 0;
+var Inst8 = 0;
+var Inst9 = 0;
+var Inst10 = 0;
+var Inst11 = 0;
+var Inst12 = 0;
+var Inst13 = 0;
+var Inst14 = 0;
+var Inst15 = 0;
+var Inst16 = 0;
+var Inst17 = 0;
+var Inst18 = 0;
+var Inst19 = 0;
+var Inst20 = 0;
+var Inst21 = 0;
+var Inst22 = 0;
+var Inst23 = 0;
+var Inst24 = 0;
+var Inst25 = 0;
+var Inst26 = 0;
+var Inst27 = 0;
+var Inst28 = 0;
+var Inst29 = 0;
+var Inst30 = 0;
+var Inst31 = 0;
+var Inst32 = 0;
+ 
+function _TypeOfArray(a) {
+	let number = true;	
+	let string = true;
+	for (let i = 0; i < a.length; i++) {
+		if (number && (typeof a[i]) != "number") {
+			number = false;	
+		}
+		if (string && (typeof a[i]) != "string") {
+			string = false;	
+		}
+		if (!number && !string)
+			break;
+	}
+	if (number)
+		return "number";
+	else if (string)
+		return "string";
+	else
+		return "any";
+}
+
+function _TypeIsEqual(t1, t2) {
+	return JSON.stringify(t1) === JSON.stringify(t2);
+}
+
+function _TypeOf(a, step) {
+	var t;
+	var type = Object.prototype.toString.call(a).slice(8, -1).toLowerCase();	
+	if (type == "array") {
+		t = {type : type, extra: {elemType: _TypeOfArray(a)}};
+	} else if (type == "object") {
+		let shape = [];
+        if (step === undefined || step > 0) {
+            let keys = Object.keys(a);
+            let length = Math.min(100, keys.length);
+		    for (let i = 0; i < length; i++) {
+			    shape.push([keys[i], _TypeOf(a[keys[i]], step === undefined ? 1 : step - 1)]);	
+		    }
+        }
+		t = {type : type, extra: {shape: shape}};
+	} else {
+		t = {type : type};
+	} 
+	return t;
+}
+
+function _RecordType(loc, a) {
+	var t = _TypeOf(a);
+    print("~~~TypeInfo:" + loc + ":" + JSON.stringify(t));
+}
+
+
+try { if (Inst0 <= 1000 && typeof (main) != "undefined") {_RecordType("<19,23,3>",(main)); Inst0++; } } catch(e) {}
+async function main() {
+
+try { if (Inst2 <= 1000 && typeof (OffscreenCanvas) != "undefined") {_RecordType("<45,60,5>",(OffscreenCanvas)); Inst2++; } } catch(e) {}
+    cnv = new OffscreenCanvas(1, 1);
+try { if (Inst1 <= 1000 && typeof (cnv) != "undefined") {_RecordType("<35,38,5>",(cnv)); Inst1++; } } catch(e) {}
+
+try { if (Inst4 <= 1000 && typeof (cnv.getContext) != "undefined") {_RecordType("<81,95,7>",(cnv.getContext)); Inst4++; } } catch(e) {}try { if (Inst5 <= 1000 && typeof (cnv) != "undefined") {_RecordType("<81,84,7>",(cnv)); Inst5++; } } catch(e) {}
+    ctx = cnv.getContext('2d', {alpha: false});
+try { if (Inst3 <= 1000 && typeof (ctx) != "undefined") {_RecordType("<75,78,7>",(ctx)); Inst3++; } } catch(e) {}
+
+try { if (Inst7 <= 1000 && typeof (ctx.createImageData) != "undefined") {_RecordType("<131,150,9>",(ctx.createImageData)); Inst7++; } } catch(e) {}try { if (Inst8 <= 1000 && typeof (ctx) != "undefined") {_RecordType("<131,134,9>",(ctx)); Inst8++; } } catch(e) {}
+    im = ctx.createImageData(1, 1);
+try { if (Inst6 <= 1000 && typeof (im) != "undefined") {_RecordType("<126,128,9>",(im)); Inst6++; } } catch(e) {}
+
+    new Uint32Array(im.data.buffer)[0] = 0xdeadbeef;
+try { if (Inst9 <= 1000 && typeof (new Uint32Array(im.data.buffer)[0]) != "undefined") {_RecordType("<165,199,11>",(new Uint32Array(im.data.buffer)[0])); Inst9++; } } catch(e) {}try { if (Inst10 <= 1000 && typeof (Uint32Array) != "undefined") {_RecordType("<169,180,11>",(Uint32Array)); Inst10++; } } catch(e) {}try { if (Inst11 <= 1000 && typeof (im.data.buffer) != "undefined") {_RecordType("<181,195,11>",(im.data.buffer)); Inst11++; } } catch(e) {}try { if (Inst12 <= 1000 && typeof (im.data) != "undefined") {_RecordType("<181,188,11>",(im.data)); Inst12++; } } catch(e) {}try { if (Inst13 <= 1000 && typeof (im) != "undefined") {_RecordType("<181,183,11>",(im)); Inst13++; } } catch(e) {}
+
+try { if (Inst14 <= 1000 && typeof (ctx.putImageData) != "undefined") {_RecordType("<221,237,13>",(ctx.putImageData)); Inst14++; } } catch(e) {}try { if (Inst15 <= 1000 && typeof (ctx) != "undefined") {_RecordType("<221,224,13>",(ctx)); Inst15++; } } catch(e) {}try { if (Inst16 <= 1000 && typeof (im) != "undefined") {_RecordType("<238,240,13>",(im)); Inst16++; } } catch(e) {}
+    ctx.putImageData(im, 0, 0);
+
+try { if (Inst18 <= 1000 && typeof (VideoFrame) != "undefined") {_RecordType("<265,275,15>",(VideoFrame)); Inst18++; } } catch(e) {}try { if (Inst19 <= 1000 && typeof (cnv) != "undefined") {_RecordType("<276,279,15>",(cnv)); Inst19++; } } catch(e) {}
+    vf = new VideoFrame(cnv, {timestamp: 1});
+try { if (Inst17 <= 1000 && typeof (vf) != "undefined") {_RecordType("<256,258,15>",(vf)); Inst17++; } } catch(e) {}
+
+try { if (Inst21 <= 1000 && typeof (ArrayBuffer) != "undefined") {_RecordType("<314,325,17>",(ArrayBuffer)); Inst21++; } } catch(e) {}
+    ab = new ArrayBuffer(0x100000);
+try { if (Inst20 <= 1000 && typeof (ab) != "undefined") {_RecordType("<305,307,17>",(ab)); Inst20++; } } catch(e) {}
+
+try { if (Inst23 <= 1000 && typeof (vf.copyTo) != "undefined") {_RecordType("<351,360,19>",(vf.copyTo)); Inst23++; } } catch(e) {}try { if (Inst24 <= 1000 && typeof (vf) != "undefined") {_RecordType("<351,353,19>",(vf)); Inst24++; } } catch(e) {}try { if (Inst25 <= 1000 && typeof (DataView) != "undefined") {_RecordType("<365,373,19>",(DataView)); Inst25++; } } catch(e) {}try { if (Inst26 <= 1000 && typeof (ab) != "undefined") {_RecordType("<374,376,19>",(ab)); Inst26++; } } catch(e) {}
+    prom = vf.copyTo(new DataView(ab, 0x13337, 4));
+try { if (Inst22 <= 1000 && typeof (prom) != "undefined") {_RecordType("<344,348,19>",(prom)); Inst22++; } } catch(e) {}
+
+try { if (Inst27 <= 1000 && typeof (ab.transfer) != "undefined") {_RecordType("<399,410,21>",(ab.transfer)); Inst27++; } } catch(e) {}try { if (Inst28 <= 1000 && typeof (ab) != "undefined") {_RecordType("<399,401,21>",(ab)); Inst28++; } } catch(e) {}
+    ab.transfer(1);
+
+try { if (Inst29 <= 1000 && typeof (prom) != "undefined") {_RecordType("<425,429,23>",(prom)); Inst29++; } } catch(e) {}
+	await prom;
+
+}
+
+try { if (Inst32 <= 1000 && typeof (main) != "undefined") {_RecordType("<455,459,27>",(main)); Inst32++; } } catch(e) {}
+window.onload = main;
+try { if (Inst30 <= 1000 && typeof (window.onload) != "undefined") {_RecordType("<439,452,27>",(window.onload)); Inst30++; } } catch(e) {}try { if (Inst31 <= 1000 && typeof (window) != "undefined") {_RecordType("<439,445,27>",(window)); Inst31++; } } catch(e) {}
+
+

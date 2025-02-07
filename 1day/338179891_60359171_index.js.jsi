@@ -1,0 +1,129 @@
+var Inst0 = 0;
+var Inst1 = 0;
+var Inst2 = 0;
+var Inst3 = 0;
+var Inst4 = 0;
+var Inst5 = 0;
+var Inst6 = 0;
+var Inst7 = 0;
+var Inst8 = 0;
+var Inst9 = 0;
+var Inst10 = 0;
+var Inst11 = 0;
+var Inst12 = 0;
+var Inst13 = 0;
+var Inst14 = 0;
+var Inst15 = 0;
+var Inst16 = 0;
+var Inst17 = 0;
+var Inst18 = 0;
+var Inst19 = 0;
+var Inst20 = 0;
+var Inst21 = 0;
+var Inst22 = 0;
+var Inst23 = 0;
+var Inst24 = 0;
+var Inst25 = 0;
+var Inst26 = 0;
+var Inst27 = 0;
+var Inst28 = 0;
+var Inst29 = 0;
+var Inst30 = 0;
+var Inst31 = 0;
+var Inst32 = 0;
+var Inst33 = 0;
+ 
+function _TypeOfArray(a) {
+	let number = true;	
+	let string = true;
+	for (let i = 0; i < a.length; i++) {
+		if (number && (typeof a[i]) != "number") {
+			number = false;	
+		}
+		if (string && (typeof a[i]) != "string") {
+			string = false;	
+		}
+		if (!number && !string)
+			break;
+	}
+	if (number)
+		return "number";
+	else if (string)
+		return "string";
+	else
+		return "any";
+}
+
+function _TypeIsEqual(t1, t2) {
+	return JSON.stringify(t1) === JSON.stringify(t2);
+}
+
+function _TypeOf(a, step) {
+	var t;
+	var type = Object.prototype.toString.call(a).slice(8, -1).toLowerCase();	
+	if (type == "array") {
+		t = {type : type, extra: {elemType: _TypeOfArray(a)}};
+	} else if (type == "object") {
+		let shape = [];
+        if (step === undefined || step > 0) {
+            let keys = Object.keys(a);
+            let length = Math.min(100, keys.length);
+		    for (let i = 0; i < length; i++) {
+			    shape.push([keys[i], _TypeOf(a[keys[i]], step === undefined ? 1 : step - 1)]);	
+		    }
+        }
+		t = {type : type, extra: {shape: shape}};
+	} else {
+		t = {type : type};
+	} 
+	return t;
+}
+
+function _RecordType(loc, a) {
+	var t = _TypeOf(a);
+    print("~~~TypeInfo:" + loc + ":" + JSON.stringify(t));
+}
+
+    (async () => {
+try { if (Inst1 <= 1000 && typeof (ms) != "undefined") {_RecordType("<45,47,3>",(ms)); Inst1++; } } catch(e) {}try { if (Inst2 <= 1000 && typeof (Promise) != "undefined") {_RecordType("<56,63,3>",(Promise)); Inst2++; } } catch(e) {}try { if (Inst3 <= 1000 && typeof (resolve) != "undefined") {_RecordType("<64,71,3>",(resolve)); Inst3++; } } catch(e) {}try { if (Inst4 <= 1000 && typeof (setTimeout) != "undefined") {_RecordType("<75,85,3>",(setTimeout)); Inst4++; } } catch(e) {}try { if (Inst5 <= 1000 && typeof (resolve) != "undefined") {_RecordType("<86,93,3>",(resolve)); Inst5++; } } catch(e) {}try { if (Inst6 <= 1000 && typeof (ms) != "undefined") {_RecordType("<95,97,3>",(ms)); Inst6++; } } catch(e) {}
+        const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+try { if (Inst0 <= 1000 && typeof (sleep) != "undefined") {_RecordType("<36,41,3>",(sleep)); Inst0++; } } catch(e) {}
+try { if (Inst7 <= 1000 && typeof (check_if_no_content) != "undefined") {_RecordType("<125,144,4>",(check_if_no_content)); Inst7++; } } catch(e) {}
+        async function check_if_no_content( url ) {
+try { if (Inst8 <= 1000 && typeof (url) != "undefined") {_RecordType("<146,149,4>",(url)); Inst8++; } } catch(e) {}
+try { if (Inst10 <= 1000 && typeof (document.createElement) != "undefined") {_RecordType("<182,204,5>",(document.createElement)); Inst10++; } } catch(e) {}try { if (Inst11 <= 1000 && typeof (document) != "undefined") {_RecordType("<182,190,5>",(document)); Inst11++; } } catch(e) {}
+            const iframe = document.createElement( 'iframe' );
+try { if (Inst9 <= 1000 && typeof (iframe) != "undefined") {_RecordType("<173,179,5>",(iframe)); Inst9++; } } catch(e) {}
+try { if (Inst14 <= 1000 && typeof (url) != "undefined") {_RecordType("<244,247,6>",(url)); Inst14++; } } catch(e) {}
+            iframe.src = url;
+try { if (Inst12 <= 1000 && typeof (iframe.src) != "undefined") {_RecordType("<231,241,6>",(iframe.src)); Inst12++; } } catch(e) {}try { if (Inst13 <= 1000 && typeof (iframe) != "undefined") {_RecordType("<231,237,6>",(iframe)); Inst13++; } } catch(e) {}
+            let did_load = false;
+try { if (Inst15 <= 1000 && typeof (did_load) != "undefined") {_RecordType("<266,274,7>",(did_load)); Inst15++; } } catch(e) {}
+try { if (Inst16 <= 1000 && typeof (document.body.appendChild) != "undefined") {_RecordType("<297,322,8>",(document.body.appendChild)); Inst16++; } } catch(e) {}try { if (Inst17 <= 1000 && typeof (document.body) != "undefined") {_RecordType("<297,310,8>",(document.body)); Inst17++; } } catch(e) {}try { if (Inst18 <= 1000 && typeof (document) != "undefined") {_RecordType("<297,305,8>",(document)); Inst18++; } } catch(e) {}try { if (Inst19 <= 1000 && typeof (iframe) != "undefined") {_RecordType("<324,330,8>",(iframe)); Inst19++; } } catch(e) {}
+            document.body.appendChild( iframe );
+            iframe.onload = () => {
+                debugger;
+                did_load = true;
+try { if (Inst22 <= 1000 && typeof (did_load) != "undefined") {_RecordType("<415,423,11>",(did_load)); Inst22++; } } catch(e) {}
+            }
+try { if (Inst20 <= 1000 && typeof (iframe.onload) != "undefined") {_RecordType("<347,360,9>",(iframe.onload)); Inst20++; } } catch(e) {}try { if (Inst21 <= 1000 && typeof (iframe) != "undefined") {_RecordType("<347,353,9>",(iframe)); Inst21++; } } catch(e) {}
+try { if (Inst23 <= 1000 && typeof (sleep) != "undefined") {_RecordType("<466,471,13>",(sleep)); Inst23++; } } catch(e) {}
+            await sleep(5000);
+try { if (Inst24 <= 1000 && typeof (did_load) != "undefined") {_RecordType("<497,505,14>",(did_load)); Inst24++; } } catch(e) {}
+            if ( did_load ) {
+try { if (Inst25 <= 1000 && typeof (console.log) != "undefined") {_RecordType("<527,538,15>",(console.log)); Inst25++; } } catch(e) {}try { if (Inst26 <= 1000 && typeof (console) != "undefined") {_RecordType("<527,534,15>",(console)); Inst26++; } } catch(e) {}try { if (Inst27 <= 1000 && typeof (url) != "undefined") {_RecordType("<543,546,15>",(url)); Inst27++; } } catch(e) {}
+                console.log( `${url} did not return a 204 or 205 status code` );
+            } else {
+try { if (Inst28 <= 1000 && typeof (console.log) != "undefined") {_RecordType("<631,642,17>",(console.log)); Inst28++; } } catch(e) {}try { if (Inst29 <= 1000 && typeof (console) != "undefined") {_RecordType("<631,638,17>",(console)); Inst29++; } } catch(e) {}try { if (Inst30 <= 1000 && typeof (url) != "undefined") {_RecordType("<647,650,17>",(url)); Inst30++; } } catch(e) {}
+                console.log( `${url} returned a 204 or 205 status code` );
+            }
+        }
+        
+try { if (Inst31 <= 1000 && typeof (check_if_no_content) != "undefined") {_RecordType("<741,760,21>",(check_if_no_content)); Inst31++; } } catch(e) {}
+        await check_if_no_content( 'http://localhost:5000/no-content' );
+try { if (Inst32 <= 1000 && typeof (check_if_no_content) != "undefined") {_RecordType("<815,834,22>",(check_if_no_content)); Inst32++; } } catch(e) {}
+        await check_if_no_content( 'http://localhost:5000/reset-content' )
+try { if (Inst33 <= 1000 && typeof (check_if_no_content) != "undefined") {_RecordType("<891,910,23>",(check_if_no_content)); Inst33++; } } catch(e) {}
+        await check_if_no_content( 'http://localhost:5000/content' );
+    })();
+

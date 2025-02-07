@@ -1,0 +1,134 @@
+var Inst0 = 0;
+var Inst1 = 0;
+var Inst2 = 0;
+var Inst3 = 0;
+var Inst4 = 0;
+var Inst5 = 0;
+var Inst6 = 0;
+var Inst7 = 0;
+var Inst8 = 0;
+var Inst9 = 0;
+var Inst10 = 0;
+var Inst11 = 0;
+var Inst12 = 0;
+var Inst13 = 0;
+var Inst14 = 0;
+var Inst15 = 0;
+var Inst16 = 0;
+var Inst17 = 0;
+var Inst18 = 0;
+var Inst19 = 0;
+var Inst20 = 0;
+var Inst21 = 0;
+var Inst22 = 0;
+var Inst23 = 0;
+var Inst24 = 0;
+ 
+function _TypeOfArray(a) {
+	let number = true;	
+	let string = true;
+	for (let i = 0; i < a.length; i++) {
+		if (number && (typeof a[i]) != "number") {
+			number = false;	
+		}
+		if (string && (typeof a[i]) != "string") {
+			string = false;	
+		}
+		if (!number && !string)
+			break;
+	}
+	if (number)
+		return "number";
+	else if (string)
+		return "string";
+	else
+		return "any";
+}
+
+function _TypeIsEqual(t1, t2) {
+	return JSON.stringify(t1) === JSON.stringify(t2);
+}
+
+function _TypeOf(a, step) {
+	var t;
+	var type = Object.prototype.toString.call(a).slice(8, -1).toLowerCase();	
+	if (type == "array") {
+		t = {type : type, extra: {elemType: _TypeOfArray(a)}};
+	} else if (type == "object") {
+		let shape = [];
+        if (step === undefined || step > 0) {
+            let keys = Object.keys(a);
+            let length = Math.min(100, keys.length);
+		    for (let i = 0; i < length; i++) {
+			    shape.push([keys[i], _TypeOf(a[keys[i]], step === undefined ? 1 : step - 1)]);	
+		    }
+        }
+		t = {type : type, extra: {shape: shape}};
+	} else {
+		t = {type : type};
+	} 
+	return t;
+}
+
+function _RecordType(loc, a) {
+	var t = _TypeOf(a);
+    print("~~~TypeInfo:" + loc + ":" + JSON.stringify(t));
+}
+// Copyright 2008 the V8 project authors. All rights reserved.
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions are
+// met:
+//
+//     * Redistributions of source code must retain the above copyright
+//       notice, this list of conditions and the following disclaimer.
+//     * Redistributions in binary form must reproduce the above
+//       copyright notice, this list of conditions and the following
+//       disclaimer in the documentation and/or other materials provided
+//       with the distribution.
+//     * Neither the name of Google Inc. nor the names of its
+//       contributors may be used to endorse or promote products derived
+//       from this software without specific prior written permission.
+//
+// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+// "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+// LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+// A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+// OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+// SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+// LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+// DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+// THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+// (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+// OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+// UC16
+// Characters used:
+// "\u03a3\u03c2\u03c3\u039b\u03bb" - Sigma, final sigma, sigma, Lambda, lamda
+try { if (Inst0 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<1705,1717,31>",(assertEquals)); Inst0++; } } catch(e) {}try { if (Inst1 <= 1000 && typeof (String) != "undefined") {_RecordType("<1757,1763,32>",(String)); Inst1++; } } catch(e) {}try { if (Inst2 <= 1000 && typeof (/x(.)\1x/i.exec) != "undefined") {_RecordType("<1764,1779,32>",(/x(.)\1x/i.exec)); Inst2++; } } catch(e) {}
+assertEquals("x\u03a3\u03c3x,\u03a3",
+              String(/x(.)\1x/i.exec("x\u03a3\u03c3x")), "backref-UC16");
+try { if (Inst3 <= 1000 && typeof (assertFalse) != "undefined") {_RecordType("<1817,1828,33>",(assertFalse)); Inst3++; } } catch(e) {}try { if (Inst4 <= 1000 && typeof (/x(...)\1/i.test) != "undefined") {_RecordType("<1829,1845,33>",(/x(...)\1/i.test)); Inst4++; } } catch(e) {}
+assertFalse(/x(...)\1/i.test("x\u03a3\u03c2\u03c3\u03c2\u03c3"),
+            "\\1 ASCII, string short");
+try { if (Inst5 <= 1000 && typeof (assertTrue) != "undefined") {_RecordType("<1922,1932,35>",(assertTrue)); Inst5++; } } catch(e) {}try { if (Inst6 <= 1000 && typeof (/\u03a3((?:))\1\1x/i.test) != "undefined") {_RecordType("<1933,1958,35>",(/\u03a3((?:))\1\1x/i.test)); Inst6++; } } catch(e) {}
+assertTrue(/\u03a3((?:))\1\1x/i.test("\u03c2x"), "backref-UC16-empty");
+try { if (Inst7 <= 1000 && typeof (assertTrue) != "undefined") {_RecordType("<1994,2004,36>",(assertTrue)); Inst7++; } } catch(e) {}try { if (Inst8 <= 1000 && typeof (/x(?:...|(...))\1x/i.test) != "undefined") {_RecordType("<2005,2030,36>",(/x(?:...|(...))\1x/i.test)); Inst8++; } } catch(e) {}
+assertTrue(/x(?:...|(...))\1x/i.test("x\u03a3\u03c2\u03c3x"),
+           "backref-UC16-uncaptured");
+try { if (Inst9 <= 1000 && typeof (assertTrue) != "undefined") {_RecordType("<2095,2105,38>",(assertTrue)); Inst9++; } } catch(e) {}try { if (Inst10 <= 1000 && typeof (/x(?:...|(...))\1x/i.test) != "undefined") {_RecordType("<2106,2131,38>",(/x(?:...|(...))\1x/i.test)); Inst10++; } } catch(e) {}
+assertTrue(/x(?:...|(...))\1x/i.test("x\u03c2\u03c3\u039b\u03a3\u03c2\u03bbx"),
+           "backref-UC16-backtrack");
+var longUC16String = "x\u03a3\u03c2\u039b\u03c2\u03c3\u03bb\u03c3\u03a3\u03bb";
+try { if (Inst11 <= 1000 && typeof (longUC16String) != "undefined") {_RecordType("<2217,2231,40>",(longUC16String)); Inst11++; } } catch(e) {}
+try { if (Inst12 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<2293,2305,41>",(assertEquals)); Inst12++; } } catch(e) {}try { if (Inst13 <= 1000 && typeof (longUC16String) != "undefined") {_RecordType("<2306,2320,41>",(longUC16String)); Inst13++; } } catch(e) {}try { if (Inst14 <= 1000 && typeof (longUC16String.substring) != "undefined") {_RecordType("<2329,2353,41>",(longUC16String.substring)); Inst14++; } } catch(e) {}try { if (Inst15 <= 1000 && typeof (longUC16String) != "undefined") {_RecordType("<2329,2343,41>",(longUC16String)); Inst15++; } } catch(e) {}try { if (Inst16 <= 1000 && typeof (String) != "undefined") {_RecordType("<2373,2379,42>",(String)); Inst16++; } } catch(e) {}try { if (Inst17 <= 1000 && typeof (/x(...)\1\1/i.exec) != "undefined") {_RecordType("<2380,2398,42>",(/x(...)\1\1/i.exec)); Inst17++; } } catch(e) {}try { if (Inst18 <= 1000 && typeof (longUC16String) != "undefined") {_RecordType("<2399,2413,42>",(longUC16String)); Inst18++; } } catch(e) {}
+assertEquals(longUC16String + "," + longUC16String.substring(1,4),
+             String(/x(...)\1\1/i.exec(longUC16String)),
+             "backref-UC16-twice");
+
+try { if (Inst19 <= 1000 && typeof (assertFalse) != "undefined") {_RecordType("<2454,2465,45>",(assertFalse)); Inst19++; } } catch(e) {}try { if (Inst20 <= 1000 && typeof (/\xc1/i.test) != "undefined") {_RecordType("<2466,2478,45>",(/\xc1/i.test)); Inst20++; } } catch(e) {}
+assertFalse(/\xc1/i.test('fooA'), "quickcheck-uc16-pattern-ascii-subject");
+try { if (Inst21 <= 1000 && typeof (assertFalse) != "undefined") {_RecordType("<2530,2541,46>",(assertFalse)); Inst21++; } } catch(e) {}try { if (Inst22 <= 1000 && typeof (/[\xe9]/.test) != "undefined") {_RecordType("<2542,2555,46>",(/[\xe9]/.test)); Inst22++; } } catch(e) {}
+assertFalse(/[\xe9]/.test('i'), "charclass-uc16-pattern-ascii-subject");
+try { if (Inst23 <= 1000 && typeof (assertFalse) != "undefined") {_RecordType("<2603,2614,47>",(assertFalse)); Inst23++; } } catch(e) {}try { if (Inst24 <= 1000 && typeof (/\u5e74|\u6708/.test) != "undefined") {_RecordType("<2615,2635,47>",(/\u5e74|\u6708/.test)); Inst24++; } } catch(e) {}
+assertFalse(/\u5e74|\u6708/.test('t'), "alternation-uc16-pattern-ascii-subject");
+

@@ -1,0 +1,87 @@
+var Inst0 = 0;
+var Inst1 = 0;
+var Inst2 = 0;
+var Inst3 = 0;
+var Inst4 = 0;
+var Inst5 = 0;
+var Inst6 = 0;
+var Inst7 = 0;
+var Inst8 = 0;
+var Inst9 = 0;
+var Inst10 = 0;
+var Inst11 = 0;
+var Inst12 = 0;
+var Inst13 = 0;
+var Inst14 = 0;
+var Inst15 = 0;
+var Inst16 = 0;
+ 
+function _TypeOfArray(a) {
+	let number = true;	
+	let string = true;
+	for (let i = 0; i < a.length; i++) {
+		if (number && (typeof a[i]) != "number") {
+			number = false;	
+		}
+		if (string && (typeof a[i]) != "string") {
+			string = false;	
+		}
+		if (!number && !string)
+			break;
+	}
+	if (number)
+		return "number";
+	else if (string)
+		return "string";
+	else
+		return "any";
+}
+
+function _TypeIsEqual(t1, t2) {
+	return JSON.stringify(t1) === JSON.stringify(t2);
+}
+
+function _TypeOf(a, step) {
+	var t;
+	var type = Object.prototype.toString.call(a).slice(8, -1).toLowerCase();	
+	if (type == "array") {
+		t = {type : type, extra: {elemType: _TypeOfArray(a)}};
+	} else if (type == "object") {
+		let shape = [];
+        if (step === undefined || step > 0) {
+            let keys = Object.keys(a);
+            let length = Math.min(100, keys.length);
+		    for (let i = 0; i < length; i++) {
+			    shape.push([keys[i], _TypeOf(a[keys[i]], step === undefined ? 1 : step - 1)]);	
+		    }
+        }
+		t = {type : type, extra: {shape: shape}};
+	} else {
+		t = {type : type};
+	} 
+	return t;
+}
+
+function _RecordType(loc, a) {
+	var t = _TypeOf(a);
+    print("~~~TypeInfo:" + loc + ":" + JSON.stringify(t));
+}
+try { if (Inst1 <= 1000 && typeof (Uint8Array) != "undefined") {_RecordType("<20,30,1>",(Uint8Array)); Inst1++; } } catch(e) {}
+var wasm_code = new Uint8Array([0,97,115,109,1,0,0,0,1,102,16,94,120,1,94,119,1,80,0,95,0,96,3,127,127,127,1,127,96,1,111,1,100,111,96,1,111,1,127,96,1,127,1,100,111,96,2,111,127,1,127,96,2,111,111,1,100,111,96,3,111,127,127,1,100,111,96,2,111,111,1,127,96,3,99,1,127,127,1,100,111,96,3,111,99,1,127,1,127,96,3,111,99,0,127,1,127,96,1,111,1,100,0,96,3,99,0,127,127,1,100,111,2,149,4,17,14,119,97,115,109,58,106,115,45,115,116,114,105,110,103,4,99,97,115,116,0,4,14,119,97,115,109,58,106,115,45,115,116,114,105,110,103,4,116,101,115,116,0,5,14,119,97,115,109,58,106,115,45,115,116,114,105,110,103,12,102,114,111,109,67,104,97,114,67,111,100,101,0,6,14,119,97,115,109,58,106,115,45,115,116,114,105,110,103,13,102,114,111,109,67,111,100,101,80,111,105,110,116,0,6,14,119,97,115,109,58,106,115,45,115,116,114,105,110,103,10,99,104,97,114,67,111,100,101,65,116,0,7,14,119,97,115,109,58,106,115,45,115,116,114,105,110,103,11,99,111,100,101,80,111,105,110,116,65,116,0,7,14,119,97,115,109,58,106,115,45,115,116,114,105,110,103,6,108,101,110,103,116,104,0,5,14,119,97,115,109,58,106,115,45,115,116,114,105,110,103,6,99,111,110,99,97,116,0,8,14,119,97,115,109,58,106,115,45,115,116,114,105,110,103,9,115,117,98,115,116,114,105,110,103,0,9,14,119,97,115,109,58,106,115,45,115,116,114,105,110,103,6,101,113,117,97,108,115,0,10,14,119,97,115,109,58,106,115,45,115,116,114,105,110,103,7,99,111,109,112,97,114,101,0,10,14,119,97,115,109,58,106,115,45,115,116,114,105,110,103,17,102,114,111,109,67,104,97,114,67,111,100,101,65,114,114,97,121,0,11,14,119,97,115,109,58,106,115,45,115,116,114,105,110,103,17,105,110,116,111,67,104,97,114,67,111,100,101,65,114,114,97,121,0,12,17,119,97,115,109,58,116,101,120,116,45,101,110,99,111,100,101,114,19,109,101,97,115,117,114,101,83,116,114,105,110,103,65,115,85,84,70,56,0,5,17,119,97,115,109,58,116,101,120,116,45,101,110,99,111,100,101,114,25,101,110,99,111,100,101,83,116,114,105,110,103,73,110,116,111,85,84,70,56,65,114,114,97,121,0,13,17,119,97,115,109,58,116,101,120,116,45,101,110,99,111,100,101,114,23,101,110,99,111,100,101,83,116,114,105,110,103,84,111,85,84,70,56,65,114,114,97,121,0,14,17,119,97,115,109,58,116,101,120,116,45,100,101,99,111,100,101,114,25,100,101,99,111,100,101,83,116,114,105,110,103,70,114,111,109,85,84,70,56,65,114,114,97,121,0,15,3,2,1,3,4,10,1,64,0,112,1,1,11,210,17,11,5,7,2,1,0,32,1,0,32,7,8,1,4,109,97,105,110,0,17,9,11,1,6,0,65,0,11,112,1,210,17,11,10,48,1,46,0,2,125,68,154,153,153,153,153,153,241,63,252,3,63,1,120,103,65,1,65,1,18,17,11,251,1,2,251,21,2,66,1,66,1,65,1,28,1,126,26,26,26,65,10,11]);
+try { if (Inst0 <= 1000 && typeof (wasm_code) != "undefined") {_RecordType("<4,13,1>",(wasm_code)); Inst0++; } } catch(e) {}
+let kBuiltins = {
+  builtins: ["js-string", "text-decoder", "text-encoder"]
+};
+try { if (Inst2 <= 1000 && typeof (kBuiltins) != "undefined") {_RecordType("<2574,2583,2>",(kBuiltins)); Inst2++; } } catch(e) {}
+try { if (Inst4 <= 1000 && typeof (WebAssembly.Module) != "undefined") {_RecordType("<2674,2692,5>",(WebAssembly.Module)); Inst4++; } } catch(e) {}try { if (Inst5 <= 1000 && typeof (WebAssembly) != "undefined") {_RecordType("<2674,2685,5>",(WebAssembly)); Inst5++; } } catch(e) {}try { if (Inst6 <= 1000 && typeof (wasm_code) != "undefined") {_RecordType("<2693,2702,5>",(wasm_code)); Inst6++; } } catch(e) {}try { if (Inst7 <= 1000 && typeof (kBuiltins) != "undefined") {_RecordType("<2704,2713,5>",(kBuiltins)); Inst7++; } } catch(e) {}
+var wasm_module = new WebAssembly.Module(wasm_code, kBuiltins);
+try { if (Inst3 <= 1000 && typeof (wasm_module) != "undefined") {_RecordType("<2656,2667,5>",(wasm_module)); Inst3++; } } catch(e) {}
+try { if (Inst9 <= 1000 && typeof (WebAssembly.Instance) != "undefined") {_RecordType("<2741,2761,6>",(WebAssembly.Instance)); Inst9++; } } catch(e) {}try { if (Inst10 <= 1000 && typeof (WebAssembly) != "undefined") {_RecordType("<2741,2752,6>",(WebAssembly)); Inst10++; } } catch(e) {}try { if (Inst11 <= 1000 && typeof (wasm_module) != "undefined") {_RecordType("<2762,2773,6>",(wasm_module)); Inst11++; } } catch(e) {}
+var wasm_instance = new WebAssembly.Instance(wasm_module);
+try { if (Inst8 <= 1000 && typeof (wasm_instance) != "undefined") {_RecordType("<2721,2734,6>",(wasm_instance)); Inst8++; } } catch(e) {}
+try { if (Inst13 <= 1000 && typeof (wasm_instance.exports.main) != "undefined") {_RecordType("<2785,2811,7>",(wasm_instance.exports.main)); Inst13++; } } catch(e) {}try { if (Inst14 <= 1000 && typeof (wasm_instance.exports) != "undefined") {_RecordType("<2785,2806,7>",(wasm_instance.exports)); Inst14++; } } catch(e) {}try { if (Inst15 <= 1000 && typeof (wasm_instance) != "undefined") {_RecordType("<2785,2798,7>",(wasm_instance)); Inst15++; } } catch(e) {}
+var f = wasm_instance.exports.main;
+try { if (Inst12 <= 1000 && typeof (f) != "undefined") {_RecordType("<2781,2782,7>",(f)); Inst12++; } } catch(e) {}
+try { if (Inst16 <= 1000 && typeof (f) != "undefined") {_RecordType("<2814,2815,8>",(f)); Inst16++; } } catch(e) {}
+f();
+//flags: --future --wasm-staging

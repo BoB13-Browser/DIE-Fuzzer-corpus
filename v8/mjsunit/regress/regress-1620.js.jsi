@@ -1,0 +1,137 @@
+var Inst0 = 0;
+var Inst1 = 0;
+var Inst2 = 0;
+var Inst3 = 0;
+var Inst4 = 0;
+var Inst5 = 0;
+var Inst6 = 0;
+var Inst7 = 0;
+var Inst8 = 0;
+var Inst9 = 0;
+var Inst10 = 0;
+var Inst11 = 0;
+var Inst12 = 0;
+var Inst13 = 0;
+var Inst14 = 0;
+var Inst15 = 0;
+var Inst16 = 0;
+var Inst17 = 0;
+var Inst18 = 0;
+ 
+function _TypeOfArray(a) {
+	let number = true;	
+	let string = true;
+	for (let i = 0; i < a.length; i++) {
+		if (number && (typeof a[i]) != "number") {
+			number = false;	
+		}
+		if (string && (typeof a[i]) != "string") {
+			string = false;	
+		}
+		if (!number && !string)
+			break;
+	}
+	if (number)
+		return "number";
+	else if (string)
+		return "string";
+	else
+		return "any";
+}
+
+function _TypeIsEqual(t1, t2) {
+	return JSON.stringify(t1) === JSON.stringify(t2);
+}
+
+function _TypeOf(a, step) {
+	var t;
+	var type = Object.prototype.toString.call(a).slice(8, -1).toLowerCase();	
+	if (type == "array") {
+		t = {type : type, extra: {elemType: _TypeOfArray(a)}};
+	} else if (type == "object") {
+		let shape = [];
+        if (step === undefined || step > 0) {
+            let keys = Object.keys(a);
+            let length = Math.min(100, keys.length);
+		    for (let i = 0; i < length; i++) {
+			    shape.push([keys[i], _TypeOf(a[keys[i]], step === undefined ? 1 : step - 1)]);	
+		    }
+        }
+		t = {type : type, extra: {shape: shape}};
+	} else {
+		t = {type : type};
+	} 
+	return t;
+}
+
+function _RecordType(loc, a) {
+	var t = _TypeOf(a);
+    print("~~~TypeInfo:" + loc + ":" + JSON.stringify(t));
+}
+// Copyright 2011 the V8 project authors. All rights reserved.
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions are
+// met:
+//
+//     * Redistributions of source code must retain the above copyright
+//       notice, this list of conditions and the following disclaimer.
+//     * Redistributions in binary form must reproduce the above
+//       copyright notice, this list of conditions and the following
+//       disclaimer in the documentation and/or other materials provided
+//       with the distribution.
+//     * Neither the name of Google Inc. nor the names of its
+//       contributors may be used to endorse or promote products derived
+//       from this software without specific prior written permission.
+//
+// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+// "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+// LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+// A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+// OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+// SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+// LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+// DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+// THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+// (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+// OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+// Don't allow malformed unicode escape sequences in identifiers.
+// In strings and regexps we currently allow malformed unicode escape
+// sequences without throwing a SyntaxError. Instead "\u22gk" would
+// treat the "\u" as an identity escape, and evaluate to "u22gk".
+// Due to code sharing, we did the same in identifiers. This should
+// no longer be the case.
+// See: http://code.google.com/p/v8/issues/detail?id=1620
+
+try { if (Inst0 <= 1000 && typeof (assertThrows) != "undefined") {_RecordType("<2021,2033,36>",(assertThrows)); Inst0++; } } catch(e) {}
+assertThrows("var \\u\\u\\u = 42;");
+try { if (Inst1 <= 1000 && typeof (assertThrows) != "undefined") {_RecordType("<2058,2070,37>",(assertThrows)); Inst1++; } } catch(e) {}
+assertThrows("var \\u41 = 42;");
+try { if (Inst2 <= 1000 && typeof (assertThrows) != "undefined") {_RecordType("<2091,2103,38>",(assertThrows)); Inst2++; } } catch(e) {}
+assertThrows("var \\u123 = 42;");
+try { if (Inst3 <= 1000 && typeof (eval) != "undefined") {_RecordType("<2125,2129,39>",(eval)); Inst3++; } } catch(e) {}
+eval("var \\u1234 = 42;");
+try { if (Inst4 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<2152,2164,40>",(assertEquals)); Inst4++; } } catch(e) {}try { if (Inst5 <= 1000 && typeof (eval) != "undefined") {_RecordType("<2169,2173,40>",(eval)); Inst5++; } } catch(e) {}
+assertEquals(42, eval("\u1234"));
+try { if (Inst6 <= 1000 && typeof (assertThrows) != "undefined") {_RecordType("<2186,2198,41>",(assertThrows)); Inst6++; } } catch(e) {}
+assertThrows("var uuu = 42; var x = \\u\\u\\u");
+
+// Regressions introduced and fixed again while fixing the above.
+
+// Handle 0xFFFD correctly (it's a valid value, and shouldn't be used
+// to mark an error).
+try { if (Inst7 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<2395,2407,47>",(assertEquals)); Inst7++; } } catch(e) {}try { if (Inst8 <= 1000 && typeof ("\uFFFD".charCodeAt) != "undefined") {_RecordType("<2416,2435,47>",("\uFFFD".charCodeAt)); Inst8++; } } catch(e) {}
+assertEquals(0xFFFD, "\uFFFD".charCodeAt(0));
+
+// Handle unicode escapes in regexp flags correctly.
+try { if (Inst9 <= 1000 && typeof (assertThrows) != "undefined") {_RecordType("<2495,2507,50>",(assertThrows)); Inst9++; } } catch(e) {}try { if (Inst10 <= 1000 && typeof (SyntaxError) != "undefined") {_RecordType("<2521,2532,50>",(SyntaxError)); Inst10++; } } catch(e) {}
+assertThrows("/x/g\\uim", SyntaxError);
+try { if (Inst11 <= 1000 && typeof (assertThrows) != "undefined") {_RecordType("<2535,2547,51>",(assertThrows)); Inst11++; } } catch(e) {}try { if (Inst12 <= 1000 && typeof (SyntaxError) != "undefined") {_RecordType("<2562,2573,51>",(SyntaxError)); Inst12++; } } catch(e) {}
+assertThrows("/x/g\\u2im", SyntaxError);
+try { if (Inst13 <= 1000 && typeof (assertThrows) != "undefined") {_RecordType("<2576,2588,52>",(assertThrows)); Inst13++; } } catch(e) {}try { if (Inst14 <= 1000 && typeof (SyntaxError) != "undefined") {_RecordType("<2604,2615,52>",(SyntaxError)); Inst14++; } } catch(e) {}
+assertThrows("/x/g\\u22im", SyntaxError);
+try { if (Inst15 <= 1000 && typeof (assertThrows) != "undefined") {_RecordType("<2618,2630,53>",(assertThrows)); Inst15++; } } catch(e) {}try { if (Inst16 <= 1000 && typeof (SyntaxError) != "undefined") {_RecordType("<2647,2658,53>",(SyntaxError)); Inst16++; } } catch(e) {}
+assertThrows("/x/g\\u222im", SyntaxError);
+try { if (Inst17 <= 1000 && typeof (assertThrows) != "undefined") {_RecordType("<2661,2673,54>",(assertThrows)); Inst17++; } } catch(e) {}try { if (Inst18 <= 1000 && typeof (SyntaxError) != "undefined") {_RecordType("<2693,2704,54>",(SyntaxError)); Inst18++; } } catch(e) {}
+assertThrows("/x/g\\\\u2222im", SyntaxError);
+

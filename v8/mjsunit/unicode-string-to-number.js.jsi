@@ -1,0 +1,134 @@
+var Inst0 = 0;
+var Inst1 = 0;
+var Inst2 = 0;
+var Inst3 = 0;
+var Inst4 = 0;
+var Inst5 = 0;
+var Inst6 = 0;
+var Inst7 = 0;
+var Inst8 = 0;
+var Inst9 = 0;
+var Inst10 = 0;
+var Inst11 = 0;
+var Inst12 = 0;
+var Inst13 = 0;
+var Inst14 = 0;
+var Inst15 = 0;
+var Inst16 = 0;
+var Inst17 = 0;
+var Inst18 = 0;
+var Inst19 = 0;
+var Inst20 = 0;
+var Inst21 = 0;
+var Inst22 = 0;
+var Inst23 = 0;
+var Inst24 = 0;
+ 
+function _TypeOfArray(a) {
+	let number = true;	
+	let string = true;
+	for (let i = 0; i < a.length; i++) {
+		if (number && (typeof a[i]) != "number") {
+			number = false;	
+		}
+		if (string && (typeof a[i]) != "string") {
+			string = false;	
+		}
+		if (!number && !string)
+			break;
+	}
+	if (number)
+		return "number";
+	else if (string)
+		return "string";
+	else
+		return "any";
+}
+
+function _TypeIsEqual(t1, t2) {
+	return JSON.stringify(t1) === JSON.stringify(t2);
+}
+
+function _TypeOf(a, step) {
+	var t;
+	var type = Object.prototype.toString.call(a).slice(8, -1).toLowerCase();	
+	if (type == "array") {
+		t = {type : type, extra: {elemType: _TypeOfArray(a)}};
+	} else if (type == "object") {
+		let shape = [];
+        if (step === undefined || step > 0) {
+            let keys = Object.keys(a);
+            let length = Math.min(100, keys.length);
+		    for (let i = 0; i < length; i++) {
+			    shape.push([keys[i], _TypeOf(a[keys[i]], step === undefined ? 1 : step - 1)]);	
+		    }
+        }
+		t = {type : type, extra: {shape: shape}};
+	} else {
+		t = {type : type};
+	} 
+	return t;
+}
+
+function _RecordType(loc, a) {
+	var t = _TypeOf(a);
+    print("~~~TypeInfo:" + loc + ":" + JSON.stringify(t));
+}
+// Copyright 2008 the V8 project authors. All rights reserved.
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions are
+// met:
+//
+//     * Redistributions of source code must retain the above copyright
+//       notice, this list of conditions and the following disclaimer.
+//     * Redistributions in binary form must reproduce the above
+//       copyright notice, this list of conditions and the following
+//       disclaimer in the documentation and/or other materials provided
+//       with the distribution.
+//     * Neither the name of Google Inc. nor the names of its
+//       contributors may be used to endorse or promote products derived
+//       from this software without specific prior written permission.
+//
+// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+// "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+// LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+// A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+// OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+// SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+// LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+// DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+// THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+// (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+// OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+// Make sure not to treat 16-bit unicode characters as ASCII
+// characters when converting to numbers.
+try { if (Inst0 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<1701,1713,30>",(assertEquals)); Inst0++; } } catch(e) {}try { if (Inst1 <= 1000 && typeof (Number) != "undefined") {_RecordType("<1719,1725,30>",(Number)); Inst1++; } } catch(e) {}
+assertEquals(272, Number('2\u00372'));
+try { if (Inst2 <= 1000 && typeof (assertTrue) != "undefined") {_RecordType("<1740,1750,31>",(assertTrue)); Inst2++; } } catch(e) {}try { if (Inst3 <= 1000 && typeof (isNaN) != "undefined") {_RecordType("<1751,1756,31>",(isNaN)); Inst3++; } } catch(e) {}try { if (Inst4 <= 1000 && typeof (Number) != "undefined") {_RecordType("<1757,1763,31>",(Number)); Inst4++; } } catch(e) {}
+assertTrue(isNaN(Number('2\u11372')), "short-string");
+
+// Check that long string can convert to proper numbers.
+var s = '\u0031';
+try { if (Inst5 <= 1000 && typeof (s) != "undefined") {_RecordType("<1857,1858,34>",(s)); Inst5++; } } catch(e) {}
+for (var i = 0; i < 7; i++) {
+try { if (Inst6 <= 1000 && typeof (i) != "undefined") {_RecordType("<1880,1881,35>",(i)); Inst6++; } } catch(e) {}try { if (Inst7 <= 1000 && typeof (i) != "undefined") {_RecordType("<1887,1888,35>",(i)); Inst7++; } } catch(e) {}try { if (Inst8 <= 1000 && typeof (i) != "undefined") {_RecordType("<1894,1895,35>",(i)); Inst8++; } } catch(e) {}
+try { if (Inst10 <= 1000 && typeof (s) != "undefined") {_RecordType("<1908,1909,36>",(s)); Inst10++; } } catch(e) {}
+  s += s;
+try { if (Inst9 <= 1000 && typeof (s) != "undefined") {_RecordType("<1903,1904,36>",(s)); Inst9++; } } catch(e) {}
+}
+try { if (Inst11 <= 1000 && typeof (assertTrue) != "undefined") {_RecordType("<1913,1923,38>",(assertTrue)); Inst11++; } } catch(e) {}try { if (Inst12 <= 1000 && typeof (isFinite) != "undefined") {_RecordType("<1924,1932,38>",(isFinite)); Inst12++; } } catch(e) {}try { if (Inst13 <= 1000 && typeof (Number) != "undefined") {_RecordType("<1933,1939,38>",(Number)); Inst13++; } } catch(e) {}try { if (Inst14 <= 1000 && typeof (s) != "undefined") {_RecordType("<1940,1941,38>",(s)); Inst14++; } } catch(e) {}
+assertTrue(isFinite(Number(s)));
+
+// Check that long strings with non-ASCII characters cannot convert.
+var s = '\u1131';
+try { if (Inst15 <= 1000 && typeof (s) != "undefined") {_RecordType("<2020,2021,41>",(s)); Inst15++; } } catch(e) {}
+for (var i = 0; i < 7; i++) {
+try { if (Inst16 <= 1000 && typeof (i) != "undefined") {_RecordType("<2043,2044,42>",(i)); Inst16++; } } catch(e) {}try { if (Inst17 <= 1000 && typeof (i) != "undefined") {_RecordType("<2050,2051,42>",(i)); Inst17++; } } catch(e) {}try { if (Inst18 <= 1000 && typeof (i) != "undefined") {_RecordType("<2057,2058,42>",(i)); Inst18++; } } catch(e) {}
+try { if (Inst20 <= 1000 && typeof (s) != "undefined") {_RecordType("<2071,2072,43>",(s)); Inst20++; } } catch(e) {}
+  s += s;
+try { if (Inst19 <= 1000 && typeof (s) != "undefined") {_RecordType("<2066,2067,43>",(s)); Inst19++; } } catch(e) {}
+}
+try { if (Inst21 <= 1000 && typeof (assertTrue) != "undefined") {_RecordType("<2076,2086,45>",(assertTrue)); Inst21++; } } catch(e) {}try { if (Inst22 <= 1000 && typeof (isNaN) != "undefined") {_RecordType("<2087,2092,45>",(isNaN)); Inst22++; } } catch(e) {}try { if (Inst23 <= 1000 && typeof (Number) != "undefined") {_RecordType("<2093,2099,45>",(Number)); Inst23++; } } catch(e) {}try { if (Inst24 <= 1000 && typeof (s) != "undefined") {_RecordType("<2100,2101,45>",(s)); Inst24++; } } catch(e) {}
+assertTrue(isNaN(Number(s)), "long-string");
+

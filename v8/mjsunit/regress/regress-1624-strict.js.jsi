@@ -1,0 +1,320 @@
+var Inst0 = 0;
+var Inst1 = 0;
+var Inst2 = 0;
+var Inst3 = 0;
+var Inst4 = 0;
+var Inst5 = 0;
+var Inst6 = 0;
+var Inst7 = 0;
+var Inst8 = 0;
+var Inst9 = 0;
+var Inst10 = 0;
+var Inst11 = 0;
+var Inst12 = 0;
+var Inst13 = 0;
+var Inst14 = 0;
+var Inst15 = 0;
+var Inst16 = 0;
+var Inst17 = 0;
+var Inst18 = 0;
+var Inst19 = 0;
+var Inst20 = 0;
+var Inst21 = 0;
+var Inst22 = 0;
+var Inst23 = 0;
+var Inst24 = 0;
+var Inst25 = 0;
+var Inst26 = 0;
+var Inst27 = 0;
+var Inst28 = 0;
+var Inst29 = 0;
+var Inst30 = 0;
+var Inst31 = 0;
+var Inst32 = 0;
+var Inst33 = 0;
+var Inst34 = 0;
+var Inst35 = 0;
+var Inst36 = 0;
+var Inst37 = 0;
+var Inst38 = 0;
+var Inst39 = 0;
+var Inst40 = 0;
+var Inst41 = 0;
+var Inst42 = 0;
+var Inst43 = 0;
+var Inst44 = 0;
+var Inst45 = 0;
+var Inst46 = 0;
+var Inst47 = 0;
+var Inst48 = 0;
+var Inst49 = 0;
+var Inst50 = 0;
+var Inst51 = 0;
+var Inst52 = 0;
+var Inst53 = 0;
+var Inst54 = 0;
+var Inst55 = 0;
+var Inst56 = 0;
+var Inst57 = 0;
+var Inst58 = 0;
+var Inst59 = 0;
+var Inst60 = 0;
+var Inst61 = 0;
+var Inst62 = 0;
+var Inst63 = 0;
+var Inst64 = 0;
+var Inst65 = 0;
+var Inst66 = 0;
+var Inst67 = 0;
+var Inst68 = 0;
+var Inst69 = 0;
+var Inst70 = 0;
+var Inst71 = 0;
+var Inst72 = 0;
+var Inst73 = 0;
+ 
+function _TypeOfArray(a) {
+	let number = true;	
+	let string = true;
+	for (let i = 0; i < a.length; i++) {
+		if (number && (typeof a[i]) != "number") {
+			number = false;	
+		}
+		if (string && (typeof a[i]) != "string") {
+			string = false;	
+		}
+		if (!number && !string)
+			break;
+	}
+	if (number)
+		return "number";
+	else if (string)
+		return "string";
+	else
+		return "any";
+}
+
+function _TypeIsEqual(t1, t2) {
+	return JSON.stringify(t1) === JSON.stringify(t2);
+}
+
+function _TypeOf(a, step) {
+	var t;
+	var type = Object.prototype.toString.call(a).slice(8, -1).toLowerCase();	
+	if (type == "array") {
+		t = {type : type, extra: {elemType: _TypeOfArray(a)}};
+	} else if (type == "object") {
+		let shape = [];
+        if (step === undefined || step > 0) {
+            let keys = Object.keys(a);
+            let length = Math.min(100, keys.length);
+		    for (let i = 0; i < length; i++) {
+			    shape.push([keys[i], _TypeOf(a[keys[i]], step === undefined ? 1 : step - 1)]);	
+		    }
+        }
+		t = {type : type, extra: {shape: shape}};
+	} else {
+		t = {type : type};
+	} 
+	return t;
+}
+
+function _RecordType(loc, a) {
+	var t = _TypeOf(a);
+    print("~~~TypeInfo:" + loc + ":" + JSON.stringify(t));
+}
+// Copyright 2012 the V8 project authors. All rights reserved.
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions are
+// met:
+//
+//     * Redistributions of source code must retain the above copyright
+//       notice, this list of conditions and the following disclaimer.
+//     * Redistributions in binary form must reproduce the above
+//       copyright notice, this list of conditions and the following
+//       disclaimer in the documentation and/or other materials provided
+//       with the distribution.
+//     * Neither the name of Google Inc. nor the names of its
+//       contributors may be used to endorse or promote products derived
+//       from this software without specific prior written permission.
+//
+// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+// "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+// LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+// A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+// OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+// SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+// LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+// DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+// THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+// (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+// OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+// Test that global eval calls of strict code (independent from whether being
+// direct or indirect) have their own lexical and variable environment.
+
+"use strict";
+try { if (Inst1 <= 1000 && typeof (eval) != "undefined") {_RecordType("<1774,1778,32>",(eval)); Inst1++; } } catch(e) {}
+var evil = eval;
+try { if (Inst0 <= 1000 && typeof (evil) != "undefined") {_RecordType("<1767,1771,32>",(evil)); Inst0++; } } catch(e) {}
+
+// Test global direct strict eval in strict script.
+// Expects new environment.
+var no_touch = 0;
+try { if (Inst2 <= 1000 && typeof (no_touch) != "undefined") {_RecordType("<1865,1873,36>",(no_touch)); Inst2++; } } catch(e) {}
+try { if (Inst3 <= 1000 && typeof (eval) != "undefined") {_RecordType("<1879,1883,37>",(eval)); Inst3++; } } catch(e) {}
+eval('"use strict"; var no_touch = 1;');
+try { if (Inst4 <= 1000 && typeof (assertSame) != "undefined") {_RecordType("<1920,1930,38>",(assertSame)); Inst4++; } } catch(e) {}try { if (Inst5 <= 1000 && typeof (no_touch) != "undefined") {_RecordType("<1934,1942,38>",(no_touch)); Inst5++; } } catch(e) {}
+assertSame(0, no_touch);
+
+// Test global indirect strict eval in strict script.
+// Expects new environment.
+var no_touch = 0;
+try { if (Inst6 <= 1000 && typeof (no_touch) != "undefined") {_RecordType("<2032,2040,42>",(no_touch)); Inst6++; } } catch(e) {}
+try { if (Inst7 <= 1000 && typeof (evil) != "undefined") {_RecordType("<2046,2050,43>",(evil)); Inst7++; } } catch(e) {}
+evil('"use strict"; var no_touch = 2;');
+try { if (Inst8 <= 1000 && typeof (assertSame) != "undefined") {_RecordType("<2087,2097,44>",(assertSame)); Inst8++; } } catch(e) {}try { if (Inst9 <= 1000 && typeof (no_touch) != "undefined") {_RecordType("<2101,2109,44>",(no_touch)); Inst9++; } } catch(e) {}
+assertSame(0, no_touch);
+
+// Test global direct non-strict eval in strict script.
+// Expects new environment.
+var no_touch = 0;
+try { if (Inst10 <= 1000 && typeof (no_touch) != "undefined") {_RecordType("<2201,2209,48>",(no_touch)); Inst10++; } } catch(e) {}
+try { if (Inst11 <= 1000 && typeof (eval) != "undefined") {_RecordType("<2215,2219,49>",(eval)); Inst11++; } } catch(e) {}
+eval('var no_touch = 3;');
+try { if (Inst12 <= 1000 && typeof (assertSame) != "undefined") {_RecordType("<2242,2252,50>",(assertSame)); Inst12++; } } catch(e) {}try { if (Inst13 <= 1000 && typeof (no_touch) != "undefined") {_RecordType("<2256,2264,50>",(no_touch)); Inst13++; } } catch(e) {}
+assertSame(0, no_touch);
+
+// Test global indirect non-strict eval in strict script.
+// Expects global environment.
+var no_touch = 0;
+try { if (Inst14 <= 1000 && typeof (no_touch) != "undefined") {_RecordType("<2361,2369,54>",(no_touch)); Inst14++; } } catch(e) {}
+try { if (Inst15 <= 1000 && typeof (evil) != "undefined") {_RecordType("<2375,2379,55>",(evil)); Inst15++; } } catch(e) {}
+evil('var no_touch = 4;');
+try { if (Inst16 <= 1000 && typeof (assertSame) != "undefined") {_RecordType("<2402,2412,56>",(assertSame)); Inst16++; } } catch(e) {}try { if (Inst17 <= 1000 && typeof (no_touch) != "undefined") {_RecordType("<2416,2424,56>",(no_touch)); Inst17++; } } catch(e) {}
+assertSame(4, no_touch);
+
+// Test non-global direct strict eval in strict script.
+// Expects new environment.
+var no_touch = 0;
+try { if (Inst18 <= 1000 && typeof (no_touch) != "undefined") {_RecordType("<2516,2524,60>",(no_touch)); Inst18++; } } catch(e) {}
+(function() {
+  var no_touch = 0;
+try { if (Inst19 <= 1000 && typeof (no_touch) != "undefined") {_RecordType("<2550,2558,62>",(no_touch)); Inst19++; } } catch(e) {}
+try { if (Inst20 <= 1000 && typeof (eval) != "undefined") {_RecordType("<2566,2570,63>",(eval)); Inst20++; } } catch(e) {}
+  eval('"use strict"; var no_touch = 5;');
+try { if (Inst21 <= 1000 && typeof (assertSame) != "undefined") {_RecordType("<2609,2619,64>",(assertSame)); Inst21++; } } catch(e) {}try { if (Inst22 <= 1000 && typeof (no_touch) != "undefined") {_RecordType("<2623,2631,64>",(no_touch)); Inst22++; } } catch(e) {}
+  assertSame(0, no_touch);
+})()
+try { if (Inst23 <= 1000 && typeof (assertSame) != "undefined") {_RecordType("<2639,2649,66>",(assertSame)); Inst23++; } } catch(e) {}try { if (Inst24 <= 1000 && typeof (no_touch) != "undefined") {_RecordType("<2653,2661,66>",(no_touch)); Inst24++; } } catch(e) {}
+assertSame(0, no_touch);
+
+// Test non-global indirect strict eval in strict script.
+// Expects new environment.
+var no_touch = 0;
+try { if (Inst25 <= 1000 && typeof (no_touch) != "undefined") {_RecordType("<2755,2763,70>",(no_touch)); Inst25++; } } catch(e) {}
+(function() {
+  var no_touch = 0;
+try { if (Inst26 <= 1000 && typeof (no_touch) != "undefined") {_RecordType("<2789,2797,72>",(no_touch)); Inst26++; } } catch(e) {}
+try { if (Inst27 <= 1000 && typeof (evil) != "undefined") {_RecordType("<2805,2809,73>",(evil)); Inst27++; } } catch(e) {}
+  evil('"use strict"; var no_touch = 6;');
+try { if (Inst28 <= 1000 && typeof (assertSame) != "undefined") {_RecordType("<2848,2858,74>",(assertSame)); Inst28++; } } catch(e) {}try { if (Inst29 <= 1000 && typeof (no_touch) != "undefined") {_RecordType("<2862,2870,74>",(no_touch)); Inst29++; } } catch(e) {}
+  assertSame(0, no_touch);
+})()
+try { if (Inst30 <= 1000 && typeof (assertSame) != "undefined") {_RecordType("<2878,2888,76>",(assertSame)); Inst30++; } } catch(e) {}try { if (Inst31 <= 1000 && typeof (no_touch) != "undefined") {_RecordType("<2892,2900,76>",(no_touch)); Inst31++; } } catch(e) {}
+assertSame(0, no_touch);
+
+// Test non-global direct non-strict eval in strict script.
+// Expects new environment.
+var no_touch = 0;
+try { if (Inst32 <= 1000 && typeof (no_touch) != "undefined") {_RecordType("<2996,3004,80>",(no_touch)); Inst32++; } } catch(e) {}
+(function() {
+  var no_touch = 0;
+try { if (Inst33 <= 1000 && typeof (no_touch) != "undefined") {_RecordType("<3030,3038,82>",(no_touch)); Inst33++; } } catch(e) {}
+try { if (Inst34 <= 1000 && typeof (eval) != "undefined") {_RecordType("<3046,3050,83>",(eval)); Inst34++; } } catch(e) {}
+  eval('var no_touch = 7;');
+try { if (Inst35 <= 1000 && typeof (assertSame) != "undefined") {_RecordType("<3075,3085,84>",(assertSame)); Inst35++; } } catch(e) {}try { if (Inst36 <= 1000 && typeof (no_touch) != "undefined") {_RecordType("<3089,3097,84>",(no_touch)); Inst36++; } } catch(e) {}
+  assertSame(0, no_touch);
+})()
+try { if (Inst37 <= 1000 && typeof (assertSame) != "undefined") {_RecordType("<3105,3115,86>",(assertSame)); Inst37++; } } catch(e) {}try { if (Inst38 <= 1000 && typeof (no_touch) != "undefined") {_RecordType("<3119,3127,86>",(no_touch)); Inst38++; } } catch(e) {}
+assertSame(0, no_touch);
+
+// Test non-global indirect non-strict eval in strict script.
+// Expects global environment.
+var no_touch = 0;
+try { if (Inst39 <= 1000 && typeof (no_touch) != "undefined") {_RecordType("<3228,3236,90>",(no_touch)); Inst39++; } } catch(e) {}
+(function() {
+  var no_touch = 0;
+try { if (Inst40 <= 1000 && typeof (no_touch) != "undefined") {_RecordType("<3262,3270,92>",(no_touch)); Inst40++; } } catch(e) {}
+try { if (Inst41 <= 1000 && typeof (evil) != "undefined") {_RecordType("<3278,3282,93>",(evil)); Inst41++; } } catch(e) {}
+  evil('var no_touch = 8;');
+try { if (Inst42 <= 1000 && typeof (assertSame) != "undefined") {_RecordType("<3307,3317,94>",(assertSame)); Inst42++; } } catch(e) {}try { if (Inst43 <= 1000 && typeof (no_touch) != "undefined") {_RecordType("<3321,3329,94>",(no_touch)); Inst43++; } } catch(e) {}
+  assertSame(0, no_touch);
+})()
+try { if (Inst44 <= 1000 && typeof (assertSame) != "undefined") {_RecordType("<3337,3347,96>",(assertSame)); Inst44++; } } catch(e) {}try { if (Inst45 <= 1000 && typeof (no_touch) != "undefined") {_RecordType("<3351,3359,96>",(no_touch)); Inst45++; } } catch(e) {}
+assertSame(8, no_touch);
+
+// Test non-global direct strict eval in strict script.
+// Expects new environment.
+var no_touch = 0;
+try { if (Inst46 <= 1000 && typeof (no_touch) != "undefined") {_RecordType("<3451,3459,100>",(no_touch)); Inst46++; } } catch(e) {}
+(function() {
+  "use strict";
+  var no_touch = 0;
+try { if (Inst47 <= 1000 && typeof (no_touch) != "undefined") {_RecordType("<3501,3509,103>",(no_touch)); Inst47++; } } catch(e) {}
+try { if (Inst48 <= 1000 && typeof (eval) != "undefined") {_RecordType("<3517,3521,104>",(eval)); Inst48++; } } catch(e) {}
+  eval('"use strict"; var no_touch = 9;');
+try { if (Inst49 <= 1000 && typeof (assertSame) != "undefined") {_RecordType("<3560,3570,105>",(assertSame)); Inst49++; } } catch(e) {}try { if (Inst50 <= 1000 && typeof (no_touch) != "undefined") {_RecordType("<3574,3582,105>",(no_touch)); Inst50++; } } catch(e) {}
+  assertSame(0, no_touch);
+})()
+try { if (Inst51 <= 1000 && typeof (assertSame) != "undefined") {_RecordType("<3590,3600,107>",(assertSame)); Inst51++; } } catch(e) {}try { if (Inst52 <= 1000 && typeof (no_touch) != "undefined") {_RecordType("<3604,3612,107>",(no_touch)); Inst52++; } } catch(e) {}
+assertSame(0, no_touch);
+
+// Test non-global indirect strict eval in strict script.
+// Expects new environment.
+var no_touch = 0;
+try { if (Inst53 <= 1000 && typeof (no_touch) != "undefined") {_RecordType("<3706,3714,111>",(no_touch)); Inst53++; } } catch(e) {}
+(function() {
+  "use strict";
+  var no_touch = 0;
+try { if (Inst54 <= 1000 && typeof (no_touch) != "undefined") {_RecordType("<3756,3764,114>",(no_touch)); Inst54++; } } catch(e) {}
+try { if (Inst55 <= 1000 && typeof (evil) != "undefined") {_RecordType("<3772,3776,115>",(evil)); Inst55++; } } catch(e) {}
+  evil('"use strict"; var no_touch = 10;');
+try { if (Inst56 <= 1000 && typeof (assertSame) != "undefined") {_RecordType("<3816,3826,116>",(assertSame)); Inst56++; } } catch(e) {}try { if (Inst57 <= 1000 && typeof (no_touch) != "undefined") {_RecordType("<3830,3838,116>",(no_touch)); Inst57++; } } catch(e) {}
+  assertSame(0, no_touch);
+})()
+try { if (Inst58 <= 1000 && typeof (assertSame) != "undefined") {_RecordType("<3846,3856,118>",(assertSame)); Inst58++; } } catch(e) {}try { if (Inst59 <= 1000 && typeof (no_touch) != "undefined") {_RecordType("<3860,3868,118>",(no_touch)); Inst59++; } } catch(e) {}
+assertSame(0, no_touch);
+
+// Test non-global direct non-strict eval in strict script.
+// Expects new environment.
+var no_touch = 0;
+try { if (Inst60 <= 1000 && typeof (no_touch) != "undefined") {_RecordType("<3964,3972,122>",(no_touch)); Inst60++; } } catch(e) {}
+(function() {
+  "use strict";
+  var no_touch = 0;
+try { if (Inst61 <= 1000 && typeof (no_touch) != "undefined") {_RecordType("<4014,4022,125>",(no_touch)); Inst61++; } } catch(e) {}
+try { if (Inst62 <= 1000 && typeof (eval) != "undefined") {_RecordType("<4030,4034,126>",(eval)); Inst62++; } } catch(e) {}
+  eval('var no_touch = 11;');
+try { if (Inst63 <= 1000 && typeof (assertSame) != "undefined") {_RecordType("<4060,4070,127>",(assertSame)); Inst63++; } } catch(e) {}try { if (Inst64 <= 1000 && typeof (no_touch) != "undefined") {_RecordType("<4074,4082,127>",(no_touch)); Inst64++; } } catch(e) {}
+  assertSame(0, no_touch);
+})()
+try { if (Inst65 <= 1000 && typeof (assertSame) != "undefined") {_RecordType("<4090,4100,129>",(assertSame)); Inst65++; } } catch(e) {}try { if (Inst66 <= 1000 && typeof (no_touch) != "undefined") {_RecordType("<4104,4112,129>",(no_touch)); Inst66++; } } catch(e) {}
+assertSame(0, no_touch);
+
+// Test non-global indirect non-strict eval in strict script.
+// Expects global environment.
+var no_touch = 0;
+try { if (Inst67 <= 1000 && typeof (no_touch) != "undefined") {_RecordType("<4213,4221,133>",(no_touch)); Inst67++; } } catch(e) {}
+(function() {
+  "use strict";
+  var no_touch = 0;
+try { if (Inst68 <= 1000 && typeof (no_touch) != "undefined") {_RecordType("<4263,4271,136>",(no_touch)); Inst68++; } } catch(e) {}
+try { if (Inst69 <= 1000 && typeof (evil) != "undefined") {_RecordType("<4279,4283,137>",(evil)); Inst69++; } } catch(e) {}
+  evil('var no_touch = 12;');
+try { if (Inst70 <= 1000 && typeof (assertSame) != "undefined") {_RecordType("<4309,4319,138>",(assertSame)); Inst70++; } } catch(e) {}try { if (Inst71 <= 1000 && typeof (no_touch) != "undefined") {_RecordType("<4323,4331,138>",(no_touch)); Inst71++; } } catch(e) {}
+  assertSame(0, no_touch);
+})()
+try { if (Inst72 <= 1000 && typeof (assertSame) != "undefined") {_RecordType("<4339,4349,140>",(assertSame)); Inst72++; } } catch(e) {}try { if (Inst73 <= 1000 && typeof (no_touch) != "undefined") {_RecordType("<4354,4362,140>",(no_touch)); Inst73++; } } catch(e) {}
+assertSame(12, no_touch);
+

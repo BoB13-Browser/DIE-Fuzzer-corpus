@@ -1,0 +1,323 @@
+var Inst0 = 0;
+var Inst1 = 0;
+var Inst2 = 0;
+var Inst3 = 0;
+var Inst4 = 0;
+var Inst5 = 0;
+var Inst6 = 0;
+var Inst7 = 0;
+var Inst8 = 0;
+var Inst9 = 0;
+var Inst10 = 0;
+var Inst11 = 0;
+var Inst12 = 0;
+var Inst13 = 0;
+var Inst14 = 0;
+var Inst15 = 0;
+var Inst16 = 0;
+var Inst17 = 0;
+var Inst18 = 0;
+var Inst19 = 0;
+var Inst20 = 0;
+var Inst21 = 0;
+var Inst22 = 0;
+var Inst23 = 0;
+var Inst24 = 0;
+var Inst25 = 0;
+var Inst26 = 0;
+var Inst27 = 0;
+var Inst28 = 0;
+var Inst29 = 0;
+var Inst30 = 0;
+var Inst31 = 0;
+var Inst32 = 0;
+var Inst33 = 0;
+var Inst34 = 0;
+var Inst35 = 0;
+var Inst36 = 0;
+var Inst37 = 0;
+var Inst38 = 0;
+var Inst39 = 0;
+var Inst40 = 0;
+var Inst41 = 0;
+var Inst42 = 0;
+var Inst43 = 0;
+var Inst44 = 0;
+var Inst45 = 0;
+var Inst46 = 0;
+var Inst47 = 0;
+var Inst48 = 0;
+var Inst49 = 0;
+var Inst50 = 0;
+var Inst51 = 0;
+var Inst52 = 0;
+var Inst53 = 0;
+var Inst54 = 0;
+var Inst55 = 0;
+var Inst56 = 0;
+var Inst57 = 0;
+var Inst58 = 0;
+var Inst59 = 0;
+var Inst60 = 0;
+var Inst61 = 0;
+var Inst62 = 0;
+var Inst63 = 0;
+var Inst64 = 0;
+var Inst65 = 0;
+var Inst66 = 0;
+var Inst67 = 0;
+var Inst68 = 0;
+var Inst69 = 0;
+var Inst70 = 0;
+ 
+function _TypeOfArray(a) {
+	let number = true;	
+	let string = true;
+	for (let i = 0; i < a.length; i++) {
+		if (number && (typeof a[i]) != "number") {
+			number = false;	
+		}
+		if (string && (typeof a[i]) != "string") {
+			string = false;	
+		}
+		if (!number && !string)
+			break;
+	}
+	if (number)
+		return "number";
+	else if (string)
+		return "string";
+	else
+		return "any";
+}
+
+function _TypeIsEqual(t1, t2) {
+	return JSON.stringify(t1) === JSON.stringify(t2);
+}
+
+function _TypeOf(a, step) {
+	var t;
+	var type = Object.prototype.toString.call(a).slice(8, -1).toLowerCase();	
+	if (type == "array") {
+		t = {type : type, extra: {elemType: _TypeOfArray(a)}};
+	} else if (type == "object") {
+		let shape = [];
+        if (step === undefined || step > 0) {
+            let keys = Object.keys(a);
+            let length = Math.min(100, keys.length);
+		    for (let i = 0; i < length; i++) {
+			    shape.push([keys[i], _TypeOf(a[keys[i]], step === undefined ? 1 : step - 1)]);	
+		    }
+        }
+		t = {type : type, extra: {shape: shape}};
+	} else {
+		t = {type : type};
+	} 
+	return t;
+}
+
+function _RecordType(loc, a) {
+	var t = _TypeOf(a);
+    print("~~~TypeInfo:" + loc + ":" + JSON.stringify(t));
+}
+// Copyright 2015 the V8 project authors. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
+// Var-let conflict in a function throws, even if the var is in an eval
+
+// Throws at the top level of a function
+try { if (Inst0 <= 1000 && typeof (assertThrows) != "undefined") {_RecordType("<282,294,8>",(assertThrows)); Inst0++; } } catch(e) {}try { if (Inst3 <= 1000 && typeof (SyntaxError) != "undefined") {_RecordType("<341,352,11>",(SyntaxError)); Inst3++; } } catch(e) {}
+assertThrows(function() {
+  let x = 1;
+try { if (Inst1 <= 1000 && typeof (x) != "undefined") {_RecordType("<314,315,9>",(x)); Inst1++; } } catch(e) {}
+try { if (Inst2 <= 1000 && typeof (eval) != "undefined") {_RecordType("<323,327,10>",(eval)); Inst2++; } } catch(e) {}
+  eval('var x');
+}, SyntaxError);
+
+// If the eval is in its own block scope, throws
+try { if (Inst4 <= 1000 && typeof (assertThrows) != "undefined") {_RecordType("<405,417,14>",(assertThrows)); Inst4++; } } catch(e) {}try { if (Inst7 <= 1000 && typeof (SyntaxError) != "undefined") {_RecordType("<468,479,17>",(SyntaxError)); Inst7++; } } catch(e) {}
+assertThrows(function() {
+  let y = 1;
+try { if (Inst5 <= 1000 && typeof (y) != "undefined") {_RecordType("<437,438,15>",(y)); Inst5++; } } catch(e) {}
+try { if (Inst6 <= 1000 && typeof (eval) != "undefined") {_RecordType("<448,452,16>",(eval)); Inst6++; } } catch(e) {}
+  { eval('var y'); }
+}, SyntaxError);
+
+// If the let is in its own block scope, with the eval, throws
+try { if (Inst8 <= 1000 && typeof (assertThrows) != "undefined") {_RecordType("<546,558,20>",(assertThrows)); Inst8++; } } catch(e) {}try { if (Inst11 <= 1000 && typeof (SyntaxError) != "undefined") {_RecordType("<617,628,25>",(SyntaxError)); Inst11++; } } catch(e) {}
+assertThrows(function() {
+  {
+    let x = 1;
+try { if (Inst9 <= 1000 && typeof (x) != "undefined") {_RecordType("<584,585,22>",(x)); Inst9++; } } catch(e) {}
+try { if (Inst10 <= 1000 && typeof (eval) != "undefined") {_RecordType("<595,599,23>",(eval)); Inst10++; } } catch(e) {}
+    eval('var x');
+  }
+}, SyntaxError);
+
+// Legal if the let is no longer visible
+try { if (Inst12 <= 1000 && typeof (assertDoesNotThrow) != "undefined") {_RecordType("<673,691,28>",(assertDoesNotThrow)); Inst12++; } } catch(e) {}
+assertDoesNotThrow(function() {
+  {
+    let x = 1;
+try { if (Inst13 <= 1000 && typeof (x) != "undefined") {_RecordType("<717,718,30>",(x)); Inst13++; } } catch(e) {}
+  }
+try { if (Inst14 <= 1000 && typeof (eval) != "undefined") {_RecordType("<730,734,32>",(eval)); Inst14++; } } catch(e) {}
+  eval('var x');
+});
+
+// All the same works for const:
+// Throws at the top level of a function
+try { if (Inst15 <= 1000 && typeof (assertThrows) != "undefined") {_RecordType("<824,836,37>",(assertThrows)); Inst15++; } } catch(e) {}try { if (Inst18 <= 1000 && typeof (SyntaxError) != "undefined") {_RecordType("<885,896,40>",(SyntaxError)); Inst18++; } } catch(e) {}
+assertThrows(function() {
+  const x = 1;
+try { if (Inst16 <= 1000 && typeof (x) != "undefined") {_RecordType("<858,859,38>",(x)); Inst16++; } } catch(e) {}
+try { if (Inst17 <= 1000 && typeof (eval) != "undefined") {_RecordType("<867,871,39>",(eval)); Inst17++; } } catch(e) {}
+  eval('var x');
+}, SyntaxError);
+
+// If the eval is in its own block scope, throws
+try { if (Inst19 <= 1000 && typeof (assertThrows) != "undefined") {_RecordType("<949,961,43>",(assertThrows)); Inst19++; } } catch(e) {}try { if (Inst22 <= 1000 && typeof (SyntaxError) != "undefined") {_RecordType("<1014,1025,46>",(SyntaxError)); Inst22++; } } catch(e) {}
+assertThrows(function() {
+  const y = 1;
+try { if (Inst20 <= 1000 && typeof (y) != "undefined") {_RecordType("<983,984,44>",(y)); Inst20++; } } catch(e) {}
+try { if (Inst21 <= 1000 && typeof (eval) != "undefined") {_RecordType("<994,998,45>",(eval)); Inst21++; } } catch(e) {}
+  { eval('var y'); }
+}, SyntaxError);
+
+// If the const is in its own block scope, with the eval, throws
+try { if (Inst23 <= 1000 && typeof (assertThrows) != "undefined") {_RecordType("<1094,1106,49>",(assertThrows)); Inst23++; } } catch(e) {}try { if (Inst26 <= 1000 && typeof (SyntaxError) != "undefined") {_RecordType("<1167,1178,54>",(SyntaxError)); Inst26++; } } catch(e) {}
+assertThrows(function() {
+  {
+    const x = 1;
+try { if (Inst24 <= 1000 && typeof (x) != "undefined") {_RecordType("<1134,1135,51>",(x)); Inst24++; } } catch(e) {}
+try { if (Inst25 <= 1000 && typeof (eval) != "undefined") {_RecordType("<1145,1149,52>",(eval)); Inst25++; } } catch(e) {}
+    eval('var x');
+  }
+}, SyntaxError);
+
+// Legal if the const is no longer visible
+try { if (Inst27 <= 1000 && typeof (assertDoesNotThrow) != "undefined") {_RecordType("<1225,1243,57>",(assertDoesNotThrow)); Inst27++; } } catch(e) {}
+assertDoesNotThrow(function() {
+  {
+    const x = 1;
+try { if (Inst28 <= 1000 && typeof (x) != "undefined") {_RecordType("<1271,1272,59>",(x)); Inst28++; } } catch(e) {}
+  }
+try { if (Inst29 <= 1000 && typeof (eval) != "undefined") {_RecordType("<1284,1288,61>",(eval)); Inst29++; } } catch(e) {}
+  eval('var x');
+});
+
+// In global scope
+let caught = false;
+try { if (Inst30 <= 1000 && typeof (caught) != "undefined") {_RecordType("<1327,1333,65>",(caught)); Inst30++; } } catch(e) {}
+try { if (Inst33 <= 1000 && typeof (e) != "undefined") {_RecordType("<1388,1389,69>",(e)); Inst33++; } } catch(e) {}
+try {
+  let z = 1;
+try { if (Inst31 <= 1000 && typeof (z) != "undefined") {_RecordType("<1355,1356,67>",(z)); Inst31++; } } catch(e) {}
+try { if (Inst32 <= 1000 && typeof (eval) != "undefined") {_RecordType("<1364,1368,68>",(eval)); Inst32++; } } catch(e) {}
+  eval('var z');
+} catch (e) {
+  caught = true;
+try { if (Inst34 <= 1000 && typeof (caught) != "undefined") {_RecordType("<1395,1401,70>",(caught)); Inst34++; } } catch(e) {}
+}
+try { if (Inst35 <= 1000 && typeof (assertTrue) != "undefined") {_RecordType("<1412,1422,72>",(assertTrue)); Inst35++; } } catch(e) {}try { if (Inst36 <= 1000 && typeof (caught) != "undefined") {_RecordType("<1423,1429,72>",(caught)); Inst36++; } } catch(e) {}
+assertTrue(caught);
+
+// Let declarations beyond a function boundary don't conflict
+caught = false;
+try { if (Inst37 <= 1000 && typeof (caught) != "undefined") {_RecordType("<1495,1501,75>",(caught)); Inst37++; } } catch(e) {}
+try { if (Inst40 <= 1000 && typeof (e) != "undefined") {_RecordType("<1582,1583,81>",(e)); Inst40++; } } catch(e) {}
+try {
+  let a = 1;
+try { if (Inst38 <= 1000 && typeof (a) != "undefined") {_RecordType("<1523,1524,77>",(a)); Inst38++; } } catch(e) {}
+  (function() {
+try { if (Inst39 <= 1000 && typeof (eval) != "undefined") {_RecordType("<1550,1554,79>",(eval)); Inst39++; } } catch(e) {}
+    eval('var a');
+  })();
+} catch (e) {
+  caught = true;
+try { if (Inst41 <= 1000 && typeof (caught) != "undefined") {_RecordType("<1589,1595,82>",(caught)); Inst41++; } } catch(e) {}
+}
+try { if (Inst42 <= 1000 && typeof (assertFalse) != "undefined") {_RecordType("<1606,1617,84>",(assertFalse)); Inst42++; } } catch(e) {}try { if (Inst43 <= 1000 && typeof (caught) != "undefined") {_RecordType("<1618,1624,84>",(caught)); Inst43++; } } catch(e) {}
+assertFalse(caught);
+
+// var across with doesn't conflict
+caught = false;
+try { if (Inst44 <= 1000 && typeof (caught) != "undefined") {_RecordType("<1664,1670,87>",(caught)); Inst44++; } } catch(e) {}
+try { if (Inst46 <= 1000 && typeof (e) != "undefined") {_RecordType("<1766,1767,94>",(e)); Inst46++; } } catch(e) {}
+try {
+  (function() {
+    with ({x: 1}) {
+try { if (Inst45 <= 1000 && typeof (eval) != "undefined") {_RecordType("<1728,1732,91>",(eval)); Inst45++; } } catch(e) {}
+      eval("var x");
+    }
+  })();
+} catch (e) {
+  caught = true;
+try { if (Inst47 <= 1000 && typeof (caught) != "undefined") {_RecordType("<1773,1779,95>",(caught)); Inst47++; } } catch(e) {}
+}
+try { if (Inst48 <= 1000 && typeof (assertFalse) != "undefined") {_RecordType("<1790,1801,97>",(assertFalse)); Inst48++; } } catch(e) {}try { if (Inst49 <= 1000 && typeof (caught) != "undefined") {_RecordType("<1802,1808,97>",(caught)); Inst49++; } } catch(e) {}
+assertFalse(caught);
+
+// var can still conflict with let across a with
+caught = false;
+try { if (Inst50 <= 1000 && typeof (caught) != "undefined") {_RecordType("<1861,1867,100>",(caught)); Inst50++; } } catch(e) {}
+try { if (Inst53 <= 1000 && typeof (e) != "undefined") {_RecordType("<1974,1975,108>",(e)); Inst53++; } } catch(e) {}
+try {
+  (function() {
+    let x;
+try { if (Inst51 <= 1000 && typeof (x) != "undefined") {_RecordType("<1907,1908,103>",(x)); Inst51++; } } catch(e) {}
+    with ({x: 1}) {
+try { if (Inst52 <= 1000 && typeof (eval) != "undefined") {_RecordType("<1936,1940,105>",(eval)); Inst52++; } } catch(e) {}
+      eval("var x");
+    }
+  })();
+} catch (e) {
+  caught = true;
+try { if (Inst54 <= 1000 && typeof (caught) != "undefined") {_RecordType("<1981,1987,109>",(caught)); Inst54++; } } catch(e) {}
+}
+try { if (Inst55 <= 1000 && typeof (assertTrue) != "undefined") {_RecordType("<1998,2008,111>",(assertTrue)); Inst55++; } } catch(e) {}try { if (Inst56 <= 1000 && typeof (caught) != "undefined") {_RecordType("<2009,2015,111>",(caught)); Inst56++; } } catch(e) {}
+assertTrue(caught);
+
+// Functions declared in eval also conflict
+caught = false
+try { if (Inst57 <= 1000 && typeof (caught) != "undefined") {_RecordType("<2063,2069,114>",(caught)); Inst57++; } } catch(e) {}
+try { if (Inst60 <= 1000 && typeof (e) != "undefined") {_RecordType("<2177,2178,122>",(e)); Inst60++; } } catch(e) {}
+try {
+  (function() {
+    {
+      let x = 1;
+try { if (Inst58 <= 1000 && typeof (x) != "undefined") {_RecordType("<2116,2117,118>",(x)); Inst58++; } } catch(e) {}
+try { if (Inst59 <= 1000 && typeof (eval) != "undefined") {_RecordType("<2129,2133,119>",(eval)); Inst59++; } } catch(e) {}
+      eval('function x() {}');
+    }
+  })();
+} catch (e) {
+  caught = true;
+try { if (Inst61 <= 1000 && typeof (caught) != "undefined") {_RecordType("<2184,2190,123>",(caught)); Inst61++; } } catch(e) {}
+}
+try { if (Inst62 <= 1000 && typeof (assertTrue) != "undefined") {_RecordType("<2201,2211,125>",(assertTrue)); Inst62++; } } catch(e) {}try { if (Inst63 <= 1000 && typeof (caught) != "undefined") {_RecordType("<2212,2218,125>",(caught)); Inst63++; } } catch(e) {}
+assertTrue(caught);
+
+// TODO(littledan): Hoisting x out of the block should be
+// prevented in this case BUG(v8:4479)
+caught = false
+try { if (Inst64 <= 1000 && typeof (caught) != "undefined") {_RecordType("<2319,2325,129>",(caught)); Inst64++; } } catch(e) {}
+try { if (Inst67 <= 1000 && typeof (e) != "undefined") {_RecordType("<2437,2438,137>",(e)); Inst67++; } } catch(e) {}
+try {
+  (function() {
+    {
+      let x = 1;
+try { if (Inst65 <= 1000 && typeof (x) != "undefined") {_RecordType("<2372,2373,133>",(x)); Inst65++; } } catch(e) {}
+try { if (Inst66 <= 1000 && typeof (eval) != "undefined") {_RecordType("<2385,2389,134>",(eval)); Inst66++; } } catch(e) {}
+      eval('{ function x() {} }');
+    }
+  })();
+} catch (e) {
+  caught = true;
+try { if (Inst68 <= 1000 && typeof (caught) != "undefined") {_RecordType("<2444,2450,138>",(caught)); Inst68++; } } catch(e) {}
+}
+// TODO(littledan): switch to assertTrue when bug is fixed
+try { if (Inst69 <= 1000 && typeof (assertTrue) != "undefined") {_RecordType("<2520,2530,141>",(assertTrue)); Inst69++; } } catch(e) {}try { if (Inst70 <= 1000 && typeof (caught) != "undefined") {_RecordType("<2531,2537,141>",(caught)); Inst70++; } } catch(e) {}
+assertTrue(caught);
+

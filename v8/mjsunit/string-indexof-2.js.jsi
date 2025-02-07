@@ -1,0 +1,187 @@
+var Inst0 = 0;
+var Inst1 = 0;
+var Inst2 = 0;
+var Inst3 = 0;
+var Inst4 = 0;
+var Inst5 = 0;
+var Inst6 = 0;
+var Inst7 = 0;
+var Inst8 = 0;
+var Inst9 = 0;
+var Inst10 = 0;
+var Inst11 = 0;
+var Inst12 = 0;
+var Inst13 = 0;
+var Inst14 = 0;
+var Inst15 = 0;
+var Inst16 = 0;
+var Inst17 = 0;
+var Inst18 = 0;
+var Inst19 = 0;
+var Inst20 = 0;
+var Inst21 = 0;
+var Inst22 = 0;
+var Inst23 = 0;
+var Inst24 = 0;
+var Inst25 = 0;
+var Inst26 = 0;
+var Inst27 = 0;
+var Inst28 = 0;
+var Inst29 = 0;
+var Inst30 = 0;
+var Inst31 = 0;
+var Inst32 = 0;
+var Inst33 = 0;
+var Inst34 = 0;
+var Inst35 = 0;
+var Inst36 = 0;
+var Inst37 = 0;
+var Inst38 = 0;
+var Inst39 = 0;
+var Inst40 = 0;
+var Inst41 = 0;
+var Inst42 = 0;
+var Inst43 = 0;
+var Inst44 = 0;
+var Inst45 = 0;
+var Inst46 = 0;
+var Inst47 = 0;
+var Inst48 = 0;
+var Inst49 = 0;
+var Inst50 = 0;
+var Inst51 = 0;
+var Inst52 = 0;
+var Inst53 = 0;
+ 
+function _TypeOfArray(a) {
+	let number = true;	
+	let string = true;
+	for (let i = 0; i < a.length; i++) {
+		if (number && (typeof a[i]) != "number") {
+			number = false;	
+		}
+		if (string && (typeof a[i]) != "string") {
+			string = false;	
+		}
+		if (!number && !string)
+			break;
+	}
+	if (number)
+		return "number";
+	else if (string)
+		return "string";
+	else
+		return "any";
+}
+
+function _TypeIsEqual(t1, t2) {
+	return JSON.stringify(t1) === JSON.stringify(t2);
+}
+
+function _TypeOf(a, step) {
+	var t;
+	var type = Object.prototype.toString.call(a).slice(8, -1).toLowerCase();	
+	if (type == "array") {
+		t = {type : type, extra: {elemType: _TypeOfArray(a)}};
+	} else if (type == "object") {
+		let shape = [];
+        if (step === undefined || step > 0) {
+            let keys = Object.keys(a);
+            let length = Math.min(100, keys.length);
+		    for (let i = 0; i < length; i++) {
+			    shape.push([keys[i], _TypeOf(a[keys[i]], step === undefined ? 1 : step - 1)]);	
+		    }
+        }
+		t = {type : type, extra: {shape: shape}};
+	} else {
+		t = {type : type};
+	} 
+	return t;
+}
+
+function _RecordType(loc, a) {
+	var t = _TypeOf(a);
+    print("~~~TypeInfo:" + loc + ":" + JSON.stringify(t));
+}
+// Copyright 2008 the V8 project authors. All rights reserved.
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions are
+// met:
+//
+//     * Redistributions of source code must retain the above copyright
+//       notice, this list of conditions and the following disclaimer.
+//     * Redistributions in binary form must reproduce the above
+//       copyright notice, this list of conditions and the following
+//       disclaimer in the documentation and/or other materials provided
+//       with the distribution.
+//     * Neither the name of Google Inc. nor the names of its
+//       contributors may be used to endorse or promote products derived
+//       from this software without specific prior written permission.
+//
+// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+// "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+// LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+// A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+// OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+// SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+// LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+// DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+// THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+// (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+// OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+var lipsum = "lorem ipsum per se esse fugiendum. itaque aiunt hanc quasi "
+    + "naturalem atque insitam in animis nostris inesse notionem, ut "
+    + "alterum esse appetendum, alterum aspernandum sentiamus. Alii autem,"
+    + " quibus ego assentior, cum a philosophis compluribus permulta "
+    + "dicantur, cur nec voluptas in bonis sit numeranda nec in malis "
+    + "dolor, non existimant oportere nimium nos causae confidere, sed et"
+    + " argumentandum et accurate disserendum et rationibus conquisitis de"
+    + " voluptate et dolore disputandum putant.\n"
+    + "Sed ut perspiciatis, unde omnis iste natus error sit voluptatem "
+    + "accusantium doloremque laudantium, totam rem aperiam eaque ipsa,"
+    + "quae ab illo inventore veritatis et quasi architecto beatae vitae "
+    + "dicta sunt, explicabo. nemo enim ipsam voluptatem, quia voluptas"
+    + "sit, aspernatur aut odit aut fugit, sed quia consequuntur magni"
+    + " dolores eos, qui ratione voluptatem sequi nesciunt, neque porro"
+    + " quisquam est, qui dolorem ipsum, quia dolor sit, amet, "
+    + "consectetur, adipisci velit, sed quia non numquam eius modi"
+    + " tempora incidunt, ut labore et dolore magnam aliquam quaerat "
+    + "voluptatem. ut enim ad minima veniam, quis nostrum exercitationem "
+    + "ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi "
+    + "consequatur? quis autem vel eum iure reprehenderit, qui in ea "
+    + "voluptate velit esse, quam nihil molestiae consequatur, vel illum, "
+    + "qui dolorem eum fugiat, quo voluptas nulla pariatur?\n";
+try { if (Inst0 <= 1000 && typeof (lipsum) != "undefined") {_RecordType("<1602,1608,28>",(lipsum)); Inst0++; } } catch(e) {}
+
+try { if (Inst1 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<3170,3182,51>",(assertEquals)); Inst1++; } } catch(e) {}try { if (Inst2 <= 1000 && typeof (lipsum.indexOf) != "undefined") {_RecordType("<3188,3202,51>",(lipsum.indexOf)); Inst2++; } } catch(e) {}try { if (Inst3 <= 1000 && typeof (lipsum) != "undefined") {_RecordType("<3188,3194,51>",(lipsum)); Inst3++; } } catch(e) {}
+assertEquals(893, lipsum.indexOf("lorem ipsum, quia dolor sit, amet"),
+        "Lipsum");
+// test a lot of substrings of differing length and start-position.
+for(var i = 0; i < lipsum.length; i += 3) {
+try { if (Inst4 <= 1000 && typeof (i) != "undefined") {_RecordType("<3336,3337,54>",(i)); Inst4++; } } catch(e) {}try { if (Inst5 <= 1000 && typeof (i) != "undefined") {_RecordType("<3343,3344,54>",(i)); Inst5++; } } catch(e) {}try { if (Inst6 <= 1000 && typeof (lipsum.length) != "undefined") {_RecordType("<3347,3360,54>",(lipsum.length)); Inst6++; } } catch(e) {}try { if (Inst7 <= 1000 && typeof (lipsum) != "undefined") {_RecordType("<3347,3353,54>",(lipsum)); Inst7++; } } catch(e) {}try { if (Inst8 <= 1000 && typeof (i) != "undefined") {_RecordType("<3362,3363,54>",(i)); Inst8++; } } catch(e) {}
+  for(var len = 1; i + len < lipsum.length; len += 7) {
+try { if (Inst9 <= 1000 && typeof (len) != "undefined") {_RecordType("<3382,3385,55>",(len)); Inst9++; } } catch(e) {}try { if (Inst10 <= 1000 && typeof (i) != "undefined") {_RecordType("<3391,3392,55>",(i)); Inst10++; } } catch(e) {}try { if (Inst11 <= 1000 && typeof (len) != "undefined") {_RecordType("<3395,3398,55>",(len)); Inst11++; } } catch(e) {}try { if (Inst12 <= 1000 && typeof (lipsum.length) != "undefined") {_RecordType("<3401,3414,55>",(lipsum.length)); Inst12++; } } catch(e) {}try { if (Inst13 <= 1000 && typeof (lipsum) != "undefined") {_RecordType("<3401,3407,55>",(lipsum)); Inst13++; } } catch(e) {}try { if (Inst14 <= 1000 && typeof (len) != "undefined") {_RecordType("<3416,3419,55>",(len)); Inst14++; } } catch(e) {}
+try { if (Inst16 <= 1000 && typeof (lipsum.substring) != "undefined") {_RecordType("<3448,3464,56>",(lipsum.substring)); Inst16++; } } catch(e) {}try { if (Inst17 <= 1000 && typeof (lipsum) != "undefined") {_RecordType("<3448,3454,56>",(lipsum)); Inst17++; } } catch(e) {}try { if (Inst18 <= 1000 && typeof (i) != "undefined") {_RecordType("<3465,3466,56>",(i)); Inst18++; } } catch(e) {}try { if (Inst19 <= 1000 && typeof (i) != "undefined") {_RecordType("<3468,3469,56>",(i)); Inst19++; } } catch(e) {}try { if (Inst20 <= 1000 && typeof (len) != "undefined") {_RecordType("<3472,3475,56>",(len)); Inst20++; } } catch(e) {}
+    var substring = lipsum.substring(i, i + len);
+try { if (Inst15 <= 1000 && typeof (substring) != "undefined") {_RecordType("<3436,3445,56>",(substring)); Inst15++; } } catch(e) {}
+    var index = -1;
+try { if (Inst21 <= 1000 && typeof (index) != "undefined") {_RecordType("<3486,3491,57>",(index)); Inst21++; } } catch(e) {}
+try { if (Inst45 <= 1000 && typeof (index) != "undefined") {_RecordType("<3876,3881,65>",(index)); Inst45++; } } catch(e) {}try { if (Inst46 <= 1000 && typeof (index) != "undefined") {_RecordType("<3890,3895,65>",(index)); Inst46++; } } catch(e) {}try { if (Inst47 <= 1000 && typeof (i) != "undefined") {_RecordType("<3898,3899,65>",(i)); Inst47++; } } catch(e) {}
+    do {
+try { if (Inst23 <= 1000 && typeof (lipsum.indexOf) != "undefined") {_RecordType("<3521,3535,59>",(lipsum.indexOf)); Inst23++; } } catch(e) {}try { if (Inst24 <= 1000 && typeof (lipsum) != "undefined") {_RecordType("<3521,3527,59>",(lipsum)); Inst24++; } } catch(e) {}try { if (Inst25 <= 1000 && typeof (substring) != "undefined") {_RecordType("<3536,3545,59>",(substring)); Inst25++; } } catch(e) {}try { if (Inst26 <= 1000 && typeof (index) != "undefined") {_RecordType("<3547,3552,59>",(index)); Inst26++; } } catch(e) {}
+      index = lipsum.indexOf(substring, index + 1);
+try { if (Inst22 <= 1000 && typeof (index) != "undefined") {_RecordType("<3513,3518,59>",(index)); Inst22++; } } catch(e) {}
+try { if (Inst27 <= 1000 && typeof (assertTrue) != "undefined") {_RecordType("<3565,3575,60>",(assertTrue)); Inst27++; } } catch(e) {}try { if (Inst28 <= 1000 && typeof (index) != "undefined") {_RecordType("<3576,3581,60>",(index)); Inst28++; } } catch(e) {}try { if (Inst29 <= 1000 && typeof (i) != "undefined") {_RecordType("<3628,3629,61>",(i)); Inst29++; } } catch(e) {}try { if (Inst30 <= 1000 && typeof (i) != "undefined") {_RecordType("<3640,3641,61>",(i)); Inst30++; } } catch(e) {}try { if (Inst31 <= 1000 && typeof (len) != "undefined") {_RecordType("<3644,3647,61>",(len)); Inst31++; } } catch(e) {}
+      assertTrue(index != -1,
+                 "Lipsum substring " + i + ".." + (i + len-1) + " not found");
+try { if (Inst32 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<3674,3686,62>",(assertEquals)); Inst32++; } } catch(e) {}try { if (Inst33 <= 1000 && typeof (lipsum.substring) != "undefined") {_RecordType("<3687,3703,62>",(lipsum.substring)); Inst33++; } } catch(e) {}try { if (Inst34 <= 1000 && typeof (lipsum) != "undefined") {_RecordType("<3687,3693,62>",(lipsum)); Inst34++; } } catch(e) {}try { if (Inst35 <= 1000 && typeof (index) != "undefined") {_RecordType("<3704,3709,62>",(index)); Inst35++; } } catch(e) {}try { if (Inst36 <= 1000 && typeof (index) != "undefined") {_RecordType("<3711,3716,62>",(index)); Inst36++; } } catch(e) {}try { if (Inst37 <= 1000 && typeof (len) != "undefined") {_RecordType("<3719,3722,62>",(len)); Inst37++; } } catch(e) {}try { if (Inst38 <= 1000 && typeof (substring) != "undefined") {_RecordType("<3725,3734,62>",(substring)); Inst38++; } } catch(e) {}try { if (Inst39 <= 1000 && typeof (i) != "undefined") {_RecordType("<3781,3782,63>",(i)); Inst39++; } } catch(e) {}try { if (Inst40 <= 1000 && typeof (i) != "undefined") {_RecordType("<3793,3794,63>",(i)); Inst40++; } } catch(e) {}try { if (Inst41 <= 1000 && typeof (len) != "undefined") {_RecordType("<3797,3800,63>",(len)); Inst41++; } } catch(e) {}try { if (Inst42 <= 1000 && typeof (index) != "undefined") {_RecordType("<3828,3833,64>",(index)); Inst42++; } } catch(e) {}try { if (Inst43 <= 1000 && typeof (index) != "undefined") {_RecordType("<3844,3849,64>",(index)); Inst43++; } } catch(e) {}try { if (Inst44 <= 1000 && typeof (len) != "undefined") {_RecordType("<3852,3855,64>",(len)); Inst44++; } } catch(e) {}
+      assertEquals(lipsum.substring(index, index + len), substring,
+          "Wrong lipsum substring found: " + i + ".." + (i + len - 1) + "/" +
+              index + ".." + (index + len - 1));
+    } while (index >= 0 && index < i);
+try { if (Inst48 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<3906,3918,66>",(assertEquals)); Inst48++; } } catch(e) {}try { if (Inst49 <= 1000 && typeof (i) != "undefined") {_RecordType("<3919,3920,66>",(i)); Inst49++; } } catch(e) {}try { if (Inst50 <= 1000 && typeof (index) != "undefined") {_RecordType("<3922,3927,66>",(index)); Inst50++; } } catch(e) {}try { if (Inst51 <= 1000 && typeof (i) != "undefined") {_RecordType("<3950,3951,66>",(i)); Inst51++; } } catch(e) {}try { if (Inst52 <= 1000 && typeof (i) != "undefined") {_RecordType("<3962,3963,66>",(i)); Inst52++; } } catch(e) {}try { if (Inst53 <= 1000 && typeof (len) != "undefined") {_RecordType("<3966,3969,66>",(len)); Inst53++; } } catch(e) {}
+    assertEquals(i, index, "Lipsum match at " + i + ".." + (i + len - 1));
+  }
+}
+

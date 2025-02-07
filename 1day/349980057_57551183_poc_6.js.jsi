@@ -1,0 +1,157 @@
+var Inst0 = 0;
+var Inst1 = 0;
+var Inst2 = 0;
+var Inst3 = 0;
+var Inst4 = 0;
+var Inst5 = 0;
+var Inst6 = 0;
+var Inst7 = 0;
+var Inst8 = 0;
+var Inst9 = 0;
+var Inst10 = 0;
+var Inst11 = 0;
+var Inst12 = 0;
+var Inst13 = 0;
+var Inst14 = 0;
+var Inst15 = 0;
+var Inst16 = 0;
+var Inst17 = 0;
+var Inst18 = 0;
+var Inst19 = 0;
+var Inst20 = 0;
+var Inst21 = 0;
+var Inst22 = 0;
+var Inst23 = 0;
+var Inst24 = 0;
+var Inst25 = 0;
+var Inst26 = 0;
+var Inst27 = 0;
+var Inst28 = 0;
+var Inst29 = 0;
+var Inst30 = 0;
+var Inst31 = 0;
+var Inst32 = 0;
+var Inst33 = 0;
+var Inst34 = 0;
+var Inst35 = 0;
+var Inst36 = 0;
+ 
+function _TypeOfArray(a) {
+	let number = true;	
+	let string = true;
+	for (let i = 0; i < a.length; i++) {
+		if (number && (typeof a[i]) != "number") {
+			number = false;	
+		}
+		if (string && (typeof a[i]) != "string") {
+			string = false;	
+		}
+		if (!number && !string)
+			break;
+	}
+	if (number)
+		return "number";
+	else if (string)
+		return "string";
+	else
+		return "any";
+}
+
+function _TypeIsEqual(t1, t2) {
+	return JSON.stringify(t1) === JSON.stringify(t2);
+}
+
+function _TypeOf(a, step) {
+	var t;
+	var type = Object.prototype.toString.call(a).slice(8, -1).toLowerCase();	
+	if (type == "array") {
+		t = {type : type, extra: {elemType: _TypeOfArray(a)}};
+	} else if (type == "object") {
+		let shape = [];
+        if (step === undefined || step > 0) {
+            let keys = Object.keys(a);
+            let length = Math.min(100, keys.length);
+		    for (let i = 0; i < length; i++) {
+			    shape.push([keys[i], _TypeOf(a[keys[i]], step === undefined ? 1 : step - 1)]);	
+		    }
+        }
+		t = {type : type, extra: {shape: shape}};
+	} else {
+		t = {type : type};
+	} 
+	return t;
+}
+
+function _RecordType(loc, a) {
+	var t = _TypeOf(a);
+    print("~~~TypeInfo:" + loc + ":" + JSON.stringify(t));
+}
+try { if (Inst0 <= 1000 && typeof (f0) != "undefined") {_RecordType("<9,11,1>",(f0)); Inst0++; } } catch(e) {}
+function f0(a1, a2) {
+try { if (Inst1 <= 1000 && typeof (a1) != "undefined") {_RecordType("<12,14,1>",(a1)); Inst1++; } } catch(e) {}try { if (Inst2 <= 1000 && typeof (a2) != "undefined") {_RecordType("<16,18,1>",(a2)); Inst2++; } } catch(e) {}
+try { if (Inst3 <= 1000 && typeof (a1.apply) != "undefined") {_RecordType("<33,41,2>",(a1.apply)); Inst3++; } } catch(e) {}try { if (Inst4 <= 1000 && typeof (a1) != "undefined") {_RecordType("<33,35,2>",(a1)); Inst4++; } } catch(e) {}try { if (Inst5 <= 1000 && typeof (a1) != "undefined") {_RecordType("<42,44,2>",(a1)); Inst5++; } } catch(e) {}try { if (Inst6 <= 1000 && typeof (f0) != "undefined") {_RecordType("<46,48,2>",(f0)); Inst6++; } } catch(e) {}try { if (Inst7 <= 1000 && typeof (f0) != "undefined") {_RecordType("<50,52,2>",(f0)); Inst7++; } } catch(e) {}try { if (Inst8 <= 1000 && typeof (f0) != "undefined") {_RecordType("<54,56,2>",(f0)); Inst8++; } } catch(e) {}try { if (Inst9 <= 1000 && typeof (a1) != "undefined") {_RecordType("<58,60,2>",(a1)); Inst9++; } } catch(e) {}try { if (Inst10 <= 1000 && typeof (e) != "undefined") {_RecordType("<72,73,2>",(e)); Inst10++; } } catch(e) {}
+    try { a1.apply(a1, f0, f0, f0, a1); } catch (e) {}
+try { if (Inst11 <= 1000 && typeof (a2) != "undefined") {_RecordType("<90,92,3>",(a2)); Inst11++; } } catch(e) {}
+    return a2;
+}
+for (let v5 = 0; v5 < 5; v5++) {
+try { if (Inst12 <= 1000 && typeof (v5) != "undefined") {_RecordType("<107,109,5>",(v5)); Inst12++; } } catch(e) {}try { if (Inst13 <= 1000 && typeof (v5) != "undefined") {_RecordType("<115,117,5>",(v5)); Inst13++; } } catch(e) {}try { if (Inst14 <= 1000 && typeof (v5) != "undefined") {_RecordType("<123,125,5>",(v5)); Inst14++; } } catch(e) {}
+try { if (Inst16 <= 1000 && typeof (v5) != "undefined") {_RecordType("<147,149,6>",(v5)); Inst16++; } } catch(e) {}
+    const v6 = v5--;
+try { if (Inst15 <= 1000 && typeof (v6) != "undefined") {_RecordType("<142,144,6>",(v6)); Inst15++; } } catch(e) {}
+try { if (Inst17 <= 1000 && typeof (F7) != "undefined") {_RecordType("<167,169,7>",(F7)); Inst17++; } } catch(e) {}
+    function F7(a9, a10, a11) {
+try { if (Inst18 <= 1000 && typeof (a9) != "undefined") {_RecordType("<170,172,7>",(a9)); Inst18++; } } catch(e) {}try { if (Inst19 <= 1000 && typeof (a10) != "undefined") {_RecordType("<174,177,7>",(a10)); Inst19++; } } catch(e) {}try { if (Inst20 <= 1000 && typeof (a11) != "undefined") {_RecordType("<179,182,7>",(a11)); Inst20++; } } catch(e) {}
+try { if (Inst21 <= 1000 && typeof (target) != "undefined") {_RecordType("<204,210,8>",(target)); Inst21++; } } catch(e) {}
+        if (!new.target) { throw 'must be called with new'; }
+    }
+try { if (Inst23 <= 1000 && typeof (F7) != "undefined") {_RecordType("<277,279,10>",(F7)); Inst23++; } } catch(e) {}try { if (Inst24 <= 1000 && typeof (f0) != "undefined") {_RecordType("<280,282,10>",(f0)); Inst24++; } } catch(e) {}try { if (Inst25 <= 1000 && typeof (F7) != "undefined") {_RecordType("<284,286,10>",(F7)); Inst25++; } } catch(e) {}try { if (Inst26 <= 1000 && typeof (v6) != "undefined") {_RecordType("<288,290,10>",(v6)); Inst26++; } } catch(e) {}
+    const v12 = new F7(f0, F7, v6);
+try { if (Inst22 <= 1000 && typeof (v12) != "undefined") {_RecordType("<267,270,10>",(v12)); Inst22++; } } catch(e) {}
+try { if (Inst29 <= 1000 && typeof (f0) != "undefined") {_RecordType("<316,318,11>",(f0)); Inst29++; } } catch(e) {}
+    v12.constructor = f0;
+try { if (Inst27 <= 1000 && typeof (v12.constructor) != "undefined") {_RecordType("<298,313,11>",(v12.constructor)); Inst27++; } } catch(e) {}try { if (Inst28 <= 1000 && typeof (v12) != "undefined") {_RecordType("<298,301,11>",(v12)); Inst28++; } } catch(e) {}
+try { if (Inst31 <= 1000 && typeof (v12.constructor) != "undefined") {_RecordType("<337,352,12>",(v12.constructor)); Inst31++; } } catch(e) {}try { if (Inst32 <= 1000 && typeof (v12) != "undefined") {_RecordType("<337,340,12>",(v12)); Inst32++; } } catch(e) {}
+    const v13 = v12.constructor;
+try { if (Inst30 <= 1000 && typeof (v13) != "undefined") {_RecordType("<331,334,12>",(v13)); Inst30++; } } catch(e) {}
+try { if (Inst33 <= 1000 && typeof (v13) != "undefined") {_RecordType("<359,362,13>",(v13)); Inst33++; } } catch(e) {}try { if (Inst34 <= 1000 && typeof (v5) != "undefined") {_RecordType("<363,365,13>",(v5)); Inst34++; } } catch(e) {}
+    v13(v5);
+try { if (Inst35 <= 1000 && typeof (v13) != "undefined") {_RecordType("<373,376,14>",(v13)); Inst35++; } } catch(e) {}try { if (Inst36 <= 1000 && typeof (BigInt64Array) != "undefined") {_RecordType("<377,390,14>",(BigInt64Array)); Inst36++; } } catch(e) {}
+    v13(BigInt64Array);
+}
+// CRASH INFO
+// ==========
+// TERMSIG: 6
+// STDERR:
+// #
+// # Fatal error in ../../src/maglev/maglev-ir.cc, line 601
+// # Type representation error: node BranchIfSmi (input @0 = Int32DecrementWithOverflow) type Int32 is not Tagged
+// #
+// #
+// #
+// #FailureMessage Object: 0x7fd67de826d0
+// ==== C stack trace ===============================
+// 
+//     ../clean_v8/v8/out/fuzzbuild/d8(+0x959362) [0x5607799ad362]
+//     ../clean_v8/v8/out/fuzzbuild/d8(+0x957e37) [0x5607799abe37]
+//     ../clean_v8/v8/out/fuzzbuild/d8(+0x94a916) [0x56077999e916]
+//     ../clean_v8/v8/out/fuzzbuild/d8(+0x23489e8) [0x56077b39c9e8]
+//     ../clean_v8/v8/out/fuzzbuild/d8(+0x1f66fd1) [0x56077afbafd1]
+//     ../clean_v8/v8/out/fuzzbuild/d8(+0x1ecb104) [0x56077af1f104]
+//     ../clean_v8/v8/out/fuzzbuild/d8(+0x1ec8b72) [0x56077af1cb72]
+//     ../clean_v8/v8/out/fuzzbuild/d8(+0x1ec14c9) [0x56077af154c9]
+//     ../clean_v8/v8/out/fuzzbuild/d8(+0xbd28bf) [0x560779c268bf]
+//     ../clean_v8/v8/out/fuzzbuild/d8(+0x1ec3f72) [0x56077af17f72]
+//     ../clean_v8/v8/out/fuzzbuild/d8(+0x95b88f) [0x5607799af88f]
+//     ../clean_v8/v8/out/fuzzbuild/d8(+0x9658f5) [0x5607799b98f5]
+//     ../clean_v8/v8/out/fuzzbuild/d8(+0x9558d9) [0x5607799a98d9]
+//     /lib/x86_64-linux-gnu/libc.so.6(+0x94ac3) [0x7fd68da46ac3]
+//     /lib/x86_64-linux-gnu/libc.so.6(+0x126850) [0x7fd68dad8850]
+// Received signal 6
+// STDOUT:
+// 
+// FUZZER ARGS: .build/x86_64-unknown-linux-gnu/release/FuzzilliCli --profile=v8 --storagePath=./out --jobs=32 ../clean_v8/v8/out/fuzzbuild/d8
+// TARGET ARGS: ../clean_v8/v8/out/fuzzbuild/d8 --expose-gc --omit-quit --allow-natives-syntax --fuzzing --jit-fuzzing --future --harmony --js-staging
+// CONTRIBUTORS: FloatArrayGenerator, ClassPrivateStaticMethodGenerator, ClassInstanceComputedPropertyGenerator, ClassDefinitionGenerator, CodeGenMutator, ExplorationMutator, EvalGenerator, InputMutator, ComputedPropertyRetrievalGenerator, UpdateGenerator, ClassStaticComputedPropertyGenerator, BigIntGenerator, PrivatePropertyUpdateGenerator, ClassPrivateInstancePropertyGenerator
+// EXECUTION TIME: 223ms
+

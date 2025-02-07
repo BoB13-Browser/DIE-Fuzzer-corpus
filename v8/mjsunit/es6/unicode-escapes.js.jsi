@@ -1,0 +1,160 @@
+var Inst0 = 0;
+var Inst1 = 0;
+var Inst2 = 0;
+var Inst3 = 0;
+var Inst4 = 0;
+var Inst5 = 0;
+var Inst6 = 0;
+var Inst7 = 0;
+var Inst8 = 0;
+var Inst9 = 0;
+var Inst10 = 0;
+var Inst11 = 0;
+var Inst12 = 0;
+var Inst13 = 0;
+var Inst14 = 0;
+var Inst15 = 0;
+var Inst16 = 0;
+var Inst17 = 0;
+var Inst18 = 0;
+var Inst19 = 0;
+var Inst20 = 0;
+var Inst21 = 0;
+var Inst22 = 0;
+var Inst23 = 0;
+var Inst24 = 0;
+var Inst25 = 0;
+var Inst26 = 0;
+var Inst27 = 0;
+var Inst28 = 0;
+var Inst29 = 0;
+var Inst30 = 0;
+var Inst31 = 0;
+var Inst32 = 0;
+var Inst33 = 0;
+var Inst34 = 0;
+var Inst35 = 0;
+var Inst36 = 0;
+var Inst37 = 0;
+var Inst38 = 0;
+ 
+function _TypeOfArray(a) {
+	let number = true;	
+	let string = true;
+	for (let i = 0; i < a.length; i++) {
+		if (number && (typeof a[i]) != "number") {
+			number = false;	
+		}
+		if (string && (typeof a[i]) != "string") {
+			string = false;	
+		}
+		if (!number && !string)
+			break;
+	}
+	if (number)
+		return "number";
+	else if (string)
+		return "string";
+	else
+		return "any";
+}
+
+function _TypeIsEqual(t1, t2) {
+	return JSON.stringify(t1) === JSON.stringify(t2);
+}
+
+function _TypeOf(a, step) {
+	var t;
+	var type = Object.prototype.toString.call(a).slice(8, -1).toLowerCase();	
+	if (type == "array") {
+		t = {type : type, extra: {elemType: _TypeOfArray(a)}};
+	} else if (type == "object") {
+		let shape = [];
+        if (step === undefined || step > 0) {
+            let keys = Object.keys(a);
+            let length = Math.min(100, keys.length);
+		    for (let i = 0; i < length; i++) {
+			    shape.push([keys[i], _TypeOf(a[keys[i]], step === undefined ? 1 : step - 1)]);	
+		    }
+        }
+		t = {type : type, extra: {shape: shape}};
+	} else {
+		t = {type : type};
+	} 
+	return t;
+}
+
+function _RecordType(loc, a) {
+	var t = _TypeOf(a);
+    print("~~~TypeInfo:" + loc + ":" + JSON.stringify(t));
+}
+// Copyright 2014 the V8 project authors. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
+// ES6 extends the \uxxxx escape and also allows \u{xxxxx}.
+
+// Unicode escapes in variable names.
+
+try { if (Inst0 <= 1000 && typeof (TestVariableNames1) != "undefined") {_RecordType("<278,296,9>",(TestVariableNames1)); Inst0++; } } catch(e) {}
+(function TestVariableNames1() {
+  var foobar = 1;
+try { if (Inst1 <= 1000 && typeof (foobar) != "undefined") {_RecordType("<307,313,10>",(foobar)); Inst1++; } } catch(e) {}
+try { if (Inst2 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<321,333,11>",(assertEquals)); Inst2++; } } catch(e) {}try { if (Inst3 <= 1000 && typeof (foob\u0061r) != "undefined") {_RecordType("<334,345,11>",(foob\u0061r)); Inst3++; } } catch(e) {}
+  assertEquals(foob\u0061r, 1);
+try { if (Inst4 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<353,365,12>",(assertEquals)); Inst4++; } } catch(e) {}try { if (Inst5 <= 1000 && typeof (foob\u{0061}r) != "undefined") {_RecordType("<366,379,12>",(foob\u{0061}r)); Inst5++; } } catch(e) {}
+  assertEquals(foob\u{0061}r, 1);
+try { if (Inst6 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<387,399,13>",(assertEquals)); Inst6++; } } catch(e) {}try { if (Inst7 <= 1000 && typeof (foob\u{61}r) != "undefined") {_RecordType("<400,411,13>",(foob\u{61}r)); Inst7++; } } catch(e) {}
+  assertEquals(foob\u{61}r, 1);
+try { if (Inst8 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<419,431,14>",(assertEquals)); Inst8++; } } catch(e) {}try { if (Inst9 <= 1000 && typeof (foob\u{0000000061}r) != "undefined") {_RecordType("<432,451,14>",(foob\u{0000000061}r)); Inst9++; } } catch(e) {}
+  assertEquals(foob\u{0000000061}r, 1);
+})();
+
+try { if (Inst10 <= 1000 && typeof (TestVariableNames2) != "undefined") {_RecordType("<474,492,17>",(TestVariableNames2)); Inst10++; } } catch(e) {}
+(function TestVariableNames2() {
+  var foobar = 1;
+try { if (Inst11 <= 1000 && typeof (foobar) != "undefined") {_RecordType("<503,509,18>",(foobar)); Inst11++; } } catch(e) {}
+try { if (Inst12 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<517,529,19>",(assertEquals)); Inst12++; } } catch(e) {}try { if (Inst13 <= 1000 && typeof (\u0066oobar) != "undefined") {_RecordType("<530,541,19>",(\u0066oobar)); Inst13++; } } catch(e) {}
+  assertEquals(\u0066oobar, 1);
+try { if (Inst14 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<549,561,20>",(assertEquals)); Inst14++; } } catch(e) {}try { if (Inst15 <= 1000 && typeof (\u{0066}oobar) != "undefined") {_RecordType("<562,575,20>",(\u{0066}oobar)); Inst15++; } } catch(e) {}
+  assertEquals(\u{0066}oobar, 1);
+try { if (Inst16 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<583,595,21>",(assertEquals)); Inst16++; } } catch(e) {}try { if (Inst17 <= 1000 && typeof (\u{66}oobar) != "undefined") {_RecordType("<596,607,21>",(\u{66}oobar)); Inst17++; } } catch(e) {}
+  assertEquals(\u{66}oobar, 1);
+try { if (Inst18 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<615,627,22>",(assertEquals)); Inst18++; } } catch(e) {}try { if (Inst19 <= 1000 && typeof (\u{0000000066}oobar) != "undefined") {_RecordType("<628,647,22>",(\u{0000000066}oobar)); Inst19++; } } catch(e) {}
+  assertEquals(\u{0000000066}oobar, 1);
+})();
+
+// Unicode escapes in strings.
+
+try { if (Inst20 <= 1000 && typeof (TestStrings) != "undefined") {_RecordType("<702,713,27>",(TestStrings)); Inst20++; } } catch(e) {}
+(function TestStrings() {
+  var s1 = "foob\u0061r";
+try { if (Inst21 <= 1000 && typeof (s1) != "undefined") {_RecordType("<724,726,28>",(s1)); Inst21++; } } catch(e) {}
+try { if (Inst22 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<746,758,29>",(assertEquals)); Inst22++; } } catch(e) {}try { if (Inst23 <= 1000 && typeof (s1) != "undefined") {_RecordType("<759,761,29>",(s1)); Inst23++; } } catch(e) {}
+  assertEquals(s1, "foobar");
+  var s2 = "foob\u{0061}r";
+try { if (Inst24 <= 1000 && typeof (s2) != "undefined") {_RecordType("<780,782,30>",(s2)); Inst24++; } } catch(e) {}
+try { if (Inst25 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<804,816,31>",(assertEquals)); Inst25++; } } catch(e) {}try { if (Inst26 <= 1000 && typeof (s2) != "undefined") {_RecordType("<817,819,31>",(s2)); Inst26++; } } catch(e) {}
+  assertEquals(s2, "foobar");
+  var s3 = "foob\u{61}r";
+try { if (Inst27 <= 1000 && typeof (s3) != "undefined") {_RecordType("<838,840,32>",(s3)); Inst27++; } } catch(e) {}
+try { if (Inst28 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<860,872,33>",(assertEquals)); Inst28++; } } catch(e) {}try { if (Inst29 <= 1000 && typeof (s3) != "undefined") {_RecordType("<873,875,33>",(s3)); Inst29++; } } catch(e) {}
+  assertEquals(s3, "foobar");
+  var s4 = "foob\u{0000000061}r";
+try { if (Inst30 <= 1000 && typeof (s4) != "undefined") {_RecordType("<894,896,34>",(s4)); Inst30++; } } catch(e) {}
+try { if (Inst31 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<924,936,35>",(assertEquals)); Inst31++; } } catch(e) {}try { if (Inst32 <= 1000 && typeof (s4) != "undefined") {_RecordType("<937,939,35>",(s4)); Inst32++; } } catch(e) {}
+  assertEquals(s4, "foobar");
+})();
+
+
+try { if (Inst33 <= 1000 && typeof (TestSurrogates) != "undefined") {_RecordType("<970,984,39>",(TestSurrogates)); Inst33++; } } catch(e) {}
+(function TestSurrogates() {
+  // U+10E6D corresponds to the surrogate pair [U+D803, U+DE6D].
+  var s1 = "foo\u{10e6d}";
+try { if (Inst34 <= 1000 && typeof (s1) != "undefined") {_RecordType("<1060,1062,41>",(s1)); Inst34++; } } catch(e) {}
+  var s2 = "foo\u{d803}\u{de6d}";
+try { if (Inst35 <= 1000 && typeof (s2) != "undefined") {_RecordType("<1087,1089,42>",(s2)); Inst35++; } } catch(e) {}
+try { if (Inst36 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<1117,1129,43>",(assertEquals)); Inst36++; } } catch(e) {}try { if (Inst37 <= 1000 && typeof (s1) != "undefined") {_RecordType("<1130,1132,43>",(s1)); Inst37++; } } catch(e) {}try { if (Inst38 <= 1000 && typeof (s2) != "undefined") {_RecordType("<1134,1136,43>",(s2)); Inst38++; } } catch(e) {}
+  assertEquals(s1, s2);
+})();
+

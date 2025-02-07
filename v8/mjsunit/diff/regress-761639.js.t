@@ -1,0 +1,1 @@
+[null,{"type":"Void"},{"type":"Void"},{"type":"Void"},{"type":"Number"},null,null,{"type":"Number"},null,null,{"type":"Number"},{"type":"Void"},{"type":"Void"},null,{"type":"Object","extra":{"shape":[]}},null,{"type":"Constructor","extra":{"name":"Proxy","ret":{"type":"Proxy"}}},null,null,null,null,{"type":"Void"},null]

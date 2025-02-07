@@ -1,0 +1,130 @@
+var Inst0 = 0;
+var Inst1 = 0;
+var Inst2 = 0;
+var Inst3 = 0;
+var Inst4 = 0;
+var Inst5 = 0;
+var Inst6 = 0;
+var Inst7 = 0;
+var Inst8 = 0;
+var Inst9 = 0;
+var Inst10 = 0;
+var Inst11 = 0;
+var Inst12 = 0;
+var Inst13 = 0;
+var Inst14 = 0;
+var Inst15 = 0;
+var Inst16 = 0;
+var Inst17 = 0;
+ 
+function _TypeOfArray(a) {
+	let number = true;	
+	let string = true;
+	for (let i = 0; i < a.length; i++) {
+		if (number && (typeof a[i]) != "number") {
+			number = false;	
+		}
+		if (string && (typeof a[i]) != "string") {
+			string = false;	
+		}
+		if (!number && !string)
+			break;
+	}
+	if (number)
+		return "number";
+	else if (string)
+		return "string";
+	else
+		return "any";
+}
+
+function _TypeIsEqual(t1, t2) {
+	return JSON.stringify(t1) === JSON.stringify(t2);
+}
+
+function _TypeOf(a, step) {
+	var t;
+	var type = Object.prototype.toString.call(a).slice(8, -1).toLowerCase();	
+	if (type == "array") {
+		t = {type : type, extra: {elemType: _TypeOfArray(a)}};
+	} else if (type == "object") {
+		let shape = [];
+        if (step === undefined || step > 0) {
+            let keys = Object.keys(a);
+            let length = Math.min(100, keys.length);
+		    for (let i = 0; i < length; i++) {
+			    shape.push([keys[i], _TypeOf(a[keys[i]], step === undefined ? 1 : step - 1)]);	
+		    }
+        }
+		t = {type : type, extra: {shape: shape}};
+	} else {
+		t = {type : type};
+	} 
+	return t;
+}
+
+function _RecordType(loc, a) {
+	var t = _TypeOf(a);
+    print("~~~TypeInfo:" + loc + ":" + JSON.stringify(t));
+}
+
+
+try { if (Inst0 <= 1000 && typeof (requestCamera) != "undefined") {_RecordType("<21,34,3>",(requestCamera)); Inst0++; } } catch(e) {}
+        function requestCamera() {
+
+try { if (Inst1 <= 1000 && typeof (navigator.mediaDevices) != "undefined") {_RecordType("<58,80,5>",(navigator.mediaDevices)); Inst1++; } } catch(e) {}try { if (Inst2 <= 1000 && typeof (navigator) != "undefined") {_RecordType("<58,67,5>",(navigator)); Inst2++; } } catch(e) {}try { if (Inst3 <= 1000 && typeof (navigator.mediaDevices.getUserMedia) != "undefined") {_RecordType("<84,119,5>",(navigator.mediaDevices.getUserMedia)); Inst3++; } } catch(e) {}try { if (Inst4 <= 1000 && typeof (navigator.mediaDevices) != "undefined") {_RecordType("<84,106,5>",(navigator.mediaDevices)); Inst4++; } } catch(e) {}try { if (Inst5 <= 1000 && typeof (navigator) != "undefined") {_RecordType("<84,93,5>",(navigator)); Inst5++; } } catch(e) {}
+            if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+
+try { if (Inst6 <= 1000 && typeof (navigator.mediaDevices.getUserMedia({ video: true })
+
+                    .then((stream) => {
+
+                        alert('Camera access granted');
+
+                        // You can now use the stream for video capture
+
+                    })
+
+                    .catch) != "undefined") {_RecordType("<142,427,7>",(navigator.mediaDevices.getUserMedia({ video: true })
+
+                    .then((stream) => {
+
+                        alert('Camera access granted');
+
+                        // You can now use the stream for video capture
+
+                    })
+
+                    .catch)); Inst6++; } } catch(e) {}try { if (Inst7 <= 1000 && typeof (navigator.mediaDevices.getUserMedia({ video: true })
+
+                    .then) != "undefined") {_RecordType("<142,223,7>",(navigator.mediaDevices.getUserMedia({ video: true })
+
+                    .then)); Inst7++; } } catch(e) {}try { if (Inst8 <= 1000 && typeof (navigator.mediaDevices.getUserMedia) != "undefined") {_RecordType("<142,177,7>",(navigator.mediaDevices.getUserMedia)); Inst8++; } } catch(e) {}try { if (Inst9 <= 1000 && typeof (navigator.mediaDevices) != "undefined") {_RecordType("<142,164,7>",(navigator.mediaDevices)); Inst9++; } } catch(e) {}try { if (Inst10 <= 1000 && typeof (navigator) != "undefined") {_RecordType("<142,151,7>",(navigator)); Inst10++; } } catch(e) {}try { if (Inst11 <= 1000 && typeof (stream) != "undefined") {_RecordType("<225,231,9>",(stream)); Inst11++; } } catch(e) {}try { if (Inst13 <= 1000 && typeof (error) != "undefined") {_RecordType("<429,434,17>",(error)); Inst13++; } } catch(e) {}
+                navigator.mediaDevices.getUserMedia({ video: true })
+
+                    .then((stream) => {
+
+try { if (Inst12 <= 1000 && typeof (alert) != "undefined") {_RecordType("<265,270,11>",(alert)); Inst12++; } } catch(e) {}
+                        alert('Camera access granted');
+
+                        // You can now use the stream for video capture
+
+                    })
+
+                    .catch((error) => {
+
+try { if (Inst14 <= 1000 && typeof (alert) != "undefined") {_RecordType("<468,473,19>",(alert)); Inst14++; } } catch(e) {}try { if (Inst15 <= 1000 && typeof (error.message) != "undefined") {_RecordType("<503,516,19>",(error.message)); Inst15++; } } catch(e) {}try { if (Inst16 <= 1000 && typeof (error) != "undefined") {_RecordType("<503,508,19>",(error)); Inst16++; } } catch(e) {}
+                        alert('Error accessing camera: ' + error.message);
+
+                    });
+
+            } else {
+
+try { if (Inst17 <= 1000 && typeof (alert) != "undefined") {_RecordType("<589,594,25>",(alert)); Inst17++; } } catch(e) {}
+                alert('Camera access is not supported by this browser.');
+
+            }
+
+        }
+
+    

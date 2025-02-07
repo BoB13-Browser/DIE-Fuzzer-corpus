@@ -1,0 +1,285 @@
+var Inst0 = 0;
+var Inst1 = 0;
+var Inst2 = 0;
+var Inst3 = 0;
+var Inst4 = 0;
+var Inst5 = 0;
+var Inst6 = 0;
+var Inst7 = 0;
+var Inst8 = 0;
+var Inst9 = 0;
+var Inst10 = 0;
+var Inst11 = 0;
+var Inst12 = 0;
+var Inst13 = 0;
+var Inst14 = 0;
+var Inst15 = 0;
+var Inst16 = 0;
+var Inst17 = 0;
+var Inst18 = 0;
+var Inst19 = 0;
+var Inst20 = 0;
+var Inst21 = 0;
+var Inst22 = 0;
+var Inst23 = 0;
+var Inst24 = 0;
+var Inst25 = 0;
+var Inst26 = 0;
+var Inst27 = 0;
+var Inst28 = 0;
+var Inst29 = 0;
+var Inst30 = 0;
+var Inst31 = 0;
+var Inst32 = 0;
+var Inst33 = 0;
+var Inst34 = 0;
+var Inst35 = 0;
+var Inst36 = 0;
+var Inst37 = 0;
+var Inst38 = 0;
+var Inst39 = 0;
+var Inst40 = 0;
+var Inst41 = 0;
+var Inst42 = 0;
+var Inst43 = 0;
+var Inst44 = 0;
+var Inst45 = 0;
+var Inst46 = 0;
+var Inst47 = 0;
+var Inst48 = 0;
+var Inst49 = 0;
+var Inst50 = 0;
+ 
+function _TypeOfArray(a) {
+	let number = true;	
+	let string = true;
+	for (let i = 0; i < a.length; i++) {
+		if (number && (typeof a[i]) != "number") {
+			number = false;	
+		}
+		if (string && (typeof a[i]) != "string") {
+			string = false;	
+		}
+		if (!number && !string)
+			break;
+	}
+	if (number)
+		return "number";
+	else if (string)
+		return "string";
+	else
+		return "any";
+}
+
+function _TypeIsEqual(t1, t2) {
+	return JSON.stringify(t1) === JSON.stringify(t2);
+}
+
+function _TypeOf(a, step) {
+	var t;
+	var type = Object.prototype.toString.call(a).slice(8, -1).toLowerCase();	
+	if (type == "array") {
+		t = {type : type, extra: {elemType: _TypeOfArray(a)}};
+	} else if (type == "object") {
+		let shape = [];
+        if (step === undefined || step > 0) {
+            let keys = Object.keys(a);
+            let length = Math.min(100, keys.length);
+		    for (let i = 0; i < length; i++) {
+			    shape.push([keys[i], _TypeOf(a[keys[i]], step === undefined ? 1 : step - 1)]);	
+		    }
+        }
+		t = {type : type, extra: {shape: shape}};
+	} else {
+		t = {type : type};
+	} 
+	return t;
+}
+
+function _RecordType(loc, a) {
+	var t = _TypeOf(a);
+    print("~~~TypeInfo:" + loc + ":" + JSON.stringify(t));
+}
+// Copyright 2013 the V8 project authors. All rights reserved.
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions are
+// met:
+//
+//     * Redistributions of source code must retain the above copyright
+//       notice, this list of conditions and the following disclaimer.
+//     * Redistributions in binary form must reproduce the above
+//       copyright notice, this list of conditions and the following
+//       disclaimer in the documentation and/or other materials provided
+//       with the distribution.
+//     * Neither the name of Google Inc. nor the names of its
+//       contributors may be used to endorse or promote products derived
+//       from this software without specific prior written permission.
+//
+// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+// "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+// LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+// A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+// OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+// SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+// LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+// DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+// THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+// (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+// OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+// Flags: --ignition-generators
+
+// Test basic generator syntax.
+
+// Yield statements.
+try { if (Inst0 <= 1000 && typeof (g) != "undefined") {_RecordType("<1695,1696,33>",(g)); Inst0++; } } catch(e) {}
+function* g() { yield 3; yield 4; }
+
+// Yield expressions.
+try { if (Inst1 <= 1000 && typeof (g) != "undefined") {_RecordType("<1754,1755,36>",(g)); Inst1++; } } catch(e) {}
+function* g() { (yield 3) + (yield 4); }
+
+// Yield without a RHS.
+try { if (Inst2 <= 1000 && typeof (g) != "undefined") {_RecordType("<1820,1821,39>",(g)); Inst2++; } } catch(e) {}
+function* g() { yield; }
+try { if (Inst3 <= 1000 && typeof (g) != "undefined") {_RecordType("<1845,1846,40>",(g)); Inst3++; } } catch(e) {}
+function* g() { yield }
+try { if (Inst4 <= 1000 && typeof (g) != "undefined") {_RecordType("<1869,1870,41>",(g)); Inst4++; } } catch(e) {}
+function* g() {
+  yield
+}
+try { if (Inst5 <= 1000 && typeof (g) != "undefined") {_RecordType("<1895,1896,44>",(g)); Inst5++; } } catch(e) {}
+function* g() { (yield) }
+try { if (Inst6 <= 1000 && typeof (g) != "undefined") {_RecordType("<1921,1922,45>",(g)); Inst6++; } } catch(e) {}
+function* g() { [yield] }
+try { if (Inst7 <= 1000 && typeof (g) != "undefined") {_RecordType("<1947,1948,46>",(g)); Inst7++; } } catch(e) {}
+function* g() { {yield} }
+try { if (Inst8 <= 1000 && typeof (g) != "undefined") {_RecordType("<1973,1974,47>",(g)); Inst8++; } } catch(e) {}
+function* g() { yield, yield }
+try { if (Inst9 <= 1000 && typeof (g) != "undefined") {_RecordType("<2004,2005,48>",(g)); Inst9++; } } catch(e) {}
+function* g() { yield; yield }
+try { if (Inst10 <= 1000 && typeof (g) != "undefined") {_RecordType("<2035,2036,49>",(g)); Inst10++; } } catch(e) {}
+function* g() { (yield) ? yield : yield }
+try { if (Inst11 <= 1000 && typeof (g) != "undefined") {_RecordType("<2077,2078,50>",(g)); Inst11++; } } catch(e) {}
+function* g() {
+  (yield)
+  ? yield
+  : yield
+}
+
+// If yield has a RHS, it needs to start on the same line.  The * in a
+// yield* counts as starting the RHS.
+try { if (Inst12 <= 1000 && typeof (g) != "undefined") {_RecordType("<2235,2236,58>",(g)); Inst12++; } } catch(e) {}
+function* g() {
+try { if (Inst13 <= 1000 && typeof (foo) != "undefined") {_RecordType("<2253,2256,60>",(foo)); Inst13++; } } catch(e) {}
+  yield *
+  foo
+}
+try { if (Inst14 <= 1000 && typeof (assertThrows) != "undefined") {_RecordType("<2259,2271,62>",(assertThrows)); Inst14++; } } catch(e) {}try { if (Inst15 <= 1000 && typeof (SyntaxError) != "undefined") {_RecordType("<2306,2317,62>",(SyntaxError)); Inst15++; } } catch(e) {}
+assertThrows("function* g() { yield\n* foo }", SyntaxError);
+try { if (Inst16 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<2320,2332,63>",(assertEquals)); Inst16++; } } catch(e) {}try { if (Inst17 <= 1000 && typeof (undefined) != "undefined") {_RecordType("<2333,2342,63>",(undefined)); Inst17++; } } catch(e) {}try { if (Inst18 <= 1000 && typeof ((function*(){
+               yield
+               3
+             })().next().value) != "undefined") {_RecordType("<2357,2439,64>",((function*(){
+               yield
+               3
+             })().next().value)); Inst18++; } } catch(e) {}try { if (Inst19 <= 1000 && typeof ((function*(){
+               yield
+               3
+             })().next) != "undefined") {_RecordType("<2357,2431,64>",((function*(){
+               yield
+               3
+             })().next)); Inst19++; } } catch(e) {}
+assertEquals(undefined,
+             (function*(){
+               yield
+               3
+             })().next().value);
+
+// A YieldExpression is not a LogicalORExpression.
+try { if (Inst20 <= 1000 && typeof (assertThrows) != "undefined") {_RecordType("<2494,2506,70>",(assertThrows)); Inst20++; } } catch(e) {}try { if (Inst21 <= 1000 && typeof (SyntaxError) != "undefined") {_RecordType("<2550,2561,70>",(SyntaxError)); Inst21++; } } catch(e) {}
+assertThrows("function* g() { yield ? yield : yield }", SyntaxError);
+
+// You can have a generator in strict mode.
+try { if (Inst22 <= 1000 && typeof (g) != "undefined") {_RecordType("<2619,2620,73>",(g)); Inst22++; } } catch(e) {}
+function* g() { "use strict"; yield 3; yield 4; }
+
+// Generators can have return statements also, which internally parse to a kind
+// of yield expression.
+try { if (Inst23 <= 1000 && typeof (g) != "undefined") {_RecordType("<2774,2775,77>",(g)); Inst23++; } } catch(e) {}
+function* g() { yield 1; return; }
+try { if (Inst24 <= 1000 && typeof (g) != "undefined") {_RecordType("<2809,2810,78>",(g)); Inst24++; } } catch(e) {}
+function* g() { yield 1; return 2; }
+try { if (Inst25 <= 1000 && typeof (g) != "undefined") {_RecordType("<2846,2847,79>",(g)); Inst25++; } } catch(e) {}
+function* g() { yield 1; return 2; yield "dead"; }
+
+// Generator expression.
+(function* () { yield 3; });
+
+// Named generator expression.
+try { if (Inst26 <= 1000 && typeof (g) != "undefined") {_RecordType("<2985,2986,85>",(g)); Inst26++; } } catch(e) {}
+(function* g() { yield 3; });
+
+// You can have a generator without a yield.
+try { if (Inst27 <= 1000 && typeof (g) != "undefined") {_RecordType("<3060,3061,88>",(g)); Inst27++; } } catch(e) {}
+function* g() { }
+
+// A YieldExpression is valid as the RHS of a YieldExpression.
+try { if (Inst28 <= 1000 && typeof (g) != "undefined") {_RecordType("<3142,3143,91>",(g)); Inst28++; } } catch(e) {}
+function* g() { yield yield 1; }
+try { if (Inst29 <= 1000 && typeof (g) != "undefined") {_RecordType("<3175,3176,92>",(g)); Inst29++; } } catch(e) {}
+function* g() { yield 3 + (yield 4); }
+
+// Generator definitions with a name of "yield" are not specifically ruled out
+// by the spec, as the `yield' name is outside the generator itself.  However,
+// in strict-mode, "yield" is an invalid identifier.
+function* yield() { (yield 3) + (yield 4); }
+try { if (Inst30 <= 1000 && typeof (assertThrows) != "undefined") {_RecordType("<3461,3473,98>",(assertThrows)); Inst30++; } } catch(e) {}try { if (Inst31 <= 1000 && typeof (SyntaxError) != "undefined") {_RecordType("<3551,3562,99>",(SyntaxError)); Inst31++; } } catch(e) {}
+assertThrows("function* yield() { \"use strict\"; (yield 3) + (yield 4); }",
+             SyntaxError);
+
+// In sloppy mode, yield is a normal identifier, outside of generators.
+function yield(yield) { yield: yield (yield + yield (0)); }
+
+// Yield is always valid as a key in an object literal.
+({ yield: 1 });
+try { if (Inst32 <= 1000 && typeof (g) != "undefined") {_RecordType("<3781,3782,106>",(g)); Inst32++; } } catch(e) {}
+function* g() { yield ({ yield: 1 }) }
+try { if (Inst33 <= 1000 && typeof (g) != "undefined") {_RecordType("<3820,3821,107>",(g)); Inst33++; } } catch(e) {}
+function* g() { yield ({ get yield() { return 1; }}) }
+
+// Checks that yield is a valid label in sloppy mode, but not valid in a strict
+// mode or in generators.
+try { if (Inst34 <= 1000 && typeof (f) != "undefined") {_RecordType("<3981,3982,111>",(f)); Inst34++; } } catch(e) {}
+function f() { yield: 1 }
+try { if (Inst35 <= 1000 && typeof (assertThrows) != "undefined") {_RecordType("<3998,4010,112>",(assertThrows)); Inst35++; } } catch(e) {}try { if (Inst36 <= 1000 && typeof (SyntaxError) != "undefined") {_RecordType("<4056,4067,112>",(SyntaxError)); Inst36++; } } catch(e) {}
+assertThrows("function f() { \"use strict\"; yield: 1 }", SyntaxError)
+try { if (Inst37 <= 1000 && typeof (assertThrows) != "undefined") {_RecordType("<4069,4081,113>",(assertThrows)); Inst37++; } } catch(e) {}try { if (Inst38 <= 1000 && typeof (SyntaxError) != "undefined") {_RecordType("<4112,4123,113>",(SyntaxError)); Inst38++; } } catch(e) {}
+assertThrows("function* g() { yield: 1 }", SyntaxError)
+
+// Yield is only a keyword in the body of the generator, not in nested
+// functions.
+try { if (Inst39 <= 1000 && typeof (g) != "undefined") {_RecordType("<4221,4222,117>",(g)); Inst39++; } } catch(e) {}try { if (Inst40 <= 1000 && typeof (f) != "undefined") {_RecordType("<4236,4237,117>",(f)); Inst40++; } } catch(e) {}
+function* g() { function f() { yield (yield + yield (0)); } }
+
+// Yield in a generator is not an identifier.
+try { if (Inst41 <= 1000 && typeof (assertThrows) != "undefined") {_RecordType("<4320,4332,120>",(assertThrows)); Inst41++; } } catch(e) {}try { if (Inst42 <= 1000 && typeof (SyntaxError) != "undefined") {_RecordType("<4366,4377,120>",(SyntaxError)); Inst42++; } } catch(e) {}
+assertThrows("function* g() { yield = 10; }", SyntaxError);
+
+// Yield binds very loosely, so this parses as "yield (3 + yield 4)", which is
+// invalid.
+try { if (Inst43 <= 1000 && typeof (assertThrows) != "undefined") {_RecordType("<4472,4484,124>",(assertThrows)); Inst43++; } } catch(e) {}try { if (Inst44 <= 1000 && typeof (SyntaxError) != "undefined") {_RecordType("<4525,4536,124>",(SyntaxError)); Inst44++; } } catch(e) {}
+assertThrows("function* g() { yield 3 + yield 4; }", SyntaxError);
+
+// Yield is still a future-reserved-word in strict mode
+try { if (Inst45 <= 1000 && typeof (assertThrows) != "undefined") {_RecordType("<4596,4608,127>",(assertThrows)); Inst45++; } } catch(e) {}try { if (Inst46 <= 1000 && typeof (SyntaxError) != "undefined") {_RecordType("<4661,4672,127>",(SyntaxError)); Inst46++; } } catch(e) {}
+assertThrows("function f() { \"use strict\"; var yield = 13; }", SyntaxError);
+
+// The name of the NFE is bound in the generator expression, so is invalid.
+try { if (Inst47 <= 1000 && typeof (assertThrows) != "undefined") {_RecordType("<4752,4764,130>",(assertThrows)); Inst47++; } } catch(e) {}try { if (Inst48 <= 1000 && typeof (SyntaxError) != "undefined") {_RecordType("<4809,4820,130>",(SyntaxError)); Inst48++; } } catch(e) {}
+assertThrows("function f() { (function* yield() {}); }", SyntaxError);
+
+// In generators, yield is invalid as a formal argument name.
+try { if (Inst49 <= 1000 && typeof (assertThrows) != "undefined") {_RecordType("<4886,4898,133>",(assertThrows)); Inst49++; } } catch(e) {}try { if (Inst50 <= 1000 && typeof (SyntaxError) != "undefined") {_RecordType("<4937,4948,133>",(SyntaxError)); Inst50++; } } catch(e) {}
+assertThrows("function* g(yield) { yield (10); }", SyntaxError);
+

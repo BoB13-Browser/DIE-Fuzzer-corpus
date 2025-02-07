@@ -1,1 +1,0 @@
-[null,{"type":"Void"},{"type":"Undefined"},{"type":"Function","extra":{"args":{"type":"Args","extra":{"args":[]}},"ret":{"type":"Undefined"}}},{"type":"Void"},{"type":"Void"},{"type":"Boolean"},{"type":"String"},null,{"type":"Constructor","extra":{"name":"Proxy","ret":{"type":"Proxy"}}},null,null,null,null,{"type":"Number"},{"type":"Void"},null]

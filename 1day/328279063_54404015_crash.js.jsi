@@ -1,0 +1,125 @@
+var Inst0 = 0;
+var Inst1 = 0;
+var Inst2 = 0;
+var Inst3 = 0;
+var Inst4 = 0;
+var Inst5 = 0;
+var Inst6 = 0;
+var Inst7 = 0;
+var Inst8 = 0;
+var Inst9 = 0;
+var Inst10 = 0;
+var Inst11 = 0;
+var Inst12 = 0;
+var Inst13 = 0;
+var Inst14 = 0;
+var Inst15 = 0;
+var Inst16 = 0;
+var Inst17 = 0;
+var Inst18 = 0;
+var Inst19 = 0;
+var Inst20 = 0;
+var Inst21 = 0;
+var Inst22 = 0;
+var Inst23 = 0;
+var Inst24 = 0;
+var Inst25 = 0;
+var Inst26 = 0;
+var Inst27 = 0;
+var Inst28 = 0;
+var Inst29 = 0;
+ 
+function _TypeOfArray(a) {
+	let number = true;	
+	let string = true;
+	for (let i = 0; i < a.length; i++) {
+		if (number && (typeof a[i]) != "number") {
+			number = false;	
+		}
+		if (string && (typeof a[i]) != "string") {
+			string = false;	
+		}
+		if (!number && !string)
+			break;
+	}
+	if (number)
+		return "number";
+	else if (string)
+		return "string";
+	else
+		return "any";
+}
+
+function _TypeIsEqual(t1, t2) {
+	return JSON.stringify(t1) === JSON.stringify(t2);
+}
+
+function _TypeOf(a, step) {
+	var t;
+	var type = Object.prototype.toString.call(a).slice(8, -1).toLowerCase();	
+	if (type == "array") {
+		t = {type : type, extra: {elemType: _TypeOfArray(a)}};
+	} else if (type == "object") {
+		let shape = [];
+        if (step === undefined || step > 0) {
+            let keys = Object.keys(a);
+            let length = Math.min(100, keys.length);
+		    for (let i = 0; i < length; i++) {
+			    shape.push([keys[i], _TypeOf(a[keys[i]], step === undefined ? 1 : step - 1)]);	
+		    }
+        }
+		t = {type : type, extra: {shape: shape}};
+	} else {
+		t = {type : type};
+	} 
+	return t;
+}
+
+function _RecordType(loc, a) {
+	var t = _TypeOf(a);
+    print("~~~TypeInfo:" + loc + ":" + JSON.stringify(t));
+}
+
+try { if (Inst0 <= 1000 && typeof (run) != "undefined") {_RecordType("<15,18,2>",(run)); Inst0++; } } catch(e) {}
+    function run() {
+try { if (Inst2 <= 1000 && typeof (document.createElement) != "undefined") {_RecordType("<54,76,3>",(document.createElement)); Inst2++; } } catch(e) {}try { if (Inst3 <= 1000 && typeof (document) != "undefined") {_RecordType("<54,62,3>",(document)); Inst3++; } } catch(e) {}
+        var recursiveIframe = document.createElement("iframe");
+try { if (Inst1 <= 1000 && typeof (recursiveIframe) != "undefined") {_RecordType("<36,51,3>",(recursiveIframe)); Inst1++; } } catch(e) {}
+try { if (Inst6 <= 1000 && typeof (document.documentElement.innerHTML) != "undefined") {_RecordType("<122,156,4>",(document.documentElement.innerHTML)); Inst6++; } } catch(e) {}try { if (Inst7 <= 1000 && typeof (document.documentElement) != "undefined") {_RecordType("<122,146,4>",(document.documentElement)); Inst7++; } } catch(e) {}try { if (Inst8 <= 1000 && typeof (document) != "undefined") {_RecordType("<122,130,4>",(document)); Inst8++; } } catch(e) {}
+        recursiveIframe.srcdoc = document.documentElement.innerHTML;
+try { if (Inst4 <= 1000 && typeof (recursiveIframe.srcdoc) != "undefined") {_RecordType("<97,119,4>",(recursiveIframe.srcdoc)); Inst4++; } } catch(e) {}try { if (Inst5 <= 1000 && typeof (recursiveIframe) != "undefined") {_RecordType("<97,112,4>",(recursiveIframe)); Inst5++; } } catch(e) {}
+try { if (Inst9 <= 1000 && typeof (detailsTest.appendChild) != "undefined") {_RecordType("<167,190,5>",(detailsTest.appendChild)); Inst9++; } } catch(e) {}try { if (Inst10 <= 1000 && typeof (detailsTest) != "undefined") {_RecordType("<167,178,5>",(detailsTest)); Inst10++; } } catch(e) {}try { if (Inst11 <= 1000 && typeof (recursiveIframe) != "undefined") {_RecordType("<191,206,5>",(recursiveIframe)); Inst11++; } } catch(e) {}
+        detailsTest.appendChild(recursiveIframe);
+    }
+
+try { if (Inst12 <= 1000 && typeof (spoof) != "undefined") {_RecordType("<232,237,8>",(spoof)); Inst12++; } } catch(e) {}
+    function spoof() {
+try { if (Inst13 <= 1000 && typeof (copyAndRequestFullscreen) != "undefined") {_RecordType("<260,284,9>",(copyAndRequestFullscreen)); Inst13++; } } catch(e) {}
+        function copyAndRequestFullscreen() {
+try { if (Inst14 <= 1000 && typeof (document.execCommand) != "undefined") {_RecordType("<302,322,10>",(document.execCommand)); Inst14++; } } catch(e) {}try { if (Inst15 <= 1000 && typeof (document) != "undefined") {_RecordType("<302,310,10>",(document)); Inst15++; } } catch(e) {}
+            document.execCommand("selectAll", false);
+try { if (Inst16 <= 1000 && typeof (document.execCommand) != "undefined") {_RecordType("<357,377,11>",(document.execCommand)); Inst16++; } } catch(e) {}try { if (Inst17 <= 1000 && typeof (document) != "undefined") {_RecordType("<357,365,11>",(document)); Inst17++; } } catch(e) {}
+            document.execCommand("copy", false);
+try { if (Inst18 <= 1000 && typeof (document.documentElement.requestFullscreen) != "undefined") {_RecordType("<407,449,12>",(document.documentElement.requestFullscreen)); Inst18++; } } catch(e) {}try { if (Inst19 <= 1000 && typeof (document.documentElement) != "undefined") {_RecordType("<407,431,12>",(document.documentElement)); Inst19++; } } catch(e) {}try { if (Inst20 <= 1000 && typeof (document) != "undefined") {_RecordType("<407,415,12>",(document)); Inst20++; } } catch(e) {}
+            document.documentElement.requestFullscreen();
+try { if (Inst21 <= 1000 && typeof (document.write) != "undefined") {_RecordType("<466,480,13>",(document.write)); Inst21++; } } catch(e) {}try { if (Inst22 <= 1000 && typeof (document) != "undefined") {_RecordType("<466,474,13>",(document)); Inst22++; } } catch(e) {}
+            document.write("<input placeholder='#'></input>");
+
+           
+try { if (Inst23 <= 1000 && typeof (setTimeout) != "undefined") {_RecordType("<545,555,16>",(setTimeout)); Inst23++; } } catch(e) {}try { if (Inst24 <= 1000 && typeof (copyAndRequestFullscreen) != "undefined") {_RecordType("<556,580,16>",(copyAndRequestFullscreen)); Inst24++; } } catch(e) {}
+            setTimeout(copyAndRequestFullscreen, 1);
+        }
+
+        
+try { if (Inst25 <= 1000 && typeof (copyAndRequestFullscreen) != "undefined") {_RecordType("<618,642,20>",(copyAndRequestFullscreen)); Inst25++; } } catch(e) {}
+        copyAndRequestFullscreen();
+    }
+
+try { if (Inst26 <= 1000 && typeof (document.addEventListener) != "undefined") {_RecordType("<660,685,23>",(document.addEventListener)); Inst26++; } } catch(e) {}try { if (Inst27 <= 1000 && typeof (document) != "undefined") {_RecordType("<660,668,23>",(document)); Inst27++; } } catch(e) {}
+    document.addEventListener('DOMContentLoaded', function() {
+try { if (Inst28 <= 1000 && typeof (run) != "undefined") {_RecordType("<728,731,24>",(run)); Inst28++; } } catch(e) {}
+        run();
+try { if (Inst29 <= 1000 && typeof (spoof) != "undefined") {_RecordType("<744,749,25>",(spoof)); Inst29++; } } catch(e) {}
+        spoof();
+    });
+

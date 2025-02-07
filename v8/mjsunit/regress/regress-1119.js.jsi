@@ -1,0 +1,120 @@
+var Inst0 = 0;
+var Inst1 = 0;
+var Inst2 = 0;
+var Inst3 = 0;
+var Inst4 = 0;
+var Inst5 = 0;
+var Inst6 = 0;
+var Inst7 = 0;
+var Inst8 = 0;
+var Inst9 = 0;
+var Inst10 = 0;
+var Inst11 = 0;
+ 
+function _TypeOfArray(a) {
+	let number = true;	
+	let string = true;
+	for (let i = 0; i < a.length; i++) {
+		if (number && (typeof a[i]) != "number") {
+			number = false;	
+		}
+		if (string && (typeof a[i]) != "string") {
+			string = false;	
+		}
+		if (!number && !string)
+			break;
+	}
+	if (number)
+		return "number";
+	else if (string)
+		return "string";
+	else
+		return "any";
+}
+
+function _TypeIsEqual(t1, t2) {
+	return JSON.stringify(t1) === JSON.stringify(t2);
+}
+
+function _TypeOf(a, step) {
+	var t;
+	var type = Object.prototype.toString.call(a).slice(8, -1).toLowerCase();	
+	if (type == "array") {
+		t = {type : type, extra: {elemType: _TypeOfArray(a)}};
+	} else if (type == "object") {
+		let shape = [];
+        if (step === undefined || step > 0) {
+            let keys = Object.keys(a);
+            let length = Math.min(100, keys.length);
+		    for (let i = 0; i < length; i++) {
+			    shape.push([keys[i], _TypeOf(a[keys[i]], step === undefined ? 1 : step - 1)]);	
+		    }
+        }
+		t = {type : type, extra: {shape: shape}};
+	} else {
+		t = {type : type};
+	} 
+	return t;
+}
+
+function _RecordType(loc, a) {
+	var t = _TypeOf(a);
+    print("~~~TypeInfo:" + loc + ":" + JSON.stringify(t));
+}
+// Copyright 2011 the V8 project authors. All rights reserved.
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions are
+// met:
+//
+//     * Redistributions of source code must retain the above copyright
+//       notice, this list of conditions and the following disclaimer.
+//     * Redistributions in binary form must reproduce the above
+//       copyright notice, this list of conditions and the following
+//       disclaimer in the documentation and/or other materials provided
+//       with the distribution.
+//     * Neither the name of Google Inc. nor the names of its
+//       contributors may be used to endorse or promote products derived
+//       from this software without specific prior written permission.
+//
+// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+// "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+// LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+// A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+// OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+// SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+// LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+// DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+// THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+// (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+// OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+// Test runtime declaration of properties with var which are intercepted
+// by JS accessors.
+
+// Flags: --es52-globals
+
+try { if (Inst0 <= 1000 && typeof (this.__defineSetter__) != "undefined") {_RecordType("<1718,1739,33>",(this.__defineSetter__)); Inst0++; } } catch(e) {}
+this.__defineSetter__("x", function() { hasBeenInvoked = true; });
+try { if (Inst1 <= 1000 && typeof (hasBeenInvoked) != "undefined") {_RecordType("<1758,1772,33>",(hasBeenInvoked)); Inst1++; } } catch(e) {}
+try { if (Inst2 <= 1000 && typeof (this.__defineSetter__) != "undefined") {_RecordType("<1785,1806,34>",(this.__defineSetter__)); Inst2++; } } catch(e) {}
+this.__defineSetter__("y", function() { throw 'exception'; });
+
+var hasBeenInvoked = false;
+try { if (Inst3 <= 1000 && typeof (hasBeenInvoked) != "undefined") {_RecordType("<1853,1867,36>",(hasBeenInvoked)); Inst3++; } } catch(e) {}
+try { if (Inst4 <= 1000 && typeof (eval) != "undefined") {_RecordType("<1877,1881,37>",(eval)); Inst4++; } } catch(e) {}
+eval("try { } catch (e) { var x = false; }");
+try { if (Inst5 <= 1000 && typeof (assertTrue) != "undefined") {_RecordType("<1923,1933,38>",(assertTrue)); Inst5++; } } catch(e) {}try { if (Inst6 <= 1000 && typeof (hasBeenInvoked) != "undefined") {_RecordType("<1934,1948,38>",(hasBeenInvoked)); Inst6++; } } catch(e) {}
+assertTrue(hasBeenInvoked);
+
+// This has to run in global scope, so cannot use assertThrows...
+try { if (Inst9 <= 1000 && typeof (e) != "undefined") {_RecordType("<2104,2105,44>",(e)); Inst9++; } } catch(e) {}
+try {
+try { if (Inst7 <= 1000 && typeof (eval) != "undefined") {_RecordType("<2026,2030,42>",(eval)); Inst7++; } } catch(e) {}
+  eval("try { } catch (e) { var y = false; }");
+try { if (Inst8 <= 1000 && typeof (assertUnreachable) != "undefined") {_RecordType("<2074,2091,43>",(assertUnreachable)); Inst8++; } } catch(e) {}
+  assertUnreachable();
+} catch (e) {
+try { if (Inst10 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<2111,2123,45>",(assertEquals)); Inst10++; } } catch(e) {}try { if (Inst11 <= 1000 && typeof (e) != "undefined") {_RecordType("<2137,2138,45>",(e)); Inst11++; } } catch(e) {}
+  assertEquals('exception', e);
+}
+

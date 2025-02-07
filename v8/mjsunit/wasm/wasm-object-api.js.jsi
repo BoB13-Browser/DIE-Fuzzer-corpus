@@ -1,0 +1,114 @@
+var Inst0 = 0;
+var Inst1 = 0;
+var Inst2 = 0;
+var Inst3 = 0;
+var Inst4 = 0;
+var Inst5 = 0;
+var Inst6 = 0;
+var Inst7 = 0;
+var Inst8 = 0;
+var Inst9 = 0;
+var Inst10 = 0;
+var Inst11 = 0;
+var Inst12 = 0;
+var Inst13 = 0;
+var Inst14 = 0;
+var Inst15 = 0;
+var Inst16 = 0;
+var Inst17 = 0;
+var Inst18 = 0;
+var Inst19 = 0;
+var Inst20 = 0;
+var Inst21 = 0;
+var Inst22 = 0;
+var Inst23 = 0;
+var Inst24 = 0;
+var Inst25 = 0;
+var Inst26 = 0;
+var Inst27 = 0;
+var Inst28 = 0;
+var Inst29 = 0;
+var Inst30 = 0;
+var Inst31 = 0;
+var Inst32 = 0;
+ 
+function _TypeOfArray(a) {
+	let number = true;	
+	let string = true;
+	for (let i = 0; i < a.length; i++) {
+		if (number && (typeof a[i]) != "number") {
+			number = false;	
+		}
+		if (string && (typeof a[i]) != "string") {
+			string = false;	
+		}
+		if (!number && !string)
+			break;
+	}
+	if (number)
+		return "number";
+	else if (string)
+		return "string";
+	else
+		return "any";
+}
+
+function _TypeIsEqual(t1, t2) {
+	return JSON.stringify(t1) === JSON.stringify(t2);
+}
+
+function _TypeOf(a, step) {
+	var t;
+	var type = Object.prototype.toString.call(a).slice(8, -1).toLowerCase();	
+	if (type == "array") {
+		t = {type : type, extra: {elemType: _TypeOfArray(a)}};
+	} else if (type == "object") {
+		let shape = [];
+        if (step === undefined || step > 0) {
+            let keys = Object.keys(a);
+            let length = Math.min(100, keys.length);
+		    for (let i = 0; i < length; i++) {
+			    shape.push([keys[i], _TypeOf(a[keys[i]], step === undefined ? 1 : step - 1)]);	
+		    }
+        }
+		t = {type : type, extra: {shape: shape}};
+	} else {
+		t = {type : type};
+	} 
+	return t;
+}
+
+function _RecordType(loc, a) {
+	var t = _TypeOf(a);
+    print("~~~TypeInfo:" + loc + ":" + JSON.stringify(t));
+}
+// Copyright 2015 the V8 project authors. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
+// Flags: --expose-wasm
+
+try { if (Inst0 <= 1000 && typeof (assertFalse) != "undefined") {_RecordType("<193,204,7>",(assertFalse)); Inst0++; } } catch(e) {}try { if (Inst1 <= 1000 && typeof (undefined) != "undefined") {_RecordType("<205,214,7>",(undefined)); Inst1++; } } catch(e) {}try { if (Inst2 <= 1000 && typeof (Wasm) != "undefined") {_RecordType("<219,223,7>",(Wasm)); Inst2++; } } catch(e) {}
+assertFalse(undefined === Wasm);
+try { if (Inst3 <= 1000 && typeof (assertFalse) != "undefined") {_RecordType("<226,237,8>",(assertFalse)); Inst3++; } } catch(e) {}try { if (Inst4 <= 1000 && typeof (undefined) != "undefined") {_RecordType("<238,247,8>",(undefined)); Inst4++; } } catch(e) {}try { if (Inst5 <= 1000 && typeof (Wasm) != "undefined") {_RecordType("<251,255,8>",(Wasm)); Inst5++; } } catch(e) {}
+assertFalse(undefined == Wasm);
+try { if (Inst6 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<258,270,9>",(assertEquals)); Inst6++; } } catch(e) {}try { if (Inst7 <= 1000 && typeof (Wasm.verifyModule) != "undefined") {_RecordType("<290,307,9>",(Wasm.verifyModule)); Inst7++; } } catch(e) {}try { if (Inst8 <= 1000 && typeof (Wasm) != "undefined") {_RecordType("<290,294,9>",(Wasm)); Inst8++; } } catch(e) {}
+assertEquals("function", typeof Wasm.verifyModule);
+try { if (Inst9 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<310,322,10>",(assertEquals)); Inst9++; } } catch(e) {}try { if (Inst10 <= 1000 && typeof (Wasm.verifyFunction) != "undefined") {_RecordType("<342,361,10>",(Wasm.verifyFunction)); Inst10++; } } catch(e) {}try { if (Inst11 <= 1000 && typeof (Wasm) != "undefined") {_RecordType("<342,346,10>",(Wasm)); Inst11++; } } catch(e) {}
+assertEquals("function", typeof Wasm.verifyFunction);
+try { if (Inst12 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<364,376,11>",(assertEquals)); Inst12++; } } catch(e) {}try { if (Inst13 <= 1000 && typeof (Wasm.instantiateModule) != "undefined") {_RecordType("<396,418,11>",(Wasm.instantiateModule)); Inst13++; } } catch(e) {}try { if (Inst14 <= 1000 && typeof (Wasm) != "undefined") {_RecordType("<396,400,11>",(Wasm)); Inst14++; } } catch(e) {}
+assertEquals("function", typeof Wasm.instantiateModule);
+try { if (Inst15 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<421,433,12>",(assertEquals)); Inst15++; } } catch(e) {}try { if (Inst16 <= 1000 && typeof (Wasm.instantiateModuleFromAsm) != "undefined") {_RecordType("<453,482,12>",(Wasm.instantiateModuleFromAsm)); Inst16++; } } catch(e) {}try { if (Inst17 <= 1000 && typeof (Wasm) != "undefined") {_RecordType("<453,457,12>",(Wasm)); Inst17++; } } catch(e) {}
+assertEquals("function", typeof Wasm.instantiateModuleFromAsm);
+try { if (Inst18 <= 1000 && typeof (assertFalse) != "undefined") {_RecordType("<485,496,13>",(assertFalse)); Inst18++; } } catch(e) {}try { if (Inst19 <= 1000 && typeof (undefined) != "undefined") {_RecordType("<497,506,13>",(undefined)); Inst19++; } } catch(e) {}try { if (Inst20 <= 1000 && typeof (Wasm.experimentalVersion) != "undefined") {_RecordType("<510,534,13>",(Wasm.experimentalVersion)); Inst20++; } } catch(e) {}try { if (Inst21 <= 1000 && typeof (Wasm) != "undefined") {_RecordType("<510,514,13>",(Wasm)); Inst21++; } } catch(e) {}
+assertFalse(undefined == Wasm.experimentalVersion);
+
+try { if (Inst22 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<538,550,15>",(assertEquals)); Inst22++; } } catch(e) {}try { if (Inst23 <= 1000 && typeof (WebAssembly) != "undefined") {_RecordType("<568,579,15>",(WebAssembly)); Inst23++; } } catch(e) {}
+assertEquals('object', typeof WebAssembly);
+try { if (Inst24 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<582,594,16>",(assertEquals)); Inst24++; } } catch(e) {}try { if (Inst25 <= 1000 && typeof (WebAssembly.Module) != "undefined") {_RecordType("<614,632,16>",(WebAssembly.Module)); Inst25++; } } catch(e) {}try { if (Inst26 <= 1000 && typeof (WebAssembly) != "undefined") {_RecordType("<614,625,16>",(WebAssembly)); Inst26++; } } catch(e) {}
+assertEquals('function', typeof WebAssembly.Module);
+try { if (Inst27 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<635,647,17>",(assertEquals)); Inst27++; } } catch(e) {}try { if (Inst28 <= 1000 && typeof (WebAssembly.Instance) != "undefined") {_RecordType("<667,687,17>",(WebAssembly.Instance)); Inst28++; } } catch(e) {}try { if (Inst29 <= 1000 && typeof (WebAssembly) != "undefined") {_RecordType("<667,678,17>",(WebAssembly)); Inst29++; } } catch(e) {}
+assertEquals('function', typeof WebAssembly.Instance);
+try { if (Inst30 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<690,702,18>",(assertEquals)); Inst30++; } } catch(e) {}try { if (Inst31 <= 1000 && typeof (WebAssembly.compile) != "undefined") {_RecordType("<722,741,18>",(WebAssembly.compile)); Inst31++; } } catch(e) {}try { if (Inst32 <= 1000 && typeof (WebAssembly) != "undefined") {_RecordType("<722,733,18>",(WebAssembly)); Inst32++; } } catch(e) {}
+assertEquals('function', typeof WebAssembly.compile);
+

@@ -1,0 +1,137 @@
+var Inst0 = 0;
+var Inst1 = 0;
+var Inst2 = 0;
+var Inst3 = 0;
+var Inst4 = 0;
+var Inst5 = 0;
+var Inst6 = 0;
+var Inst7 = 0;
+var Inst8 = 0;
+var Inst9 = 0;
+var Inst10 = 0;
+var Inst11 = 0;
+var Inst12 = 0;
+var Inst13 = 0;
+var Inst14 = 0;
+var Inst15 = 0;
+var Inst16 = 0;
+var Inst17 = 0;
+var Inst18 = 0;
+var Inst19 = 0;
+var Inst20 = 0;
+var Inst21 = 0;
+var Inst22 = 0;
+var Inst23 = 0;
+var Inst24 = 0;
+var Inst25 = 0;
+var Inst26 = 0;
+var Inst27 = 0;
+var Inst28 = 0;
+var Inst29 = 0;
+var Inst30 = 0;
+var Inst31 = 0;
+var Inst32 = 0;
+var Inst33 = 0;
+var Inst34 = 0;
+var Inst35 = 0;
+ 
+function _TypeOfArray(a) {
+	let number = true;	
+	let string = true;
+	for (let i = 0; i < a.length; i++) {
+		if (number && (typeof a[i]) != "number") {
+			number = false;	
+		}
+		if (string && (typeof a[i]) != "string") {
+			string = false;	
+		}
+		if (!number && !string)
+			break;
+	}
+	if (number)
+		return "number";
+	else if (string)
+		return "string";
+	else
+		return "any";
+}
+
+function _TypeIsEqual(t1, t2) {
+	return JSON.stringify(t1) === JSON.stringify(t2);
+}
+
+function _TypeOf(a, step) {
+	var t;
+	var type = Object.prototype.toString.call(a).slice(8, -1).toLowerCase();	
+	if (type == "array") {
+		t = {type : type, extra: {elemType: _TypeOfArray(a)}};
+	} else if (type == "object") {
+		let shape = [];
+        if (step === undefined || step > 0) {
+            let keys = Object.keys(a);
+            let length = Math.min(100, keys.length);
+		    for (let i = 0; i < length; i++) {
+			    shape.push([keys[i], _TypeOf(a[keys[i]], step === undefined ? 1 : step - 1)]);	
+		    }
+        }
+		t = {type : type, extra: {shape: shape}};
+	} else {
+		t = {type : type};
+	} 
+	return t;
+}
+
+function _RecordType(loc, a) {
+	var t = _TypeOf(a);
+    print("~~~TypeInfo:" + loc + ":" + JSON.stringify(t));
+}
+// Copyright 2014 the V8 project authors. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
+var stdlib = {};
+try { if (Inst0 <= 1000 && typeof (stdlib) != "undefined") {_RecordType("<172,178,5>",(stdlib)); Inst0++; } } catch(e) {}
+var foreign = {};
+try { if (Inst1 <= 1000 && typeof (foreign) != "undefined") {_RecordType("<189,196,6>",(foreign)); Inst1++; } } catch(e) {}
+try { if (Inst3 <= 1000 && typeof (ArrayBuffer) != "undefined") {_RecordType("<218,229,7>",(ArrayBuffer)); Inst3++; } } catch(e) {}
+var heap = new ArrayBuffer(64 * 1024);
+try { if (Inst2 <= 1000 && typeof (heap) != "undefined") {_RecordType("<207,211,7>",(heap)); Inst2++; } } catch(e) {}
+
+try { if (Inst4 <= 1000 && typeof (Uint32Mod) != "undefined") {_RecordType("<252,261,9>",(Uint32Mod)); Inst4++; } } catch(e) {}
+function Uint32Mod(divisor) {
+try { if (Inst5 <= 1000 && typeof (divisor) != "undefined") {_RecordType("<262,269,9>",(divisor)); Inst5++; } } catch(e) {}
+  var name = "mod_";
+try { if (Inst6 <= 1000 && typeof (name) != "undefined") {_RecordType("<279,283,10>",(name)); Inst6++; } } catch(e) {}
+try { if (Inst8 <= 1000 && typeof (divisor) != "undefined") {_RecordType("<304,311,11>",(divisor)); Inst8++; } } catch(e) {}
+  name += divisor;
+try { if (Inst7 <= 1000 && typeof (name) != "undefined") {_RecordType("<296,300,11>",(name)); Inst7++; } } catch(e) {}
+try { if (Inst10 <= 1000 && typeof (eval) != "undefined") {_RecordType("<323,327,12>",(eval)); Inst10++; } } catch(e) {}try { if (Inst11 <= 1000 && typeof (name) != "undefined") {_RecordType("<422,426,14>",(name)); Inst11++; } } catch(e) {}try { if (Inst12 <= 1000 && typeof (divisor) != "undefined") {_RecordType("<488,495,15>",(divisor)); Inst12++; } } catch(e) {}try { if (Inst13 <= 1000 && typeof (name) != "undefined") {_RecordType("<552,556,17>",(name)); Inst13++; } } catch(e) {}
+  var m = eval("function Module(stdlib, foreign, heap) {\n"
+      + " \"use asm\";\n"
+      + " function " + name + "(dividend) {\n"
+      + "  return ((dividend >>> 0) % " + divisor + ") >>> 0;\n"
+      + " }\n"
+      + " return { f: " + name + "}\n"
+      + "}; Module");
+try { if (Inst9 <= 1000 && typeof (m) != "undefined") {_RecordType("<319,320,12>",(m)); Inst9++; } } catch(e) {}
+try { if (Inst14 <= 1000 && typeof (m(stdlib, foreign, heap).f) != "undefined") {_RecordType("<596,622,19>",(m(stdlib, foreign, heap).f)); Inst14++; } } catch(e) {}try { if (Inst15 <= 1000 && typeof (m) != "undefined") {_RecordType("<596,597,19>",(m)); Inst15++; } } catch(e) {}try { if (Inst16 <= 1000 && typeof (stdlib) != "undefined") {_RecordType("<598,604,19>",(stdlib)); Inst16++; } } catch(e) {}try { if (Inst17 <= 1000 && typeof (foreign) != "undefined") {_RecordType("<606,613,19>",(foreign)); Inst17++; } } catch(e) {}try { if (Inst18 <= 1000 && typeof (heap) != "undefined") {_RecordType("<615,619,19>",(heap)); Inst18++; } } catch(e) {}
+  return m(stdlib, foreign, heap).f;
+}
+
+var divisors = [0, 1, 3, 4, 10, 42, 64, 100, 1024, 2147483647, 4294967295];
+try { if (Inst19 <= 1000 && typeof (divisors) != "undefined") {_RecordType("<631,639,22>",(divisors)); Inst19++; } } catch(e) {}
+for (var i in divisors) {
+try { if (Inst20 <= 1000 && typeof (i) != "undefined") {_RecordType("<712,713,23>",(i)); Inst20++; } } catch(e) {}try { if (Inst21 <= 1000 && typeof (divisors) != "undefined") {_RecordType("<717,725,23>",(divisors)); Inst21++; } } catch(e) {}
+try { if (Inst23 <= 1000 && typeof (divisors[i]) != "undefined") {_RecordType("<745,756,24>",(divisors[i])); Inst23++; } } catch(e) {}try { if (Inst24 <= 1000 && typeof (divisors) != "undefined") {_RecordType("<745,753,24>",(divisors)); Inst24++; } } catch(e) {}
+  var divisor = divisors[i];
+try { if (Inst22 <= 1000 && typeof (divisor) != "undefined") {_RecordType("<735,742,24>",(divisor)); Inst22++; } } catch(e) {}
+try { if (Inst26 <= 1000 && typeof (Uint32Mod) != "undefined") {_RecordType("<770,779,25>",(Uint32Mod)); Inst26++; } } catch(e) {}try { if (Inst27 <= 1000 && typeof (divisor) != "undefined") {_RecordType("<780,787,25>",(divisor)); Inst27++; } } catch(e) {}
+  var mod = Uint32Mod(divisor);
+try { if (Inst25 <= 1000 && typeof (mod) != "undefined") {_RecordType("<764,767,25>",(mod)); Inst25++; } } catch(e) {}
+  for (var dividend = 0; dividend < 4294967296; dividend += 3999773) {
+try { if (Inst28 <= 1000 && typeof (dividend) != "undefined") {_RecordType("<801,809,26>",(dividend)); Inst28++; } } catch(e) {}try { if (Inst29 <= 1000 && typeof (dividend) != "undefined") {_RecordType("<815,823,26>",(dividend)); Inst29++; } } catch(e) {}try { if (Inst30 <= 1000 && typeof (dividend) != "undefined") {_RecordType("<838,846,26>",(dividend)); Inst30++; } } catch(e) {}
+try { if (Inst31 <= 1000 && typeof (assertEquals) != "undefined") {_RecordType("<865,877,27>",(assertEquals)); Inst31++; } } catch(e) {}try { if (Inst32 <= 1000 && typeof (dividend) != "undefined") {_RecordType("<879,887,27>",(dividend)); Inst32++; } } catch(e) {}try { if (Inst33 <= 1000 && typeof (divisor) != "undefined") {_RecordType("<890,897,27>",(divisor)); Inst33++; } } catch(e) {}try { if (Inst34 <= 1000 && typeof (mod) != "undefined") {_RecordType("<906,909,27>",(mod)); Inst34++; } } catch(e) {}try { if (Inst35 <= 1000 && typeof (dividend) != "undefined") {_RecordType("<910,918,27>",(dividend)); Inst35++; } } catch(e) {}
+    assertEquals((dividend % divisor) >>> 0, mod(dividend));
+  }
+}
+
